@@ -74,13 +74,13 @@ long int time_s;
 
 void start_tone() {
     zumm = 1;
-    TMR2_StartTimer();
+   // TMR2_StartTimer();
     return;
 }
 
 void stop_tone() {
     zumm = 0;
-    TMR2_StopTimer();
+   // TMR2_StopTimer();
     return;
 }
 
@@ -133,35 +133,37 @@ void go_open_alt() {
 void start_measure() {
     static char measures;
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
+    if (res > 2) FLAGS.bits.ALARM = 1; /*
+   
     if (res > BAD_VALUE) measures++;
     else measures = 0;
     if (measures > 2) FLAGS.bits.ALARM = 1;
+    // */
     return;
 }
 
 void Sec_tick_work() {
-
-    //  start_measure();
+    
+    
+   start_measure();
 
     time_s++;
     if (FLAGS.bits.ALARM) {//if alarm
         PIN_LED_Toggle();
-        if (zumm) {//timer4switch
+        if (~zumm) {//timer4switch
             zumm=1;
         } else {//timer4switch
             zumm=0;
         }
     } else {//if not alarm
-        PIN_LED_Toggle();
-        /*
           static char iled;
           iled++;
-          if (iled > 20) {
+          if (iled > 2) {
               PIN_LED_Toggle();
               iled = 0;
-         }*/
+         }
     }
-    //   TMR2IF = 0;
+    // */
     return;
 }
 
@@ -206,21 +208,14 @@ void switch_wm() {//TODO drebezg
 }
 
 void switch_zum() {
-    if (zumm){
-    INTCONbits.TMR0IF = 0;
-    LATAbits.LATA5 = ~LATAbits.LATA5;
-    }else{
-        PIN_ZUMMER_SetLow();
-    }
+      if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
 }
 
 void main(void) {
     // initialize the device
     SYSTEM_Initialize();
 
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
-
+ 
     // Enable the Global Interrupts
     INTERRUPT_GlobalInterruptEnable();
 
@@ -228,20 +223,22 @@ void main(void) {
     INTERRUPT_PeripheralInterruptEnable();
 
     // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
+  //  INTERRUPT_GlobalInterruptDisable();
 
     // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
-    TMR0_SetInterruptHandler(switch_zum);
+   // INTERRUPT_PeripheralInterruptDisable();
+    
+  TMR0_SetInterruptHandler(switch_zum);
 
-    TMR2_SetInterruptHandler(Sec_tick_work);
+  TMR2_SetInterruptHandler(Sec_tick_work);
 
-    TMR2_StartTimer();
+ TMR2_StartTimer();
 
     while (1) {
-        //   Sec_tick_work();
-        //   __delay_ms(100);
-        /*
+    
+        __delay_ms(10);
+       /*
+      
        if (FLAGS.bits.ALARM) { //alarm true?        
            if (FLAGS.bits.WORK_MODE) {//work mode 1?            
                go_close_alt();
@@ -255,7 +252,7 @@ void main(void) {
            povorot();
            switch_wm();
        };
-         */
+        // */ 
         CLRWDT();
     }
 }
