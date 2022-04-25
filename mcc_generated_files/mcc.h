@@ -53,10 +53,9 @@
 #include <stdbool.h>
 #include <conio.h>
 #include "interrupt_manager.h"
-#include "tmr1.h"
 #include "tmr2.h"
-#include "adc.h"
 #include "tmr0.h"
+#include "adc.h"
 
 
 

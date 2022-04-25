@@ -16,7 +16,7 @@
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC16F1823
         Driver Version    :  2.00
-*/
+ */
 
 /*
     (c) 2018 Microchip Technology Inc. and its subsidiaries. 
@@ -39,7 +39,7 @@
     CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
     OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
     SOFTWARE.
-*/
+ */
 
 #include "mcc_generated_files/mcc.h"
 
@@ -141,27 +141,27 @@ void start_measure() {
 
 void Sec_tick_work() {
 
-  //  start_measure();
+    //  start_measure();
 
     time_s++;
     if (FLAGS.bits.ALARM) {//if alarm
         PIN_LED_Toggle();
-        if (PIN_ZUMMER_TRIS) {//timer4switch
-            PIN_ZUMMER_SetDigitalInput();
+        if (zumm) {//timer4switch
+            zumm=1;
         } else {//timer4switch
-            PIN_ZUMMER_SetDigitalOutput();
+            zumm=0;
         }
     } else {//if not alarm
-         PIN_LED_Toggle();
-      /*
-        static char iled;
-        iled++;
-        if (iled > 20) {
-            PIN_LED_Toggle();
-            iled = 0;
-       }*/
+        PIN_LED_Toggle();
+        /*
+          static char iled;
+          iled++;
+          if (iled > 20) {
+              PIN_LED_Toggle();
+              iled = 0;
+         }*/
     }
- //   TMR2IF = 0;
+    //   TMR2IF = 0;
     return;
 }
 
@@ -205,12 +205,16 @@ void switch_wm() {//TODO drebezg
     }
 }
 
-void switch_zum(){
-   PIN_ZUMMER_Toggle(); 
+void switch_zum() {
+    if (zumm){
+    INTCONbits.TMR0IF = 0;
+    LATAbits.LATA5 = ~LATAbits.LATA5;
+    }else{
+        PIN_ZUMMER_SetLow();
+    }
 }
 
-void main(void)
-{
+void main(void) {
     // initialize the device
     SYSTEM_Initialize();
 
@@ -228,31 +232,30 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
+    TMR0_SetInterruptHandler(switch_zum);
+
+    TMR2_SetInterruptHandler(Sec_tick_work);
 
     TMR2_StartTimer();
-    TMR2_SetInterruptHandler(Sec_tick_work);
-    
-   TMR0_SetInterruptHandler(switch_zum);
-    
-    while (1)
-    {
-      //   Sec_tick_work();
-      //   __delay_ms(100);
-         /*
-        if (FLAGS.bits.ALARM) { //alarm true?        
-            if (FLAGS.bits.WORK_MODE) {//work mode 1?            
-                go_close_alt();
-                start_tone();
-            } else {//work mode 0
-                go_close();
-                start_tone();
-            }
-        } else {//alarm false
-            fun_work();
-            povorot();
-            switch_wm();
-        };
-   */
-         CLRWDT();
+
+    while (1) {
+        //   Sec_tick_work();
+        //   __delay_ms(100);
+        /*
+       if (FLAGS.bits.ALARM) { //alarm true?        
+           if (FLAGS.bits.WORK_MODE) {//work mode 1?            
+               go_close_alt();
+               start_tone();
+           } else {//work mode 0
+               go_close();
+               start_tone();
+           }
+       } else {//alarm false
+           fun_work();
+           povorot();
+           switch_wm();
+       };
+         */
+        CLRWDT();
     }
 }

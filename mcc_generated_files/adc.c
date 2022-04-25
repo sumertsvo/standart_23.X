@@ -80,11 +80,6 @@ void ADC_Initialize(void)
     // GO_nDONE stop; ADON enabled; CHS AN0; 
     ADCON0 = 0x01;
     
-    // Enabling ADC interrupt.
-    PIE1bits.ADIE = 1;
-	
-	// Set Default Interrupt Handler
-    ADC_SetInterruptHandler(ADC_DefaultInterruptHandler);
 }
 
 void ADC_SelectChannel(adc_channel_t channel)
@@ -140,26 +135,6 @@ adc_result_t ADC_GetConversion(adc_channel_t channel)
 void ADC_TemperatureAcquisitionDelay(void)
 {
     __delay_us(200);
-}
-
-void ADC_ISR(void)
-{
-    // Clear the ADC interrupt flag
-    PIR1bits.ADIF = 0;
-	
-	if(ADC_InterruptHandler)
-    {
-        ADC_InterruptHandler();
-    }
-}
-
-void ADC_SetInterruptHandler(void (* InterruptHandler)(void)){
-    ADC_InterruptHandler = InterruptHandler;
-}
-
-void ADC_DefaultInterruptHandler(void){
-    // add your ADC interrupt custom code
-    // or set custom function using ADC_SetInterruptHandler()
 }
 /**
  End of File
