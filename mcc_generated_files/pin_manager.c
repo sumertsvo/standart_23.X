@@ -1,21 +1,26 @@
 /**
-  Generated Main Source File
+  Generated Pin Manager File
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    main.c
+    pin_manager.c
 
   Summary:
-    This is the main file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+    This is the Pin Manager file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
   Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
+    This header file provides implementations for pin APIs for all pins selected in the GUI.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC16F1823
-        Driver Version    :  2.00
+        Driver Version    :  2.11
+    The generated drivers are tested against the following:
+        Compiler          :  XC8 2.31 and above
+        MPLAB             :  MPLAB X 5.45
+
+    Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
 */
 
 /*
@@ -41,36 +46,56 @@
     SOFTWARE.
 */
 
-#include "mcc_generated_files/mcc.h"
+#include "pin_manager.h"
 
-/*
-                         Main application
- */
-void main(void)
+
+
+
+
+void PIN_MANAGER_Initialize(void)
 {
-    // initialize the device
-    SYSTEM_Initialize();
+    /**
+    LATx registers
+    */
+    LATA = 0x00;
+    LATC = 0x00;
 
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
+    /**
+    TRISx registers
+    */
+    TRISA = 0x0F;
+    TRISC = 0x0C;
 
-    // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
+    /**
+    ANSELx registers
+    */
+    ANSELC = 0x08;
+    ANSELA = 0x05;
 
-    // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
+    /**
+    WPUx registers
+    */
+    WPUA = 0x00;
+    WPUC = 0x00;
+    OPTION_REGbits.nWPUEN = 1;
 
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
 
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
+    /**
+    APFCONx registers
+    */
+    APFCON = 0x00;
 
-    while (1)
-    {
-        // Add your application code
-    }
+
+
+
+   
+    
 }
+  
+void PIN_MANAGER_IOC(void)
+{   
+}
+
 /**
  End of File
 */
