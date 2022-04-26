@@ -4035,24 +4035,26 @@ typedef struct
 # 95 "./mcc_generated_files/adc.h"
 typedef enum
 {
+    PIN_JUMP_STATE = 0x1,
+    PIN_FUN_STATE = 0x6,
     PIN_WSP_STATE = 0x7,
     channel_Temp = 0x1D,
     channel_DAC = 0x1E,
     channel_FVR = 0x1F
 } adc_channel_t;
-# 136 "./mcc_generated_files/adc.h"
+# 138 "./mcc_generated_files/adc.h"
 void ADC_Initialize(void);
-# 166 "./mcc_generated_files/adc.h"
+# 168 "./mcc_generated_files/adc.h"
 void ADC_SelectChannel(adc_channel_t channel);
-# 193 "./mcc_generated_files/adc.h"
+# 195 "./mcc_generated_files/adc.h"
 void ADC_StartConversion(void);
-# 225 "./mcc_generated_files/adc.h"
+# 227 "./mcc_generated_files/adc.h"
 _Bool ADC_IsConversionDone(void);
-# 258 "./mcc_generated_files/adc.h"
+# 260 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
-# 288 "./mcc_generated_files/adc.h"
+# 290 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 316 "./mcc_generated_files/adc.h"
+# 318 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
 # 58 "./mcc_generated_files/mcc.h" 2
 # 73 "./mcc_generated_files/mcc.h"
@@ -4062,6 +4064,11 @@ void OSCILLATOR_Initialize(void);
 # 98 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
 # 1 "main.c" 2
+# 20 "main.c"
+const long int ROTATION_TIME = 14 * 24 * 60 * 60;
+const long int BAD_WSP_VOLTAGE = 20000;
+const long int GOOD_WSP_VOLTAGE = 40000;
+
 
 
 
@@ -4073,8 +4080,8 @@ struct f_field {
     unsigned FUN_NEW : 1;
     unsigned JUMP : 1;
     unsigned MEAS : 1;
-    unsigned FREE1 : 1;
-    unsigned FREE2 : 1;
+    unsigned RELE_POW : 1;
+    unsigned RELE_CON : 1;
 };
 
 union Byte {
@@ -4082,96 +4089,151 @@ union Byte {
     struct f_field bits;
 } FLAGS;
 
-const long int ROTATION_TIME = 180;
-const long int BAD_VALUE = 500000;
 
+unsigned char time_pow;
+static unsigned char time_con;
 
-char zumm;
-char ledd;
-char watt;
-char rcon;
-
+static signed char fun_counter;
+static unsigned char measures;
+static signed char jump_counter;
 long int time_s;
 unsigned result;
+unsigned jresult;
+unsigned fresult;
 
-start_alarm() {
-    FLAGS.bits.ALARM = 1;
-    do { LATCbits.LATC0 = 1; } while(0);
-    INTCONbits.TMR0IE = 1;
+
+
+void switch_zum() {
+    if (FLAGS.bits.ALARM) do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
 }
 
+
+
 void toggle_tone() {
-    if (FLAGS.bits.ALARM) TRISAbits.TRISA5 = ~TRISAbits.TRISA5;
+    TRISAbits.TRISA5 = ~TRISAbits.TRISA5;
     return;
 }
 
+
 void go_close() {
-
-    watt = 0;
-
+    time_s = 0;
+    FLAGS.bits.FUN_OLD = 0;
     do { LATCbits.LATC4 = 1; } while(0);
-    _delay((unsigned long)((5)*(4000000/4000.0)));
+    _delay((unsigned long)((1)*(4000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
-    for (char i = 0; i < 120; i++) {
-        do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-        _delay((unsigned long)((10)*(4000000/4000.0)));
-    }
-    do { LATCbits.LATC5 = 0; } while(0);
-    _delay((unsigned long)((5)*(4000000/4000.0)));
+    time_pow = 10;
+    FLAGS.bits.RELE_POW = 1;
+    FLAGS.bits.RELE_CON = 1;
+    return;
+}
+
+void go_open() {
     do { LATCbits.LATC4 = 0; } while(0);
+    do { LATCbits.LATC5 = 1; } while(0);
+    time_pow = 10;
+    FLAGS.bits.RELE_POW = 1;
     return;
 }
 
 void go_close_alt() {
-    watt = 0;
     FLAGS.bits.FUN_OLD = 0;
+    do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
-}
-
-void go_open() {
-
-    watt = 1;
-    FLAGS.bits.FUN_OLD = 1;
-
-    time_s = 0;
-    do { LATCbits.LATC5 = 1; } while(0);
-    _delay((unsigned long)((1)*(4000000/4000.0)));
-    do { LATCbits.LATC5 = 0; } while(0);
-    return;
 }
 
 void go_open_alt() {
-    watt = 1;
+    do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 0; } while(0);
     return;
 }
+start_alarm() {
+    FLAGS.bits.ALARM = 1;
+    do { LATCbits.LATC0 = 1; } while(0);
+    INTCONbits.TMR0IE = 1;
+
+     if (FLAGS.bits.WORK_MODE) {
+                go_close_alt();
+            } else {
+                go_close();
+            }
+
+}
 
 void get_measure() {
-    static unsigned char measures;
     do { LATCbits.LATC1 = 1; } while(0);
+    do { ANSELCbits.ANSC3 = 1; } while(0);
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-    result=res;
+     do { ANSELCbits.ANSC3 = 0; } while(0);
+    result = res;
     do { LATCbits.LATC1 = 0; } while(0);
 
-
-
-    if (res < BAD_VALUE) measures++;
-    else measures = 0;
+    if (res < BAD_WSP_VOLTAGE) measures++;
+    else if (res > GOOD_WSP_VOLTAGE) measures = 0;
     if (measures > 2) start_alarm();
-
     return;
 }
 
+void get_fun() {
+    do { LATCbits.LATC1 = 1; } while(0);
+    do { ANSELCbits.ANSC2 = 1; } while(0);
+    unsigned res = ADC_GetConversion(PIN_FUN_STATE);
+    do { ANSELCbits.ANSC2 = 0; } while(0);
+    do { LATCbits.LATC1 = 0; } while(0);
+    fresult = res;
+    if (res < 6000) fun_counter--;
+    else fun_counter++;
+
+    if (fun_counter > 10) {
+        fun_counter = 10;
+        FLAGS.bits.FUN_NEW = 1;
+    } else if (fun_counter<-10) {
+        fun_counter = -10;
+        FLAGS.bits.FUN_NEW = 0;
+    }
+    return;
+}
+
+void get_jump() {
+    do { ANSELAbits.ANSA1 = 1; } while(0);
+    unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
+    do { ANSELAbits.ANSA1 = 0; } while(0);
+    jresult = res;
+    if (res < 6000) jump_counter--;
+    else jump_counter++;
+
+    if (jump_counter > 10) {
+        jump_counter = 10;
+        FLAGS.bits.JUMP = 1;
+    } else if (jump_counter<-10) {
+        jump_counter = -10;
+        FLAGS.bits.JUMP = 0;
+    }
+    return;
+}
+
+void rele_tick() {
+    if (FLAGS.bits.RELE_POW) {
+        if (time_pow > 0) time_pow--;
+        if (time_pow <= 0) {
+            do { LATCbits.LATC5 = 0; } while(0);
+            _delay((unsigned long)((1)*(4000000/4000.0)));
+            do { LATCbits.LATC4 = 0; } while(0);
+        }
+    }
+# 189 "main.c"
+}
+
 void Sec_tick_work() {
-
-    get_measure();
-
     time_s++;
-
+    rele_tick();
+    __asm("clrwdt");
     if (FLAGS.bits.ALARM) {
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
         toggle_tone();
     } else {
+        get_measure();
+        get_jump();
+        get_fun();
         static char iled;
         iled++;
         if (iled > 2) {
@@ -4180,12 +4242,12 @@ void Sec_tick_work() {
         }
     }
 
+
     return;
 }
 
 void povorot() {
-    if (
-            time_s > ROTATION_TIME &&
+    if (time_s > ROTATION_TIME &&
             FLAGS.bits.FUN_OLD &&
             ~FLAGS.bits.ALARM &&
             FLAGS.bits.WORK_MODE
@@ -4200,86 +4262,73 @@ void povorot() {
 void fun_work() {
     if (FLAGS.bits.FUN_OLD)
     {
-        if (PORTCbits.RC2 == 0) {
+        if (~FLAGS.bits.FUN_NEW) {
             go_close();
-            FLAGS.bits.FUN_OLD = 0;
+            FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         };
     } else {
-        if (PORTCbits.RC2 == 1) {
+        if (FLAGS.bits.FUN_NEW && ~FLAGS.bits.ALARM) {
             go_open();
-            FLAGS.bits.FUN_OLD = 1;
+            FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         }
     }
 }
 
 void switch_wm() {
-    static char jmp;
-
-    if (PORTAbits.RA1) {
-        jmp++;
+    if (FLAGS.bits.JUMP) {
+        FLAGS.bits.WORK_MODE = 1;
     } else {
-        jmp--;
+        FLAGS.bits.WORK_MODE = 0;
     }
-    if (jmp > 10) {
-        FLAGS.bits.JUMP = 1;
-        FLAGS.bits.WORK_MODE = FLAGS.bits.JUMP;
-    } else if (jmp < -10) {
-        FLAGS.bits.JUMP = 0;
-        FLAGS.bits.WORK_MODE = FLAGS.bits.JUMP;
-    }
-
 }
 
-void switch_zum() {
-    if (FLAGS.bits.ALARM) do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+void start_setup() {
+
+    SYSTEM_Initialize();
+    (INTCONbits.GIE = 1);
+    (INTCONbits.PEIE = 1);
+
+
+    TMR0_SetInterruptHandler(switch_zum);
+    TMR2_SetInterruptHandler(Sec_tick_work);
+    TMR2_StartTimer();
+
+    do { ANSELCbits.ANSC3 = 0; } while(0);
+
+    do { WPUAbits.WPUA1 = 0; } while(0);
+    do { LATAbits.LATA1 = 0; } while(0);
+    do { TRISAbits.TRISA1 = 1; } while(0);
+    do { ANSELAbits.ANSA1 = 0; } while(0);
+
+
+
+    do { WPUCbits.WPUC2 = 0; } while(0);
+    do { LATCbits.LATC2 = 0; } while(0);
+    do { TRISCbits.TRISC2 = 1; } while(0);
+    do { ANSELCbits.ANSC2 = 0; } while(0);
+
+    do { LATCbits.LATC5 = 0; } while(0);
+    do { LATCbits.LATC4 = 0; } while(0);
+
+    do { TRISCbits.TRISC0 = 0; } while(0);
+    do { LATCbits.LATC0 = 0; } while(0);
+
+
+    INTCONbits.TMR0IE = 0;
+    FLAGS.value = 0;
+
+    time_pow = 0;
 }
 
 void main(void) {
 
-    SYSTEM_Initialize();
+    start_setup();
 
-
-
-    (INTCONbits.GIE = 1);
-
-
-    (INTCONbits.PEIE = 1);
-
-
-
-
-
-
-
-    TMR0_SetInterruptHandler(switch_zum);
-
-    TMR2_SetInterruptHandler(Sec_tick_work);
-
-    TMR2_StartTimer();
-
-    do { LATCbits.LATC0 = 0; } while(0);
-    INTCONbits.TMR0IE = 0;
-    FLAGS.value = 0;
     while (1) {
-
-        _delay((unsigned long)((10)*(4000000/4000.0)));
-
-
-        if (FLAGS.bits.ALARM) {
-            if (FLAGS.bits.WORK_MODE) {
-                go_close_alt();
-                start_alarm();
-            } else {
-                go_close();
-                start_alarm();
-            }
-        } else {
-            fun_work();
-            povorot();
-            switch_wm();
+        if (~FLAGS.bits.ALARM) {
+           fun_work();
+           povorot();
+           switch_wm();
         };
-
-        if (result>0)
-        __asm("clrwdt");
     }
 }

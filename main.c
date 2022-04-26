@@ -12,7 +12,7 @@
 #define HIGH_WATER_RESISTANSE 25000
 #define UP_RESISTANSE 20000
 #define LOW_PIN_VOLTAGE 6000
-#define RELE_TIME 120
+#define RELE_TIME 10//120
 #define RELE_GAP 1
 
 
@@ -42,7 +42,7 @@ union Byte {
 } FLAGS;
 
 
-static unsigned char time_pow;
+unsigned char time_pow;
 static unsigned char time_con;
 
 static signed char fun_counter;
@@ -53,32 +53,34 @@ unsigned result;
 unsigned jresult;
 unsigned fresult;
 
-start_alarm() {
-    FLAGS.bits.ALARM = 1;
-    PIN_ALARM_STATE_SetHigh();
-    INTCONbits.TMR0IE = 1;
+//served
+
+void switch_zum() {
+    if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
 }
+
+
 
 void toggle_tone() {
     PIN_ZUMMER_TRIS = ~PIN_ZUMMER_TRIS;
     return;
 }
+//end served
 
 void go_close() {
     time_s = 0;
     FLAGS.bits.FUN_OLD = 0;
     PIN_RELE_CONTROL_SetHigh();
-    __delay_ms(RELE_GAP * 1000);
+    __delay_ms(RELE_GAP);
     PIN_RELE_POWER_SetHigh();
     time_pow = RELE_TIME;
     FLAGS.bits.RELE_POW = 1;
     FLAGS.bits.RELE_CON = 1;
-    //  time_con = RELE_TIME+RELE_GAP;
     return;
 }
 
 void go_open() {
-    FLAGS.bits.FUN_OLD = 1;
+    PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetHigh();
     time_pow = RELE_TIME;
     FLAGS.bits.RELE_POW = 1;
@@ -87,17 +89,33 @@ void go_open() {
 
 void go_close_alt() {
     FLAGS.bits.FUN_OLD = 0;
+    PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetHigh();
 }
 
 void go_open_alt() {
+    PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetLow();
     return;
+}
+start_alarm() {
+    FLAGS.bits.ALARM = 1;
+    PIN_ALARM_STATE_SetHigh();
+    INTCONbits.TMR0IE = 1;
+    
+     if (FLAGS.bits.WORK_MODE) {//work mode 1?            
+                go_close_alt();
+            } else {//work mode 0
+                go_close();
+            }
+    
 }
 
 void get_measure() {
     PIN_POWER_MEAS_SetHigh();
+    PIN_WSP_STATE_SetAnalogMode();
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
+     PIN_WSP_STATE_SetDigitalMode();
     result = res;
     PIN_POWER_MEAS_SetLow();
 
@@ -109,7 +127,9 @@ void get_measure() {
 
 void get_fun() {
     PIN_POWER_MEAS_SetHigh();
+    PIN_FUN_STATE_SetAnalogMode();
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
+    PIN_FUN_STATE_SetDigitalMode();
     PIN_POWER_MEAS_SetLow();
     fresult = res;
     if (res < LOW_PIN_VOLTAGE) fun_counter--;
@@ -126,9 +146,9 @@ void get_fun() {
 }
 
 void get_jump() {
-    PIN_POWER_MEAS_SetHigh();
+    PIN_JUMP_STATE_SetAnalogMode();
     unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-    PIN_POWER_MEAS_SetLow();
+    PIN_JUMP_STATE_SetDigitalMode();
     jresult = res;
     if (res < LOW_PIN_VOLTAGE) jump_counter--;
     else jump_counter++;
@@ -145,6 +165,15 @@ void get_jump() {
 
 void rele_tick() {
     if (FLAGS.bits.RELE_POW) {
+        if (time_pow > 0) time_pow--;
+        if (time_pow <= 0) {
+            PIN_RELE_POWER_SetLow();
+            __delay_ms(RELE_GAP);
+            PIN_RELE_CONTROL_SetLow();
+        }
+    }
+    /*
+    if (FLAGS.bits.RELE_POW) {
         time_pow--;
         if (time_pow == 0) {
             PIN_RELE_POWER_SetLow();
@@ -156,12 +185,13 @@ void rele_tick() {
             }
         }
     }
+    // */
 }
 
 void Sec_tick_work() {
     time_s++;
     rele_tick();
-
+    CLRWDT();
     if (FLAGS.bits.ALARM) {//if alarm
         PIN_LED_Toggle();
         toggle_tone();
@@ -197,7 +227,7 @@ void povorot() {
 void fun_work() {
     if (FLAGS.bits.FUN_OLD)//fun old open?
     {
-        if (~FLAGS.bits.FUN_NEW) {
+        if (FLAGS.bits.FUN_NEW==0) {
             go_close();
             FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         };
@@ -217,10 +247,6 @@ void switch_wm() {
     }
 }
 
-void switch_zum() {
-    if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
-}
-
 void start_setup() {
     //MCC
     SYSTEM_Initialize(); // initialize the device
@@ -232,17 +258,19 @@ void start_setup() {
     TMR2_SetInterruptHandler(Sec_tick_work);
     TMR2_StartTimer();
 
+    PIN_WSP_STATE_SetDigitalMode();
+    
     PIN_JUMP_STATE_ResetPullup();
     PIN_JUMP_STATE_SetLow();
     PIN_JUMP_STATE_SetDigitalInput();
-    PIN_JUMP_STATE_SetAnalogMode();
+    PIN_JUMP_STATE_SetDigitalMode();
 
 
 
-    PIN_FUN_STATE_SetPullup();
+    PIN_FUN_STATE_ResetPullup();
     PIN_FUN_STATE_SetLow();
     PIN_FUN_STATE_SetDigitalInput();
-    PIN_FUN_STATE_SetAnalogMode();
+    PIN_FUN_STATE_SetDigitalMode();
 
     PIN_RELE_POWER_SetLow();
     PIN_RELE_CONTROL_SetLow();
@@ -254,7 +282,7 @@ void start_setup() {
     INTCONbits.TMR0IE = 0;
     FLAGS.value = 0;
 
-
+    time_pow = 0;
 }
 
 void main(void) {
@@ -262,25 +290,11 @@ void main(void) {
     start_setup();
 
     while (1) {
-
-        __delay_ms(10);
-
-        ///*
-        if (FLAGS.bits.ALARM) { //alarm true?              
-            if (FLAGS.bits.WORK_MODE) {//work mode 1?            
-                go_close();
-                start_alarm();
-            } else {//work mode 0
-                go_close_alt();
-                start_alarm();
-            }
-        } else {//alarm false          
-            fun_work();
-            povorot();
-            switch_wm();
+        __delay_ms(500);
+        if (FLAGS.bits.ALARM ==0) {        
+           fun_work();
+           povorot();
+           switch_wm();
         };
-        // */ 
-        //   if (result+fresult+jresult+fun_counter+jump_counter > 0)
-        CLRWDT();
     }
 }
