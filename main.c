@@ -12,6 +12,8 @@
 #define HIGH_WATER_RESISTANSE 25000
 #define UP_RESISTANSE 20000
 #define LOW_PIN_VOLTAGE 6000
+#define RELE_TIME 120
+#define RELE_GAP 1
 
 
 
@@ -30,8 +32,8 @@ struct f_field {
     unsigned FUN_NEW : 1;
     unsigned JUMP : 1;
     unsigned MEAS : 1;
-    unsigned FREE1 : 1;
-    unsigned FREE2 : 1;
+    unsigned RELE_POW : 1;
+    unsigned RELE_CON : 1;
 };
 
 union Byte {
@@ -39,11 +41,9 @@ union Byte {
     struct f_field bits;
 } FLAGS;
 
-char zumm;
-char ledd;
-char watt;
-char rcon;
 
+static unsigned char time_pow;
+static unsigned char time_con;
 
 static signed char fun_counter;
 static unsigned char measures;
@@ -60,53 +60,42 @@ start_alarm() {
 }
 
 void toggle_tone() {
-    if (FLAGS.bits.ALARM) PIN_ZUMMER_TRIS = ~PIN_ZUMMER_TRIS;
+    PIN_ZUMMER_TRIS = ~PIN_ZUMMER_TRIS;
     return;
 }
 
 void go_close() {
-
-    watt = 0;
-
+    time_s = 0;
+    FLAGS.bits.FUN_OLD = 0;
     PIN_RELE_CONTROL_SetHigh();
-    __delay_ms(5);
+    __delay_ms(RELE_GAP * 1000);
     PIN_RELE_POWER_SetHigh();
-    for (char i = 0; i < 120; i++) {
-        PIN_LED_Toggle();
-        __delay_ms(10);
-    }
-    PIN_RELE_POWER_SetLow();
-    __delay_ms(5);
-    PIN_RELE_CONTROL_SetLow();
+    time_pow = RELE_TIME;
+    FLAGS.bits.RELE_POW = 1;
+    FLAGS.bits.RELE_CON = 1;
+    //  time_con = RELE_TIME+RELE_GAP;
+    return;
+}
+
+void go_open() {
+    FLAGS.bits.FUN_OLD = 1;
+    PIN_RELE_POWER_SetHigh();
+    time_pow = RELE_TIME;
+    FLAGS.bits.RELE_POW = 1;
     return;
 }
 
 void go_close_alt() {
-    watt = 0;
     FLAGS.bits.FUN_OLD = 0;
     PIN_RELE_POWER_SetHigh();
 }
 
-void go_open() {
-
-    watt = 1;
-    FLAGS.bits.FUN_OLD = 1;
-
-    time_s = 0;
-    PIN_RELE_POWER_SetHigh();
-    __delay_ms(1);
-    PIN_RELE_POWER_SetLow();
-    return;
-}
-
 void go_open_alt() {
-    watt = 1;
     PIN_RELE_POWER_SetLow();
     return;
 }
 
 void get_measure() {
-  
     PIN_POWER_MEAS_SetHigh();
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
     result = res;
@@ -119,8 +108,7 @@ void get_measure() {
 }
 
 void get_fun() {
- 
-    PIN_POWER_MEAS_SetHigh();    
+    PIN_POWER_MEAS_SetHigh();
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     PIN_POWER_MEAS_SetLow();
     fresult = res;
@@ -138,7 +126,6 @@ void get_fun() {
 }
 
 void get_jump() {
- 
     PIN_POWER_MEAS_SetHigh();
     unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
     PIN_POWER_MEAS_SetLow();
@@ -156,29 +143,40 @@ void get_jump() {
     return;
 }
 
-void Sec_tick_work() {
-    /*
-    static unsigned char ds; // 1sec/10
-    ds++;
-    if (ds == 10) {
-        ds = 0;  // */
-        time_s++;
-
-        if (FLAGS.bits.ALARM) {//if alarm
-            PIN_LED_Toggle();
-            toggle_tone();
-        } else {//if not alarm
-            get_measure();
-            get_jump();
-            get_fun();
-            static char iled;
-            iled++;
-            if (iled > 2) {
-                PIN_LED_Toggle();
-                iled = 0;
+void rele_tick() {
+    if (FLAGS.bits.RELE_POW) {
+        time_pow--;
+        if (time_pow == 0) {
+            PIN_RELE_POWER_SetLow();
+            FLAGS.bits.RELE_POW = 0;
+            if (FLAGS.bits.RELE_CON) {
+                __delay_ms(RELE_GAP * 1000);
+                PIN_RELE_CONTROL_SetLow();
+                FLAGS.bits.RELE_CON = 0;
             }
         }
- //   }
+    }
+}
+
+void Sec_tick_work() {
+    time_s++;
+    rele_tick();
+
+    if (FLAGS.bits.ALARM) {//if alarm
+        PIN_LED_Toggle();
+        toggle_tone();
+    } else {//if not alarm
+        get_measure();
+        get_jump();
+        get_fun();
+        static char iled;
+        iled++;
+        if (iled > 2) {
+            PIN_LED_Toggle();
+            iled = 0;
+        }
+    }
+    //   }
     // */
     return;
 }
@@ -204,7 +202,7 @@ void fun_work() {
             FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         };
     } else {//fun old close
-        if (FLAGS.bits.FUN_NEW) {
+        if (FLAGS.bits.FUN_NEW && ~FLAGS.bits.ALARM) {
             go_open();
             FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         }
@@ -223,29 +221,32 @@ void switch_zum() {
     if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
 }
 
-void start_setup(){
+void start_setup() {
     //MCC
-    SYSTEM_Initialize();  // initialize the device
-    INTERRUPT_GlobalInterruptEnable();    // Enable the Global Interrupts
-    INTERRUPT_PeripheralInterruptEnable();    // Enable the Peripheral Interrupts
+    SYSTEM_Initialize(); // initialize the device
+    INTERRUPT_GlobalInterruptEnable(); // Enable the Global Interrupts
+    INTERRUPT_PeripheralInterruptEnable(); // Enable the Peripheral Interrupts
     // end MCC
-    
+
     TMR0_SetInterruptHandler(switch_zum);
     TMR2_SetInterruptHandler(Sec_tick_work);
     TMR2_StartTimer();
-    
-    PIN_JUMP_STATE_ResetPullup();   
+
+    PIN_JUMP_STATE_ResetPullup();
     PIN_JUMP_STATE_SetLow();
     PIN_JUMP_STATE_SetDigitalInput();
     PIN_JUMP_STATE_SetAnalogMode();
-   
-    
-    
+
+
+
     PIN_FUN_STATE_SetPullup();
     PIN_FUN_STATE_SetLow();
     PIN_FUN_STATE_SetDigitalInput();
     PIN_FUN_STATE_SetAnalogMode();
-    
+
+    PIN_RELE_POWER_SetLow();
+    PIN_RELE_CONTROL_SetLow();
+
     PIN_ALARM_STATE_SetDigitalOutput();
     PIN_ALARM_STATE_SetLow();
 
@@ -257,9 +258,9 @@ void start_setup(){
 }
 
 void main(void) {
-    
+
     start_setup();
-    
+
     while (1) {
 
         __delay_ms(10);
@@ -267,10 +268,10 @@ void main(void) {
         ///*
         if (FLAGS.bits.ALARM) { //alarm true?              
             if (FLAGS.bits.WORK_MODE) {//work mode 1?            
-                go_close_alt();
+                go_close();
                 start_alarm();
             } else {//work mode 0
-                go_close();
+                go_close_alt();
                 start_alarm();
             }
         } else {//alarm false          
@@ -279,7 +280,7 @@ void main(void) {
             switch_wm();
         };
         // */ 
-        if (result+fresult+jresult+fun_counter+jump_counter > 0)
-            CLRWDT();
+        //   if (result+fresult+jresult+fun_counter+jump_counter > 0)
+        CLRWDT();
     }
 }
