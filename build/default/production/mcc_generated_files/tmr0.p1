@@ -426,9 +426,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "78
 [; ;mcc_generated_files/tmr0.c: 78:     INTCONbits.TMR0IF = 0;
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"81
-[; ;mcc_generated_files/tmr0.c: 81:     INTCONbits.TMR0IE = 1;
-[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 "84
 [; ;mcc_generated_files/tmr0.c: 84:     TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
 [e ( _TMR0_SetInterruptHandler (1 &U _TMR0_DefaultInterruptHandler ]

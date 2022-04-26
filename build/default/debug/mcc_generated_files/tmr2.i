@@ -3848,7 +3848,7 @@ void TMR2_Initialize(void)
 
 
 
-    PR2 = 0x01;
+    PR2 = 0x8D;
 
 
     TMR2 = 0x00;
@@ -3863,7 +3863,7 @@ void TMR2_Initialize(void)
     TMR2_SetInterruptHandler(TMR2_DefaultInterruptHandler);
 
 
-    T2CON = 0x7F;
+    T2CON = 0x57;
 }
 
 void TMR2_StartTimer(void)
@@ -3906,7 +3906,7 @@ void TMR2_ISR(void)
     PIR1bits.TMR2IF = 0;
 
 
-    if (++CountCallBack >= 489)
+    if (++CountCallBack >= 10)
     {
 
         TMR2_CallBack();

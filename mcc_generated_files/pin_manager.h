@@ -65,22 +65,22 @@
 #define PULL_UP_ENABLED      1
 #define PULL_UP_DISABLED     0
 
-// get/set PIN_JUMP_MODE aliases
-#define PIN_JUMP_MODE_TRIS                 TRISAbits.TRISA1
-#define PIN_JUMP_MODE_LAT                  LATAbits.LATA1
-#define PIN_JUMP_MODE_PORT                 PORTAbits.RA1
-#define PIN_JUMP_MODE_WPU                  WPUAbits.WPUA1
-#define PIN_JUMP_MODE_ANS                  ANSELAbits.ANSA1
-#define PIN_JUMP_MODE_SetHigh()            do { LATAbits.LATA1 = 1; } while(0)
-#define PIN_JUMP_MODE_SetLow()             do { LATAbits.LATA1 = 0; } while(0)
-#define PIN_JUMP_MODE_Toggle()             do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0)
-#define PIN_JUMP_MODE_GetValue()           PORTAbits.RA1
-#define PIN_JUMP_MODE_SetDigitalInput()    do { TRISAbits.TRISA1 = 1; } while(0)
-#define PIN_JUMP_MODE_SetDigitalOutput()   do { TRISAbits.TRISA1 = 0; } while(0)
-#define PIN_JUMP_MODE_SetPullup()          do { WPUAbits.WPUA1 = 1; } while(0)
-#define PIN_JUMP_MODE_ResetPullup()        do { WPUAbits.WPUA1 = 0; } while(0)
-#define PIN_JUMP_MODE_SetAnalogMode()      do { ANSELAbits.ANSA1 = 1; } while(0)
-#define PIN_JUMP_MODE_SetDigitalMode()     do { ANSELAbits.ANSA1 = 0; } while(0)
+// get/set PIN_JUMP_STATE aliases
+#define PIN_JUMP_STATE_TRIS                 TRISAbits.TRISA1
+#define PIN_JUMP_STATE_LAT                  LATAbits.LATA1
+#define PIN_JUMP_STATE_PORT                 PORTAbits.RA1
+#define PIN_JUMP_STATE_WPU                  WPUAbits.WPUA1
+#define PIN_JUMP_STATE_ANS                  ANSELAbits.ANSA1
+#define PIN_JUMP_STATE_SetHigh()            do { LATAbits.LATA1 = 1; } while(0)
+#define PIN_JUMP_STATE_SetLow()             do { LATAbits.LATA1 = 0; } while(0)
+#define PIN_JUMP_STATE_Toggle()             do { LATAbits.LATA1 = ~LATAbits.LATA1; } while(0)
+#define PIN_JUMP_STATE_GetValue()           PORTAbits.RA1
+#define PIN_JUMP_STATE_SetDigitalInput()    do { TRISAbits.TRISA1 = 1; } while(0)
+#define PIN_JUMP_STATE_SetDigitalOutput()   do { TRISAbits.TRISA1 = 0; } while(0)
+#define PIN_JUMP_STATE_SetPullup()          do { WPUAbits.WPUA1 = 1; } while(0)
+#define PIN_JUMP_STATE_ResetPullup()        do { WPUAbits.WPUA1 = 0; } while(0)
+#define PIN_JUMP_STATE_SetAnalogMode()      do { ANSELAbits.ANSA1 = 1; } while(0)
+#define PIN_JUMP_STATE_SetDigitalMode()     do { ANSELAbits.ANSA1 = 0; } while(0)
 
 // get/set PIN_LED aliases
 #define PIN_LED_TRIS                 TRISAbits.TRISA4

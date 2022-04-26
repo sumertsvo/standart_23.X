@@ -78,7 +78,7 @@ void TMR0_Initialize(void)
     INTCONbits.TMR0IF = 0;
 
     // Enabling TMR0 interrupt
-    INTCONbits.TMR0IE = 1;
+//    INTCONbits.TMR0IE = 1;
 
     // Set Default Interrupt Handler
     TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);

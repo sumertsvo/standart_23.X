@@ -1,49 +1,27 @@
-/**
-  Generated Main Source File
-
-  Company:
-    Microchip Technology Inc.
-
-  File Name:
-    main.c
-
-  Summary:
-    This is the main file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
-
-  Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
-    Generation Information :
-        Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
-        Device            :  PIC16F1823
-        Driver Version    :  2.00
- */
-
-/*
-    (c) 2018 Microchip Technology Inc. and its subsidiaries. 
-    
-    Subject to your compliance with these terms, you may use Microchip software and any 
-    derivatives exclusively with Microchip products. It is your responsibility to comply with third party 
-    license terms applicable to your use of third party software (including open source software) that 
-    may accompany Microchip software.
-    
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER 
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY 
-    IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS 
-    FOR A PARTICULAR PURPOSE.
-    
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, 
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND 
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP 
-    HAS BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO 
-    THE FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL 
-    CLAIMS IN ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT 
-    OF FEES, IF ANY, THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS 
-    SOFTWARE.
- */
-
 #include "mcc_generated_files/mcc.h"
 
+
+
+
 #define _XTAL_FREQ 4000000
+
+
+//SETUP 
+#define ROTATION_DAYS 14
+#define LOW_WATER_RESISTANSE 20000
+#define HIGH_WATER_RESISTANSE 25000
+#define UP_RESISTANSE 20000
+#define LOW_PIN_VOLTAGE 6000
+
+
+
+const long int ROTATION_TIME = ROTATION_DAYS * 24 * 60 * 60; //D*H*M*S
+const long int BAD_WSP_VOLTAGE = 20000; // LOW_WATER_RESISTANSE/((UP_RESISTANSE+LOW_WATER_RESISTANSE)/256);	//	????????? ???????? ADC ??? ??????????? ??????? "????" ?? ???????
+const long int GOOD_WSP_VOLTAGE = 40000; //HIGH_WATER_RESISTANSE/((UP_RESISTANSE+HIGH_WATER_RESISTANSE)/256);//	????????? ???????? ADC ??? ??????????? ?????????? "????" ?? ???????
+
+
+
+//END SETUP
 
 struct f_field {
     unsigned ALARM : 1;
@@ -61,26 +39,22 @@ union Byte {
     struct f_field bits;
 } FLAGS;
 
-const long int ROTATION_TIME = 10; //= 1209600;
-const long int BAD_VALUE = 327677; //= 1209600;
-
-
 char zumm;
 char ledd;
 char watt;
 char rcon;
 
 long int time_s;
+unsigned result;
 
-void start_tone() {
-    zumm = 1;
-   // TMR2_StartTimer();
-    return;
+start_alarm() {
+    FLAGS.bits.ALARM = 1;
+    PIN_ALARM_STATE_SetHigh();
+    INTCONbits.TMR0IE = 1;
 }
 
-void stop_tone() {
-    zumm = 0;
-   // TMR2_StopTimer();
+void toggle_tone() {
+    if (FLAGS.bits.ALARM) PIN_ZUMMER_TRIS = ~PIN_ZUMMER_TRIS;
     return;
 }
 
@@ -89,23 +63,21 @@ void go_close() {
     watt = 0;
 
     PIN_RELE_CONTROL_SetHigh();
-    __delay_ms(20);
+    __delay_ms(5);
     PIN_RELE_POWER_SetHigh();
     for (char i = 0; i < 120; i++) {
         PIN_LED_Toggle();
         __delay_ms(10);
     }
     PIN_RELE_POWER_SetLow();
-    __delay_ms(20);
+    __delay_ms(5);
     PIN_RELE_CONTROL_SetLow();
     return;
 }
 
 void go_close_alt() {
-
     watt = 0;
     FLAGS.bits.FUN_OLD = 0;
-
     PIN_RELE_POWER_SetHigh();
 }
 
@@ -116,61 +88,97 @@ void go_open() {
 
     time_s = 0;
     PIN_RELE_POWER_SetHigh();
-    __delay_ms(10);
+    __delay_ms(1);
     PIN_RELE_POWER_SetLow();
     return;
 }
 
 void go_open_alt() {
-
     watt = 1;
-
     PIN_RELE_POWER_SetLow();
-
     return;
 }
 
-void start_measure() {
-    static char measures;
+void get_measure() {
+    static unsigned char measures;
+    PIN_POWER_MEAS_SetHigh();
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-    if (res > 2) FLAGS.bits.ALARM = 1; /*
-   
-    if (res > BAD_VALUE) measures++;
-    else measures = 0;
-    if (measures > 2) FLAGS.bits.ALARM = 1;
-    // */
+ //   result = res;
+    PIN_POWER_MEAS_SetLow();
+
+    if (res < BAD_WSP_VOLTAGE) measures++;
+    else if (res > GOOD_WSP_VOLTAGE) measures = 0;
+    if (measures > 2) start_alarm();
+    return;
+}
+
+void get_fun() {
+    static signed char fun_counter;
+    PIN_POWER_MEAS_SetHigh();
+    unsigned res = ADC_GetConversion(PIN_FUN_STATE);
+    PIN_POWER_MEAS_SetLow();
+    // result = res;
+    if (res < LOW_PIN_VOLTAGE) fun_counter--;
+    else fun_counter++;
+
+    if (fun_counter > 10) {
+        fun_counter = 10;
+        FLAGS.bits.FUN_NEW = 1;
+    } else if (fun_counter<-10) {
+        fun_counter = -10;
+        FLAGS.bits.FUN_NEW = 0;
+    }
+    return;
+}
+
+void get_jump() {
+    static signed char jump_counter;
+    PIN_POWER_MEAS_SetHigh();
+    unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
+    PIN_POWER_MEAS_SetLow();
+    result = res;
+    if (res < LOW_PIN_VOLTAGE) jump_counter--;
+    else jump_counter++;
+
+    if (jump_counter > 10) {
+        jump_counter = 10;
+        FLAGS.bits.JUMP = 1;
+    } else if (jump_counter<-10) {
+        jump_counter = -10;
+        FLAGS.bits.JUMP = 0;
+    }
     return;
 }
 
 void Sec_tick_work() {
-    
-    
-   start_measure();
+    /*
+    static unsigned char ds; // 1sec/10
+    ds++;
+    if (ds == 10) {
+        ds = 0;  // */
+        time_s++;
 
-    time_s++;
-    if (FLAGS.bits.ALARM) {//if alarm
-        PIN_LED_Toggle();
-        if (~zumm) {//timer4switch
-            zumm=1;
-        } else {//timer4switch
-            zumm=0;
+        if (FLAGS.bits.ALARM) {//if alarm
+            PIN_LED_Toggle();
+            toggle_tone();
+        } else {//if not alarm
+            get_measure();
+            get_jump();
+            get_fun();
+            static char iled;
+            iled++;
+            if (iled > 2) {
+                PIN_LED_Toggle();
+                iled = 0;
+            }
         }
-    } else {//if not alarm
-          static char iled;
-          iled++;
-          if (iled > 2) {
-              PIN_LED_Toggle();
-              iled = 0;
-         }
-    }
+ //   }
     // */
     return;
 }
 
 void povorot() {
-
-    if (
-            time_s > ROTATION_TIME &&
+    if (time_s > ROTATION_TIME &&
             FLAGS.bits.FUN_OLD &&
             ~FLAGS.bits.ALARM &&
             FLAGS.bits.WORK_MODE
@@ -185,74 +193,81 @@ void povorot() {
 void fun_work() {
     if (FLAGS.bits.FUN_OLD)//fun old open?
     {
-        if (PIN_FUN_STATE_GetValue() == 0) {//todo derb
+        if (~FLAGS.bits.FUN_NEW) {
             go_close();
-            FLAGS.bits.FUN_OLD = 0;
+            FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         };
     } else {//fun old close
-        if (PIN_FUN_STATE_GetValue() == 1) {//todo dreb
+        if (FLAGS.bits.FUN_NEW) {
             go_open();
-            FLAGS.bits.FUN_OLD = 1;
+            FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
         }
     }
 }
 
-void switch_wm() {//TODO drebezg
-    if (PIN_JUMP_MODE_GetValue()) {
-        FLAGS.bits.JUMP = 1;
-        FLAGS.bits.WORK_MODE = FLAGS.bits.JUMP;
+void switch_wm() {
+    if (FLAGS.bits.JUMP) {
+        FLAGS.bits.WORK_MODE = 1;
     } else {
-        FLAGS.bits.JUMP = 0;
-        FLAGS.bits.WORK_MODE = FLAGS.bits.JUMP;
+        FLAGS.bits.WORK_MODE = 0;
     }
 }
 
 void switch_zum() {
-      if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
+    if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
+}
+
+void start_setup(){
+    //MCC
+    SYSTEM_Initialize();  // initialize the device
+    INTERRUPT_GlobalInterruptEnable();    // Enable the Global Interrupts
+    INTERRUPT_PeripheralInterruptEnable();    // Enable the Peripheral Interrupts
+    // end MCC
+    
+    TMR0_SetInterruptHandler(switch_zum);
+    TMR2_SetInterruptHandler(Sec_tick_work);
+    TMR2_StartTimer();
+    
+    PIN_JUMP_STATE_SetLow();
+    PIN_JUMP_STATE_ResetPullup();   
+    
+    PIN_FUN_STATE_SetLow();
+    PIN_FUN_STATE_ResetPullup();
+    
+    PIN_ALARM_STATE_SetDigitalOutput();
+    PIN_ALARM_STATE_SetLow();
+
+
+    INTCONbits.TMR0IE = 0;
+    FLAGS.value = 0;
+
+
 }
 
 void main(void) {
-    // initialize the device
-    SYSTEM_Initialize();
-
- 
-    // Enable the Global Interrupts
-    INTERRUPT_GlobalInterruptEnable();
-
-    // Enable the Peripheral Interrupts
-    INTERRUPT_PeripheralInterruptEnable();
-
-    // Disable the Global Interrupts
-  //  INTERRUPT_GlobalInterruptDisable();
-
-    // Disable the Peripheral Interrupts
-   // INTERRUPT_PeripheralInterruptDisable();
     
-  TMR0_SetInterruptHandler(switch_zum);
-
-  TMR2_SetInterruptHandler(Sec_tick_work);
-
- TMR2_StartTimer();
-
+    start_setup();
+    
     while (1) {
-    
+
         __delay_ms(10);
-       /*
-      
-       if (FLAGS.bits.ALARM) { //alarm true?        
-           if (FLAGS.bits.WORK_MODE) {//work mode 1?            
-               go_close_alt();
-               start_tone();
-           } else {//work mode 0
-               go_close();
-               start_tone();
-           }
-       } else {//alarm false
-           fun_work();
-           povorot();
-           switch_wm();
-       };
+
+        ///*
+        if (FLAGS.bits.ALARM) { //alarm true?              
+            if (FLAGS.bits.WORK_MODE) {//work mode 1?            
+                go_close_alt();
+                start_alarm();
+            } else {//work mode 0
+                go_close();
+                start_alarm();
+            }
+        } else {//alarm false          
+            fun_work();
+            povorot();
+            switch_wm();
+        };
         // */ 
-        CLRWDT();
+        if (result > 0)
+            CLRWDT();
     }
 }

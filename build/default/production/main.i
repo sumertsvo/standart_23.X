@@ -7,7 +7,6 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 44 "main.c"
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
@@ -4002,6 +4001,25 @@ extern void (*TMR2_InterruptHandler)(void);
 void TMR2_DefaultInterruptHandler(void);
 # 56 "./mcc_generated_files/mcc.h" 2
 
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 98 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "./mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 168 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 204 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(void);
+# 219 "./mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 238 "./mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 256 "./mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 274 "./mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 57 "./mcc_generated_files/mcc.h" 2
+
 # 1 "./mcc_generated_files/adc.h" 1
 # 72 "./mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
@@ -4036,25 +4054,6 @@ adc_result_t ADC_GetConversionResult(void);
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 # 316 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
-# 57 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 98 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 168 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 204 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(void);
-# 219 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 238 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 256 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 274 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
 # 58 "./mcc_generated_files/mcc.h" 2
 # 73 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -4062,7 +4061,7 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 98 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 44 "main.c" 2
+# 1 "main.c" 2
 
 
 
@@ -4083,8 +4082,8 @@ union Byte {
     struct f_field bits;
 } FLAGS;
 
-const long int ROTATION_TIME = 10;
-const long int BAD_VALUE = 327677;
+const long int ROTATION_TIME = 180;
+const long int BAD_VALUE = 500000;
 
 
 char zumm;
@@ -4093,16 +4092,16 @@ char watt;
 char rcon;
 
 long int time_s;
+unsigned result;
 
-void start_tone() {
-    zumm = 1;
-
-    return;
+start_alarm() {
+    FLAGS.bits.ALARM = 1;
+    do { LATCbits.LATC0 = 1; } while(0);
+    INTCONbits.TMR0IE = 1;
 }
 
-void stop_tone() {
-    zumm = 0;
-
+void toggle_tone() {
+    if (FLAGS.bits.ALARM) TRISAbits.TRISA5 = ~TRISAbits.TRISA5;
     return;
 }
 
@@ -4111,23 +4110,21 @@ void go_close() {
     watt = 0;
 
     do { LATCbits.LATC4 = 1; } while(0);
-    _delay((unsigned long)((20)*(4000000/4000.0)));
+    _delay((unsigned long)((5)*(4000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
     for (char i = 0; i < 120; i++) {
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
         _delay((unsigned long)((10)*(4000000/4000.0)));
     }
     do { LATCbits.LATC5 = 0; } while(0);
-    _delay((unsigned long)((20)*(4000000/4000.0)));
+    _delay((unsigned long)((5)*(4000000/4000.0)));
     do { LATCbits.LATC4 = 0; } while(0);
     return;
 }
 
 void go_close_alt() {
-
     watt = 0;
     FLAGS.bits.FUN_OLD = 0;
-
     do { LATCbits.LATC5 = 1; } while(0);
 }
 
@@ -4138,59 +4135,55 @@ void go_open() {
 
     time_s = 0;
     do { LATCbits.LATC5 = 1; } while(0);
-    _delay((unsigned long)((10)*(4000000/4000.0)));
+    _delay((unsigned long)((1)*(4000000/4000.0)));
     do { LATCbits.LATC5 = 0; } while(0);
     return;
 }
 
 void go_open_alt() {
-
     watt = 1;
-
     do { LATCbits.LATC5 = 0; } while(0);
-
     return;
 }
 
-void start_measure() {
-    static char measures;
+void get_measure() {
+    static unsigned char measures;
+    do { LATCbits.LATC1 = 1; } while(0);
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-    if (res > 2) FLAGS.bits.ALARM = 1;
+    result=res;
+    do { LATCbits.LATC1 = 0; } while(0);
 
 
 
-
+    if (res < BAD_VALUE) measures++;
+    else measures = 0;
+    if (measures > 2) start_alarm();
 
     return;
 }
 
 void Sec_tick_work() {
 
-
-   start_measure();
+    get_measure();
 
     time_s++;
+
     if (FLAGS.bits.ALARM) {
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-        if (~zumm) {
-            zumm=1;
-        } else {
-            zumm=0;
-        }
+        toggle_tone();
     } else {
-          static char iled;
-          iled++;
-          if (iled > 2) {
-              do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-              iled = 0;
-         }
+        static char iled;
+        iled++;
+        if (iled > 2) {
+            do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
+            iled = 0;
+        }
     }
 
     return;
 }
 
 void povorot() {
-
     if (
             time_s > ROTATION_TIME &&
             FLAGS.bits.FUN_OLD &&
@@ -4220,17 +4213,25 @@ void fun_work() {
 }
 
 void switch_wm() {
+    static char jmp;
+
     if (PORTAbits.RA1) {
+        jmp++;
+    } else {
+        jmp--;
+    }
+    if (jmp > 10) {
         FLAGS.bits.JUMP = 1;
         FLAGS.bits.WORK_MODE = FLAGS.bits.JUMP;
-    } else {
+    } else if (jmp < -10) {
         FLAGS.bits.JUMP = 0;
         FLAGS.bits.WORK_MODE = FLAGS.bits.JUMP;
     }
+
 }
 
 void switch_zum() {
-      if (FLAGS.bits.ALARM) do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+    if (FLAGS.bits.ALARM) do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
 }
 
 void main(void) {
@@ -4250,16 +4251,35 @@ void main(void) {
 
 
 
-  TMR0_SetInterruptHandler(switch_zum);
+    TMR0_SetInterruptHandler(switch_zum);
 
-  TMR2_SetInterruptHandler(Sec_tick_work);
+    TMR2_SetInterruptHandler(Sec_tick_work);
 
- TMR2_StartTimer();
+    TMR2_StartTimer();
 
+    do { LATCbits.LATC0 = 0; } while(0);
+    INTCONbits.TMR0IE = 0;
+    FLAGS.value = 0;
     while (1) {
 
         _delay((unsigned long)((10)*(4000000/4000.0)));
-# 256 "main.c"
+
+
+        if (FLAGS.bits.ALARM) {
+            if (FLAGS.bits.WORK_MODE) {
+                go_close_alt();
+                start_alarm();
+            } else {
+                go_close();
+                start_alarm();
+            }
+        } else {
+            fun_work();
+            povorot();
+            switch_wm();
+        };
+
+        if (result>0)
         __asm("clrwdt");
     }
 }

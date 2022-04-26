@@ -94,6 +94,8 @@ typedef struct
 
 typedef enum
 {
+    PIN_JUMP_STATE =  0x1,
+    PIN_FUN_STATE =  0x6,
     PIN_WSP_STATE =  0x7,
     channel_Temp =  0x1D,
     channel_DAC =  0x1E,

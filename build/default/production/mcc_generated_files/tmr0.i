@@ -3854,7 +3854,7 @@ void TMR0_Initialize(void)
     INTCONbits.TMR0IF = 0;
 
 
-    INTCONbits.TMR0IE = 1;
+
 
 
     TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);

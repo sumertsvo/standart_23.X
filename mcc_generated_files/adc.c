@@ -68,8 +68,8 @@ void ADC_Initialize(void)
 {
     // set the ADC to the options selected in the User Interface
     
-    // ADFM left; ADPREF VDD; ADCS FOSC/2; 
-    ADCON1 = 0x00;
+    // ADFM left; ADPREF VDD; ADCS FOSC/4; 
+    ADCON1 = 0x40;
     
     // ADRESL 0; 
     ADRESL = 0x00;
