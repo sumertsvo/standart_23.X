@@ -44,8 +44,14 @@ char ledd;
 char watt;
 char rcon;
 
+
+static signed char fun_counter;
+static unsigned char measures;
+static signed char jump_counter;
 long int time_s;
 unsigned result;
+unsigned jresult;
+unsigned fresult;
 
 start_alarm() {
     FLAGS.bits.ALARM = 1;
@@ -100,10 +106,10 @@ void go_open_alt() {
 }
 
 void get_measure() {
-    static unsigned char measures;
+  
     PIN_POWER_MEAS_SetHigh();
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
- //   result = res;
+    result = res;
     PIN_POWER_MEAS_SetLow();
 
     if (res < BAD_WSP_VOLTAGE) measures++;
@@ -113,11 +119,11 @@ void get_measure() {
 }
 
 void get_fun() {
-    static signed char fun_counter;
-    PIN_POWER_MEAS_SetHigh();
+ 
+    PIN_POWER_MEAS_SetHigh();    
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     PIN_POWER_MEAS_SetLow();
-    // result = res;
+    fresult = res;
     if (res < LOW_PIN_VOLTAGE) fun_counter--;
     else fun_counter++;
 
@@ -132,11 +138,11 @@ void get_fun() {
 }
 
 void get_jump() {
-    static signed char jump_counter;
+ 
     PIN_POWER_MEAS_SetHigh();
     unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
     PIN_POWER_MEAS_SetLow();
-    result = res;
+    jresult = res;
     if (res < LOW_PIN_VOLTAGE) jump_counter--;
     else jump_counter++;
 
@@ -228,11 +234,17 @@ void start_setup(){
     TMR2_SetInterruptHandler(Sec_tick_work);
     TMR2_StartTimer();
     
-    PIN_JUMP_STATE_SetLow();
     PIN_JUMP_STATE_ResetPullup();   
+    PIN_JUMP_STATE_SetLow();
+    PIN_JUMP_STATE_SetDigitalInput();
+    PIN_JUMP_STATE_SetAnalogMode();
+   
     
+    
+    PIN_FUN_STATE_SetPullup();
     PIN_FUN_STATE_SetLow();
-    PIN_FUN_STATE_ResetPullup();
+    PIN_FUN_STATE_SetDigitalInput();
+    PIN_FUN_STATE_SetAnalogMode();
     
     PIN_ALARM_STATE_SetDigitalOutput();
     PIN_ALARM_STATE_SetLow();
@@ -267,7 +279,7 @@ void main(void) {
             switch_wm();
         };
         // */ 
-        if (result > 0)
+        if (result+fresult+jresult+fun_counter+jump_counter > 0)
             CLRWDT();
     }
 }
