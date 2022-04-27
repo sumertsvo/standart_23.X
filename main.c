@@ -12,16 +12,15 @@
 #define HIGH_WATER_RESISTANSE 25000
 #define UP_RESISTANSE 20000
 #define LOW_PIN_VOLTAGE 6000
-#define RELE_TIME 10//120
-#define RELE_GAP 1
+#define RELE_TIME 1000//120
+#define RELE_GAP 100
+#define WSP_MEAS_COUNT 2
+#define FUN_MEAS_COUNT 10
+#define JUMP_MEAS_COUNT 10
 
-
-
-const long int ROTATION_TIME = ROTATION_DAYS * 24 * 60 * 60; //D*H*M*S
 const long int BAD_WSP_VOLTAGE = 20000; // LOW_WATER_RESISTANSE/((UP_RESISTANSE+LOW_WATER_RESISTANSE)/256);	//	????????? ???????? ADC ??? ??????????? ??????? "????" ?? ???????
 const long int GOOD_WSP_VOLTAGE = 40000; //HIGH_WATER_RESISTANSE/((UP_RESISTANSE+HIGH_WATER_RESISTANSE)/256);//	????????? ???????? ADC ??? ??????????? ?????????? "????" ?? ???????
-
-
+const long int ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 
 //END SETUP
 
@@ -41,7 +40,6 @@ union Byte {
     struct f_field bits;
 } FLAGS;
 
-
 unsigned char time_pow;
 static unsigned char time_con;
 
@@ -58,8 +56,6 @@ unsigned fresult;
 void switch_zum() {
     if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
 }
-
-
 
 void toggle_tone() {
     PIN_ZUMMER_TRIS = ~PIN_ZUMMER_TRIS;
@@ -98,17 +94,16 @@ void go_open_alt() {
     PIN_RELE_POWER_SetLow();
     return;
 }
+
 start_alarm() {
     FLAGS.bits.ALARM = 1;
     PIN_ALARM_STATE_SetHigh();
     INTCONbits.TMR0IE = 1;
-    
      if (FLAGS.bits.WORK_MODE) {//work mode 1?            
                 go_close_alt();
             } else {//work mode 0
                 go_close();
-            }
-    
+            } 
 }
 
 void get_measure() {
@@ -118,10 +113,9 @@ void get_measure() {
      PIN_WSP_STATE_SetDigitalMode();
     result = res;
     PIN_POWER_MEAS_SetLow();
-
     if (res < BAD_WSP_VOLTAGE) measures++;
     else if (res > GOOD_WSP_VOLTAGE) measures = 0;
-    if (measures > 2) start_alarm();
+    if (measures > WSP_MEAS_COUNT) start_alarm();
     return;
 }
 
@@ -135,11 +129,11 @@ void get_fun() {
     if (res < LOW_PIN_VOLTAGE) fun_counter--;
     else fun_counter++;
 
-    if (fun_counter > 10) {
-        fun_counter = 10;
+    if (fun_counter > FUN_MEAS_COUNT) {
+        fun_counter = FUN_MEAS_COUNT;
         FLAGS.bits.FUN_NEW = 1;
-    } else if (fun_counter<-10) {
-        fun_counter = -10;
+    } else if (fun_counter<-FUN_MEAS_COUNT) {
+        fun_counter = -FUN_MEAS_COUNT;
         FLAGS.bits.FUN_NEW = 0;
     }
     return;
@@ -153,11 +147,11 @@ void get_jump() {
     if (res < LOW_PIN_VOLTAGE) jump_counter--;
     else jump_counter++;
 
-    if (jump_counter > 10) {
-        jump_counter = 10;
+    if (jump_counter > JUMP_MEAS_COUNT) {
+        jump_counter = JUMP_MEAS_COUNT;
         FLAGS.bits.JUMP = 1;
-    } else if (jump_counter<-10) {
-        jump_counter = -10;
+    } else if (jump_counter<-JUMP_MEAS_COUNT) {
+        jump_counter = -JUMP_MEAS_COUNT;
         FLAGS.bits.JUMP = 0;
     }
     return;
@@ -196,9 +190,7 @@ void Sec_tick_work() {
         PIN_LED_Toggle();
         toggle_tone();
     } else {//if not alarm
-        get_measure();
-        get_jump();
-        get_fun();
+        get_measure();       
         static char iled;
         iled++;
         if (iled > 2) {
@@ -288,12 +280,13 @@ void start_setup() {
 void main(void) {
 
     start_setup();
-
     while (1) {
-        __delay_ms(500);
+        get_jump();
+        get_fun();
+        __delay_ms(50);
         if (FLAGS.bits.ALARM ==0) {        
            fun_work();
-           povorot();
+          // povorot();
            switch_wm();
         };
     }
