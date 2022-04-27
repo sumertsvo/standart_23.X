@@ -28,7 +28,7 @@ struct f_field {
     unsigned CLOSED : 1;
     unsigned FUN_CONNECTED : 1;
     unsigned JUMP : 1;
-    unsigned MEAS : 1;
+    unsigned CLOSING : 1;
     unsigned RELE_POW_WAIT : 1;
     unsigned RELE_CON_WAIT : 1;
 };
@@ -176,8 +176,10 @@ void get_fun_full() {
 
 void get_jump() {
     PIN_JUMP_STATE_SetAnalogMode();
-    unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
+   unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
     PIN_JUMP_STATE_SetDigitalMode();
+    
+
     if (res < LOW_PIN_VOLTAGE) jump_counter--;
     else jump_counter++;
 
@@ -195,7 +197,8 @@ void get_jump_full() {
     PIN_JUMP_STATE_SetAnalogMode();
     char flag = 0;
     do {
-        unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
+       unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
+      
 
         if (res < LOW_PIN_VOLTAGE) jump_counter--;
         else jump_counter++;
@@ -273,14 +276,19 @@ void povorot() {
 
 void fun_work() {
     {
-        if (FLAGS.bits.FUN_CONNECTED && !FLAGS.bits.ALARM && FLAGS.bits.CLOSED) {
+        if (FLAGS.bits.FUN_CONNECTED && 
+                !FLAGS.bits.ALARM &&
+                FLAGS.bits.CLOSED &&
+                !FLAGS.bits.RELE_POW_WAIT) {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
             beep();
              __delay_ms(100);
             beep();
         };
-        if (!FLAGS.bits.FUN_CONNECTED && !FLAGS.bits.CLOSED) {
+        if (!FLAGS.bits.FUN_CONNECTED && 
+                !FLAGS.bits.CLOSED && 
+                !FLAGS.bits.RELE_POW_WAIT) {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
             beep();   
@@ -366,6 +374,7 @@ void main(void) {
             switch_wm();
 
             povorot();
+           // switch_zum();
         };
     }
 }
