@@ -12,7 +12,7 @@
 #define HIGH_WATER_RESISTANSE 25000
 #define UP_RESISTANSE 20000
 #define LOW_PIN_VOLTAGE 6000
-#define RELE_TIME 1000//120
+#define RELE_TIME 10//120
 #define RELE_GAP 100
 #define WSP_MEAS_COUNT 2
 #define FUN_MEAS_COUNT 10
@@ -20,19 +20,19 @@
 
 const long int BAD_WSP_VOLTAGE = 20000; // LOW_WATER_RESISTANSE/((UP_RESISTANSE+LOW_WATER_RESISTANSE)/256);	//	????????? ???????? ADC ??? ??????????? ??????? "????" ?? ???????
 const long int GOOD_WSP_VOLTAGE = 40000; //HIGH_WATER_RESISTANSE/((UP_RESISTANSE+HIGH_WATER_RESISTANSE)/256);//	????????? ???????? ADC ??? ??????????? ?????????? "????" ?? ???????
-const long int ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const long int ROTATION_TIME = 60; //(ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 
 //END SETUP
 
 struct f_field {
     unsigned ALARM : 1;
-    unsigned WORK_MODE : 1;
-    unsigned FUN_OLD : 1;
-    unsigned FUN_NEW : 1;
+    unsigned NORMAL_WORK_MODE : 1;
+    unsigned CLOSED : 1;
+    unsigned FUN_CONNECTED : 1;
     unsigned JUMP : 1;
     unsigned MEAS : 1;
-    unsigned RELE_POW : 1;
-    unsigned RELE_CON : 1;
+    unsigned RELE_POW_WAIT : 1;
+    unsigned RELE_CON_WAIT : 1;
 };
 
 union Byte {
@@ -65,13 +65,12 @@ void toggle_tone() {
 
 void go_close() {
     time_s = 0;
-    FLAGS.bits.FUN_OLD = 0;
     PIN_RELE_CONTROL_SetHigh();
     __delay_ms(RELE_GAP);
     PIN_RELE_POWER_SetHigh();
     time_pow = RELE_TIME;
-    FLAGS.bits.RELE_POW = 1;
-    FLAGS.bits.RELE_CON = 1;
+    FLAGS.bits.RELE_POW_WAIT = 1;
+    FLAGS.bits.RELE_CON_WAIT = 1;
     return;
 }
 
@@ -79,17 +78,18 @@ void go_open() {
     PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetHigh();
     time_pow = RELE_TIME;
-    FLAGS.bits.RELE_POW = 1;
+    FLAGS.bits.RELE_POW_WAIT = 1;
     return;
 }
 
 void go_close_alt() {
-    FLAGS.bits.FUN_OLD = 0;
+    FLAGS.bits.CLOSED=1;
     PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetHigh();
 }
 
 void go_open_alt() {
+    FLAGS.bits.CLOSED =0;
     PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetLow();
     return;
@@ -99,10 +99,10 @@ start_alarm() {
     FLAGS.bits.ALARM = 1;
     PIN_ALARM_STATE_SetHigh();
     INTCONbits.TMR0IE = 1;
-     if (FLAGS.bits.WORK_MODE) {//work mode 1?            
-                go_close_alt();
-            } else {//work mode 0
+     if (FLAGS.bits.NORMAL_WORK_MODE) {//work mode 1?            
                 go_close();
+            } else {//work mode 0
+                go_close_alt();
             } 
 }
 
@@ -131,10 +131,10 @@ void get_fun() {
 
     if (fun_counter > FUN_MEAS_COUNT) {
         fun_counter = FUN_MEAS_COUNT;
-        FLAGS.bits.FUN_NEW = 1;
+        FLAGS.bits.FUN_CONNECTED = 0;
     } else if (fun_counter<-FUN_MEAS_COUNT) {
         fun_counter = -FUN_MEAS_COUNT;
-        FLAGS.bits.FUN_NEW = 0;
+        FLAGS.bits.FUN_CONNECTED = 1;
     }
     return;
 }
@@ -158,28 +158,20 @@ void get_jump() {
 }
 
 void rele_tick() {
-    if (FLAGS.bits.RELE_POW) {
+    if (FLAGS.bits.RELE_POW_WAIT) {
         if (time_pow > 0) time_pow--;
-        if (time_pow <= 0) {
+        if (time_pow = 0) {
+            if (FLAGS.bits.RELE_CON_WAIT){
             PIN_RELE_POWER_SetLow();
             __delay_ms(RELE_GAP);
             PIN_RELE_CONTROL_SetLow();
-        }
-    }
-    /*
-    if (FLAGS.bits.RELE_POW) {
-        time_pow--;
-        if (time_pow == 0) {
+            FLAGS.bits.CLOSED=1;
+            }else{
             PIN_RELE_POWER_SetLow();
-            FLAGS.bits.RELE_POW = 0;
-            if (FLAGS.bits.RELE_CON) {
-                __delay_ms(RELE_GAP * 1000);
-                PIN_RELE_CONTROL_SetLow();
-                FLAGS.bits.RELE_CON = 0;
+            FLAGS.bits.CLOSED=0;
             }
         }
     }
-    // */
 }
 
 void Sec_tick_work() {
@@ -198,44 +190,48 @@ void Sec_tick_work() {
             iled = 0;
         }
     }
-    //   }
-    // */
-    return;
 }
 
 void povorot() {
-    if (time_s > ROTATION_TIME &&
-            FLAGS.bits.FUN_OLD &&
-            ~FLAGS.bits.ALARM &&
-            FLAGS.bits.WORK_MODE
+    if ((time_s > ROTATION_TIME) &&
+            FLAGS.bits.CLOSED==0 &&
+            FLAGS.bits.ALARM==0 &&
+            FLAGS.bits.NORMAL_WORK_MODE
             ) {
-        go_open();
-        __delay_ms(5);
-        go_close();
+          go_close();
+    }
+    if ((time_s > ROTATION_TIME) &&
+            FLAGS.bits.CLOSED==0 &&
+            FLAGS.bits.ALARM==0 &&
+            FLAGS.bits.NORMAL_WORK_MODE
+            ) {
+         go_open();
         time_s = 0;
+    }
+        
     }
 }
 
 void fun_work() {
-    if (FLAGS.bits.FUN_OLD)//fun old open?
+   // if (true)//fun old open?
     {
-        if (FLAGS.bits.FUN_NEW==0) {
-            go_close();
-            FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
+        if (FLAGS.bits.FUN_CONNECTED && ~FLAGS.bits.ALARM && FLAGS.bits.CLOSED) {
+            if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
+            else go_open_alt();
         };
-    } else {//fun old close
-        if (FLAGS.bits.FUN_NEW && ~FLAGS.bits.ALARM) {
-            go_open();
-            FLAGS.bits.FUN_OLD = FLAGS.bits.FUN_NEW;
+  //  } else {//fun old close
+        if (FLAGS.bits.FUN_CONNECTED == 0) {
+            if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
+            else go_close_alt();
         }
     }
 }
 
 void switch_wm() {
     if (FLAGS.bits.JUMP) {
-        FLAGS.bits.WORK_MODE = 1;
+        FLAGS.bits.NORMAL_WORK_MODE = 1;
     } else {
-        FLAGS.bits.WORK_MODE = 0;
+        FLAGS.bits.NORMAL_WORK_MODE = 0;
     }
 }
 
@@ -253,17 +249,16 @@ void start_setup() {
     PIN_WSP_STATE_SetDigitalMode();
     
     PIN_JUMP_STATE_ResetPullup();
-    PIN_JUMP_STATE_SetLow();
-    PIN_JUMP_STATE_SetDigitalInput();
+    //PIN_JUMP_STATE_SetLow();
     PIN_JUMP_STATE_SetDigitalMode();
-
+    PIN_JUMP_STATE_SetDigitalInput();
 
 
     PIN_FUN_STATE_ResetPullup();
-    PIN_FUN_STATE_SetLow();
-    PIN_FUN_STATE_SetDigitalInput();
+    //PIN_FUN_STATE_SetLow();
     PIN_FUN_STATE_SetDigitalMode();
-
+    PIN_FUN_STATE_SetDigitalInput();
+    
     PIN_RELE_POWER_SetLow();
     PIN_RELE_CONTROL_SetLow();
 
@@ -273,7 +268,6 @@ void start_setup() {
 
     INTCONbits.TMR0IE = 0;
     FLAGS.value = 0;
-
     time_pow = 0;
 }
 
@@ -281,13 +275,17 @@ void main(void) {
 
     start_setup();
     while (1) {
-        get_jump();
-        get_fun();
+      
         __delay_ms(50);
-        if (FLAGS.bits.ALARM ==0) {        
-           fun_work();
-          // povorot();
-           switch_wm();
+        if (FLAGS.bits.ALARM ==0) {     
+           
+        get_fun();
+        fun_work();
+        
+        get_jump();
+        switch_wm(); 
+           
+           // povorot();
         };
     }
 }
