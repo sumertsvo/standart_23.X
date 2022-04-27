@@ -9,7 +9,7 @@
 #define LOW_WATER_RESISTANSE 20000
 #define HIGH_WATER_RESISTANSE 25000
 #define UP_RESISTANSE 20000
-#define LOW_PIN_VOLTAGE 6000
+#define LOW_PIN_VOLTAGE 2000
 #define RELE_TIME 10//120 sec
 #define RELE_GAP 100 //100 msec
 #define WSP_MEAS_COUNT 2
@@ -52,11 +52,27 @@ unsigned fresult;
 //served
 
 void switch_zum() {
-    if (FLAGS.bits.ALARM) PIN_ZUMMER_Toggle();
+    PIN_ZUMMER_Toggle();
 }
 
 void toggle_tone() {
     INTCONbits.TMR0IE = ~INTCONbits.TMR0IE;
+}
+
+void beep() {
+    for (char i = 0; i < 40; i++) {
+        switch_zum();
+        __delay_ms(1);
+    }
+   
+}
+
+void boop() {
+    for (char i = 0; i < 50; i++) {
+        switch_zum();
+        __delay_us(300);
+    }
+   
 }
 //end served
 
@@ -95,8 +111,8 @@ void go_open_alt() {
 start_alarm() {
     FLAGS.bits.ALARM = 1;
     PIN_ALARM_STATE_SetHigh();
-    INTCONbits.TMR0IE = 1;//start zummer
-    if (FLAGS.bits.NORMAL_WORK_MODE) {           
+    INTCONbits.TMR0IE = 1; //start zummer
+    if (FLAGS.bits.NORMAL_WORK_MODE) {
         go_close();
     } else {
         go_close_alt();
@@ -207,9 +223,12 @@ void rele_tick() {
                 __delay_ms(RELE_GAP);
                 PIN_RELE_CONTROL_SetLow();
                 FLAGS.bits.CLOSED = 1;
+                FLAGS.bits.RELE_CON_WAIT = 0;
+                FLAGS.bits.RELE_POW_WAIT = 0;
             } else {//opening
                 PIN_RELE_POWER_SetLow();
                 FLAGS.bits.CLOSED = 0;
+                FLAGS.bits.RELE_POW_WAIT = 0;
             }
         }
     }
@@ -257,23 +276,42 @@ void fun_work() {
         if (FLAGS.bits.FUN_CONNECTED && !FLAGS.bits.ALARM && FLAGS.bits.CLOSED) {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
+            beep();
+             __delay_ms(100);
+            beep();
         };
-        if (!FLAGS.bits.FUN_CONNECTED  && !FLAGS.bits.CLOSED) {
+        if (!FLAGS.bits.FUN_CONNECTED && !FLAGS.bits.CLOSED) {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
+            beep();   
+             __delay_ms(100);
+            beep();   
+             __delay_ms(100);
+            beep();
         }
     }
 }
 
 void switch_wm() {
     if (FLAGS.bits.JUMP) {
-        FLAGS.bits.NORMAL_WORK_MODE = 1;
-        if (FLAGS.bits.CLOSED) go_close();
+        if (!FLAGS.bits.NORMAL_WORK_MODE) {
+            FLAGS.bits.NORMAL_WORK_MODE = 1;
+            if (FLAGS.bits.CLOSED) go_close();
+            boop();
+             __delay_ms(100);
+            boop();
+        }
     } else {
-        FLAGS.bits.NORMAL_WORK_MODE = 0;
-        if (FLAGS.bits.CLOSED) go_close_alt();
+        if (FLAGS.bits.NORMAL_WORK_MODE) {
+            FLAGS.bits.NORMAL_WORK_MODE = 0;
+            if (FLAGS.bits.CLOSED) go_close_alt();
+            boop();
+             __delay_ms(100);
+            boop();
+              __delay_ms(100);
+            boop();
+        }
     }
-    
 }
 
 void start_setup() {
@@ -307,9 +345,10 @@ void start_setup() {
 
     INTCONbits.TMR0IE = 0;
     FLAGS.value = 0;
-    time_pow = 0;
+
     get_fun_full();
     get_jump_full();
+    time_pow = 0;
 }
 
 void main(void) {
