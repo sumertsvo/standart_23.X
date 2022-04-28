@@ -1,23 +1,23 @@
 /**
-  @Generated PIC10 / PIC12 / PIC16 / PIC18 MCUs Header File
+  FVR Generated Driver File
 
-  @Company:
+  @Company
     Microchip Technology Inc.
 
-  @File Name:
-    mcc.c
+  @File Name
+    fvr.c
 
-  @Summary:
-    This is the device_config.h file generated using PIC10 / PIC12 / PIC16 / PIC18 MCUs
+  @Summary
+    This is the generated driver implementation file for the FVR driver using PIC10 / PIC12 / PIC16 / PIC18 MCUs
 
-  @Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
+  @Description
+    This source file provides APIs for FVR.
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.81.7
         Device            :  PIC16F1823
-        Driver Version    :  2.00
+        Driver Version    :  2.01
     The generated drivers are tested against the following:
-        Compiler          :  XC8 2.31 and above or later
+        Compiler          :  XC8 2.31 and above
         MPLAB             :  MPLAB X 5.45
 */
 
@@ -44,12 +44,28 @@
     SOFTWARE.
 */
 
-#ifndef DEVICE_CONFIG_H
-#define	DEVICE_CONFIG_H
+/**
+  Section: Included Files
+*/
 
-#define _XTAL_FREQ 16000000
+#include <xc.h>
+#include "fvr.h"
 
-#endif	/* DEVICE_CONFIG_H */
+/**
+  Section: FVR APIs
+*/
+
+void FVR_Initialize(void)
+{
+    // CDAFVR off; FVREN enabled; TSRNG Lo_range; ADFVR 2x; TSEN disabled; 
+    FVRCON = 0x82;
+}
+
+bool FVR_IsOutputReady(void)
+{
+    return (FVRCONbits.FVRRDY);
+}
 /**
  End of File
 */
+

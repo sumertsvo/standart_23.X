@@ -1,4 +1,4 @@
-# 1 "mcc_generated_files/tmr0.c"
+# 1 "mcc_generated_files/fvr.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "mcc_generated_files/tmr0.c" 2
-# 51 "mcc_generated_files/tmr0.c"
+# 1 "mcc_generated_files/fvr.c" 2
+# 51 "mcc_generated_files/fvr.c"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -3802,107 +3802,30 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
-# 51 "mcc_generated_files/tmr0.c" 2
+# 51 "mcc_generated_files/fvr.c" 2
 
-# 1 "mcc_generated_files/tmr0.h" 1
-# 55 "mcc_generated_files/tmr0.h"
+# 1 "mcc_generated_files/fvr.h" 1
+# 54 "mcc_generated_files/fvr.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdbool.h" 1 3
-# 55 "mcc_generated_files/tmr0.h" 2
-# 98 "mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 168 "mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 204 "mcc_generated_files/tmr0.h"
-void TMR0_Reload(void);
-# 219 "mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 238 "mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 256 "mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 274 "mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
-# 52 "mcc_generated_files/tmr0.c" 2
+# 54 "mcc_generated_files/fvr.h" 2
+# 93 "mcc_generated_files/fvr.h"
+ void FVR_Initialize(void);
+# 127 "mcc_generated_files/fvr.h"
+_Bool FVR_IsOutputReady(void);
+# 52 "mcc_generated_files/fvr.c" 2
 
 
 
 
 
 
-volatile uint8_t timer0ReloadVal;
-void (*TMR0_InterruptHandler)(void);
-
-
-
-
-void TMR0_Initialize(void)
+void FVR_Initialize(void)
 {
 
-
-
-    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD7 & 0x3F));
-
-
-    TMR0 = 0x16;
-
-
-    timer0ReloadVal= 22;
-
-
-    INTCONbits.TMR0IF = 0;
-
-
-
-
-
-    TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
+    FVRCON = 0x82;
 }
 
-uint8_t TMR0_ReadTimer(void)
+_Bool FVR_IsOutputReady(void)
 {
-    uint8_t readVal;
-
-    readVal = TMR0;
-
-    return readVal;
-}
-
-void TMR0_WriteTimer(uint8_t timerVal)
-{
-
-    TMR0 = timerVal;
-}
-
-void TMR0_Reload(void)
-{
-
-    TMR0 = timer0ReloadVal;
-}
-
-void TMR0_ISR(void)
-{
-
-
-    INTCONbits.TMR0IF = 0;
-
-    TMR0 = timer0ReloadVal;
-
-    if(TMR0_InterruptHandler)
-    {
-        TMR0_InterruptHandler();
-    }
-
-
-}
-
-
-void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
-    TMR0_InterruptHandler = InterruptHandler;
-}
-
-void TMR0_DefaultInterruptHandler(void){
-
-
+    return (FVRCONbits.FVRRDY);
 }

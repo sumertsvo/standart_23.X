@@ -11,57 +11,65 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
+$C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
 idloc IDLOC 5 8000 8000 4 2 1
 reset_vec CODE 0 0 0 2 2 1
 end_init CODE 0 26 26 1 2 1
 config CONFIG 4 8007 8007 2 2 1
 $dist/default/debug\standart_23.X.debug.o
-cinit CODE 0 27 27 11 2 1
+cinit CODE 0 27 27 14 2 1
 idloc IDLOC 5 8000 8000 4 2 1
-text1 CODE 0 2F3 2F3 8 2 1
-text2 CODE 0 12F 12F 36 2 1
-text3 CODE 0 331 331 3 2 1
-text4 CODE 0 278 278 13 2 1
-text5 CODE 0 32D 32D 4 2 1
-text6 CODE 0 28B 28B 13 2 1
-text7 CODE 0 310 310 6 2 1
-text8 CODE 0 24E 24E 15 2 1
-text9 CODE 0 316 316 6 2 1
-text10 CODE 0 263 263 15 2 1
-text11 CODE 0 303 303 7 2 1
-text12 CODE 0 2FB 2FB 8 2 1
-text13 CODE 0 165 165 31 2 1
-text14 CODE 0 1B5 1B5 1B 2 1
-text15 CODE 0 2E9 2E9 A 2 1
-text16 CODE 0 1D0 1D0 1A 2 1
-text18 CODE 0 238 238 16 2 1
-text19 CODE 0 2CF 2CF D 2 1
-text20 CODE 0 38 38 42 2 1
-text21 CODE 0 334 334 1 2 1
-text22 CODE 0 2DC 2DC D 2 1
-text23 CODE 0 1EA 1EA 1A 2 1
-text24 CODE 0 F8 F8 37 2 1
-text25 CODE 0 2AF 2AF 10 2 1
-text26 CODE 0 204 204 1A 2 1
-text27 CODE 0 31C 31C 5 2 1
-text28 CODE 0 BB BB 3D 2 1
-text29 CODE 0 7A 7A 41 2 1
-text30 CODE 0 21E 21E 1A 2 1
-text31 CODE 0 2BF 2BF 10 2 1
-text32 CODE 0 335 335 1 2 1
-text33 CODE 0 29E 29E 11 2 1
-nvBANK0 BANK0 1 2E 2E 6 1 1
-maintext CODE 0 196 196 1F 2 1
+text1 CODE 0 123 123 46 2 1
+text2 CODE 0 260 260 35 2 1
+text3 CODE 0 169 169 43 2 1
+text4 CODE 0 DC DC 47 2 1
+text5 CODE 0 4D7 4D7 3 2 1
+text6 CODE 0 3D2 3D2 16 2 1
+text7 CODE 0 4CF 4CF 4 2 1
+text8 CODE 0 428 428 13 2 1
+text9 CODE 0 4A8 4A8 6 2 1
+text10 CODE 0 3E8 3E8 16 2 1
+text11 CODE 0 4AE 4AE 6 2 1
+text12 CODE 0 3FE 3FE 15 2 1
+text13 CODE 0 4A1 4A1 7 2 1
+text14 CODE 0 4D3 4D3 4 2 1
+text15 CODE 0 499 499 8 2 1
+text16 CODE 0 94 94 48 2 1
+text17 CODE 0 39C 39C 1B 2 1
+text18 CODE 0 226 226 3A 2 1
+text19 CODE 0 1AC 1AC 3E 2 1
+text20 CODE 0 33D 33D 21 2 1
+text21 CODE 0 3B 3B 59 2 1
+text22 CODE 0 4B4 4B4 5 2 1
+text23 CODE 0 485 485 A 2 1
+text24 CODE 0 4B9 4B9 5 2 1
+text25 CODE 0 31B 31B 22 2 1
+text26 CODE 0 2C7 2C7 2B 2 1
+text27 CODE 0 43B 43B 10 2 1
+text29 CODE 0 413 413 15 2 1
+text30 CODE 0 46B 46B D 2 1
+text31 CODE 0 4DA 4DA 1 2 1
+text32 CODE 0 1EA 1EA 3C 2 1
+text33 CODE 0 48F 48F A 2 1
+text34 CODE 0 2F2 2F2 29 2 1
+text35 CODE 0 295 295 32 2 1
+text36 CODE 0 3B7 3B7 1B 2 1
+text37 CODE 0 44B 44B 10 2 1
+text38 CODE 0 4BE 4BE 5 2 1
+text39 CODE 0 35E 35E 20 2 1
+text40 CODE 0 45B 45B 10 2 1
+text41 CODE 0 4DB 4DB 1 2 1
+text42 CODE 0 478 478 D 2 1
+nvBANK0 BANK0 1 36 36 5 1 1
+maintext CODE 0 37E 37E 1E 2 1
 cstackCOMMON COMMON 1 70 70 8 1 1
-cstackBANK0 BANK0 1 34 34 5 1 1
-stringtext1 STRCODE 0 321 321 4 2 1
-stringtext2 STRCODE 0 325 325 4 2 1
-stringtext3 STRCODE 0 329 329 4 2 1
+cstackBANK0 BANK0 1 2B 2B B 1 1
+stringtext1 STRCODE 0 4C3 4C3 4 2 1
+stringtext2 STRCODE 0 4C7 4C7 4 2 1
+stringtext3 STRCODE 0 4CB 4CB 4 2 1
 intentry CODE 0 4 4 22 2 1
-bssBANK0 BANK0 1 20 20 E 1 1
-clrtext CODE 0 30A 30A 6 2 1
-bssCOMMON COMMON 1 78 78 6 1 1
+bssBANK0 BANK0 1 20 20 B 1 1
+bssCOMMON COMMON 1 78 78 5 1 1
 config CONFIG 4 8007 8007 2 2 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -69,14 +77,14 @@ config CONFIG 4 8007 8007 2 2 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 39-6F 1
+RAM 3B-6F 1
 RAM A0-AF 1
-BANK0 39-6F 1
+BANK0 3B-6F 1
 BANK1 A0-AF 1
 CONST 2-3 2
-CONST 336-7FF 2
+CONST 4DC-7FF 2
 ENTRY 2-3 2
-ENTRY 336-7FF 2
+ENTRY 4DC-7FF 2
 SFR10 500-56F 1
 SFR11 580-5EF 1
 SFR12 600-66F 1
@@ -100,7 +108,7 @@ SFR29 E80-EEF 1
 SFR30 F00-F6F 1
 SFR31 F80-FEF 1
 CODE 2-3 2
-CODE 336-7FF 2
+CODE 4DC-7FF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-16F 1
@@ -112,11 +120,12 @@ SFR7 380-3EF 1
 SFR8 400-46F 1
 SFR9 480-4EF 1
 BIGRAM 2000-205F 1
+COMMON 7D-7D 1
 EEDATA F000-F0FF 2
 STRCODE 2-3 2
-STRCODE 336-7FF 2
+STRCODE 4DC-7FF 2
 STRING 2-3 2
-STRING 336-7FF 2
+STRING 4DC-7FF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -131,24 +140,29 @@ STRING 336-7FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\standart_23.X.debug.o
-27 cinit CODE >2270:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-27 cinit CODE >2273:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-27 cinit CODE >2333:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-28 cinit CODE >2334:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-29 cinit CODE >2335:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-2A cinit CODE >2336:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-2B cinit CODE >2337:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-2C cinit CODE >2338:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-2D cinit CODE >2342:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-2E cinit CODE >2343:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-2F cinit CODE >2344:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30 cinit CODE >2345:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-31 cinit CODE >2346:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-32 cinit CODE >2347:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-35 cinit CODE >2353:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-35 cinit CODE >2355:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-36 cinit CODE >2356:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-37 cinit CODE >2357:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
+27 cinit CODE >2531:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+27 cinit CODE >2534:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+27 cinit CODE >2579:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+28 cinit CODE >2580:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+29 cinit CODE >2581:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+2A cinit CODE >2582:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+2B cinit CODE >2583:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+2C cinit CODE >2587:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+2D cinit CODE >2588:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+2E cinit CODE >2589:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+2F cinit CODE >2590:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+30 cinit CODE >2591:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+31 cinit CODE >2592:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+32 cinit CODE >2593:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+33 cinit CODE >2594:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+34 cinit CODE >2595:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+35 cinit CODE >2596:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+36 cinit CODE >2597:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+37 cinit CODE >2598:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+38 cinit CODE >2604:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+38 cinit CODE >2606:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+39 cinit CODE >2607:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
+3A cinit CODE >2608:C:\Users\vlads\AppData\Local\Temp\xcAs8g0.s
 4 intentry CODE >52:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 E intentry CODE >57:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
@@ -159,286 +173,377 @@ E intentry CODE >57:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_fi
 23 intentry CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 24 intentry CODE >73:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 24 intentry CODE >74:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
-29E text33 CODE >58:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-29E text33 CODE >59:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2A2 text33 CODE >59:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2A5 text33 CODE >59:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2AE text33 CODE >60:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-335 text32 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-335 text32 CODE >132:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-2BF text31 CODE >108:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-2BF text31 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-2C0 text31 CODE >114:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-2C3 text31 CODE >116:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-2C9 text31 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-2CE text31 CODE >122:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-21E text30 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-21F text30 CODE >115:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-229 text30 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-22A text30 CODE >121:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-22D text30 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-22F text30 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-22F text30 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-233 text30 CODE >132:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-237 text30 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-7A text29 CODE >128:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-7A text29 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-7C text29 CODE >130:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-7E text29 CODE >131:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-86 text29 CODE >132:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-88 text29 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-8A text29 CODE >134:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-8F text29 CODE >135:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-92 text29 CODE >135:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-94 text29 CODE >135:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-9D text29 CODE >136:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-A1 text29 CODE >138:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-A4 text29 CODE >138:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-A8 text29 CODE >139:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-AC text29 CODE >140:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-AD text29 CODE >141:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-B1 text29 CODE >141:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-B5 text29 CODE >142:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-B9 text29 CODE >143:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-BA text29 CODE >146:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-BB text28 CODE >148:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-BB text28 CODE >149:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-BD text28 CODE >150:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-C5 text28 CODE >151:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-C7 text28 CODE >152:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-CC text28 CODE >153:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-CF text28 CODE >153:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-D1 text28 CODE >153:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-DA text28 CODE >154:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-DE text28 CODE >156:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-E1 text28 CODE >156:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-E5 text28 CODE >157:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-E9 text28 CODE >158:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-EA text28 CODE >159:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-EE text28 CODE >159:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-F2 text28 CODE >160:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-F6 text28 CODE >161:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-F7 text28 CODE >164:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-31C text27 CODE >90:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-31C text27 CODE >91:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-31D text27 CODE >92:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-31F text27 CODE >93:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-320 text27 CODE >94:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-204 text26 CODE >70:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-204 text26 CODE >71:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-20D text26 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-20E text26 CODE >73:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-210 text26 CODE >74:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-214 text26 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-216 text26 CODE >76:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-21B text26 CODE >77:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-21C text26 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-21D text26 CODE >80:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2AF text25 CODE >101:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2AF text25 CODE >102:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2B0 text25 CODE >103:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2B2 text25 CODE >104:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2B3 text25 CODE >106:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2B7 text25 CODE >107:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2BA text25 CODE >108:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2BB text25 CODE >109:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2BE text25 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-F8 text24 CODE >114:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-F8 text24 CODE >115:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-FA text24 CODE >116:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-FC text24 CODE >117:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-104 text24 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-106 text24 CODE >119:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-10B text24 CODE >120:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-10D text24 CODE >122:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-110 text24 CODE >122:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-112 text24 CODE >122:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-11B text24 CODE >123:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-11E text24 CODE >123:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-120 text24 CODE >123:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-125 text24 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-127 text24 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-12E text24 CODE >126:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1EA text23 CODE >166:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1EA text23 CODE >167:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1EE text23 CODE >168:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1F6 text23 CODE >169:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1FB text23 CODE >170:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1FD text23 CODE >171:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-201 text23 CODE >172:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-203 text23 CODE >189:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2DC text22 CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2DC text22 CODE >65:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2DF text22 CODE >65:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2E8 text22 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-334 text21 CODE >151:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-334 text21 CODE >154:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-38 text20 CODE >191:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-38 text20 CODE >192:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-41 text20 CODE >193:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-44 text20 CODE >194:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-45 text20 CODE >195:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-49 text20 CODE >196:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-4C text20 CODE >196:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-55 text20 CODE >197:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-58 text20 CODE >198:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-59 text20 CODE >199:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-5C text20 CODE >200:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-5F text20 CODE >201:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-62 text20 CODE >203:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-66 text20 CODE >204:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-68 text20 CODE >204:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-6C text20 CODE >205:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-6F text20 CODE >205:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-78 text20 CODE >206:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-79 text20 CODE >212:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2CF text19 CODE >137:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-2CF text19 CODE >141:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-2D6 text19 CODE >143:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-2DB text19 CODE >145:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-238 text18 CODE >119:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-238 text18 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-23A text18 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-241 text18 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-243 text18 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-247 text18 CODE >130:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-24A text18 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-24D text18 CODE >135:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-1D0 text16 CODE >70:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1D0 text16 CODE >71:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1D9 text16 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1DA text16 CODE >73:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1DC text16 CODE >74:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1E0 text16 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1E2 text16 CODE >76:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1E7 text16 CODE >77:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1E8 text16 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1E9 text16 CODE >80:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2E9 text15 CODE >82:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2E9 text15 CODE >83:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2EB text15 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2EC text15 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F1 text15 CODE >86:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F2 text15 CODE >88:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1B5 text14 CODE >227:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1B5 text14 CODE >228:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1B9 text14 CODE >230:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1BD text14 CODE >231:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1C0 text14 CODE >232:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1C7 text14 CODE >234:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1C7 text14 CODE >235:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1CB text14 CODE >236:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1CF text14 CODE >240:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-165 text13 CODE >214:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-165 text13 CODE >215:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-17E text13 CODE >220:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-181 text13 CODE >221:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-189 text13 CODE >222:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-18C text13 CODE >223:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-195 text13 CODE >225:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2FB text12 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-2FB text12 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-2FE text12 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-2FF text12 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-300 text12 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-302 text12 CODE >83:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-303 text11 CODE >61:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-303 text11 CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-306 text11 CODE >66:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-307 text11 CODE >68:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-309 text11 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-263 text10 CODE >55:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-263 text10 CODE >60:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-265 text10 CODE >61:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-266 text10 CODE >66:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-269 text10 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-26B text10 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-26E text10 CODE >73:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-270 text10 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-272 text10 CODE >79:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-273 text10 CODE >80:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-275 text10 CODE >86:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-277 text10 CODE >93:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
-316 text9 CODE >125:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-316 text9 CODE >126:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-31B text9 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-24E text8 CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-24E text8 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-253 text8 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-256 text8 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-25A text8 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-25B text8 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-262 text8 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
-310 text7 CODE >147:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-310 text7 CODE >148:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-315 text7 CODE >149:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-28B text6 CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-28B text6 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-28E text6 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-28F text6 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-290 text6 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-292 text6 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-29A text6 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-29D text6 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-32D text5 CODE >71:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-32D text5 CODE >74:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-330 text5 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-278 text4 CODE >50:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-278 text4 CODE >53:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-27B text4 CODE >54:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-27E text4 CODE >55:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-281 text4 CODE >56:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-284 text4 CODE >57:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-287 text4 CODE >58:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-28A text4 CODE >59:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
-331 text3 CODE >87:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-331 text3 CODE >90:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-333 text3 CODE >91:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
-12F text2 CODE >250:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-12F text2 CODE >252:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-132 text2 CODE >253:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-133 text2 CODE >254:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-134 text2 CODE >257:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-13C text2 CODE >258:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-144 text2 CODE >259:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-147 text2 CODE >261:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-149 text2 CODE >263:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-14B text2 CODE >264:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-14D text2 CODE >265:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-14F text2 CODE >266:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-151 text2 CODE >270:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-153 text2 CODE >271:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-155 text2 CODE >272:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-157 text2 CODE >273:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-159 text2 CODE >275:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-15B text2 CODE >276:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-15C text2 CODE >278:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-15E text2 CODE >279:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-160 text2 CODE >282:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-161 text2 CODE >283:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-162 text2 CODE >285:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-164 text2 CODE >286:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F3 text1 CODE >242:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F3 text1 CODE >243:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F7 text1 CODE >244:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F8 text1 CODE >245:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2F9 text1 CODE >246:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-2FA text1 CODE >248:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-196 maintext CODE >288:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-196 maintext CODE >290:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-199 maintext CODE >293:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1A6 maintext CODE >294:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1AA maintext CODE >295:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1AD maintext CODE >296:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-1B0 maintext CODE >297:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-30A clrtext CODE >2322:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30A clrtext CODE >2323:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30B clrtext CODE >2324:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30B clrtext CODE >2325:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30C clrtext CODE >2326:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30D clrtext CODE >2327:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30E clrtext CODE >2328:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
-30F clrtext CODE >2329:C:\Users\vlads\AppData\Local\Temp\xcAsehc.s
+478 text42 CODE >61:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+478 text42 CODE >62:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+47B text42 CODE >62:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+484 text42 CODE >63:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4DB text41 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+4DB text41 CODE >132:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+45B text40 CODE >108:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+45B text40 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+45C text40 CODE >114:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+45F text40 CODE >116:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+465 text40 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+46A text40 CODE >122:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+35E text39 CODE >79:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+35E text39 CODE >80:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+367 text39 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+369 text39 CODE >82:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+374 text39 CODE >83:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+376 text39 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+37B text39 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+37C text39 CODE >86:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+37D text39 CODE >88:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4BE text38 CODE >98:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4BE text38 CODE >99:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4BF text38 CODE >100:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4C1 text38 CODE >101:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4C2 text38 CODE >102:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+44B text37 CODE >111:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+44B text37 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+44C text37 CODE >113:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+44E text37 CODE >114:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+44F text37 CODE >115:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+453 text37 CODE >116:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+456 text37 CODE >117:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+457 text37 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+45A text37 CODE >120:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3B7 text36 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3B8 text36 CODE >115:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3C2 text36 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3C3 text36 CODE >121:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3C7 text36 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3C9 text36 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3C9 text36 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3CD text36 CODE >132:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+3D1 text36 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+295 text35 CODE >122:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+295 text35 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+297 text35 CODE >125:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+299 text35 CODE >126:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2A1 text35 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2A3 text35 CODE >128:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2A5 text35 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2A8 text35 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2AA text35 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2B3 text35 CODE >130:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2B6 text35 CODE >130:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2B8 text35 CODE >130:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2BD text35 CODE >131:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2BF text35 CODE >131:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2C6 text35 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2F2 text34 CODE >226:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2F2 text34 CODE >227:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2F6 text34 CODE >228:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2FC text34 CODE >229:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2FE text34 CODE >230:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2FF text34 CODE >231:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+303 text34 CODE >232:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+305 text34 CODE >233:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+310 text34 CODE >234:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+312 text34 CODE >235:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+313 text34 CODE >236:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+314 text34 CODE >237:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+315 text34 CODE >238:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+316 text34 CODE >239:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+318 text34 CODE >240:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+319 text34 CODE >241:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+31A text34 CODE >245:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+48F text33 CODE >65:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+48F text33 CODE >66:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+491 text33 CODE >66:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+498 text33 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1EA text32 CODE >247:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1EA text32 CODE >248:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1F3 text32 CODE >249:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1F6 text32 CODE >250:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1F7 text32 CODE >251:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1FB text32 CODE >252:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1FE text32 CODE >252:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+207 text32 CODE >253:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+20A text32 CODE >254:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+20B text32 CODE >255:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+20E text32 CODE >257:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+212 text32 CODE >258:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+214 text32 CODE >258:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+218 text32 CODE >259:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+21B text32 CODE >259:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+224 text32 CODE >260:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+225 text32 CODE >263:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4DA text31 CODE >151:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+4DA text31 CODE >154:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+46B text30 CODE >137:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+46B text30 CODE >141:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+472 text30 CODE >143:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+477 text30 CODE >145:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+413 text29 CODE >119:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+413 text29 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+415 text29 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+41C text29 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+41E text29 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+422 text29 CODE >130:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+425 text29 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+427 text29 CODE >135:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+43B text27 CODE >61:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+43E text27 CODE >62:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+441 text27 CODE >62:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+44A text27 CODE >63:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2C7 text26 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2C7 text26 CODE >70:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2CA text26 CODE >71:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2CC text26 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2CF text26 CODE >73:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2D2 text26 CODE >74:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2D9 text26 CODE >74:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2DD text26 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2E6 text26 CODE >76:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2ED text26 CODE >76:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+2F1 text26 CODE >77:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+31B text25 CODE >79:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+31B text25 CODE >80:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+324 text25 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+326 text25 CODE >82:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+333 text25 CODE >83:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+335 text25 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+33A text25 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+33B text25 CODE >86:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+33C text25 CODE >88:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B9 text24 CODE >98:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B9 text24 CODE >99:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4BA text24 CODE >100:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4BC text24 CODE >101:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4BD text24 CODE >102:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+485 text23 CODE >90:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+485 text23 CODE >91:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+487 text23 CODE >92:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+488 text23 CODE >93:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+48D text23 CODE >94:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+48E text23 CODE >96:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B4 text22 CODE >104:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B4 text22 CODE >105:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B5 text22 CODE >106:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B7 text22 CODE >107:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B8 text22 CODE >109:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3B text21 CODE >284:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3B text21 CODE >286:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+4B text21 CODE >290:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+53 text21 CODE >291:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+56 text21 CODE >293:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+68 text21 CODE >295:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+74 text21 CODE >298:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+7C text21 CODE >299:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+7F text21 CODE >301:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+93 text21 CODE >304:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+33D text20 CODE >112:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+33F text20 CODE >115:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+34B text20 CODE >118:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+34C text20 CODE >121:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+350 text20 CODE >124:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+352 text20 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+352 text20 CODE >129:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+356 text20 CODE >132:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+35D text20 CODE >133:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+1AC text19 CODE >135:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1AC text19 CODE >138:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1AE text19 CODE >139:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1B0 text19 CODE >140:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1B9 text19 CODE >141:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1BB text19 CODE >142:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1BD text19 CODE >143:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1C1 text19 CODE >143:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1C3 text19 CODE >143:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1CC text19 CODE >144:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1D0 text19 CODE >146:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1D3 text19 CODE >146:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1D7 text19 CODE >147:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1DB text19 CODE >148:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1DC text19 CODE >149:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1E0 text19 CODE >149:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1E4 text19 CODE >150:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1E8 text19 CODE >151:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1E9 text19 CODE >154:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+226 text18 CODE >182:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+226 text18 CODE >185:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+228 text18 CODE >186:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+231 text18 CODE >187:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+233 text18 CODE >190:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+237 text18 CODE >190:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+239 text18 CODE >190:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+242 text18 CODE >191:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+246 text18 CODE >193:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+249 text18 CODE >193:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+24D text18 CODE >194:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+251 text18 CODE >195:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+252 text18 CODE >196:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+256 text18 CODE >196:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+25A text18 CODE >197:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+25E text18 CODE >198:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+25F text18 CODE >201:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+39C text17 CODE >324:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+39C text17 CODE >328:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3A5 text17 CODE >329:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3A8 text17 CODE >329:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3AA text17 CODE >329:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+3B6 text17 CODE >331:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+94 text16 CODE >265:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+94 text16 CODE >266:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+B0 text16 CODE >271:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+B3 text16 CODE >273:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+CF text16 CODE >278:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+D2 text16 CODE >279:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+DB text16 CODE >282:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+499 text15 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+499 text15 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+49C text15 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+49D text15 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+49E text15 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+4A0 text15 CODE >83:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+4D3 text14 CODE >58:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/fvr.c
+4D3 text14 CODE >61:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/fvr.c
+4D6 text14 CODE >62:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/fvr.c
+4A1 text13 CODE >62:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4A1 text13 CODE >65:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4A4 text13 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4A5 text13 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4A7 text13 CODE >70:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3FE text12 CODE >55:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+3FE text12 CODE >60:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+400 text12 CODE >61:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+401 text12 CODE >66:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+404 text12 CODE >67:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+406 text12 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+409 text12 CODE >73:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+40B text12 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+40D text12 CODE >79:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+40E text12 CODE >80:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+410 text12 CODE >86:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+412 text12 CODE >93:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+4AE text11 CODE >125:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+4AE text11 CODE >126:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+4B3 text11 CODE >127:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3E8 text10 CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3E8 text10 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3ED text10 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3F0 text10 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3F4 text10 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3F5 text10 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3F6 text10 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+3FD text10 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
+4A8 text9 CODE >147:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+4A8 text9 CODE >148:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+4AD text9 CODE >149:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+428 text8 CODE >64:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+428 text8 CODE >69:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+42B text8 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+42C text8 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+42D text8 CODE >78:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+42F text8 CODE >81:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+437 text8 CODE >84:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+43A text8 CODE >85:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+4CF text7 CODE >72:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4CF text7 CODE >75:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4D2 text7 CODE >76:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3D2 text6 CODE >50:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3D2 text6 CODE >53:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3D5 text6 CODE >54:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3D8 text6 CODE >55:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3DB text6 CODE >56:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3DE text6 CODE >57:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3E1 text6 CODE >58:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3E4 text6 CODE >59:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+3E7 text6 CODE >60:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+4D7 text5 CODE >87:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+4D7 text5 CODE >90:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+4D9 text5 CODE >91:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
+DC text4 CODE >156:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+DC text4 CODE >159:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+DE text4 CODE >160:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+E0 text4 CODE >161:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+E2 text4 CODE >163:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+EB text4 CODE >164:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+EE text4 CODE >164:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+F0 text4 CODE >164:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+F9 text4 CODE >165:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+FD text4 CODE >166:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+100 text4 CODE >166:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+104 text4 CODE >167:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+108 text4 CODE >168:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+109 text4 CODE >169:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+10B text4 CODE >170:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+10F text4 CODE >170:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+113 text4 CODE >171:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+117 text4 CODE >172:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+119 text4 CODE >175:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+11E text4 CODE >177:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+120 text4 CODE >178:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+122 text4 CODE >180:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+169 text3 CODE >203:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+169 text3 CODE >206:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+16B text3 CODE >207:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+16D text3 CODE >209:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+176 text3 CODE >210:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+179 text3 CODE >210:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+17B text3 CODE >210:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+184 text3 CODE >211:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+188 text3 CODE >213:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+18B text3 CODE >213:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+18F text3 CODE >214:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+193 text3 CODE >215:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+194 text3 CODE >216:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+196 text3 CODE >217:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+19A text3 CODE >217:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+19E text3 CODE >218:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1A2 text3 CODE >219:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1A4 text3 CODE >222:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1A9 text3 CODE >223:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+1AB text3 CODE >224:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+260 text2 CODE >334:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+260 text2 CODE >336:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+263 text2 CODE >337:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+264 text2 CODE >338:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+265 text2 CODE >341:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+26D text2 CODE >342:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+275 text2 CODE >343:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+278 text2 CODE >346:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+27A text2 CODE >347:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+27B text2 CODE >348:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+27C text2 CODE >351:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+27E text2 CODE >352:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+280 text2 CODE >353:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+282 text2 CODE >354:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+284 text2 CODE >355:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+285 text2 CODE >356:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+286 text2 CODE >357:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+288 text2 CODE >358:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+289 text2 CODE >359:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+28A text2 CODE >360:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+28C text2 CODE >363:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+28F text2 CODE >364:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+292 text2 CODE >365:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+294 text2 CODE >367:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+123 text1 CODE >306:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+123 text1 CODE >307:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+127 text1 CODE >308:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+12B text1 CODE >309:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+12C text1 CODE >310:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+133 text1 CODE >312:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+148 text1 CODE >314:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+148 text1 CODE >315:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+14C text1 CODE >316:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+14D text1 CODE >317:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+154 text1 CODE >319:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+168 text1 CODE >322:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+37E maintext CODE >369:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+37E maintext CODE >371:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+381 maintext CODE >376:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+381 maintext CODE >378:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+384 maintext CODE >379:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+388 maintext CODE >380:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+38B maintext CODE >381:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+38E maintext CODE >382:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+391 maintext CODE >383:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+394 maintext CODE >384:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+397 maintext CODE >386:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -452,54 +557,60 @@ FC text24 CODE >117:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 0 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-__Hspace_0 336 0 ABS 0 - -
-__Hspace_1 7E 0 ABS 0 - -
+sec_tick_work@iled 7A 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
+get_fun_full@flag 32 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+__Hspace_0 4DC 0 ABS 0 - -
+__Hspace_1 7D 0 ABS 0 - -
 __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 __Hspace_4 10010 0 ABS 0 - -
-TMR2_ISR@CountCallBack 2A 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
-_fun_counter 7B 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
+get_measure@measures 7B 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
+TMR2_ISR@CountCallBack 78 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
-_toggle_tone 5B8 0 CODE 0 text22 dist/default/debug\standart_23.X.debug.o
-__end_of_WDT_Initialize 662 0 CODE 0 text5 dist/default/debug\standart_23.X.debug.o
-ADC_GetConversion@channel 73 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
+_toggle_tone 91E 0 CODE 0 text33 dist/default/debug\standart_23.X.debug.o
+__end_of_WDT_Initialize 9A6 0 CODE 0 text7 dist/default/debug\standart_23.X.debug.o
+ADC_GetConversion@channel 2E 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 __Hstrings 0 0 ABS 0 strings -
-_measures 7A 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
 _LATA 10C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _LATC 10E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _TMR0 15 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _TMR2 1A 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _WPUA 20C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _WPUC 20E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-___sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-_main 32C 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
+___sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+_beep 58E 0 CODE 0 text26 dist/default/debug\standart_23.X.debug.o
+_main 6FC 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
 btemp 7E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-__end_of_ADC_GetConversion 470 0 CODE 0 text30 dist/default/debug\standart_23.X.debug.o
-start 4C 0 CODE 0 init C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-_TMR0_InterruptHandler 2E 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
-_go_close_alt 638 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
+__end_of_ADC_GetConversion 6BC 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
+start 4C 0 CODE 0 init C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+_TMR0_InterruptHandler 36 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
+_go_close_alt 972 0 CODE 0 text24 dist/default/debug\standart_23.X.debug.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
-__end_of_TMR0_SetInterruptHandler 638 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
-__end_ofi1_go_close 43C 0 CODE 0 text26 dist/default/debug\standart_23.X.debug.o
-_get_fun F4 0 CODE 0 text29 dist/default/debug\standart_23.X.debug.o
-_switch_zum 53C 0 CODE 0 text33 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR0_SetInterruptHandler 968 0 CODE 0 text11 dist/default/debug\standart_23.X.debug.o
+get_jump@jump_counter 27 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
+__end_ofi1_go_close 6FC 0 CODE 0 text39 dist/default/debug\standart_23.X.debug.o
+_get_fun 358 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
+_switch_zum 876 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
 _OPTION_REGbits 95 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-_jresult 26 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
 __Hpowerup 0 0 CODE 0 powerup -
-_TMR2_Initialize 516 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
-_TMR2_StartTimer 662 0 CODE 0 text3 dist/default/debug\standart_23.X.debug.o
-TMR0_SetInterruptHandler@InterruptHandler 34 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
+i1_ADC_GetConversion 76E 0 CODE 0 text36 dist/default/debug\standart_23.X.debug.o
+_TMR2_Initialize 850 0 CODE 0 text8 dist/default/debug\standart_23.X.debug.o
+_TMR2_StartTimer 9AE 0 CODE 0 text5 dist/default/debug\standart_23.X.debug.o
+get_fun_full@res 30 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+TMR0_SetInterruptHandler@InterruptHandler 2B 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
+__end_of_get_voltage 76E 0 CODE 0 text17 dist/default/debug\standart_23.X.debug.o
 wtemp0 7E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
-__end_of_rele_tick 408 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
-_go_open 5D2 0 CODE 0 text15 dist/default/debug\standart_23.X.debug.o
+beep@time 2F 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+__end_of_rele_tick 636 0 CODE 0 text34 dist/default/debug\standart_23.X.debug.o
+_go_open 90A 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
 __Hclrtext 0 0 ABS 0 clrtext -
 _ADCON0 9D 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _ADCON1 9E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
@@ -508,38 +619,49 @@ _ADRESL 9B 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _ANSELA 18C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _ANSELC 18E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _APFCON 11D 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-_TMR0_DefaultInterruptHandler 66A 0 CODE 0 text32 dist/default/debug\standart_23.X.debug.o
+_FVR_Initialize 9A6 0 CODE 0 text14 dist/default/debug\standart_23.X.debug.o
+_TMR0_DefaultInterruptHandler 9B6 0 CODE 0 text41 dist/default/debug\standart_23.X.debug.o
 _BORCON 116 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
+_FVRCONbits 117 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __end_of_INTERRUPT_InterruptManager 4C 0 CODE 0 intentry dist/default/debug\standart_23.X.debug.o
-_rele_tick 3D4 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
-__end_of_switch_zum 55E 0 CODE 0 text33 dist/default/debug\standart_23.X.debug.o
-__end_of_go_close_alt 642 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
+beep@count 30 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+beep@delay 2B 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+_rele_tick 5E4 0 CODE 0 text34 dist/default/debug\standart_23.X.debug.o
+_go_open_alt 968 0 CODE 0 text22 dist/default/debug\standart_23.X.debug.o
+beep@pause 2D 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+__end_of_switch_zum 896 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
+__end_of_go_close_alt 97C 0 CODE 0 text24 dist/default/debug\standart_23.X.debug.o
 __Lmaintext 0 0 ABS 0 maintext -
-_ADC_GetConversion 43C 0 CODE 0 text30 dist/default/debug\standart_23.X.debug.o
-Sec_tick_work@iled 78 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
+_FVRCON 117 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
+_ADC_GetConversion 67A 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
+_get_jump_full 2D2 0 CODE 0 text3 dist/default/debug\standart_23.X.debug.o
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
-_jump_counter 79 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
 _OPTION_REG 95 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-___stackhi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-___stacklo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-_TMR2_SetInterruptHandler 620 0 CODE 0 text7 dist/default/debug\standart_23.X.debug.o
-_PIN_MANAGER_Initialize 4C6 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
+___stackhi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+___stacklo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+_TMR2_SetInterruptHandler 950 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
+__end_ofi1_ADC_GetConversion 7A4 0 CODE 0 text36 dist/default/debug\standart_23.X.debug.o
+_PIN_MANAGER_Initialize 7FC 0 CODE 0 text12 dist/default/debug\standart_23.X.debug.o
 _WPUAbits 20C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _WPUCbits 20E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
+__end_of_FVR_Initialize 9AE 0 CODE 0 text14 dist/default/debug\standart_23.X.debug.o
 start_initialization 4E 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
 _OSCCON 99 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
+get_fun_full@fun_counter 28 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
 _TRISAbits 8C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _TRISCbits 8E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-__end_of_get_measure 25E 0 CODE 0 text24 dist/default/debug\standart_23.X.debug.o
-__end_of_SYSTEM_Initialize 516 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
-clear_ram0 614 0 CODE 0 clrtext dist/default/debug\standart_23.X.debug.o
-__pcstackBANK0 34 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
-_start_alarm 55E 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
-_start_setup 25E 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
-TMR2_SetInterruptHandler@InterruptHandler 34 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+_switch_zum$intlevel0 87C 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
+__end_of_get_measure 58E 0 CODE 0 text35 dist/default/debug\standart_23.X.debug.o
+__end_of_SYSTEM_Initialize 7D0 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
+get_voltage@res 2F 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+__pcstackBANK0 2B 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+get_fun@fun_counter 29 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
+_start_alarm 896 0 CODE 0 text37 dist/default/debug\standart_23.X.debug.o
+_start_setup 4C0 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
+TMR2_SetInterruptHandler@InterruptHandler 2B 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 _WDTCON 97 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-get_fun@res 75 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
-___int_sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
+get_fun@res 30 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+___int_sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 BANK2 1 bank2 -
@@ -550,7 +672,7 @@ __Hbank6 0 0 BANK6 1 bank6 -
 __Hbank7 0 0 BANK7 1 bank7 -
 __Hbank8 0 0 BANK8 1 bank8 -
 __Hbank9 0 0 BANK9 1 bank9 -
-__Hcinit 70 0 CODE 0 cinit -
+__Hcinit 76 0 CODE 0 cinit -
 __Hidloc 10008 0 IDLOC 5 idloc -
 __Hsfr10 0 0 ABS 0 sfr10 -
 __Hsfr11 0 0 ABS 0 sfr11 -
@@ -601,7 +723,7 @@ __Hbigram 0 0 ABS 0 bigram -
 __Hmaintext 0 0 ABS 0 maintext -
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 10012 0 CONFIG 4 config -
-__end_of_toggle_tone 5D2 0 CODE 0 text22 dist/default/debug\standart_23.X.debug.o
+__end_of_toggle_tone 932 0 CODE 0 text33 dist/default/debug\standart_23.X.debug.o
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
 __Lbank2 0 0 BANK2 1 bank2 -
@@ -637,7 +759,7 @@ __Lsfr29 0 0 ABS 0 sfr29 -
 __Lsfr30 0 0 ABS 0 sfr30 -
 __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
-__end_of_switch_wm 5F6 0 CODE 0 text1 dist/default/debug\standart_23.X.debug.o
+__end_of_switch_wm 2D2 0 CODE 0 text1 dist/default/debug\standart_23.X.debug.o
 _INTCONbits B 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -669,66 +791,82 @@ __Lsfr7 0 0 ABS 0 sfr7 -
 __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
-__pstringtext1 642 0 STRCODE 0 stringtext1 dist/default/debug\standart_23.X.debug.o
-__pstringtext2 64A 0 STRCODE 0 stringtext2 dist/default/debug\standart_23.X.debug.o
-__pstringtext3 652 0 STRCODE 0 stringtext3 dist/default/debug\standart_23.X.debug.o
-__pnvBANK0 2E 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
+__pstringtext1 986 0 STRCODE 0 stringtext1 dist/default/debug\standart_23.X.debug.o
+__pstringtext2 98E 0 STRCODE 0 stringtext2 dist/default/debug\standart_23.X.debug.o
+__pstringtext3 996 0 STRCODE 0 stringtext3 dist/default/debug\standart_23.X.debug.o
+__pnvBANK0 36 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 int$flags 7E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _PR2 1B 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-__S0 336 0 ABS 0 - -
-__S1 7E 0 ABS 0 - -
+__S0 4DC 0 ABS 0 - -
+__S1 7D 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
-_go_close 3A0 0 CODE 0 text16 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR0_DefaultInterruptHandler 66C 0 CODE 0 text32 dist/default/debug\standart_23.X.debug.o
-__end_of_povorot 32C 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
-_fun_work 36A 0 CODE 0 text14 dist/default/debug\standart_23.X.debug.o
-_switch_wm 5E6 0 CODE 0 text1 dist/default/debug\standart_23.X.debug.o
-__end_of_go_close 3D4 0 CODE 0 text16 dist/default/debug\standart_23.X.debug.o
-_SYSTEM_Initialize 4F0 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
-_TMR2_DefaultInterruptHandler 668 0 CODE 0 text21 dist/default/debug\standart_23.X.debug.o
-__end_of_fun_work 3A0 0 CODE 0 text14 dist/default/debug\standart_23.X.debug.o
-_TMR2_CallBack 59E 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
+_go_close 636 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR0_DefaultInterruptHandler 9B8 0 CODE 0 text41 dist/default/debug\standart_23.X.debug.o
+__end_of_povorot 1B8 0 CODE 0 text16 dist/default/debug\standart_23.X.debug.o
+i1_switch_zum 8F0 0 CODE 0 text42 dist/default/debug\standart_23.X.debug.o
+_fun_work 76 0 CODE 0 text21 dist/default/debug\standart_23.X.debug.o
+_switch_wm 246 0 CODE 0 text1 dist/default/debug\standart_23.X.debug.o
+__end_of_get_jump_full 358 0 CODE 0 text3 dist/default/debug\standart_23.X.debug.o
+__end_of_go_close 67A 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
+_sec_tick_work 3D4 0 CODE 0 text32 dist/default/debug\standart_23.X.debug.o
+_SYSTEM_Initialize 7A4 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
+_TMR2_DefaultInterruptHandler 9B4 0 CODE 0 text31 dist/default/debug\standart_23.X.debug.o
+__end_of_fun_work 128 0 CODE 0 text21 dist/default/debug\standart_23.X.debug.o
+_TMR2_CallBack 8D6 0 CODE 0 text30 dist/default/debug\standart_23.X.debug.o
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
+i1_go_close_alt 97C 0 CODE 0 text38 dist/default/debug\standart_23.X.debug.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __Lstringtext1 0 0 ABS 0 stringtext1 -
 __Lstringtext2 0 0 ABS 0 stringtext2 -
 __Lstringtext3 0 0 ABS 0 stringtext3 -
+get_jump_full@flag 32 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 _INTERRUPT_InterruptManager 8 0 CODE 0 intentry dist/default/debug\standart_23.X.debug.o
-_ADC_Initialize 5F6 0 CODE 0 text12 dist/default/debug\standart_23.X.debug.o
+_ADC_Initialize 932 0 CODE 0 text15 dist/default/debug\standart_23.X.debug.o
+_get_fun_full 1B8 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
 _PIE1bits 91 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-?_ADC_GetConversion 70 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
-_TMR0_ISR 57E 0 CODE 0 text31 dist/default/debug\standart_23.X.debug.o
-_TMR2_ISR 470 0 CODE 0 text18 dist/default/debug\standart_23.X.debug.o
-__ptext10 4C6 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
-__ptext11 606 0 CODE 0 text11 dist/default/debug\standart_23.X.debug.o
-__ptext12 5F6 0 CODE 0 text12 dist/default/debug\standart_23.X.debug.o
-__ptext13 2CA 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
-__ptext14 36A 0 CODE 0 text14 dist/default/debug\standart_23.X.debug.o
-__ptext15 5D2 0 CODE 0 text15 dist/default/debug\standart_23.X.debug.o
-__ptext16 3A0 0 CODE 0 text16 dist/default/debug\standart_23.X.debug.o
-__ptext18 470 0 CODE 0 text18 dist/default/debug\standart_23.X.debug.o
-__ptext19 59E 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
-__ptext20 70 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
-__ptext21 668 0 CODE 0 text21 dist/default/debug\standart_23.X.debug.o
-__ptext22 5B8 0 CODE 0 text22 dist/default/debug\standart_23.X.debug.o
-__ptext23 3D4 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
-__ptext24 1F0 0 CODE 0 text24 dist/default/debug\standart_23.X.debug.o
-__ptext25 55E 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
-__ptext26 408 0 CODE 0 text26 dist/default/debug\standart_23.X.debug.o
-__ptext27 638 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
-__ptext28 176 0 CODE 0 text28 dist/default/debug\standart_23.X.debug.o
-__ptext29 F4 0 CODE 0 text29 dist/default/debug\standart_23.X.debug.o
-__ptext30 43C 0 CODE 0 text30 dist/default/debug\standart_23.X.debug.o
-__ptext31 57E 0 CODE 0 text31 dist/default/debug\standart_23.X.debug.o
-__ptext32 66A 0 CODE 0 text32 dist/default/debug\standart_23.X.debug.o
-__ptext33 53C 0 CODE 0 text33 dist/default/debug\standart_23.X.debug.o
-_Sec_tick_work 70 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
-__end_of_PIN_MANAGER_Initialize 4F0 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR0_Initialize 4C6 0 CODE 0 text8 dist/default/debug\standart_23.X.debug.o
+?_ADC_GetConversion 2B 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+get_jump_full@jump_counter 26 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
+_TMR0_ISR 8B6 0 CODE 0 text40 dist/default/debug\standart_23.X.debug.o
+_TMR2_ISR 826 0 CODE 0 text29 dist/default/debug\standart_23.X.debug.o
+__ptext10 7D0 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
+__ptext11 95C 0 CODE 0 text11 dist/default/debug\standart_23.X.debug.o
+__ptext12 7FC 0 CODE 0 text12 dist/default/debug\standart_23.X.debug.o
+__ptext13 942 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
+__ptext14 9A6 0 CODE 0 text14 dist/default/debug\standart_23.X.debug.o
+__ptext15 932 0 CODE 0 text15 dist/default/debug\standart_23.X.debug.o
+__ptext16 128 0 CODE 0 text16 dist/default/debug\standart_23.X.debug.o
+__ptext17 738 0 CODE 0 text17 dist/default/debug\standart_23.X.debug.o
+__ptext18 44C 0 CODE 0 text18 dist/default/debug\standart_23.X.debug.o
+__ptext19 358 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
+__ptext20 67A 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
+__ptext21 76 0 CODE 0 text21 dist/default/debug\standart_23.X.debug.o
+__ptext22 968 0 CODE 0 text22 dist/default/debug\standart_23.X.debug.o
+__ptext23 90A 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
+__ptext24 972 0 CODE 0 text24 dist/default/debug\standart_23.X.debug.o
+__ptext25 636 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
+__ptext26 58E 0 CODE 0 text26 dist/default/debug\standart_23.X.debug.o
+__ptext27 876 0 CODE 0 text27 dist/default/debug\standart_23.X.debug.o
+__ptext29 826 0 CODE 0 text29 dist/default/debug\standart_23.X.debug.o
+__ptext30 8D6 0 CODE 0 text30 dist/default/debug\standart_23.X.debug.o
+__ptext31 9B4 0 CODE 0 text31 dist/default/debug\standart_23.X.debug.o
+__ptext32 3D4 0 CODE 0 text32 dist/default/debug\standart_23.X.debug.o
+__ptext33 91E 0 CODE 0 text33 dist/default/debug\standart_23.X.debug.o
+__ptext34 5E4 0 CODE 0 text34 dist/default/debug\standart_23.X.debug.o
+__ptext35 52A 0 CODE 0 text35 dist/default/debug\standart_23.X.debug.o
+__ptext36 76E 0 CODE 0 text36 dist/default/debug\standart_23.X.debug.o
+__ptext37 896 0 CODE 0 text37 dist/default/debug\standart_23.X.debug.o
+__ptext38 97C 0 CODE 0 text38 dist/default/debug\standart_23.X.debug.o
+__ptext39 6BC 0 CODE 0 text39 dist/default/debug\standart_23.X.debug.o
+__ptext40 8B6 0 CODE 0 text40 dist/default/debug\standart_23.X.debug.o
+__ptext41 9B6 0 CODE 0 text41 dist/default/debug\standart_23.X.debug.o
+__ptext42 8F0 0 CODE 0 text42 dist/default/debug\standart_23.X.debug.o
+__end_of_PIN_MANAGER_Initialize 826 0 CODE 0 text12 dist/default/debug\standart_23.X.debug.o
+__end_of_go_open_alt 972 0 CODE 0 text22 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR0_Initialize 7FC 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
 __Lbank10 0 0 BANK10 1 bank10 -
 __Lbank11 0 0 BANK11 1 bank11 -
 __Lbank12 0 0 BANK12 1 bank12 -
@@ -751,18 +889,21 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 32C 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
+__pmaintext 6FC 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
 __Lbigram 0 0 ABS 0 bigram -
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -
-__end_of_TMR0_ISR 59E 0 CODE 0 text31 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR2_ISR 49C 0 CODE 0 text18 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR0_ISR 8D6 0 CODE 0 text40 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR2_ISR 850 0 CODE 0 text29 dist/default/debug\standart_23.X.debug.o
 _LATAbits 10C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _LATCbits 10E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-_result 28 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
-_TMR0_SetInterruptHandler 62C 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
+i1ADC_GetConversion@channel 73 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
+_TMR0_SetInterruptHandler 95C 0 CODE 0 text11 dist/default/debug\standart_23.X.debug.o
 _time_s 20 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
-_get_jump 176 0 CODE 0 text28 dist/default/debug\standart_23.X.debug.o
+__end_ofi1_go_close_alt 986 0 CODE 0 text38 dist/default/debug\standart_23.X.debug.o
+__end_ofi1_switch_zum 90A 0 CODE 0 text42 dist/default/debug\standart_23.X.debug.o
+_get_jump 44C 0 CODE 0 text18 dist/default/debug\standart_23.X.debug.o
+get_jump_full@res 30 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 _OSCTUNE 98 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _ADCON0bits 9D 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 get_measure@res 75 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
@@ -772,77 +913,82 @@ __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
 __Lspace_4 0 0 ABS 0 - -
 __pbssCOMMON 78 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
-__end_of_TMR2_SetInterruptHandler 62C 0 CODE 0 text7 dist/default/debug\standart_23.X.debug.o
-__end_of_ADC_Initialize 606 0 CODE 0 text12 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR2_SetInterruptHandler 95C 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
+__end_of_ADC_Initialize 942 0 CODE 0 text15 dist/default/debug\standart_23.X.debug.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
-__end_of_ROTATION_TIME 65A 0 STRCODE 0 stringtext3 dist/default/debug\standart_23.X.debug.o
-__end_of_get_jump 1F0 0 CODE 0 text28 dist/default/debug\standart_23.X.debug.o
+__end_of_ROTATION_TIME 98E 0 STRCODE 0 stringtext1 dist/default/debug\standart_23.X.debug.o
+__end_of_get_jump 4C0 0 CODE 0 text18 dist/default/debug\standart_23.X.debug.o
 _PIR1bits 11 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __Lend_init 4C 0 CODE 0 end_init -
-__end_of_get_fun 176 0 CODE 0 text29 dist/default/debug\standart_23.X.debug.o
+__end_of_get_fun 3D4 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-end_of_initialization 6A 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
-_TMR0_Initialize 49C 0 CODE 0 text8 dist/default/debug\standart_23.X.debug.o
+end_of_initialization 70 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
+_TMR0_Initialize 7D0 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
 __Hintentry 4C 0 CODE 0 intentry -
+_get_voltage 738 0 CODE 0 text17 dist/default/debug\standart_23.X.debug.o
 __Lstrings 0 0 ABS 0 strings -
-get_jump@res 75 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
-__end_of_GOOD_WSP_VOLTAGE 64A 0 STRCODE 0 stringtext1 dist/default/debug\standart_23.X.debug.o
+get_jump@res 30 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+__end_of_GOOD_WSP_VOLTAGE 996 0 STRCODE 0 stringtext2 dist/default/debug\standart_23.X.debug.o
+__end_of_get_fun_full 246 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
 __Hreset_vec 4 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
-__end_of_start_alarm 57E 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
-__end_of_start_setup 2CA 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
-__ptext1 5E6 0 CODE 0 text1 dist/default/debug\standart_23.X.debug.o
-__ptext2 25E 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
-__ptext3 662 0 CODE 0 text3 dist/default/debug\standart_23.X.debug.o
-__ptext4 4F0 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
-__ptext5 65A 0 CODE 0 text5 dist/default/debug\standart_23.X.debug.o
-__ptext6 516 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
-__ptext7 620 0 CODE 0 text7 dist/default/debug\standart_23.X.debug.o
-__ptext8 49C 0 CODE 0 text8 dist/default/debug\standart_23.X.debug.o
-__ptext9 62C 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
+__end_of_start_alarm 8B6 0 CODE 0 text37 dist/default/debug\standart_23.X.debug.o
+__end_of_start_setup 52A 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
+__ptext1 246 0 CODE 0 text1 dist/default/debug\standart_23.X.debug.o
+__ptext2 4C0 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
+__ptext3 2D2 0 CODE 0 text3 dist/default/debug\standart_23.X.debug.o
+__ptext4 1B8 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
+__ptext5 9AE 0 CODE 0 text5 dist/default/debug\standart_23.X.debug.o
+__ptext6 7A4 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
+__ptext7 99E 0 CODE 0 text7 dist/default/debug\standart_23.X.debug.o
+__ptext8 850 0 CODE 0 text8 dist/default/debug\standart_23.X.debug.o
+__ptext9 950 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
+?i1_ADC_GetConversion 70 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-__end_of_go_open 5E6 0 CODE 0 text15 dist/default/debug\standart_23.X.debug.o
+__end_of_go_open 91E 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
+__end_of_sec_tick_work 44C 0 CODE 0 text32 dist/default/debug\standart_23.X.debug.o
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __Hstringtext1 0 0 ABS 0 stringtext1 -
 __Hstringtext2 0 0 ABS 0 stringtext2 -
 __Hstringtext3 0 0 ABS 0 stringtext3 -
-_time_pow 32 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR2_CallBack 5B8 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
-___heap_hi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-___heap_lo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsehc.o
-__end_of__initialization 6A 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
+__end_of_TMR2_CallBack 8F0 0 CODE 0 text30 dist/default/debug\standart_23.X.debug.o
+___heap_hi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+___heap_lo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs8g0.o
+__end_of__initialization 70 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
-_timer0ReloadVal 33 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
-__end_of_BAD_WSP_VOLTAGE 652 0 STRCODE 0 stringtext2 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR2_DefaultInterruptHandler 66A 0 CODE 0 text21 dist/default/debug\standart_23.X.debug.o
+_timer0ReloadVal 3A 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
+__end_of_BAD_WSP_VOLTAGE 99E 0 STRCODE 0 stringtext3 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR2_DefaultInterruptHandler 9B6 0 CODE 0 text31 dist/default/debug\standart_23.X.debug.o
 __Lclrtext 0 0 ABS 0 clrtext -
-_povorot 2CA 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
+_povorot 128 0 CODE 0 text16 dist/default/debug\standart_23.X.debug.o
+_time_pow_s 2A 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/debug\standart_23.X.debug.o
-__end_of_Sec_tick_work F4 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
-_fresult 24 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
 __Hend_init 4E 0 CODE 0 end_init -
-__end_of_main 36A 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
-_FLAGS 7D 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
+__end_of_beep 5E4 0 CODE 0 text26 dist/default/debug\standart_23.X.debug.o
+__end_of_main 738 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
+_FLAGS 7C 0 COMMON 1 bssCOMMON dist/default/debug\standart_23.X.debug.o
 _T2CON 1C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _TRISA 8C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _TRISC 8E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_TMR2_InterruptHandler 30 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
-_WDT_Initialize 65A 0 CODE 0 text5 dist/default/debug\standart_23.X.debug.o
+_TMR2_InterruptHandler 38 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
+_WDT_Initialize 99E 0 CODE 0 text7 dist/default/debug\standart_23.X.debug.o
 __pintentry 8 0 CODE 0 intentry dist/default/debug\standart_23.X.debug.o
-_get_measure 1F0 0 CODE 0 text24 dist/default/debug\standart_23.X.debug.o
-__end_of_OSCILLATOR_Initialize 614 0 CODE 0 text11 dist/default/debug\standart_23.X.debug.o
-i1_go_close 408 0 CODE 0 text26 dist/default/debug\standart_23.X.debug.o
+_get_measure 52A 0 CODE 0 text35 dist/default/debug\standart_23.X.debug.o
+__end_of_OSCILLATOR_Initialize 950 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
+i1_go_close 6BC 0 CODE 0 text39 dist/default/debug\standart_23.X.debug.o
+beep@i 33 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
+beep@j 32 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 __initialization 4E 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
 __pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
 _T2CONbits 1C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _ANSELAbits 18C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _ANSELCbits 18E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-_OSCILLATOR_Initialize 606 0 CODE 0 text11 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR2_Initialize 53C 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
-__end_of_TMR2_StartTimer 668 0 CODE 0 text3 dist/default/debug\standart_23.X.debug.o
+_OSCILLATOR_Initialize 942 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR2_Initialize 876 0 CODE 0 text8 dist/default/debug\standart_23.X.debug.o
+__end_of_TMR2_StartTimer 9B4 0 CODE 0 text5 dist/default/debug\standart_23.X.debug.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -868,12 +1014,12 @@ __end_of_TMR2_StartTimer 668 0 CODE 0 text3 dist/default/debug\standart_23.X.deb
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text5 0 32D 65A 9 2
-cstackCOMMON 1 70 70 E 1
-stringtext1 0 321 642 C 2
-intentry 0 4 8 31D 2
+text7 0 4CF 99E D 2
+cstackCOMMON 1 70 70 D 1
+stringtext1 0 4C3 986 C 2
+intentry 0 4 8 4BF 2
 reset_vec 0 0 0 2 2
-bssBANK0 1 20 20 19 1
+bssBANK0 1 20 20 1B 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

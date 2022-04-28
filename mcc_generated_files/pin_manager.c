@@ -85,7 +85,7 @@ void PIN_MANAGER_Initialize(void)
     */
     APFCON = 0x00;
 
-    
+
 
 
    

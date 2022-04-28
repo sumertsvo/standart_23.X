@@ -440,8 +440,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _TMR2_Initialize ]
 [f ]
 "69
-[; ;mcc_generated_files/tmr2.c: 69:     PR2 = 0x8D;
-[e = _PR2 -> -> 141 `i `uc ]
+[; ;mcc_generated_files/tmr2.c: 69:     PR2 = 0xF9;
+[e = _PR2 -> -> 249 `i `uc ]
 "72
 [; ;mcc_generated_files/tmr2.c: 72:     TMR2 = 0x00;
 [e = _TMR2 -> -> 0 `i `uc ]
@@ -455,8 +455,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/tmr2.c: 81:     TMR2_SetInterruptHandler(TMR2_DefaultInterruptHandler);
 [e ( _TMR2_SetInterruptHandler (1 &U _TMR2_DefaultInterruptHandler ]
 "84
-[; ;mcc_generated_files/tmr2.c: 84:     T2CON = 0x57;
-[e = _T2CON -> -> 87 `i `uc ]
+[; ;mcc_generated_files/tmr2.c: 84:     T2CON = 0x4E;
+[e = _T2CON -> -> 78 `i `uc ]
 "85
 [; ;mcc_generated_files/tmr2.c: 85: }
 [e :UE 297 ]
@@ -571,8 +571,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/tmr2.c: 124:     PIR1bits.TMR2IF = 0;
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
 "127
-[; ;mcc_generated_files/tmr2.c: 127:     if (++CountCallBack >= 10)
-[e $ ! >= =+ F2203 -> -> 1 `i `Vui -> -> 10 `i `ui 304  ]
+[; ;mcc_generated_files/tmr2.c: 127:     if (++CountCallBack >= 100)
+[e $ ! >= =+ F2203 -> -> 1 `i `Vui -> -> 100 `i `ui 304  ]
 "128
 [; ;mcc_generated_files/tmr2.c: 128:     {
 {

@@ -3842,19 +3842,19 @@ void TMR0_Initialize(void)
 
 
 
-    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD7 & 0x3F));
+    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD2 & 0x3F));
 
 
-    TMR0 = 0x16;
+    TMR0 = 0x9C;
 
 
-    timer0ReloadVal= 22;
+    timer0ReloadVal= 156;
 
 
     INTCONbits.TMR0IF = 0;
 
 
-
+    INTCONbits.TMR0IE = 1;
 
 
     TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);

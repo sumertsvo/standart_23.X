@@ -433,8 +433,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/adc.c: 78:     ADRESH = 0x00;
 [e = _ADRESH -> -> 0 `i `uc ]
 "81
-[; ;mcc_generated_files/adc.c: 81:     ADCON0 = 0x01;
-[e = _ADCON0 -> -> 1 `i `uc ]
+[; ;mcc_generated_files/adc.c: 81:     ADCON0 = 0x7D;
+[e = _ADCON0 -> -> 125 `i `uc ]
 "83
 [; ;mcc_generated_files/adc.c: 83: }
 [e :UE 298 ]
@@ -529,8 +529,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/adc.c: 118:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 "121
-[; ;mcc_generated_files/adc.c: 121:     _delay((unsigned long)((5)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[; ;mcc_generated_files/adc.c: 121:     _delay((unsigned long)((5)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 "124
 [; ;mcc_generated_files/adc.c: 124:     ADCON0bits.GO_nDONE = 1;
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
@@ -566,8 +566,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _ADC_TemperatureAcquisitionDelay ]
 [f ]
 "137
-[; ;mcc_generated_files/adc.c: 137:     _delay((unsigned long)((200)*(4000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
+[; ;mcc_generated_files/adc.c: 137:     _delay((unsigned long)((200)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 "138
 [; ;mcc_generated_files/adc.c: 138: }
 [e :UE 307 ]
