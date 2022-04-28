@@ -4071,11 +4071,33 @@ void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
 # 1 "main.c" 2
-# 24 "main.c"
+
+# 1 "./eeprom.h" 1
+
+
+
+
+void EEPROM_WriteByte(unsigned char addr, unsigned char dt);
+
+unsigned char EEPROM_ReadByte(unsigned char addr);
+
+void EEPROM_WriteWord(unsigned char addr, unsigned int ucData);
+
+unsigned int EEPROM_ReadWord(unsigned char addr);
+
+void EEPROM_WriteDword(unsigned char addr, unsigned long ucData);
+
+unsigned long EEPROM_ReadDword(unsigned char addr);
+
+void EEPROM_WriteString(unsigned char addr, char* str1);
+
+void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
+# 2 "main.c" 2
+# 25 "main.c"
 const long int BAD_WSP_VOLTAGE = 20000;
 const long int GOOD_WSP_VOLTAGE = 40000;
 const long int ROTATION_TIME = 60;
-# 42 "main.c"
+# 43 "main.c"
 struct f_field {
     unsigned ALARM : 1;
     unsigned NORMAL_WORK_MODE : 1;
@@ -4107,16 +4129,16 @@ void beep(unsigned delay, unsigned pause, char time, char count) {
     for (char j = 0; j < count; j++) {
         for (char i = 0; i < time; i++) {
             switch_zum();
-            _delay((unsigned long)((300)*(4000000/4000000.0)));
+            _delay((unsigned long)((300)*(16000000/4000000.0)));
         }
-        _delay((unsigned long)((100)*(4000000/4000.0)));
+        _delay((unsigned long)((100)*(16000000/4000.0)));
     }
 }
 
 void go_close() {
     time_s = 0;
     do { LATCbits.LATC4 = 1; } while(0);
-    _delay((unsigned long)((1 * 1000)*(4000000/4000.0)));
+    _delay((unsigned long)((1 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
     time_pow_s = 10;
     FLAGS.bits.RELE_POW_WAIT = 1;
@@ -4267,7 +4289,7 @@ void rele_tick() {
         } else {
             if (FLAGS.bits.RELE_CON_WAIT) {
                 do { LATCbits.LATC5 = 0; } while(0);
-                _delay((unsigned long)((1 * 1000)*(4000000/4000.0)));
+                _delay((unsigned long)((1 * 1000)*(16000000/4000.0)));
                 do { LATCbits.LATC4 = 0; } while(0);
                 FLAGS.bits.CLOSED = 1;
                 FLAGS.bits.RELE_CON_WAIT = 0;
@@ -4282,6 +4304,9 @@ void rele_tick() {
 }
 
 void sec_tick_work() {
+
+            switch_zum();
+
     time_s++;
     rele_tick();
     __asm("clrwdt");
@@ -4360,12 +4385,13 @@ void switch_wm() {
 
 void get_voltage(){
 
-
-
     unsigned res = ADC_GetConversion(channel_FVR);
-    if (res > 900) time_s++;
+    if (res > 46200)
+        for (unsigned char q = 0;q<250;q++){
+            EEPROM_WriteByte ( q , q+3);
+        }
+    }
 
-}
 
 
 void start_setup() {
@@ -4412,15 +4438,13 @@ void main(void) {
 
     while (1) {
 
-        get_voltage();
+         get_voltage();
         if (!FLAGS.bits.ALARM) {
             get_fun();
             fun_work();
             get_jump();
             switch_wm();
             povorot();
-
-            switch_zum();
 
 
         };

@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "eeprom.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
+# 1 "eeprom.c" 2
 # 1 "./mcc_generated_files/mcc.h" 1
 # 49 "./mcc_generated_files/mcc.h"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
@@ -4070,386 +4070,63 @@ void SYSTEM_Initialize(void);
 void OSCILLATOR_Initialize(void);
 # 99 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
-# 1 "main.c" 2
-
-# 1 "./eeprom.h" 1
+# 1 "eeprom.c" 2
 
 
-
-
-void EEPROM_WriteByte(unsigned char addr, unsigned char dt);
-
-unsigned char EEPROM_ReadByte(unsigned char addr);
-
-void EEPROM_WriteWord(unsigned char addr, unsigned int ucData);
-
-unsigned int EEPROM_ReadWord(unsigned char addr);
-
-void EEPROM_WriteDword(unsigned char addr, unsigned long ucData);
-
-unsigned long EEPROM_ReadDword(unsigned char addr);
-
-void EEPROM_WriteString(unsigned char addr, char* str1);
-
-void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
-# 2 "main.c" 2
-# 25 "main.c"
-const long int BAD_WSP_VOLTAGE = 20000;
-const long int GOOD_WSP_VOLTAGE = 40000;
-const long int ROTATION_TIME = 60;
-# 43 "main.c"
-struct f_field {
-    unsigned ALARM : 1;
-    unsigned NORMAL_WORK_MODE : 1;
-    unsigned CLOSED : 1;
-    unsigned _FUN_CONNECTED : 1;
-    unsigned _JUMP_CONNECTED : 1;
-    unsigned RELE_POW_WAIT : 1;
-    unsigned RELE_CON_WAIT : 1;
-    unsigned FREE : 1;
-};
-
-union Byte {
-    unsigned char value;
-    struct f_field bits;
-} FLAGS;
-
-unsigned char time_pow_s;
-unsigned long time_s;
-
-void switch_zum() {
-    do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+void EEPROM_WriteByte(unsigned char addr, unsigned char dt) {
+    unsigned char status;
+    while (WR);
+    status = GIE;
+    GIE = 0;
+    EEADR = addr;
+    EEDATA = dt;
+    WREN = 1;
+    EECON2 = 0x55;
+    EECON2 = 0xAA;
+    WR = 1;
+    GIE = status;
+    WREN = 0;
 }
 
-void toggle_tone() {
-    INTCONbits.TMR0IE = ~INTCONbits.TMR0IE;
+unsigned char EEPROM_ReadByte(unsigned char addr) {
+    while (RD || WR);
+    EEADR = addr;
+    RD = 1;
+    return EEDATA;
 }
 
-void beep(unsigned delay, unsigned pause, char time, char count) {
-    for (char j = 0; j < count; j++) {
-        for (char i = 0; i < time; i++) {
-            switch_zum();
-            _delay((unsigned long)((300)*(16000000/4000000.0)));
-        }
-        _delay((unsigned long)((100)*(16000000/4000.0)));
-    }
+void EEPROM_WriteWord(unsigned char addr, unsigned int ucData) {
+    EEPROM_WriteByte(addr, (unsigned char) ucData);
+    unsigned char dt = ucData >> 8;
+    EEPROM_WriteByte(addr + 1, dt);
 }
 
-void go_close() {
-    time_s = 0;
-    do { LATCbits.LATC4 = 1; } while(0);
-    _delay((unsigned long)((1 * 1000)*(16000000/4000.0)));
-    do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 10;
-    FLAGS.bits.RELE_POW_WAIT = 1;
-    FLAGS.bits.RELE_CON_WAIT = 1;
-    return;
+unsigned int EEPROM_ReadWord(unsigned char addr) {
+    unsigned int dt = EEPROM_ReadByte(addr + 1)*256;
+    dt += EEPROM_ReadByte(addr);
+    return dt;
 }
 
-void go_open() {
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 10;
-    FLAGS.bits.RELE_POW_WAIT = 1;
-    return;
+void EEPROM_WriteDword(unsigned char addr, unsigned long ucData) {
+    EEPROM_WriteWord(addr, (unsigned int) ucData);
+    unsigned int dt = ucData >> 16;
+    EEPROM_WriteWord(addr + 2, dt);
 }
 
-void go_close_alt() {
-    FLAGS.bits.CLOSED = 1;
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC5 = 1; } while(0);
+unsigned long EEPROM_ReadDword(unsigned char addr) {
+    unsigned long dt = EEPROM_ReadWord(addr + 2)*65536;
+    dt += EEPROM_ReadWord(addr);
+    return dt;
 }
 
-void go_open_alt() {
-    FLAGS.bits.CLOSED = 0;
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC5 = 0; } while(0);
-    return;
+void EEPROM_WriteString(unsigned char addr, char* str1) {
+    unsigned char n;
+    for (n = 0; str1[n] != '\0'; n++)
+        EEPROM_WriteByte(addr + n, str1[n]);
 }
 
-void start_alarm() {
-    FLAGS.bits.ALARM = 1;
-    do { LATCbits.LATC0 = 1; } while(0);
-    INTCONbits.TMR0IE = 1;
-    if (FLAGS.bits.NORMAL_WORK_MODE) {
-        go_close();
-    } else {
-        go_close_alt();
-    }
-}
-
-void get_measure() {
-    static unsigned char measures;
-    do { LATCbits.LATC1 = 1; } while(0);
-    do { ANSELCbits.ANSC3 = 1; } while(0);
-    unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-    do { ANSELCbits.ANSC3 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    if (res < BAD_WSP_VOLTAGE) measures++;
-    else if (res > GOOD_WSP_VOLTAGE) measures = 0;
-    if (measures > 2) start_alarm();
-    return;
-}
-
-void get_fun() {
-
-    static signed char fun_counter;
-    do { LATCbits.LATC1 = 1; } while(0);
-    do { ANSELCbits.ANSC2 = 1; } while(0);
-    unsigned res = ADC_GetConversion(PIN_FUN_STATE);
-    do { ANSELCbits.ANSC2 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    if (res < 2000) fun_counter--;
-    else fun_counter++;
-
-    if (fun_counter > 10) {
-        fun_counter = 10;
-        FLAGS.bits._FUN_CONNECTED = 0;
-    } else if (fun_counter<-10) {
-        fun_counter = -10;
-        FLAGS.bits._FUN_CONNECTED = 1;
-    }
-    return;
-}
-
-void get_fun_full() {
-
-    static signed char fun_counter;
-    do { LATCbits.LATC1 = 1; } while(0);
-    do { ANSELCbits.ANSC2 = 1; } while(0);
-    char flag = 0;
-    do {
-        unsigned res = ADC_GetConversion(PIN_FUN_STATE);
-        if (res < 2000) fun_counter--;
-        else fun_counter++;
-        if (fun_counter > 10) {
-            fun_counter = 10;
-            FLAGS.bits._FUN_CONNECTED = 0;
-            flag = 1;
-        } else if (fun_counter<-10) {
-            fun_counter = -10;
-            FLAGS.bits._FUN_CONNECTED = 1;
-            flag = 1;
-        }
-    } while (flag == 0);
-
-    do { ANSELCbits.ANSC2 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    return;
-}
-
-void get_jump() {
-
-    static signed char jump_counter;
-    do { ANSELAbits.ANSA1 = 1; } while(0);
-    unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-    do { ANSELAbits.ANSA1 = 0; } while(0);
-
-
-    if (res < 2000) jump_counter--;
-    else jump_counter++;
-
-    if (jump_counter > 10) {
-        jump_counter = 10;
-        FLAGS.bits._JUMP_CONNECTED = 0;
-    } else if (jump_counter<-10) {
-        jump_counter = -10;
-        FLAGS.bits._JUMP_CONNECTED = 1;
-    }
-    return;
-}
-
-void get_jump_full() {
-
-    static signed char jump_counter;
-    do { ANSELAbits.ANSA1 = 1; } while(0);
-    char flag = 0;
-    do {
-        unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-        if (res < 2000) jump_counter--;
-        else jump_counter++;
-
-        if (jump_counter > 10) {
-            jump_counter = 10;
-            FLAGS.bits._JUMP_CONNECTED = 0;
-            flag = 1;
-        } else if (jump_counter<-10) {
-            jump_counter = -10;
-            FLAGS.bits._JUMP_CONNECTED = 1;
-            flag = 1;
-        }
-    } while (flag == 0);
-    do { ANSELAbits.ANSA1 = 0; } while(0);
-}
-
-void rele_tick() {
-    if (FLAGS.bits.RELE_POW_WAIT) {
-        if (time_pow_s > 0) {
-            time_pow_s--;
-        } else {
-            if (FLAGS.bits.RELE_CON_WAIT) {
-                do { LATCbits.LATC5 = 0; } while(0);
-                _delay((unsigned long)((1 * 1000)*(16000000/4000.0)));
-                do { LATCbits.LATC4 = 0; } while(0);
-                FLAGS.bits.CLOSED = 1;
-                FLAGS.bits.RELE_CON_WAIT = 0;
-                FLAGS.bits.RELE_POW_WAIT = 0;
-            } else {
-                do { LATCbits.LATC5 = 0; } while(0);
-                FLAGS.bits.CLOSED = 0;
-                FLAGS.bits.RELE_POW_WAIT = 0;
-            }
-        }
-    }
-}
-
-void sec_tick_work() {
-
-            switch_zum();
-
-    time_s++;
-    rele_tick();
-    __asm("clrwdt");
-    if (FLAGS.bits.ALARM) {
-        do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-        toggle_tone();
-    } else {
-        get_measure();
-        static char iled;
-        iled++;
-        if (iled > 2) {
-            do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-            iled = 0;
-        }
-    }
-}
-
-void povorot() {
-    if ((time_s > ROTATION_TIME) &&
-            !FLAGS.bits.CLOSED &&
-            !FLAGS.bits.ALARM &&
-            FLAGS.bits.NORMAL_WORK_MODE
-            ) {
-        go_close();
-    }
-    if ((time_s > (ROTATION_TIME + 10 + 1 * 2)) &&
-            FLAGS.bits.CLOSED &&
-            FLAGS.bits.ALARM == 0 &&
-            FLAGS.bits.NORMAL_WORK_MODE
-            ) {
-        go_open();
-        time_s = 0;
-    }
-
-}
-
-void fun_work() {
-    {
-        if (FLAGS.bits._FUN_CONNECTED &&
-                !FLAGS.bits.ALARM &&
-                FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POW_WAIT) {
-            if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
-            else go_open_alt();
-
-            beep(500, 100, 40, 1);
-        };
-        if (!FLAGS.bits._FUN_CONNECTED &&
-                !FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POW_WAIT) {
-            if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
-            else go_close_alt();
-
-            beep(500, 100, 40, 2);
-        }
-    }
-}
-
-void switch_wm() {
-    if (FLAGS.bits._JUMP_CONNECTED) {
-        if (FLAGS.bits.NORMAL_WORK_MODE) {
-            FLAGS.bits.NORMAL_WORK_MODE = 0;
-            if (FLAGS.bits.CLOSED) go_close_alt();
-
-            beep(250, 100, 40, 3);
-        }
-    } else {
-        if (!FLAGS.bits.NORMAL_WORK_MODE) {
-            FLAGS.bits.NORMAL_WORK_MODE = 1;
-            if (FLAGS.bits.CLOSED) go_close();
-
-            beep(250, 100, 40, 2);
-        }
-    }
-}
-
-void get_voltage(){
-
-
-
-    unsigned res = ADC_GetConversion(channel_FVR);
-    if (res > 46200)
-        for (unsigned char q = 0;q<250;q++){
-            EEPROM_WriteByte ( q , q+3);
-
-        }
-    }
-
-
-
-void start_setup() {
-
-    SYSTEM_Initialize();
-    (INTCONbits.GIE = 1);
-    (INTCONbits.PEIE = 1);
-
-
-    TMR0_SetInterruptHandler(switch_zum);
-    TMR2_SetInterruptHandler(sec_tick_work);
-    TMR2_StartTimer();
-
-
-    do { ANSELCbits.ANSC3 = 0; } while(0);
-    do { ANSELAbits.ANSA1 = 0; } while(0);
-    do { ANSELCbits.ANSC2 = 0; } while(0);
-
-
-    do { WPUAbits.WPUA1 = 0; } while(0);
-    do { TRISAbits.TRISA1 = 1; } while(0);
-    do { WPUCbits.WPUC2 = 0; } while(0);
-    do { TRISCbits.TRISC2 = 1; } while(0);
-    INTCONbits.TMR0IE = 0;
-    FLAGS.value = 0;
-    do { LATCbits.LATC5 = 0; } while(0);
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC0 = 0; } while(0);
-    do { TRISCbits.TRISC0 = 0; } while(0);
-
-
-    get_fun_full();
-    get_jump_full();
-    time_pow_s = 0;
-
-}
-
-void main(void) {
-
-    start_setup();
-
-
-
-
-    while (1) {
-
-         get_voltage();
-        if (!FLAGS.bits.ALARM) {
-            get_fun();
-            fun_work();
-            get_jump();
-            switch_wm();
-            povorot();
-
-
-        };
-    }
+void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz) {
+    unsigned char i;
+    for (i = 0; i < sz; i++) str1[i] = EEPROM_ReadByte(addr + i);
+    str1[i] = 0;
 }

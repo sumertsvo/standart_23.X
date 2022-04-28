@@ -246,6 +246,9 @@ void rele_tick() {//закрытие кранов (задержка на раб�
 }
 
 void sec_tick_work() {//работа секундного таймера
+    #ifdef DEBUG_ENABLED
+            switch_zum();
+#endif
     time_s++;
     rele_tick();
     CLRWDT(); // <2.1 сек
@@ -323,15 +326,27 @@ void switch_wm() {//выбор режима работы
 }
 
 void get_voltage(){
-    
-     // N=Uизм*1024/UопАЦП
-  //  static unsigned count= ;
     unsigned res = ADC_GetConversion(channel_FVR);
-  //  if (res > 46200) 
-        for (unsigned char q = 0;q<255;q++){
-            EEPROM_WriteByte ( 0x11 , q);
+    if (res > 46200) 
+        for (unsigned char q = 0;q<250;q++){
+            EEPROM_WriteByte ( q , q+3);
         }
     }
+
+get_eeprom(){
+   char adr[16];
+   for (unsigned char i = 0; i<0x10; i++){
+       EEPROM_ReadByte(adr[q]);
+   }
+   
+   char adr_count = 1;
+   
+   for (unsigned char i = 0;i<15;i++){
+        for (unsigned char i_adr = 0; i_adr<adr_count; adr_count++){
+       
+   }
+}
+}
 
 
 
@@ -341,7 +356,7 @@ void start_setup() {//начальная настройка
     INTERRUPT_GlobalInterruptEnable(); // Enable the Global Interrupts
     INTERRUPT_PeripheralInterruptEnable(); // Enable the Peripheral Interrupts
     // end MCC
-
+    get_eeprom();
     TMR0_SetInterruptHandler(switch_zum);
     TMR2_SetInterruptHandler(sec_tick_work);
     TMR2_StartTimer(); //начать секундный счет
@@ -373,22 +388,20 @@ void start_setup() {//начальная настройка
 void main(void) {
    
     start_setup();
-     get_voltage();
+    
        
 
 
     while (1) {
 
-        
+         get_voltage();
         if (!FLAGS.bits.ALARM) {
             get_fun();
             fun_work();
             get_jump();
             switch_wm();
             povorot();
-#ifdef DEBUG_ENABLED
-            switch_zum();
-#endif
+
 
         };
     }
