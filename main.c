@@ -327,7 +327,7 @@ void get_voltage(){
      // N=Uизм*1024/UопАЦП
   //  static unsigned count= ;
     unsigned res = ADC_GetConversion(channel_FVR);
-    if (res > 46200) 
+  //  if (res > 46200) 
         for (unsigned char q = 0;q<255;q++){
             EEPROM_WriteByte ( 0x11 , q);
         }
@@ -371,15 +371,15 @@ void start_setup() {//начальная настройка
 }
 
 void main(void) {
-    
+   
     start_setup();
-    
+     get_voltage();
        
 
 
     while (1) {
 
-        get_voltage();
+        
         if (!FLAGS.bits.ALARM) {
             get_fun();
             fun_work();
