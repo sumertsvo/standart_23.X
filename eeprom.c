@@ -75,3 +75,4 @@ void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz) {
     for (i = 0; i < sz; i++) str1[i] = EEPROM_ReadByte(addr + i);
     str1[i] = 0;
 }
+ //*/

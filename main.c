@@ -14,14 +14,20 @@
 
 //защита от дребезга
 #define WSP_MEAS_COUNT 2    //количество измерений датчика
+
+//#define doubledd
+
+#ifdef doubledd
 #define FUN_MEAS_COUNT 10   //количество измерений переключателя
 #define JUMP_MEAS_COUNT 10  //количество измерений джампера
-
+#else
+#define MEAS_COUNT 10
+#endif
 
 #ifdef DEBUG_ENABLED
 
-#define RELE_TIME 10// sec
-#define RELE_GAP 1 // sec
+#define RELE_TIME 20// sec
+#define RELE_GAP 5 // sec
 const __uint24  BAD_WSP_VOLTAGE = 20000; //
 const __uint24  GOOD_WSP_VOLTAGE = 40000; //
 const __uint24  ROTATION_TIME = 60; //sec
@@ -70,7 +76,7 @@ void toggle_tone() {//вкл/выкл зуммер
     INTCONbits.TMR0IE = ~INTCONbits.TMR0IE;
 }
 
-void beep(unsigned delay, unsigned pause, char time, char count) {//короткий писк
+void beep(char time, char count) {//короткий писк
     for (char j = 0; j < count; j++) {
         for (char i = 0; i < time; i++) {
             switch_zum();
@@ -147,6 +153,8 @@ void get_fun() {//определение положения переключат
     if (res < LOW_PIN_VOLTAGE) fun_counter--;
     else fun_counter++;
 
+    
+#ifdef doubledd
     if (fun_counter > FUN_MEAS_COUNT) {
         fun_counter = FUN_MEAS_COUNT;
         FLAGS.bits._FUN_CONNECTED = 0;
@@ -154,6 +162,15 @@ void get_fun() {//определение положения переключат
         fun_counter = -FUN_MEAS_COUNT;
         FLAGS.bits._FUN_CONNECTED = 1;
     }
+#else
+       if (fun_counter > MEAS_COUNT) {
+        fun_counter = MEAS_COUNT;
+        FLAGS.bits._FUN_CONNECTED = 0;
+    } else if (fun_counter<-MEAS_COUNT) {
+        fun_counter = -MEAS_COUNT;
+        FLAGS.bits._FUN_CONNECTED = 1;
+    }
+#endif
     return;
 }
 
@@ -167,6 +184,10 @@ void get_fun_full() {//определение положения переклю�
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
         if (res < LOW_PIN_VOLTAGE) fun_counter--;
         else fun_counter++;
+        
+        
+      
+#ifdef doubledd 
         if (fun_counter > FUN_MEAS_COUNT) {
             fun_counter = FUN_MEAS_COUNT;
             FLAGS.bits._FUN_CONNECTED = 0;
@@ -176,6 +197,18 @@ void get_fun_full() {//определение положения переклю�
             FLAGS.bits._FUN_CONNECTED = 1;
             flag = 1;
         }
+#else
+          if (fun_counter > MEAS_COUNT) {
+            fun_counter = MEAS_COUNT;
+            FLAGS.bits._FUN_CONNECTED = 0;
+            flag = 1;
+        } else if (fun_counter<-MEAS_COUNT) {
+            fun_counter = MEAS_COUNT;
+            FLAGS.bits._FUN_CONNECTED = 1;
+            flag = 1;
+        }
+#endif
+        
     } while (flag == 0);
 
     PIN_FUN_STATE_SetDigitalMode();
@@ -194,6 +227,7 @@ void get_jump() {//определение положения джампера (�
     if (res < LOW_PIN_VOLTAGE) jump_counter--;
     else jump_counter++;
 
+#ifdef doubledd
     if (jump_counter > JUMP_MEAS_COUNT) {
         jump_counter = JUMP_MEAS_COUNT;
         FLAGS.bits._JUMP_CONNECTED = 0;
@@ -201,6 +235,16 @@ void get_jump() {//определение положения джампера (�
         jump_counter = -JUMP_MEAS_COUNT;
         FLAGS.bits._JUMP_CONNECTED = 1;
     }
+#else
+    if (jump_counter > MEAS_COUNT) {
+        jump_counter = MEAS_COUNT;
+        FLAGS.bits._JUMP_CONNECTED = 0;
+    } else if (jump_counter<-MEAS_COUNT) {
+        jump_counter = -MEAS_COUNT;
+        FLAGS.bits._JUMP_CONNECTED = 1;
+    }
+#endif
+    
     return;
 }
 
@@ -214,6 +258,8 @@ void get_jump_full() {//определение положения переклю
         if (res < LOW_PIN_VOLTAGE) jump_counter--;
         else jump_counter++;
 
+        
+#ifdef doubledd
         if (jump_counter > JUMP_MEAS_COUNT) {
             jump_counter = JUMP_MEAS_COUNT;
             FLAGS.bits._JUMP_CONNECTED = 0;
@@ -223,6 +269,19 @@ void get_jump_full() {//определение положения переклю
             FLAGS.bits._JUMP_CONNECTED = 1;
             flag = 1;
         }
+#else
+        if (jump_counter > MEAS_COUNT) {
+            jump_counter = MEAS_COUNT;
+            FLAGS.bits._JUMP_CONNECTED = 0;
+            flag = 1;
+        } else if (jump_counter<-MEAS_COUNT) {
+            jump_counter = -MEAS_COUNT;
+            FLAGS.bits._JUMP_CONNECTED = 1;
+            flag = 1;
+        }
+#endif
+        
+        
     } while (flag == 0);
     PIN_JUMP_STATE_SetDigitalMode();
 }
@@ -297,7 +356,7 @@ void fun_work() {//работа переключателя
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
             //один низкий писк
-            beep(500, 100, 40, 1); //_freq pause work_time count
+            beep( 40, 1); //_freq pause work_time count
         };
         if (!FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.CLOSED &&
@@ -305,7 +364,7 @@ void fun_work() {//работа переключателя
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
             //два низких писка
-            beep(500, 100, 40, 2); //_freq pause work_time count
+            beep( 40, 2); //_freq pause work_time count
         }
     }
 }
@@ -316,14 +375,14 @@ void switch_wm() {//выбор режима работы
             FLAGS.bits.NORMAL_WORK_MODE = 0;
             if (FLAGS.bits.CLOSED) go_close_alt();
             //три высоких писка
-            beep(250, 100, 40, 3); //_freq pause work_time count
+            beep( 40, 3); //_freq pause work_time count
         }
     } else {//go_norm_mode
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
             if (FLAGS.bits.CLOSED) go_close();
             //два высоких писка
-            beep(250, 100, 40, 2); //_freq pause work_time count;
+            beep(40, 2); //_freq pause work_time count;
         }
     }
 }
@@ -343,12 +402,12 @@ void get_voltage() {
 
 void get_adr() {
     char buf = 0;
-    char adr[16][2] = {};
+    char adr[8][2] = {};
 
-    for (unsigned char i = 0; i < 0x10; i++) {//цикл по EEPROM
+    for (unsigned char i = 0; i < 8; i++) {//цикл по EEPROM
         buf = EEPROM_ReadByte(i);
         if (buf == 0) continue;
-        for (unsigned char q = 0; q < 16; q++) {//цикл по адресам если уже есть значение
+        for (unsigned char q = 0; q < 8; q++) {//цикл по адресам если уже есть значение
             if (buf == adr[q][0]) {
                 (adr[q][1])++;
                 buf = 0;
@@ -356,7 +415,7 @@ void get_adr() {
         }
         //блок обработки ошибки
         if (buf != 0) {
-            for (unsigned char q = 0; q < 16; q++)//цикл по адресам для добавления нового
+            for (unsigned char q = 0; q < 8; q++)//цикл по адресам для добавления нового
                 if (adr[q][0] == 0) {
                     adr[q][0] = buf;
                     adr[q][1] = 1;
@@ -366,7 +425,7 @@ void get_adr() {
         }
     }
     buf = 0;
-    for (unsigned char i = 0; i < 0x10; i++) {
+    for (unsigned char i = 0; i < 8; i++) {
         if (adr[i][1] > adr[buf][1]) buf = i;
     }
     START_EEPROM_ADR = adr[buf][0];
@@ -379,12 +438,12 @@ void get_time(){
     char adr_error = 0;
     char buf=0;
     __uint24 buf2 = 0;
-    __uint24 times[4] = {};
-    char time_count[4]={};
+    __uint24 times[3] = {};
+    char time_count[3]={};
     for (unsigned char i = START_EEPROM_ADR; i < START_EEPROM_ADR + 0x10; i += 4) {//цикл по EEPROM
         buf2 = EEPROM_ReadShortLong(i);
 
-        for (char q = 0; q < 4; q++) {//цикл по значениям если уже есть значение
+        for (char q = 0; q < 3; q++) {//цикл по значениям если уже есть значение
             if (buf2 == times[q]) {
                 time_count[q]++;
                 buf2 = 0;
@@ -393,7 +452,7 @@ void get_time(){
         //блок обработки ошибки
         if (buf2 != 0) {
             adr_error = 1;
-            for (unsigned char q = 0; q < 4; q++)//цикл по значениям для добавления нового
+            for (unsigned char q = 0; q < 3; q++)//цикл по значениям для добавления нового
                 if (times[q]== 0) {
                     times[q] = buf;
                     time_count[q] = 1;
@@ -403,7 +462,7 @@ void get_time(){
         }
     }
     buf = 0;
-    for (unsigned char q = 0; q < 4; q++) {
+    for (unsigned char q = 0; q < 3; q++) {
         if (time_count[q] > time_count[buf]) buf = q;
     }
     time_s = times[buf];

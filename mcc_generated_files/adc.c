@@ -108,7 +108,11 @@ adc_result_t ADC_GetConversionResult(void)
     // Conversion finished, return the result
     return ((adc_result_t)((ADRESH << 8) + ADRESL));
 }
-
+  void ADC_TemperatureAcquisitionDelay(void)
+{
+    __delay_us(200);
+}
+//*/
 adc_result_t ADC_GetConversion(adc_channel_t channel)
 {
     // select the A/D channel
@@ -132,10 +136,7 @@ adc_result_t ADC_GetConversion(adc_channel_t channel)
     return ((adc_result_t)((ADRESH << 8) + ADRESL));
 }
 
-void ADC_TemperatureAcquisitionDelay(void)
-{
-    __delay_us(200);
-}
+
 /**
  End of File
 */

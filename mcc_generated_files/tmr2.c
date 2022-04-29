@@ -95,7 +95,7 @@ void TMR2_StopTimer(void)
     // Stop the Timer by writing to TMRxON bit
     T2CONbits.TMR2ON = 0;
 }
-
+/*
 uint8_t TMR2_ReadTimer(void)
 {
     uint8_t readVal;
@@ -104,7 +104,7 @@ uint8_t TMR2_ReadTimer(void)
 
     return readVal;
 }
-
+*/
 void TMR2_WriteTimer(uint8_t timerVal)
 {
     // Write to the Timer2 register

@@ -83,18 +83,11 @@ void PIN_MANAGER_Initialize(void)
     /**
     APFCONx registers
     */
-    APFCON = 0x00;
-
-
-
-
-   
+    APFCON = 0x00;  
     
 }
   
-void PIN_MANAGER_IOC(void)
-{   
-}
+void PIN_MANAGER_IOC(void){}
 
 /**
  End of File

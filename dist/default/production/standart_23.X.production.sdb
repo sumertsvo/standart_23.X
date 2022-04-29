@@ -12,7 +12,7 @@ channel_Temp 29
 channel_DAC 30
 channel_FVR 31
 ]
-"130 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"136 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [e E2517 . `uc
 PIN_JUMP_STATE 1
 PIN_FUN_STATE 6
@@ -43,56 +43,56 @@ channel_FVR 31
 [v _EEPROM_WriteShortLong EEPROM_WriteShortLong `(v  1 e 1 0 ]
 "48
 [v _EEPROM_ReadShortLong EEPROM_ReadShortLong `(um  1 e 3 0 ]
-"65 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"71 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _switch_zum switch_zum `(v  1 e 1 0 ]
 [v i1_switch_zum switch_zum `(v  1 e 1 0 ]
-"69
+"75
 [v _toggle_tone toggle_tone `(v  1 e 1 0 ]
-"73
+"79
 [v _beep beep `(v  1 e 1 0 ]
-"83
+"89
 [v _go_close go_close `(v  1 e 1 0 ]
 [v i1_go_close go_close `(v  1 e 1 0 ]
-"94
+"100
 [v _go_open go_open `(v  1 e 1 0 ]
-"102
+"108
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
 [v i1_go_close_alt go_close_alt `(v  1 e 1 0 ]
-"108
+"114
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
-"115
+"121
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
-"126
+"132
 [v _get_measure get_measure `(v  1 e 1 0 ]
-"139
+"145
 [v _get_fun get_fun `(v  1 e 1 0 ]
-"160
+"177
 [v _get_fun_full get_fun_full `(v  1 e 1 0 ]
-"186
+"219
 [v _get_jump get_jump `(v  1 e 1 0 ]
-"207
-[v _get_jump_full get_jump_full `(v  1 e 1 0 ]
-"230
-[v _rele_tick rele_tick `(v  1 e 1 0 ]
 "251
+[v _get_jump_full get_jump_full `(v  1 e 1 0 ]
+"289
+[v _rele_tick rele_tick `(v  1 e 1 0 ]
+"310
 [v _sec_tick_work sec_tick_work `(v  1 e 1 0 ]
-"272
-[v _povorot povorot `(v  1 e 1 0 ]
-"291
-[v _fun_work fun_work `(v  1 e 1 0 ]
-"313
-[v _switch_wm switch_wm `(v  1 e 1 0 ]
 "331
+[v _povorot povorot `(v  1 e 1 0 ]
+"350
+[v _fun_work fun_work `(v  1 e 1 0 ]
+"372
+[v _switch_wm switch_wm `(v  1 e 1 0 ]
+"390
 [v _get_voltage get_voltage `(v  1 e 1 0 ]
-"344
+"403
 [v _get_adr get_adr `(v  1 e 1 0 ]
-"377
+"436
 [v _get_time get_time `(v  1 e 1 0 ]
-"414
+"473
 [v _get_eeprom get_eeprom `(v  1 e 1 0 ]
-"419
+"478
 [v _start_setup start_setup `(v  1 e 1 0 ]
-"454
+"513
 [v _main main `(v  1 e 1 0 ]
 "67 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -394,14 +394,14 @@ channel_FVR 31
 `uc 1 RELE_CON_WAIT 1 0 :1:6 
 `uc 1 FREE 1 0 :1:7 
 ]
-"59 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"65 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [u S495 Byte 1 `uc 1 value 1 0 `S486 1 bits 1 0 ]
 [v _FLAGS FLAGS `S495  1 e 1 0 ]
-"61
+"67
 [v _START_EEPROM_ADR START_EEPROM_ADR `uc  1 e 1 0 ]
-"62
+"68
 [v _time_pow_s time_pow_s `uc  1 e 1 0 ]
-"63
+"69
 [v _time_s time_s `um  1 e 3 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _timer0ReloadVal timer0ReloadVal `VEuc  1 e 1 0 ]
@@ -409,70 +409,70 @@ channel_FVR 31
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"454 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"513 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"468
+"527
 } 0
-"313
+"372
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
 {
-"329
+"388
 } 0
-"419
+"478
 [v _start_setup start_setup `(v  1 e 1 0 ]
 {
-"452
+"511
 } 0
-"207
+"251
 [v _get_jump_full get_jump_full `(v  1 e 1 0 ]
 {
-"213
+"257
 [v get_jump_full@res res `ui  1 a 2 5 ]
-"211
+"255
 [v get_jump_full@flag flag `uc  1 a 1 7 ]
-"209
+"253
 [v get_jump_full@jump_counter jump_counter `c  1 s 1 jump_counter ]
-"228
+"287
 } 0
-"160
+"177
 [v _get_fun_full get_fun_full `(v  1 e 1 0 ]
 {
-"167
-[v get_fun_full@res res `ui  1 a 2 5 ]
-"165
-[v get_fun_full@flag flag `uc  1 a 1 7 ]
-"162
-[v get_fun_full@fun_counter fun_counter `c  1 s 1 fun_counter ]
 "184
+[v get_fun_full@res res `ui  1 a 2 5 ]
+"182
+[v get_fun_full@flag flag `uc  1 a 1 7 ]
+"179
+[v get_fun_full@fun_counter fun_counter `c  1 s 1 fun_counter ]
+"217
 } 0
-"414
+"473
 [v _get_eeprom get_eeprom `(v  1 e 1 0 ]
 {
-"417
+"476
 } 0
-"377
+"436
 [v _get_time get_time `(v  1 e 1 0 ]
 {
-"396
-[v get_time@q_825 q `uc  1 a 1 44 ]
-"387
-[v get_time@q q `uc  1 a 1 42 ]
-"406
-[v get_time@q_826 q `uc  1 a 1 43 ]
-"384
-[v get_time@i i `uc  1 a 1 40 ]
-"382
-[v get_time@times times `[4]um  1 a 12 20 ]
-"383
-[v get_time@time_count time_count `[4]uc  1 a 4 32 ]
-"381
-[v get_time@buf2 buf2 `um  1 a 3 37 ]
-"380
-[v get_time@buf buf `uc  1 a 1 41 ]
-"379
-[v get_time@adr_error adr_error `uc  1 a 1 36 ]
-"412
+"455
+[v get_time@q_823 q `uc  1 a 1 40 ]
+"446
+[v get_time@q q `uc  1 a 1 38 ]
+"465
+[v get_time@q_824 q `uc  1 a 1 39 ]
+"443
+[v get_time@i i `uc  1 a 1 36 ]
+"441
+[v get_time@times times `[3]um  1 a 9 20 ]
+"442
+[v get_time@time_count time_count `[3]uc  1 a 3 30 ]
+"440
+[v get_time@buf2 buf2 `um  1 a 3 33 ]
+"439
+[v get_time@buf buf `uc  1 a 1 37 ]
+"438
+[v get_time@adr_error adr_error `uc  1 a 1 29 ]
+"471
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
@@ -498,22 +498,22 @@ channel_FVR 31
 [v EEPROM_ReadShortLong@addr addr `uc  1 a 1 15 ]
 "53
 } 0
-"344 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"403 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _get_adr get_adr `(v  1 e 1 0 ]
 {
-"359
-[v get_adr@q_813 q `uc  1 a 1 39 ]
-"351
+"418
+[v get_adr@q_811 q `uc  1 a 1 39 ]
+"410
 [v get_adr@q q `uc  1 a 1 37 ]
-"369
-[v get_adr@i_814 i `uc  1 a 1 38 ]
-"348
+"428
+[v get_adr@i_812 i `uc  1 a 1 38 ]
+"407
 [v get_adr@i i `uc  1 a 1 36 ]
-"346
+"405
 [v get_adr@adr adr `[16][2]uc  1 a 32 4 ]
-"345
+"404
 [v get_adr@buf buf `uc  1 a 1 40 ]
-"375
+"434
 } 0
 "87 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
@@ -572,23 +572,23 @@ channel_FVR 31
 {
 "83
 } 0
-"272 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"331 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _povorot povorot `(v  1 e 1 0 ]
 {
-"289
+"348
 } 0
-"331
+"390
 [v _get_voltage get_voltage `(v  1 e 1 0 ]
 {
-"335
+"394
 [v get_voltage@buf buf `uc  1 a 1 18 ]
-"338
-[v get_voltage@q_804 q `uc  1 a 1 19 ]
-"334
+"397
+[v get_voltage@q_802 q `uc  1 a 1 19 ]
+"393
 [v get_voltage@q q `uc  1 a 1 20 ]
-"332
+"391
 [v get_voltage@res res `ui  1 a 2 16 ]
-"342
+"401
 } 0
 "40 C:\Users\vlads\MPLABXProjects\standart_23.X\eeprom.c
 [v _EEPROM_WriteShortLong EEPROM_WriteShortLong `(v  1 e 1 0 ]
@@ -622,23 +622,23 @@ channel_FVR 31
 [v EEPROM_ReadByte@addr addr `uc  1 a 1 2 ]
 "26
 } 0
-"186 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"219 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _get_jump get_jump `(v  1 e 1 0 ]
 {
-"190
+"223
 [v get_jump@res res `ui  1 a 2 5 ]
-"188
+"221
 [v get_jump@jump_counter jump_counter `c  1 s 1 jump_counter ]
-"205
+"249
 } 0
-"139
+"145
 [v _get_fun get_fun `(v  1 e 1 0 ]
 {
-"144
+"150
 [v get_fun@res res `ui  1 a 2 5 ]
-"141
+"147
 [v get_fun@fun_counter fun_counter `c  1 s 1 fun_counter ]
-"158
+"175
 } 0
 "112 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
@@ -649,49 +649,49 @@ channel_FVR 31
 [v ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
 "133
 } 0
-"291 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"350 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _fun_work fun_work `(v  1 e 1 0 ]
 {
-"311
+"370
 } 0
-"108
+"114
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
 {
-"113
+"119
 } 0
-"94
-[v _go_open go_open `(v  1 e 1 0 ]
-{
 "100
-} 0
-"102
-[v _go_close_alt go_close_alt `(v  1 e 1 0 ]
+[v _go_open go_open `(v  1 e 1 0 ]
 {
 "106
 } 0
-"83
+"108
+[v _go_close_alt go_close_alt `(v  1 e 1 0 ]
+{
+"112
+} 0
+"89
 [v _go_close go_close `(v  1 e 1 0 ]
 {
-"92
+"98
 } 0
-"73
+"79
 [v _beep beep `(v  1 e 1 0 ]
 {
-"75
-[v beep@i i `uc  1 a 1 9 ]
-"74
-[v beep@j j `uc  1 a 1 8 ]
-"73
-[v beep@delay delay `ui  1 p 2 0 ]
-[v beep@pause pause `ui  1 p 2 2 ]
-[v beep@time time `uc  1 p 1 4 ]
-[v beep@count count `uc  1 p 1 5 ]
+[v beep@time time `uc  1 a 1 wreg ]
 "81
+[v beep@i i `uc  1 a 1 5 ]
+"80
+[v beep@j j `uc  1 a 1 4 ]
+"79
+[v beep@time time `uc  1 a 1 wreg ]
+[v beep@count count `uc  1 p 1 0 ]
+[v beep@time time `uc  1 a 1 3 ]
+"87
 } 0
-"65
+"71
 [v _switch_zum switch_zum `(v  1 e 1 0 ]
 {
-"67
+"73
 } 0
 "52 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
@@ -715,31 +715,31 @@ channel_FVR 31
 {
 "154
 } 0
-"251 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"310 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _sec_tick_work sec_tick_work `(v  1 e 1 0 ]
 {
-"263
+"322
 [v sec_tick_work@iled iled `uc  1 s 1 iled ]
-"270
+"329
 } 0
-"69
+"75
 [v _toggle_tone toggle_tone `(v  1 e 1 0 ]
 {
-"71
+"77
 } 0
-"230
+"289
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
 {
-"249
+"308
 } 0
-"126
+"132
 [v _get_measure get_measure `(v  1 e 1 0 ]
 {
-"130
+"136
 [v get_measure@res res `ui  1 a 2 5 ]
-"127
+"133
 [v get_measure@measures measures `uc  1 s 1 measures ]
-"137
+"143
 } 0
 "112 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v i1_ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
@@ -750,20 +750,20 @@ channel_FVR 31
 [v i1ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
 "133
 } 0
-"115 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"121 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
 {
-"124
+"130
 } 0
-"102
+"108
 [v i1_go_close_alt go_close_alt `(v  1 e 1 0 ]
 {
-"106
+"112
 } 0
-"83
+"89
 [v i1_go_close go_close `(v  1 e 1 0 ]
 {
-"92
+"98
 } 0
 "108 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
@@ -775,8 +775,8 @@ channel_FVR 31
 {
 "132
 } 0
-"65 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"71 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v i1_switch_zum switch_zum `(v  1 e 1 0 ]
 {
-"67
+"73
 } 0

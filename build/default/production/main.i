@@ -4097,11 +4097,11 @@ void EEPROM_WriteString(unsigned char addr, char* str1);
 
 void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 # 2 "main.c" 2
-# 25 "main.c"
+# 31 "main.c"
 const __uint24 BAD_WSP_VOLTAGE = 20000;
 const __uint24 GOOD_WSP_VOLTAGE = 40000;
 const __uint24 ROTATION_TIME = 60;
-# 45 "main.c"
+# 51 "main.c"
 struct f_field {
     unsigned ALARM : 1;
     unsigned NORMAL_WORK_MODE : 1;
@@ -4130,7 +4130,7 @@ void toggle_tone() {
     INTCONbits.TMR0IE = ~INTCONbits.TMR0IE;
 }
 
-void beep(unsigned delay, unsigned pause, char time, char count) {
+void beep(char time, char count) {
     for (char j = 0; j < count; j++) {
         for (char i = 0; i < time; i++) {
             switch_zum();
@@ -4143,9 +4143,9 @@ void beep(unsigned delay, unsigned pause, char time, char count) {
 void go_close() {
     time_s = 0;
     do { LATCbits.LATC4 = 1; } while(0);
-    _delay((unsigned long)((1 * 1000)*(16000000/4000.0)));
+    _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 10;
+    time_pow_s = 20;
     FLAGS.bits.RELE_POW_WAIT = 1;
     FLAGS.bits.RELE_CON_WAIT = 1;
     return;
@@ -4154,7 +4154,7 @@ void go_close() {
 void go_open() {
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 10;
+    time_pow_s = 20;
     FLAGS.bits.RELE_POW_WAIT = 1;
     return;
 }
@@ -4206,14 +4206,15 @@ void get_fun() {
     do { LATCbits.LATC1 = 0; } while(0);
     if (res < 2000) fun_counter--;
     else fun_counter++;
-
-    if (fun_counter > 10) {
+# 166 "main.c"
+       if (fun_counter > 10) {
         fun_counter = 10;
         FLAGS.bits._FUN_CONNECTED = 0;
     } else if (fun_counter<-10) {
         fun_counter = -10;
         FLAGS.bits._FUN_CONNECTED = 1;
     }
+
     return;
 }
 
@@ -4227,15 +4228,18 @@ void get_fun_full() {
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
         if (res < 2000) fun_counter--;
         else fun_counter++;
-        if (fun_counter > 10) {
+# 201 "main.c"
+          if (fun_counter > 10) {
             fun_counter = 10;
             FLAGS.bits._FUN_CONNECTED = 0;
             flag = 1;
         } else if (fun_counter<-10) {
-            fun_counter = -10;
+            fun_counter = 10;
             FLAGS.bits._FUN_CONNECTED = 1;
             flag = 1;
         }
+
+
     } while (flag == 0);
 
     do { ANSELCbits.ANSC2 = 0; } while(0);
@@ -4253,7 +4257,7 @@ void get_jump() {
 
     if (res < 2000) jump_counter--;
     else jump_counter++;
-
+# 239 "main.c"
     if (jump_counter > 10) {
         jump_counter = 10;
         FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4261,6 +4265,8 @@ void get_jump() {
         jump_counter = -10;
         FLAGS.bits._JUMP_CONNECTED = 1;
     }
+
+
     return;
 }
 
@@ -4273,7 +4279,7 @@ void get_jump_full() {
         unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
         if (res < 2000) jump_counter--;
         else jump_counter++;
-
+# 273 "main.c"
         if (jump_counter > 10) {
             jump_counter = 10;
             FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4283,6 +4289,9 @@ void get_jump_full() {
             FLAGS.bits._JUMP_CONNECTED = 1;
             flag = 1;
         }
+
+
+
     } while (flag == 0);
     do { ANSELAbits.ANSA1 = 0; } while(0);
 }
@@ -4294,7 +4303,7 @@ void rele_tick() {
         } else {
             if (FLAGS.bits.RELE_CON_WAIT) {
                 do { LATCbits.LATC5 = 0; } while(0);
-                _delay((unsigned long)((1 * 1000)*(16000000/4000.0)));
+                _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
                 do { LATCbits.LATC4 = 0; } while(0);
                 FLAGS.bits.CLOSED = 1;
                 FLAGS.bits.RELE_CON_WAIT = 0;
@@ -4337,7 +4346,7 @@ void povorot() {
             ) {
         go_close();
     }
-    if ((time_s > (ROTATION_TIME + 10 + 1 * 2)) &&
+    if ((time_s > (ROTATION_TIME + 20 + 5 * 2)) &&
             FLAGS.bits.CLOSED &&
             FLAGS.bits.ALARM == 0 &&
             FLAGS.bits.NORMAL_WORK_MODE
@@ -4357,7 +4366,7 @@ void fun_work() {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
 
-            beep(500, 100, 40, 1);
+            beep( 40, 1);
         };
         if (!FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.CLOSED &&
@@ -4365,7 +4374,7 @@ void fun_work() {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
 
-            beep(500, 100, 40, 2);
+            beep( 40, 2);
         }
     }
 }
@@ -4376,14 +4385,14 @@ void switch_wm() {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
             if (FLAGS.bits.CLOSED) go_close_alt();
 
-            beep(250, 100, 40, 3);
+            beep( 40, 3);
         }
     } else {
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
             if (FLAGS.bits.CLOSED) go_close();
 
-            beep(250, 100, 40, 2);
+            beep(40, 2);
         }
     }
 }
@@ -4439,12 +4448,12 @@ void get_time(){
     char adr_error = 0;
     char buf=0;
     __uint24 buf2 = 0;
-    __uint24 times[4] = {};
-    char time_count[4]={};
+    __uint24 times[3] = {};
+    char time_count[3]={};
     for (unsigned char i = START_EEPROM_ADR; i < START_EEPROM_ADR + 0x10; i += 4) {
         buf2 = EEPROM_ReadShortLong(i);
 
-        for (char q = 0; q < 4; q++) {
+        for (char q = 0; q < 3; q++) {
             if (buf2 == times[q]) {
                 time_count[q]++;
                 buf2 = 0;
@@ -4453,7 +4462,7 @@ void get_time(){
 
         if (buf2 != 0) {
             adr_error = 1;
-            for (unsigned char q = 0; q < 4; q++)
+            for (unsigned char q = 0; q < 3; q++)
                 if (times[q]== 0) {
                     times[q] = buf;
                     time_count[q] = 1;
@@ -4463,7 +4472,7 @@ void get_time(){
         }
     }
     buf = 0;
-    for (unsigned char q = 0; q < 4; q++) {
+    for (unsigned char q = 0; q < 3; q++) {
         if (time_count[q] > time_count[buf]) buf = q;
     }
     time_s = times[buf];
