@@ -320,7 +320,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="FVR" name="cdafvrVoltage"/>
-         <value></value>
+         <value/>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FVR" registerAlias="FVRCON" settingAlias="ADFVR" alias="1x"/>
@@ -2601,12 +2601,12 @@
          <hash>2022f829436ee8531dee3db7fdca8320229fb85cd7fa349aac9083746a5351c5</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\adc.c</file>
-         <hash>2306668ec77fb3f545f16391a65909cd1d80cd3666b7079d1cac6318047c7c25</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\fvr.c</file>
          <hash>35876122ce29402a379407723e77b5935edb18f2e4592bfd4f90aa94f8a4dd4f</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\adc.c</file>
+         <hash>2306668ec77fb3f545f16391a65909cd1d80cd3666b7079d1cac6318047c7c25</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\mcc.c</file>

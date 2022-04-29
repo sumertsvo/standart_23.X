@@ -22,23 +22,25 @@
 
 #define RELE_TIME 10// sec
 #define RELE_GAP 1 // sec
-const long int BAD_WSP_VOLTAGE = 20000; //
-const long int GOOD_WSP_VOLTAGE = 40000; //
-const long int ROTATION_TIME = 60; //sec
+const __uint24  BAD_WSP_VOLTAGE = 20000; //
+const __uint24  GOOD_WSP_VOLTAGE = 40000; //
+const __uint24  ROTATION_TIME = 60; //sec
 
 #else
 
 #define RELE_TIME 120 // sec
 #define RELE_GAP 1 //sec
-const long int BAD_WSP_VOLTAGE = LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256); //	TODO
-const long int GOOD_WSP_VOLTAGE = HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); //	TODO
-const long int ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const unsigned short long  BAD_WSP_VOLTAGE = LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256); //	TODO
+const unsigned short long  GOOD_WSP_VOLTAGE = HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); //	TODO
+const unsigned short long  ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 
 #endif
 
 //END SETUP
 
 //Флаги
+
+
 
 struct f_field {
     unsigned ALARM : 1;
@@ -52,12 +54,13 @@ struct f_field {
 };
 
 union Byte {
-    unsigned char value;
+    char value;
     struct f_field bits;
 } FLAGS;
 
-unsigned char time_pow_s; //время до закрытия реле (сек)
-unsigned long time_s; //время до автоповорота (сек)
+char START_EEPROM_ADR;
+char time_pow_s; //время до закрытия реле (сек)
+__uint24 time_s; //время до автоповорота (сек)
 
 void switch_zum() {//одно переключение
     PIN_ZUMMER_Toggle();
@@ -246,8 +249,8 @@ void rele_tick() {//закрытие кранов (задержка на раб�
 }
 
 void sec_tick_work() {//работа секундного таймера
-    #ifdef DEBUG_ENABLED
-            switch_zum();
+#ifdef DEBUG_ENABLED
+    switch_zum();
 #endif
     time_s++;
     rele_tick();
@@ -322,33 +325,96 @@ void switch_wm() {//выбор режима работы
             //два высоких писка
             beep(250, 100, 40, 2); //_freq pause work_time count;
         }
-    }    
+    }
 }
 
-void get_voltage(){
+void get_voltage() {
     unsigned res = ADC_GetConversion(channel_FVR);
-    if (res > 46200) 
-        for (unsigned char q = 0;q<250;q++){
-            EEPROM_WriteByte ( q , q+3);
+    if (res > 46200) {
+        for (char q = 0; q < 0x10; q++) {
+            char buf = EEPROM_ReadByte(q);
+            if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
+        }
+        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 16; q += 4) {
+            EEPROM_WriteShortLong(q, time_s);
         }
     }
-
-get_eeprom(){
-   char adr[16];
-   for (unsigned char i = 0; i<0x10; i++){
-       EEPROM_ReadByte(adr[q]);
-   }
-   
-   char adr_count = 1;
-   
-   for (unsigned char i = 0;i<15;i++){
-        for (unsigned char i_adr = 0; i_adr<adr_count; adr_count++){
-       
-   }
-}
 }
 
+void get_adr() {
+    char buf = 0;
+    char adr[16][2] = {};
 
+    for (unsigned char i = 0; i < 0x10; i++) {//цикл по EEPROM
+        buf = EEPROM_ReadByte(i);
+        if (buf == 0) continue;
+        for (unsigned char q = 0; q < 16; q++) {//цикл по адресам если уже есть значение
+            if (buf == adr[q][0]) {
+                (adr[q][1])++;
+                buf = 0;
+            }
+        }
+        //блок обработки ошибки
+        if (buf != 0) {
+            for (unsigned char q = 0; q < 16; q++)//цикл по адресам для добавления нового
+                if (adr[q][0] == 0) {
+                    adr[q][0] = buf;
+                    adr[q][1] = 1;
+                    buf = 0;
+                    break;
+                }
+        }
+    }
+    buf = 0;
+    for (unsigned char i = 0; i < 0x10; i++) {
+        if (adr[i][1] > adr[buf][1]) buf = i;
+    }
+    START_EEPROM_ADR = adr[buf][0];
+    if (START_EEPROM_ADR == 0 || START_EEPROM_ADR == 0xFF) START_EEPROM_ADR = 0x10;
+    //конец блока адреса
+}
+
+void get_time(){
+     //блок значения
+    char adr_error = 0;
+    char buf=0;
+    __uint24 buf2 = 0;
+    __uint24 times[4] = {};
+    char time_count[4]={};
+    for (unsigned char i = START_EEPROM_ADR; i < START_EEPROM_ADR + 0x10; i += 4) {//цикл по EEPROM
+        buf2 = EEPROM_ReadShortLong(i);
+
+        for (char q = 0; q < 4; q++) {//цикл по значениям если уже есть значение
+            if (buf2 == times[q]) {
+                time_count[q]++;
+                buf2 = 0;
+            }
+        }
+        //блок обработки ошибки
+        if (buf2 != 0) {
+            adr_error = 1;
+            for (unsigned char q = 0; q < 4; q++)//цикл по значениям для добавления нового
+                if (times[q]== 0) {
+                    times[q] = buf;
+                    time_count[q] = 1;
+                    buf = 0;
+                    break;
+                }
+        }
+    }
+    buf = 0;
+    for (unsigned char q = 0; q < 4; q++) {
+        if (time_count[q] > time_count[buf]) buf = q;
+    }
+    time_s = times[buf];
+    //смещение нового адреса
+    if (adr_error) START_EEPROM_ADR += 0x10;
+}
+
+void get_eeprom() {
+    get_adr();
+    get_time();   
+}
 
 void start_setup() {//начальная настройка
     //MCC сгенерировано
@@ -386,23 +452,17 @@ void start_setup() {//начальная настройка
 }
 
 void main(void) {
-   
-    start_setup();
-    
-       
 
+    start_setup();
 
     while (1) {
-
-         get_voltage();
+        get_voltage();
         if (!FLAGS.bits.ALARM) {
             get_fun();
             fun_work();
             get_jump();
             switch_wm();
             povorot();
-
-
         };
     }
 }

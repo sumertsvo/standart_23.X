@@ -1,0 +1,63 @@
+make -f nbproject/Makefile-Config_2.mk SUBPROJECTS= .clean-conf
+make[1]: Entering directory 'C:/Users/vlads/MPLABXProjects/standart_23.X'
+rm -f  -r .ca/build/Config_2/production
+rm -f  -r .ca/dist/Config_2/production
+make[1]: Leaving directory 'C:/Users/vlads/MPLABXProjects/standart_23.X'
+[32mCLEAN SUCCESSFUL (total time: 358ms)[0m
+make -f nbproject/Makefile-Config_2.mk SUBPROJECTS= .build-conf
+make[1]: Entering directory 'C:/Users/vlads/MPLABXProjects/standart_23.X'
+make  -f nbproject/Makefile-Config_2.mk .ca/dist/Config_2/production/standart_23.X.production.hex
+make[2]: Entering directory 'C:/Users/vlads/MPLABXProjects/standart_23.X'
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/tmr0.p1 mcc_generated_files/tmr0.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/adc.p1 mcc_generated_files/adc.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/pin_manager.p1 mcc_generated_files/pin_manager.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/interrupt_manager.p1 mcc_generated_files/interrupt_manager.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/tmr2.p1 mcc_generated_files/tmr2.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/device_config.p1 mcc_generated_files/device_config.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/fvr.p1 mcc_generated_files/fvr.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/mcc_generated_files/mcc.p1 mcc_generated_files/mcc.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/eeprom.p1 eeprom.c 
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -c   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_Config_2=Config_2  -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits   -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o .ca/build/Config_2/production/main.p1 main.c 
+eeprom.c:17:11: warning: implicit conversion loses integer precision: 'unsigned char' to '__bit' [-Wconversion]
+    GIE = status;
+        ~ ^~~~~~
+eeprom.c:42:23: warning: implicit conversion loses integer precision: '__uint24' (aka 'unsigned __int24') to 'char' [-Wconversion]
+     char dt = ucData >> 8;
+          ~~   ~~~~~~~^~~~
+2 warnings generated.
+"C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe"  -mcpu=16F1823 -Wl,-Map=.ca/dist/Config_2/production/standart_23.X.production.map  -DXPRJ_Config_2=Config_2  -Wl,--defsym=__MPLAB_BUILD=1   -mdfp="C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8"  -fno-short-double -fno-short-float -O2 -fasmfile -Og -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file  -ginhx32 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto      -Wl,--memorysummary,.ca/dist/Config_2/production/memoryfile.xml -o .ca/dist/Config_2/production/standart_23.X.production.elf  .ca/build/Config_2/production/mcc_generated_files/mcc.p1 .ca/build/Config_2/production/mcc_generated_files/adc.p1 .ca/build/Config_2/production/mcc_generated_files/pin_manager.p1 .ca/build/Config_2/production/mcc_generated_files/interrupt_manager.p1 .ca/build/Config_2/production/mcc_generated_files/tmr2.p1 .ca/build/Config_2/production/mcc_generated_files/tmr0.p1 .ca/build/Config_2/production/mcc_generated_files/device_config.p1 .ca/build/Config_2/production/mcc_generated_files/fvr.p1 .ca/build/Config_2/production/main.p1 .ca/build/Config_2/production/eeprom.p1     
+mcc_generated_files/adc.c:112:: advisory: (1510) non-reentrant function "_ADC_GetConversion" appears in multiple call graphs and has been duplicated by the compiler
+main.c:65:: advisory: (1510) non-reentrant function "_switch_zum" appears in multiple call graphs and has been duplicated by the compiler
+main.c:83:: advisory: (1510) non-reentrant function "_go_close" appears in multiple call graphs and has been duplicated by the compiler
+main.c:102:: advisory: (1510) non-reentrant function "_go_close_alt" appears in multiple call graphs and has been duplicated by the compiler
+mcc_generated_files/adc.c:85:: warning: (520) function "_ADC_SelectChannel" is never called
+mcc_generated_files/adc.c:93:: warning: (520) function "_ADC_StartConversion" is never called
+mcc_generated_files/adc.c:100:: warning: (520) function "_ADC_IsConversionDone" is never called
+mcc_generated_files/adc.c:106:: warning: (520) function "_ADC_GetConversionResult" is never called
+mcc_generated_files/adc.c:135:: warning: (520) function "_ADC_TemperatureAcquisitionDelay" is never called
+mcc_generated_files/pin_manager.c:95:: warning: (520) function "_PIN_MANAGER_IOC" is never called
+mcc_generated_files/tmr2.c:93:: warning: (520) function "_TMR2_StopTimer" is never called
+mcc_generated_files/tmr2.c:99:: warning: (520) function "_TMR2_ReadTimer" is never called
+mcc_generated_files/tmr2.c:108:: warning: (520) function "_TMR2_WriteTimer" is never called
+mcc_generated_files/tmr2.c:114:: warning: (520) function "_TMR2_LoadPeriodRegister" is never called
+mcc_generated_files/tmr0.c:87:: warning: (520) function "_TMR0_ReadTimer" is never called
+mcc_generated_files/tmr0.c:96:: warning: (520) function "_TMR0_WriteTimer" is never called
+mcc_generated_files/tmr0.c:102:: warning: (520) function "_TMR0_Reload" is never called
+mcc_generated_files/fvr.c:64:: warning: (520) function "_FVR_IsOutputReady" is never called
+eeprom.c:28:: warning: (520) function "_EEPROM_WriteWord" is never called
+eeprom.c:34:: warning: (520) function "_EEPROM_ReadWord" is never called
+eeprom.c:55:: warning: (520) function "_EEPROM_WriteDword" is never called
+eeprom.c:61:: warning: (520) function "_EEPROM_ReadDword" is never called
+eeprom.c:67:: warning: (520) function "_EEPROM_WriteString" is never called
+eeprom.c:73:: warning: (520) function "_EEPROM_ReadString" is never called
+
+Memory Summary:
+    Program space        used   60Ch (  1548) of   800h words   ( 75.6%)
+    Data space           used    7Ch (   124) of    80h bytes   ( 96.9%)
+    EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)
+    Configuration bits   used     2h (     2) of     2h words   (100.0%)
+    ID Location space    used     4h (     4) of     4h bytes   (100.0%)
+
+make[2]: Leaving directory 'C:/Users/vlads/MPLABXProjects/standart_23.X'
+make[1]: Leaving directory 'C:/Users/vlads/MPLABXProjects/standart_23.X'
+[32mBUILD SUCCESSFUL (total time: 17s)[0m

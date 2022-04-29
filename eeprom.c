@@ -1,5 +1,8 @@
 #include "mcc_generated_files/mcc.h"
 
+
+
+
 void EEPROM_WriteByte(unsigned char addr, unsigned char dt) {
     unsigned char status;
     while (WR);
@@ -30,6 +33,21 @@ void EEPROM_WriteWord(unsigned char addr, unsigned int ucData) {
 
 unsigned int EEPROM_ReadWord(unsigned char addr) {
     unsigned int dt = EEPROM_ReadByte(addr + 1)*256;
+    dt += EEPROM_ReadByte(addr);
+    return dt;
+}
+
+void EEPROM_WriteShortLong(unsigned char addr,  __uint24 ucData) {
+    EEPROM_WriteByte(addr, (unsigned char) ucData);
+     char dt = ucData >> 8;
+    EEPROM_WriteByte(addr + 1, dt);
+    dt = ucData >> 16;
+    EEPROM_WriteByte(addr + 2, dt);
+}
+
+__uint24 EEPROM_ReadShortLong( char addr) {
+    __uint24  dt = EEPROM_ReadByte(addr + 2)*256*256;
+    dt += EEPROM_ReadByte(addr + 1)*256;
     dt += EEPROM_ReadByte(addr);
     return dt;
 }
