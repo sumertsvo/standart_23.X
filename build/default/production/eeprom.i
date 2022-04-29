@@ -4136,3 +4136,15 @@ unsigned long EEPROM_ReadDword(unsigned char addr) {
     dt += EEPROM_ReadWord(addr);
     return dt;
 }
+
+void EEPROM_WriteString(unsigned char addr, char* str1) {
+    unsigned char n;
+    for (n = 0; str1[n] != '\0'; n++)
+        EEPROM_WriteByte(addr + n, str1[n]);
+}
+
+void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz) {
+    unsigned char i;
+    for (i = 0; i < sz; i++) str1[i] = EEPROM_ReadByte(addr + i);
+    str1[i] = 0;
+}

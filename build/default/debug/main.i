@@ -4404,8 +4404,9 @@ void get_voltage() {
             char buf = EEPROM_ReadByte(q);
             if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
         }
+        __uint24 buf = time_s;
         for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 16; q += 4) {
-            EEPROM_WriteShortLong(q, time_s);
+            EEPROM_WriteShortLong(q, buf);
         }
     }
 }
@@ -4461,7 +4462,7 @@ void get_time(){
         }
 
         if (buf2 != 0) {
-            adr_error = 1;
+            adr_error ++;
             for (unsigned char q = 0; q < 3; q++)
                 if (times[q]== 0) {
                     times[q] = buf;
@@ -4477,7 +4478,7 @@ void get_time(){
     }
     time_s = times[buf];
 
-    if (adr_error) START_EEPROM_ADR += 0x10;
+    if (adr_error>1) START_EEPROM_ADR += 0x10;
 }
 
 void get_eeprom() {

@@ -4404,20 +4404,21 @@ void get_voltage() {
             char buf = EEPROM_ReadByte(q);
             if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
         }
-        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 16; q += 4) {
-            EEPROM_WriteShortLong(q, time_s);
+        __uint24 buf = time_s;
+        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 12; q += 4) {
+            EEPROM_WriteShortLong(q, buf);
         }
     }
 }
 
 void get_adr() {
     char buf = 0;
-    char adr[16][2] = {};
+    char adr[8][2] = {};
 
-    for (unsigned char i = 0; i < 0x10; i++) {
+    for (unsigned char i = 0; i < 8; i++) {
         buf = EEPROM_ReadByte(i);
         if (buf == 0) continue;
-        for (unsigned char q = 0; q < 16; q++) {
+        for (unsigned char q = 0; q < 8; q++) {
             if (buf == adr[q][0]) {
                 (adr[q][1])++;
                 buf = 0;
@@ -4425,7 +4426,7 @@ void get_adr() {
         }
 
         if (buf != 0) {
-            for (unsigned char q = 0; q < 16; q++)
+            for (unsigned char q = 0; q < 8; q++)
                 if (adr[q][0] == 0) {
                     adr[q][0] = buf;
                     adr[q][1] = 1;
@@ -4435,7 +4436,7 @@ void get_adr() {
         }
     }
     buf = 0;
-    for (unsigned char i = 0; i < 0x10; i++) {
+    for (unsigned char i = 0; i < 8; i++) {
         if (adr[i][1] > adr[buf][1]) buf = i;
     }
     START_EEPROM_ADR = adr[buf][0];
@@ -4461,7 +4462,7 @@ void get_time(){
         }
 
         if (buf2 != 0) {
-            adr_error = 1;
+            adr_error ++;
             for (unsigned char q = 0; q < 3; q++)
                 if (times[q]== 0) {
                     times[q] = buf;
@@ -4477,7 +4478,7 @@ void get_time(){
     }
     time_s = times[buf];
 
-    if (adr_error) START_EEPROM_ADR += 0x10;
+    if (adr_error>1) START_EEPROM_ADR += 0x10;
 }
 
 void get_eeprom() {

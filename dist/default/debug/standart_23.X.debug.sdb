@@ -84,15 +84,15 @@ channel_FVR 31
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
 "390
 [v _get_voltage get_voltage `(v  1 e 1 0 ]
-"403
+"404
 [v _get_adr get_adr `(v  1 e 1 0 ]
-"436
+"437
 [v _get_time get_time `(v  1 e 1 0 ]
-"473
+"474
 [v _get_eeprom get_eeprom `(v  1 e 1 0 ]
-"478
+"479
 [v _start_setup start_setup `(v  1 e 1 0 ]
-"513
+"514
 [v _main main `(v  1 e 1 0 ]
 "67 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -409,20 +409,20 @@ channel_FVR 31
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"513 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"514 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"527
+"528
 } 0
 "372
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
 {
 "388
 } 0
-"478
+"479
 [v _start_setup start_setup `(v  1 e 1 0 ]
 {
-"511
+"512
 } 0
 "251
 [v _get_jump_full get_jump_full `(v  1 e 1 0 ]
@@ -446,33 +446,33 @@ channel_FVR 31
 [v get_fun_full@fun_counter fun_counter `c  1 s 1 fun_counter ]
 "217
 } 0
-"473
+"474
 [v _get_eeprom get_eeprom `(v  1 e 1 0 ]
 {
-"476
+"477
 } 0
-"436
+"437
 [v _get_time get_time `(v  1 e 1 0 ]
 {
-"455
-[v get_time@q_821 q `uc  1 a 1 40 ]
-"446
+"456
+[v get_time@q_822 q `uc  1 a 1 40 ]
+"447
 [v get_time@q q `uc  1 a 1 38 ]
-"465
-[v get_time@q_822 q `uc  1 a 1 39 ]
-"443
+"466
+[v get_time@q_823 q `uc  1 a 1 39 ]
+"444
 [v get_time@i i `uc  1 a 1 36 ]
-"441
-[v get_time@times times `[3]um  1 a 9 20 ]
 "442
+[v get_time@times times `[3]um  1 a 9 20 ]
+"443
 [v get_time@time_count time_count `[3]uc  1 a 3 30 ]
-"440
+"441
 [v get_time@buf2 buf2 `um  1 a 3 33 ]
-"439
+"440
 [v get_time@buf buf `uc  1 a 1 37 ]
-"438
+"439
 [v get_time@adr_error adr_error `uc  1 a 1 29 ]
-"471
+"472
 } 0
 "4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
@@ -498,22 +498,22 @@ channel_FVR 31
 [v EEPROM_ReadShortLong@addr addr `uc  1 a 1 15 ]
 "53
 } 0
-"403 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"404 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _get_adr get_adr `(v  1 e 1 0 ]
 {
-"418
-[v get_adr@q_809 q `uc  1 a 1 23 ]
-"410
+"419
+[v get_adr@q_810 q `uc  1 a 1 23 ]
+"411
 [v get_adr@q q `uc  1 a 1 21 ]
-"428
-[v get_adr@i_810 i `uc  1 a 1 22 ]
-"407
+"429
+[v get_adr@i_811 i `uc  1 a 1 22 ]
+"408
 [v get_adr@i i `uc  1 a 1 20 ]
-"405
+"406
 [v get_adr@adr adr `[8][2]uc  1 a 16 4 ]
-"404
+"405
 [v get_adr@buf buf `uc  1 a 1 24 ]
-"434
+"435
 } 0
 "87 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
@@ -581,14 +581,16 @@ channel_FVR 31
 [v _get_voltage get_voltage `(v  1 e 1 0 ]
 {
 "394
-[v get_voltage@buf buf `uc  1 a 1 18 ]
-"397
-[v get_voltage@q_800 q `uc  1 a 1 19 ]
+[v get_voltage@buf buf `uc  1 a 1 21 ]
+"398
+[v get_voltage@q_801 q `uc  1 a 1 22 ]
 "393
-[v get_voltage@q q `uc  1 a 1 20 ]
+[v get_voltage@q q `uc  1 a 1 23 ]
+"397
+[v get_voltage@buf_800 buf `um  1 a 3 16 ]
 "391
-[v get_voltage@res res `ui  1 a 2 16 ]
-"401
+[v get_voltage@res res `ui  1 a 2 19 ]
+"402
 } 0
 "40 C:\Users\vlads\MPLABXProjects\standart_23.X\eeprom.c
 [v _EEPROM_WriteShortLong EEPROM_WriteShortLong `(v  1 e 1 0 ]

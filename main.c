@@ -394,8 +394,9 @@ void get_voltage() {
             char buf = EEPROM_ReadByte(q);
             if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
         }
-        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 16; q += 4) {
-            EEPROM_WriteShortLong(q, time_s);
+        __uint24 buf = time_s;
+        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 12; q += 4) {
+            EEPROM_WriteShortLong(q, buf);
         }
     }
 }
@@ -451,7 +452,7 @@ void get_time(){
         }
         //блок обработки ошибки
         if (buf2 != 0) {
-            adr_error = 1;
+            adr_error ++;
             for (unsigned char q = 0; q < 3; q++)//цикл по значениям для добавления нового
                 if (times[q]== 0) {
                     times[q] = buf;
@@ -467,7 +468,7 @@ void get_time(){
     }
     time_s = times[buf];
     //смещение нового адреса
-    if (adr_error) START_EEPROM_ADR += 0x10;
+    if (adr_error>1) START_EEPROM_ADR += 0x10;
 }
 
 void get_eeprom() {

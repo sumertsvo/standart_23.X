@@ -3905,6 +3905,10 @@ adc_result_t ADC_GetConversionResult(void)
 
     return ((adc_result_t)((ADRESH << 8) + ADRESL));
 }
+  void ADC_TemperatureAcquisitionDelay(void)
+{
+    _delay((unsigned long)((200)*(16000000/4000000.0)));
+}
 
 adc_result_t ADC_GetConversion(adc_channel_t channel)
 {
@@ -3927,9 +3931,4 @@ adc_result_t ADC_GetConversion(adc_channel_t channel)
 
 
     return ((adc_result_t)((ADRESH << 8) + ADRESL));
-}
-
-void ADC_TemperatureAcquisitionDelay(void)
-{
-    _delay((unsigned long)((200)*(16000000/4000000.0)));
 }

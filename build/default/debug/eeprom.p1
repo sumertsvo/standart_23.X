@@ -610,3 +610,63 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;eeprom.c: 65: }
 [e :UE 313 ]
 }
+"67
+[; ;eeprom.c: 67: void EEPROM_WriteString(unsigned char addr, char* str1) {
+[v _EEPROM_WriteString `(v ~T0 @X0 1 ef2`uc`*uc ]
+{
+[e :U _EEPROM_WriteString ]
+[v _addr `uc ~T0 @X0 1 r1 ]
+[v _str1 `*uc ~T0 @X0 1 r2 ]
+[f ]
+"68
+[; ;eeprom.c: 68:     unsigned char n;
+[v _n `uc ~T0 @X0 1 a ]
+"69
+[; ;eeprom.c: 69:     for (n = 0; str1[n] != '\0'; n++)
+{
+[e = _n -> -> 0 `i `uc ]
+[e $U 318  ]
+[e :U 315 ]
+"70
+[; ;eeprom.c: 70:         EEPROM_WriteByte(addr + n, str1[n]);
+[e ( _EEPROM_WriteByte (2 , -> + -> _addr `i -> _n `i `uc -> *U + _str1 * -> _n `ux -> -> # *U _str1 `ui `ux `uc ]
+[e ++ _n -> -> 1 `i `uc ]
+[e :U 318 ]
+[e $ != -> *U + _str1 * -> _n `ux -> -> # *U _str1 `ui `ux `ui -> 0 `ui 315  ]
+[e :U 316 ]
+}
+"71
+[; ;eeprom.c: 71: }
+[e :UE 314 ]
+}
+"73
+[; ;eeprom.c: 73: void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz) {
+[v _EEPROM_ReadString `(v ~T0 @X0 1 ef3`uc`*uc`uc ]
+{
+[e :U _EEPROM_ReadString ]
+[v _addr `uc ~T0 @X0 1 r1 ]
+[v _str1 `*uc ~T0 @X0 1 r2 ]
+[v _sz `uc ~T0 @X0 1 r3 ]
+[f ]
+"74
+[; ;eeprom.c: 74:     unsigned char i;
+[v _i `uc ~T0 @X0 1 a ]
+"75
+[; ;eeprom.c: 75:     for (i = 0; i < sz; i++) str1[i] = EEPROM_ReadByte(addr + i);
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 323  ]
+[e :U 320 ]
+[e = *U + _str1 * -> _i `ux -> -> # *U _str1 `ui `ux -> ( _EEPROM_ReadByte (1 -> + -> _addr `i -> _i `i `uc `uc ]
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 323 ]
+[e $ < -> _i `i -> _sz `i 320  ]
+[e :U 321 ]
+}
+"76
+[; ;eeprom.c: 76:     str1[i] = 0;
+[e = *U + _str1 * -> _i `ux -> -> # *U _str1 `ui `ux -> -> 0 `i `uc ]
+"77
+[; ;eeprom.c: 77: }
+[e :UE 319 ]
+}

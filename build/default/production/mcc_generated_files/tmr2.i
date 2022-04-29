@@ -3877,16 +3877,7 @@ void TMR2_StopTimer(void)
 
     T2CONbits.TMR2ON = 0;
 }
-
-uint8_t TMR2_ReadTimer(void)
-{
-    uint8_t readVal;
-
-    readVal = TMR2;
-
-    return readVal;
-}
-
+# 108 "mcc_generated_files/tmr2.c"
 void TMR2_WriteTimer(uint8_t timerVal)
 {
 

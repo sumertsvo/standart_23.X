@@ -56,9 +56,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "327 mcc_generated_files/tmr2.h
 [; ;mcc_generated_files/tmr2.h: 327:  void TMR2_CallBack(void);
 [v _TMR2_CallBack `(v ~T0 @X0 0 ef ]
+[v F2203 `(v ~T0 @X0 0 tf ]
 [v F2205 `(v ~T0 @X0 0 tf ]
 [v F2207 `(v ~T0 @X0 0 tf ]
-[v F2209 `(v ~T0 @X0 0 tf ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1823.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1823.h: 55: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -491,28 +491,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/tmr2.c: 97: }
 [e :UE 299 ]
 }
-"99
-[; ;mcc_generated_files/tmr2.c: 99: uint8_t TMR2_ReadTimer(void)
-[v _TMR2_ReadTimer `(uc ~T0 @X0 1 ef ]
-"100
-[; ;mcc_generated_files/tmr2.c: 100: {
-{
-[e :U _TMR2_ReadTimer ]
-[f ]
-"101
-[; ;mcc_generated_files/tmr2.c: 101:     uint8_t readVal;
-[v _readVal `uc ~T0 @X0 1 a ]
-"103
-[; ;mcc_generated_files/tmr2.c: 103:     readVal = TMR2;
-[e = _readVal _TMR2 ]
-"105
-[; ;mcc_generated_files/tmr2.c: 105:     return readVal;
-[e ) _readVal ]
-[e $UE 300  ]
-"106
-[; ;mcc_generated_files/tmr2.c: 106: }
-[e :UE 300 ]
-}
 "108
 [; ;mcc_generated_files/tmr2.c: 108: void TMR2_WriteTimer(uint8_t timerVal)
 [v _TMR2_WriteTimer `(v ~T0 @X0 1 ef1`uc ]
@@ -531,7 +509,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _TMR2 _timerVal ]
 "112
 [; ;mcc_generated_files/tmr2.c: 112: }
-[e :UE 301 ]
+[e :UE 300 ]
 }
 "114
 [; ;mcc_generated_files/tmr2.c: 114: void TMR2_LoadPeriodRegister(uint8_t periodVal)
@@ -551,7 +529,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _PR2 _periodVal ]
 "117
 [; ;mcc_generated_files/tmr2.c: 117: }
-[e :UE 302 ]
+[e :UE 301 ]
 }
 "119
 [; ;mcc_generated_files/tmr2.c: 119: void TMR2_ISR(void)
@@ -563,8 +541,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "121
 [; ;mcc_generated_files/tmr2.c: 121:     static volatile unsigned int CountCallBack = 0;
-[v F2203 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F2203
+[v F2201 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F2201
 -> -> 0 `i `ui
 ]
 "124
@@ -572,7 +550,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
 "127
 [; ;mcc_generated_files/tmr2.c: 127:     if (++CountCallBack >= 100)
-[e $ ! >= =+ F2203 -> -> 1 `i `Vui -> -> 100 `i `ui 304  ]
+[e $ ! >= =+ F2201 -> -> 1 `i `Vui -> -> 100 `i `ui 303  ]
 "128
 [; ;mcc_generated_files/tmr2.c: 128:     {
 {
@@ -581,14 +559,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _TMR2_CallBack ..  ]
 "133
 [; ;mcc_generated_files/tmr2.c: 133:         CountCallBack = 0;
-[e = F2203 -> -> 0 `i `ui ]
+[e = F2201 -> -> 0 `i `ui ]
 "134
 [; ;mcc_generated_files/tmr2.c: 134:     }
 }
-[e :U 304 ]
+[e :U 303 ]
 "135
 [; ;mcc_generated_files/tmr2.c: 135: }
-[e :UE 303 ]
+[e :UE 302 ]
 }
 "137
 [; ;mcc_generated_files/tmr2.c: 137: void TMR2_CallBack(void)
@@ -600,7 +578,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "141
 [; ;mcc_generated_files/tmr2.c: 141:     if(TMR2_InterruptHandler)
-[e $ ! != _TMR2_InterruptHandler -> -> 0 `i `*F2205 306  ]
+[e $ ! != _TMR2_InterruptHandler -> -> 0 `i `*F2203 305  ]
 "142
 [; ;mcc_generated_files/tmr2.c: 142:     {
 {
@@ -610,24 +588,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "144
 [; ;mcc_generated_files/tmr2.c: 144:     }
 }
-[e :U 306 ]
+[e :U 305 ]
 "145
 [; ;mcc_generated_files/tmr2.c: 145: }
-[e :UE 305 ]
+[e :UE 304 ]
 }
 "147
 [; ;mcc_generated_files/tmr2.c: 147: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
-[v _TMR2_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F2207 ]
+[v _TMR2_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F2205 ]
 {
 [e :U _TMR2_SetInterruptHandler ]
-[v _InterruptHandler `*F2209 ~T0 @X0 1 r1 ]
+[v _InterruptHandler `*F2207 ~T0 @X0 1 r1 ]
 [f ]
 "148
 [; ;mcc_generated_files/tmr2.c: 148:     TMR2_InterruptHandler = InterruptHandler;
 [e = _TMR2_InterruptHandler _InterruptHandler ]
 "149
 [; ;mcc_generated_files/tmr2.c: 149: }
-[e :UE 307 ]
+[e :UE 306 ]
 }
 "151
 [; ;mcc_generated_files/tmr2.c: 151: void TMR2_DefaultInterruptHandler(void){
@@ -637,5 +615,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "154
 [; ;mcc_generated_files/tmr2.c: 154: }
-[e :UE 308 ]
+[e :UE 307 ]
 }
