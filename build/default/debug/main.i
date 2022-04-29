@@ -4100,7 +4100,7 @@ void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 # 31 "main.c"
 const __uint24 BAD_WSP_VOLTAGE = 20000;
 const __uint24 GOOD_WSP_VOLTAGE = 40000;
-const __uint24 ROTATION_TIME = 60;
+const __uint24 ROTATION_TIME = 120;
 # 51 "main.c"
 struct f_field {
     unsigned ALARM : 1;
@@ -4143,9 +4143,9 @@ void beep(char time, char count) {
 void go_close() {
     time_s = 0;
     do { LATCbits.LATC4 = 1; } while(0);
-    _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
+    _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 20;
+    time_pow_s = 10;
     FLAGS.bits.RELE_POW_WAIT = 1;
     FLAGS.bits.RELE_CON_WAIT = 1;
     return;
@@ -4154,7 +4154,7 @@ void go_close() {
 void go_open() {
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 20;
+    time_pow_s = 10;
     FLAGS.bits.RELE_POW_WAIT = 1;
     return;
 }
@@ -4303,7 +4303,7 @@ void rele_tick() {
         } else {
             if (FLAGS.bits.RELE_CON_WAIT) {
                 do { LATCbits.LATC5 = 0; } while(0);
-                _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
+                _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
                 do { LATCbits.LATC4 = 0; } while(0);
                 FLAGS.bits.CLOSED = 1;
                 FLAGS.bits.RELE_CON_WAIT = 0;
@@ -4346,7 +4346,7 @@ void povorot() {
             ) {
         go_close();
     }
-    if ((time_s > (ROTATION_TIME + 20 + 5 * 2)) &&
+    if ((time_s > (ROTATION_TIME + 10 + 2 * 2)) &&
             FLAGS.bits.CLOSED &&
             FLAGS.bits.ALARM == 0 &&
             FLAGS.bits.NORMAL_WORK_MODE
@@ -4385,14 +4385,14 @@ void switch_wm() {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
             if (FLAGS.bits.CLOSED) go_close_alt();
 
-            beep( 40, 3);
+            beep( 40, 7);
         }
     } else {
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
             if (FLAGS.bits.CLOSED) go_close();
 
-            beep(40, 2);
+            beep(40, 4);
         }
     }
 }
@@ -4405,7 +4405,7 @@ void get_voltage() {
             if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
         }
         __uint24 buf = time_s;
-        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 16; q += 4) {
+        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 12; q += 4) {
             EEPROM_WriteShortLong(q, buf);
         }
     }

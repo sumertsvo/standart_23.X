@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                               Fri Apr 29 16:38:21 2022
+                                                                                               Fri Apr 29 17:35:04 2022
 
 Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
      1                           	processor	16F1823
@@ -1350,7 +1350,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1336                           	psect	stringtext1
   1337  0772                     __pstringtext1:
   1338  0772                     _ROTATION_TIME:
-  1339  0772  343C               	retlw	60
+  1339  0772  3478               	retlw	120
   1340  0773  3400               	retlw	0
   1341  0774  3400               	retlw	0
   1342  0775                     __end_of_ROTATION_TIME:
@@ -2156,8 +2156,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2142  0500  3187  2760  3184   	fcall	_go_close_alt
   2143  0503                     l2591:
   2144                           
-  2145                           ;main.c: 378:             beep( 40, 3);
-  2146  0503  3003               	movlw	3
+  2145                           ;main.c: 378:             beep( 40, 7);
+  2146  0503  3007               	movlw	7
   2147  0504  0020               	movlb	0	; select bank0
   2148  0505  00A6               	movwf	??_switch_wm
   2149  0506  0826               	movf	??_switch_wm,w
@@ -2190,8 +2190,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2176  0516  3185  25C9  3184   	fcall	_go_close
   2177  0519                     l450:
   2178                           
-  2179                           ;main.c: 385:             beep(40, 2);
-  2180  0519  3002               	movlw	2
+  2179                           ;main.c: 385:             beep(40, 4);
+  2180  0519  3004               	movlw	4
   2181  051A  0020               	movlb	0	; select bank0
   2182  051B  00A6               	movwf	??_switch_wm
   2183  051C  0826               	movf	??_switch_wm,w
@@ -4328,7 +4328,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4307  02CD  0256               	subwf	_time_s+1,w
   4308  02CE  1D03               	skipz
   4309  02CF  2AD2               	goto	u1795
-  4310  02D0  303D               	movlw	61
+  4310  02D0  3079               	movlw	121
   4311  02D1  0255               	subwf	_time_s,w
   4312  02D2                     u1795:
   4313  02D2  1C03               	skipc
@@ -4364,7 +4364,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4343  02E2  3185  25C9  3182   	fcall	_go_close
   4344  02E5                     l2541:
   4345                           
-  4346                           ;main.c: 339:     if ((time_s > (ROTATION_TIME + 20 + 5 * 2)) &&
+  4346                           ;main.c: 339:     if ((time_s > (ROTATION_TIME + 10 + 2 * 2)) &&
   4347  02E5  3000               	movlw	0
   4348  02E6  0020               	movlb	0	; select bank0
   4349  02E7  0257               	subwf	_time_s+2,w
@@ -4374,7 +4374,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4353  02EB  0256               	subwf	_time_s+1,w
   4354  02EC  1D03               	skipz
   4355  02ED  2AF0               	goto	u1835
-  4356  02EE  305B               	movlw	91
+  4356  02EE  3087               	movlw	135
   4357  02EF  0255               	subwf	_time_s,w
   4358  02F0                     u1835:
   4359  02F0  1C03               	skipc
@@ -4550,7 +4550,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4528  0210  0857               	movf	_time_s+2,w
   4529  0211  00B2               	movwf	get_voltage@buf_800+2
   4530                           
-  4531                           ;main.c: 398:         for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 16; q += 4)
+  4531                           ;main.c: 398:         for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 12; q += 4)
       +                           {
   4532  0212  085F               	movf	_START_EEPROM_ADR,w
   4533  0213  00AE               	movwf	??_get_voltage
@@ -4579,7 +4579,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4556  0226  07B6               	addwf	get_voltage@q_801,f
   4557  0227                     l2623:
   4558  0227  085F               	movf	_START_EEPROM_ADR,w
-  4559  0228  3E10               	addlw	16
+  4559  0228  3E0C               	addlw	12
   4560  0229  00AE               	movwf	??_get_voltage
   4561  022A  3000               	movlw	0
   4562  022B  1803               	skipnc
@@ -5568,8 +5568,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5539  0721  168E               	bsf	14,5	;volatile
   5540  0722                     l2389:
   5541                           
-  5542                           ;main.c: 103:     time_pow_s = 20;
-  5543  0722  3014               	movlw	20
+  5542                           ;main.c: 103:     time_pow_s = 10;
+  5543  0722  300A               	movlw	10
   5544  0723  0020               	movlb	0	; select bank0
   5545  0724  00A0               	movwf	??_go_open
   5546  0725  0820               	movf	??_go_open,w
@@ -5693,13 +5693,13 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5664  05D1  160E               	bsf	14,4	;volatile
   5665  05D2                     l286:
   5666                           
-  5667                           ;main.c: 92:     _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
-  5668  05D2  3066               	movlw	102
+  5667                           ;main.c: 92:     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
+  5668  05D2  3029               	movlw	41
   5669  05D3  0020               	movlb	0	; select bank0
   5670  05D4  00A1               	movwf	??_go_close+1
-  5671  05D5  3076               	movlw	118
+  5671  05D5  3096               	movlw	150
   5672  05D6  00A0               	movwf	??_go_close
-  5673  05D7  30C1               	movlw	193
+  5673  05D7  307F               	movlw	127
   5674  05D8                     u2167:
   5675  05D8  0B89               	decfsz	9,f
   5676  05D9  2DD8               	goto	u2167
@@ -5712,8 +5712,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5683  05DF  168E               	bsf	14,5	;volatile
   5684  05E0                     l288:
   5685                           
-  5686                           ;main.c: 94:     time_pow_s = 20;
-  5687  05E0  3014               	movlw	20
+  5686                           ;main.c: 94:     time_pow_s = 10;
+  5687  05E0  300A               	movlw	10
   5688  05E1  0020               	movlb	0	; select bank0
   5689  05E2  00A0               	movwf	??_go_close
   5690  05E3  0820               	movf	??_go_close,w
@@ -6491,12 +6491,12 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   6454  0590  128E               	bcf	14,5	;volatile
   6455  0591                     i1l2059:
   6456                           
-  6457                           ;main.c: 296:                 _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
-  6458  0591  3066               	movlw	102
+  6457                           ;main.c: 296:                 _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
+  6458  0591  3029               	movlw	41
   6459  0592  00F1               	movwf	??_rele_tick+1
-  6460  0593  3076               	movlw	118
+  6460  0593  3096               	movlw	150
   6461  0594  00F0               	movwf	??_rele_tick
-  6462  0595  30C1               	movlw	193
+  6462  0595  307F               	movlw	127
   6463  0596                     u219_27:
   6464  0596  0B89               	decfsz	9,f
   6465  0597  2D96               	goto	u219_27
@@ -6928,12 +6928,12 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   6888  05F0  160E               	bsf	14,4	;volatile
   6889  05F1                     i1l286:
   6890                           
-  6891                           ;main.c: 92:     _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
-  6892  05F1  3066               	movlw	102
+  6891                           ;main.c: 92:     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
+  6892  05F1  3029               	movlw	41
   6893  05F2  00F1               	movwf	??i1_go_close+1
-  6894  05F3  3076               	movlw	118
+  6894  05F3  3096               	movlw	150
   6895  05F4  00F0               	movwf	??i1_go_close
-  6896  05F5  30C1               	movlw	193
+  6896  05F5  307F               	movlw	127
   6897  05F6                     u221_27:
   6898  05F6  0B89               	decfsz	9,f
   6899  05F7  2DF6               	goto	u221_27
@@ -6947,8 +6947,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   6907  05FE  168E               	bsf	14,5	;volatile
   6908  05FF                     i1l288:
   6909                           
-  6910                           ;main.c: 94:     time_pow_s = 20;
-  6911  05FF  3014               	movlw	20
+  6910                           ;main.c: 94:     time_pow_s = 10;
+  6911  05FF  300A               	movlw	10
   6912  0600  00F0               	movwf	??i1_go_close
   6913  0601  0870               	movf	??i1_go_close,w
   6914  0602  0020               	movlb	0	; select bank0
@@ -7643,7 +7643,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                   Fri Apr 29 16:38:21 2022
+Symbol Table                                                                                   Fri Apr 29 17:35:04 2022
 
         __end_of_TMR2_SetInterruptHandler 0755                          get_fun_full@flag 0027  
                       get_fun@fun_counter 005D                            ___bmul@product 0022  

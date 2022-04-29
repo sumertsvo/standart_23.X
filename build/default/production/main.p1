@@ -548,10 +548,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 40000 `l `um
 ]
 "33
-[; ;main.c: 33: const __uint24 ROTATION_TIME = 60;
+[; ;main.c: 33: const __uint24 ROTATION_TIME = 120;
 [v _ROTATION_TIME `Cum ~T0 @X0 1 e ]
 [i _ROTATION_TIME
--> -> -> 60 `i `m `um
+-> -> -> 120 `i `m `um
 ]
 "65
 [; ;main.c: 65: } FLAGS;
@@ -665,8 +665,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 318 ]
 "92
-[; ;main.c: 92:     _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
-[e ( __delay (1 -> * -> * -> 5 `i -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;main.c: 92:     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> * -> 2 `i -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
 "93
 [; ;main.c: 93:     do { LATCbits.LATC5 = 1; } while(0);
 [e :U 322 ]
@@ -675,8 +675,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 321 ]
 "94
-[; ;main.c: 94:     time_pow_s = 20;
-[e = _time_pow_s -> -> 20 `i `uc ]
+[; ;main.c: 94:     time_pow_s = 10;
+[e = _time_pow_s -> -> 10 `i `uc ]
 "95
 [; ;main.c: 95:     FLAGS.bits.RELE_POW_WAIT = 1;
 [e = . . _FLAGS 1 5 -> -> 1 `i `uc ]
@@ -711,8 +711,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 328 ]
 "103
-[; ;main.c: 103:     time_pow_s = 20;
-[e = _time_pow_s -> -> 20 `i `uc ]
+[; ;main.c: 103:     time_pow_s = 10;
+[e = _time_pow_s -> -> 10 `i `uc ]
 "104
 [; ;main.c: 104:     FLAGS.bits.RELE_POW_WAIT = 1;
 [e = . . _FLAGS 1 5 -> -> 1 `i `uc ]
@@ -1274,8 +1274,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 439 ]
 "296
-[; ;main.c: 296:                 _delay((unsigned long)((5 * 1000)*(16000000/4000.0)));
-[e ( __delay (1 -> * -> * -> 5 `i -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;main.c: 296:                 _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
+[e ( __delay (1 -> * -> * -> 2 `i -> 1000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
 "297
 [; ;main.c: 297:                 do { LATCbits.LATC4 = 0; } while(0);
 [e :U 443 ]
@@ -1420,8 +1420,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 459 ]
 "339
-[; ;main.c: 339:     if ((time_s > (ROTATION_TIME + 20 + 5 * 2)) &&
-[e $ ! && && && > _time_s + + _ROTATION_TIME -> -> -> 20 `i `m `um -> -> * -> 5 `i -> 2 `i `m `um != -> . . _FLAGS 1 2 `i -> 0 `i == -> . . _FLAGS 1 0 `i -> 0 `i != -> . . _FLAGS 1 1 `i -> 0 `i 460  ]
+[; ;main.c: 339:     if ((time_s > (ROTATION_TIME + 10 + 2 * 2)) &&
+[e $ ! && && && > _time_s + + _ROTATION_TIME -> -> -> 10 `i `m `um -> -> * -> 2 `i -> 2 `i `m `um != -> . . _FLAGS 1 2 `i -> 0 `i == -> . . _FLAGS 1 0 `i -> 0 `i != -> . . _FLAGS 1 1 `i -> 0 `i 460  ]
 "343
 [; ;main.c: 343:             ) {
 {
@@ -1508,8 +1508,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _switch_wm ]
 [f ]
 "373
-[; ;main.c: 373:     if (FLAGS.bits._JUMP_CONNECTED) {
-[e $ ! != -> . . _FLAGS 1 4 `i -> 0 `i 469  ]
+[; ;main.c: 373:     if (!FLAGS.bits._JUMP_CONNECTED) {
+[e $ ! ! != -> . . _FLAGS 1 4 `i -> 0 `i 469  ]
 {
 "374
 [; ;main.c: 374:         if (FLAGS.bits.NORMAL_WORK_MODE) {
@@ -1524,8 +1524,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _go_close_alt ..  ]
 [e :U 471 ]
 "378
-[; ;main.c: 378:             beep( 40, 3);
-[e ( _beep (2 , -> -> 40 `i `uc -> -> 3 `i `uc ]
+[; ;main.c: 378:             beep( 40, 7);
+[e ( _beep (2 , -> -> 40 `i `uc -> -> 7 `i `uc ]
 "379
 [; ;main.c: 379:         }
 }
@@ -1549,8 +1549,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _go_close ..  ]
 [e :U 474 ]
 "385
-[; ;main.c: 385:             beep(40, 2);
-[e ( _beep (2 , -> -> 40 `i `uc -> -> 2 `i `uc ]
+[; ;main.c: 385:             beep(40, 4);
+[e ( _beep (2 , -> -> 40 `i `uc -> -> 4 `i `uc ]
 "386
 [; ;main.c: 386:         }
 }

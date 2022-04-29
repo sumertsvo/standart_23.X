@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.36\pic\dat\en_msgs.txt -cn \
   -h+dist/default/debug\standart_23.X.debug.sym \
   --cmf=dist/default/debug\standart_23.X.debug.cmf -z -Q16F1823 \
-  -oC:\Users\vlads\AppData\Local\Temp\xcAsb5s.4 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\vlads\AppData\Local\Temp\xcAsdk0.4 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/debug/standart_23.X.debug.map \
-  --md=C:\Users\vlads\AppData\Local\Temp\xcAsb5s.dat -E1 -ver=XC8 Compiler \
+  --md=C:\Users\vlads\AppData\Local\Temp\xcAsdk0.dat -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ACODE=00h-07FFh -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 \
   -ACONST=00h-0FFhx8 -AENTRY=00h-0FFhx8 -ACOMMON=070h-07Fh \
   -ABANK0=020h-06Fh -ABANK1=0A0h-0AFh -ABIGRAM=02000h-0205Fh \
@@ -26,7 +26,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\vlads\AppData\Local\Temp\xcAsb5s.o \
+  -pfunctab=ENTRY -k C:\Users\vlads\AppData\Local\Temp\xcAsdk0.o \
   dist/default/debug\standart_23.X.debug.o 
 
 Object code version is 3.11
@@ -36,7 +36,7 @@ Machine type is 16F1823
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\vlads\AppData\Local\Temp\xcAsb5s.o
+C:\Users\vlads\AppData\Local\Temp\xcAsdk0.o
                 end_init                             26       26        1        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        2        0       4

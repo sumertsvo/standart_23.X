@@ -26,11 +26,11 @@
 
 #ifdef DEBUG_ENABLED
 
-#define RELE_TIME 20// sec
-#define RELE_GAP 5 // sec
+#define RELE_TIME 10// sec
+#define RELE_GAP 2 // sec
 const __uint24  BAD_WSP_VOLTAGE = 20000; //
 const __uint24  GOOD_WSP_VOLTAGE = 40000; //
-const __uint24  ROTATION_TIME = 60; //sec
+const __uint24  ROTATION_TIME = 120; //sec
 
 #else
 
@@ -370,19 +370,19 @@ void fun_work() {//работа переключателя
 }
 
 void switch_wm() {//выбор режима работы
-    if (FLAGS.bits._JUMP_CONNECTED) {//go_alt_mode
+    if (!FLAGS.bits._JUMP_CONNECTED) {//go_alt_mode
         if (FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
             if (FLAGS.bits.CLOSED) go_close_alt();
             //три высоких писка
-            beep( 40, 3); //_freq pause work_time count
+            beep( 40, 7); //_freq pause work_time count
         }
     } else {//go_norm_mode
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
             if (FLAGS.bits.CLOSED) go_close();
             //два высоких писка
-            beep(40, 2); //_freq pause work_time count;
+            beep(40, 4); //_freq pause work_time count;
         }
     }
 }
