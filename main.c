@@ -5,7 +5,6 @@
 #define DEBUG_ENABLED
 
 //SETUP 
-//#define _XTAL_FREQ 4000000 //частота МК
 #define ROTATION_DAYS 14 //дней до поворота крана
 #define LOW_WATER_RESISTANSE 20000  //сопротивление датчика
 #define HIGH_WATER_RESISTANSE 25000 //
@@ -309,7 +308,7 @@ void rele_tick() {//закрытие кранов (задержка на раб�
 
 void sec_tick_work() {//работа секундного таймера
 #ifdef DEBUG_ENABLED
-    switch_zum();
+ //   switch_zum();
 #endif
     time_s++;
     rele_tick();
@@ -370,17 +369,17 @@ void fun_work() {//работа переключателя
 }
 
 void switch_wm() {//выбор режима работы
-    if (!FLAGS.bits._JUMP_CONNECTED) {//go_alt_mode
+    if (FLAGS.bits._JUMP_CONNECTED) {//go_alt_mode
         if (FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
-            if (FLAGS.bits.CLOSED) go_close_alt();
+         //   if (FLAGS.bits.CLOSED) go_close_alt();
             //три высоких писка
-            beep( 40, 7); //_freq pause work_time count
+            beep( 40, 8); //_freq pause work_time count
         }
     } else {//go_norm_mode
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
-            if (FLAGS.bits.CLOSED) go_close();
+        //    if (FLAGS.bits.CLOSED) go_close();
             //два высоких писка
             beep(40, 4); //_freq pause work_time count;
         }
@@ -508,7 +507,6 @@ void start_setup() {//начальная настройка
     get_fun_full();
     get_jump_full();
     time_pow_s = 0;
-    //time_s=get from eeprom
 }
 
 void main(void) {
