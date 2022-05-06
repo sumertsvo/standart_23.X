@@ -4041,7 +4041,7 @@ _Bool ADC_IsConversionDone(void);
 # 260 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
 # 290 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
+char ADC_GetConversion(adc_channel_t channel);
 # 318 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
 # 58 "./mcc_generated_files/mcc.h" 2
@@ -4097,11 +4097,11 @@ void EEPROM_WriteString(unsigned char addr, char* str1);
 
 void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 # 2 "main.c" 2
-# 31 "main.c"
-const __uint24 BAD_WSP_VOLTAGE = 20000;
-const __uint24 GOOD_WSP_VOLTAGE = 40000;
+# 32 "main.c"
+const __uint24 BAD_WSP_VOLTAGE = 120;
+const __uint24 GOOD_WSP_VOLTAGE = 135;
 const __uint24 ROTATION_TIME = 120;
-# 51 "main.c"
+# 50 "main.c"
 struct f_field {
     unsigned ALARM : 1;
     unsigned NORMAL_WORK_MODE : 1;
@@ -4204,10 +4204,10 @@ void get_fun() {
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     do { ANSELCbits.ANSC2 = 0; } while(0);
     do { LATCbits.LATC1 = 0; } while(0);
-    if (res < 2000) fun_counter--;
+    if (res < 50) fun_counter--;
     else fun_counter++;
-# 166 "main.c"
-       if (fun_counter > 10) {
+# 165 "main.c"
+    if (fun_counter > 10) {
         fun_counter = 10;
         FLAGS.bits._FUN_CONNECTED = 0;
     } else if (fun_counter<-10) {
@@ -4226,10 +4226,10 @@ void get_fun_full() {
     char flag = 0;
     do {
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
-        if (res < 2000) fun_counter--;
+        if (res < 50) fun_counter--;
         else fun_counter++;
-# 201 "main.c"
-          if (fun_counter > 10) {
+# 200 "main.c"
+        if (fun_counter > 10) {
             fun_counter = 10;
             FLAGS.bits._FUN_CONNECTED = 0;
             flag = 1;
@@ -4255,9 +4255,9 @@ void get_jump() {
     do { ANSELAbits.ANSA1 = 0; } while(0);
 
 
-    if (res < 2000) jump_counter--;
+    if (res < 50) jump_counter--;
     else jump_counter++;
-# 239 "main.c"
+# 238 "main.c"
     if (jump_counter > 10) {
         jump_counter = 10;
         FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4277,9 +4277,9 @@ void get_jump_full() {
     char flag = 0;
     do {
         unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-        if (res < 2000) jump_counter--;
+        if (res < 50) jump_counter--;
         else jump_counter++;
-# 273 "main.c"
+# 272 "main.c"
         if (jump_counter > 10) {
             jump_counter = 10;
             FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4319,7 +4319,7 @@ void rele_tick() {
 
 void sec_tick_work() {
 
-    switch_zum();
+
 
     time_s++;
     rele_tick();
@@ -4366,7 +4366,7 @@ void fun_work() {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
 
-            beep( 40, 1);
+            beep(40, 1);
         };
         if (!FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.CLOSED &&
@@ -4374,23 +4374,23 @@ void fun_work() {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
 
-            beep( 40, 2);
+            beep(40, 2);
         }
     }
 }
 
 void switch_wm() {
-    if (!FLAGS.bits._JUMP_CONNECTED) {
+    if (FLAGS.bits._JUMP_CONNECTED) {
         if (FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
-            if (FLAGS.bits.CLOSED) go_close_alt();
 
-            beep( 40, 7);
+
+            beep(40, 8);
         }
     } else {
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
-            if (FLAGS.bits.CLOSED) go_close();
+
 
             beep(40, 4);
         }
@@ -4410,89 +4410,14 @@ void get_voltage() {
         }
     }
 }
-
-void get_adr() {
-    char buf = 0;
-    char adr[8][2] = {};
-
-    for (unsigned char i = 0; i < 8; i++) {
-        buf = EEPROM_ReadByte(i);
-        if (buf == 0) continue;
-        for (unsigned char q = 0; q < 8; q++) {
-            if (buf == adr[q][0]) {
-                (adr[q][1])++;
-                buf = 0;
-            }
-        }
-
-        if (buf != 0) {
-            for (unsigned char q = 0; q < 8; q++)
-                if (adr[q][0] == 0) {
-                    adr[q][0] = buf;
-                    adr[q][1] = 1;
-                    buf = 0;
-                    break;
-                }
-        }
-    }
-    buf = 0;
-    for (unsigned char i = 0; i < 8; i++) {
-        if (adr[i][1] > adr[buf][1]) buf = i;
-    }
-    START_EEPROM_ADR = adr[buf][0];
-    if (START_EEPROM_ADR == 0 || START_EEPROM_ADR == 0xFF) START_EEPROM_ADR = 0x10;
-
-}
-
-void get_time(){
-
-    char adr_error = 0;
-    char buf=0;
-    __uint24 buf2 = 0;
-    __uint24 times[3] = {};
-    char time_count[3]={};
-    for (unsigned char i = START_EEPROM_ADR; i < START_EEPROM_ADR + 0x10; i += 4) {
-        buf2 = EEPROM_ReadShortLong(i);
-
-        for (char q = 0; q < 3; q++) {
-            if (buf2 == times[q]) {
-                time_count[q]++;
-                buf2 = 0;
-            }
-        }
-
-        if (buf2 != 0) {
-            adr_error ++;
-            for (unsigned char q = 0; q < 3; q++)
-                if (times[q]== 0) {
-                    times[q] = buf;
-                    time_count[q] = 1;
-                    buf = 0;
-                    break;
-                }
-        }
-    }
-    buf = 0;
-    for (unsigned char q = 0; q < 3; q++) {
-        if (time_count[q] > time_count[buf]) buf = q;
-    }
-    time_s = times[buf];
-
-    if (adr_error>1) START_EEPROM_ADR += 0x10;
-}
-
-void get_eeprom() {
-    get_adr();
-    get_time();
-}
-
+# 478 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
     (INTCONbits.GIE = 1);
     (INTCONbits.PEIE = 1);
 
-    get_eeprom();
+
     TMR0_SetInterruptHandler(switch_zum);
     TMR2_SetInterruptHandler(sec_tick_work);
     TMR2_StartTimer();

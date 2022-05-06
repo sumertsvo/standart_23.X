@@ -424,8 +424,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _ADC_Initialize ]
 [f ]
 "72
-[; ;mcc_generated_files/adc.c: 72:     ADCON1 = 0x40;
-[e = _ADCON1 -> -> 64 `i `uc ]
+[; ;mcc_generated_files/adc.c: 72:     ADCON1 = 0x50;
+[e = _ADCON1 -> -> 80 `i `uc ]
 "75
 [; ;mcc_generated_files/adc.c: 75:     ADRESL = 0x00;
 [e = _ADRESL -> -> 0 `i `uc ]
@@ -477,98 +477,98 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/adc.c: 97: }
 [e :UE 300 ]
 }
-"100
-[; ;mcc_generated_files/adc.c: 100: _Bool ADC_IsConversionDone(void)
+"99
+[; ;mcc_generated_files/adc.c: 99: _Bool ADC_IsConversionDone(void)
 [v _ADC_IsConversionDone `(a ~T0 @X0 1 ef ]
-"101
-[; ;mcc_generated_files/adc.c: 101: {
+"100
+[; ;mcc_generated_files/adc.c: 100: {
 {
 [e :U _ADC_IsConversionDone ]
 [f ]
-"103
-[; ;mcc_generated_files/adc.c: 103:    return ((_Bool)(!ADCON0bits.GO_nDONE));
+"102
+[; ;mcc_generated_files/adc.c: 102:    return ((_Bool)(!ADCON0bits.GO_nDONE));
 [e ) -> -> ! != -> . . _ADCON0bits 0 1 `i -> 0 `i `i `a ]
 [e $UE 301  ]
-"104
-[; ;mcc_generated_files/adc.c: 104: }
+"103
+[; ;mcc_generated_files/adc.c: 103: }
 [e :UE 301 ]
 }
-"106
-[; ;mcc_generated_files/adc.c: 106: adc_result_t ADC_GetConversionResult(void)
+"105
+[; ;mcc_generated_files/adc.c: 105: adc_result_t ADC_GetConversionResult(void)
 [v _ADC_GetConversionResult `(us ~T0 @X0 1 ef ]
-"107
-[; ;mcc_generated_files/adc.c: 107: {
+"106
+[; ;mcc_generated_files/adc.c: 106: {
 {
 [e :U _ADC_GetConversionResult ]
 [f ]
-"109
-[; ;mcc_generated_files/adc.c: 109:     return ((adc_result_t)((ADRESH << 8) + ADRESL));
+"108
+[; ;mcc_generated_files/adc.c: 108:     return ((adc_result_t)((ADRESH << 8) + ADRESL));
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
 [e $UE 302  ]
-"110
-[; ;mcc_generated_files/adc.c: 110: }
+"109
+[; ;mcc_generated_files/adc.c: 109: }
 [e :UE 302 ]
 }
 "111
-[; ;mcc_generated_files/adc.c: 111:   void ADC_TemperatureAcquisitionDelay(void)
-[v _ADC_TemperatureAcquisitionDelay `(v ~T0 @X0 1 ef ]
+[; ;mcc_generated_files/adc.c: 111: char ADC_GetConversion(adc_channel_t channel)
+[v _ADC_GetConversion `(uc ~T0 @X0 1 ef1`E2178 ]
 "112
 [; ;mcc_generated_files/adc.c: 112: {
 {
-[e :U _ADC_TemperatureAcquisitionDelay ]
+[e :U _ADC_GetConversion ]
+"111
+[; ;mcc_generated_files/adc.c: 111: char ADC_GetConversion(adc_channel_t channel)
+[v _channel `E2178 ~T0 @X0 1 r1 ]
+"112
+[; ;mcc_generated_files/adc.c: 112: {
 [f ]
-"113
-[; ;mcc_generated_files/adc.c: 113:     _delay((unsigned long)((200)*(16000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 "114
-[; ;mcc_generated_files/adc.c: 114: }
+[; ;mcc_generated_files/adc.c: 114:     ADCON0bits.CHS = channel;
+[e = . . _ADCON0bits 1 2 -> _channel `uc ]
+"117
+[; ;mcc_generated_files/adc.c: 117:     ADCON0bits.ADON = 1;
+[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
+"120
+[; ;mcc_generated_files/adc.c: 120:     _delay((unsigned long)((5)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"123
+[; ;mcc_generated_files/adc.c: 123:     ADCON0bits.GO_nDONE = 1;
+[e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
+"126
+[; ;mcc_generated_files/adc.c: 126:     while (ADCON0bits.GO_nDONE)
+[e $U 304  ]
+[e :U 305 ]
+"127
+[; ;mcc_generated_files/adc.c: 127:     {
+{
+"128
+[; ;mcc_generated_files/adc.c: 128:     }
+}
+[e :U 304 ]
+"126
+[; ;mcc_generated_files/adc.c: 126:     while (ADCON0bits.GO_nDONE)
+[e $ != -> . . _ADCON0bits 0 1 `i -> 0 `i 305  ]
+[e :U 306 ]
+"131
+[; ;mcc_generated_files/adc.c: 131:     return ( ADRESH);
+[e ) -> _ADRESH `uc ]
+[e $UE 303  ]
+"132
+[; ;mcc_generated_files/adc.c: 132: }
 [e :UE 303 ]
 }
-"116
-[; ;mcc_generated_files/adc.c: 116: adc_result_t ADC_GetConversion(adc_channel_t channel)
-[v _ADC_GetConversion `(us ~T0 @X0 1 ef1`E2178 ]
-"117
-[; ;mcc_generated_files/adc.c: 117: {
+"134
+[; ;mcc_generated_files/adc.c: 134: void ADC_TemperatureAcquisitionDelay(void)
+[v _ADC_TemperatureAcquisitionDelay `(v ~T0 @X0 1 ef ]
+"135
+[; ;mcc_generated_files/adc.c: 135: {
 {
-[e :U _ADC_GetConversion ]
-"116
-[; ;mcc_generated_files/adc.c: 116: adc_result_t ADC_GetConversion(adc_channel_t channel)
-[v _channel `E2178 ~T0 @X0 1 r1 ]
-"117
-[; ;mcc_generated_files/adc.c: 117: {
+[e :U _ADC_TemperatureAcquisitionDelay ]
 [f ]
-"119
-[; ;mcc_generated_files/adc.c: 119:     ADCON0bits.CHS = channel;
-[e = . . _ADCON0bits 1 2 -> _channel `uc ]
-"122
-[; ;mcc_generated_files/adc.c: 122:     ADCON0bits.ADON = 1;
-[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-"125
-[; ;mcc_generated_files/adc.c: 125:     _delay((unsigned long)((5)*(16000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-"128
-[; ;mcc_generated_files/adc.c: 128:     ADCON0bits.GO_nDONE = 1;
-[e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
-"131
-[; ;mcc_generated_files/adc.c: 131:     while (ADCON0bits.GO_nDONE)
-[e $U 305  ]
-[e :U 306 ]
-"132
-[; ;mcc_generated_files/adc.c: 132:     {
-{
-"133
-[; ;mcc_generated_files/adc.c: 133:     }
-}
-[e :U 305 ]
-"131
-[; ;mcc_generated_files/adc.c: 131:     while (ADCON0bits.GO_nDONE)
-[e $ != -> . . _ADCON0bits 0 1 `i -> 0 `i 306  ]
-[e :U 307 ]
 "136
-[; ;mcc_generated_files/adc.c: 136:     return ((adc_result_t)((ADRESH << 8) + ADRESL));
-[e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `us ]
-[e $UE 304  ]
+[; ;mcc_generated_files/adc.c: 136:     _delay((unsigned long)((200)*(16000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 "137
 [; ;mcc_generated_files/adc.c: 137: }
-[e :UE 304 ]
+[e :UE 307 ]
 }

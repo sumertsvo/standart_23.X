@@ -1,20 +1,22 @@
 #include "mcc_generated_files/mcc.h"
 #include "eeprom.h"
 
-//   
+//настройка компиляции
+//
 #define DEBUG_ENABLED
+//#define doubledd
 
 //SETUP 
 #define ROTATION_DAYS 14 //дней до поворота крана
 #define LOW_WATER_RESISTANSE 20000  //сопротивление датчика
 #define HIGH_WATER_RESISTANSE 25000 //
 #define UP_RESISTANSE 20000 //сопротивление делителя
-#define LOW_PIN_VOLTAGE 2000 // "низкий логический уровень"
+#define LOW_PIN_VOLTAGE 50 // "низкий логический уровень"
 
 //защита от дребезга
 #define WSP_MEAS_COUNT 2    //количество измерений датчика
 
-//#define doubledd
+
 
 #ifdef doubledd
 #define FUN_MEAS_COUNT 10   //количество измерений переключателя
@@ -27,8 +29,8 @@
 
 #define RELE_TIME 10// sec
 #define RELE_GAP 2 // sec
-const __uint24 BAD_WSP_VOLTAGE = 20000; //
-const __uint24 GOOD_WSP_VOLTAGE = 40000; //
+const __uint24 BAD_WSP_VOLTAGE = 120; //
+const __uint24 GOOD_WSP_VOLTAGE = 135; //
 const __uint24 ROTATION_TIME = 120; //sec
 
 #else
@@ -397,7 +399,7 @@ void get_voltage() {
         }
     }
 }
-
+/*
 void get_adr() {
     char buf = 0;
     char adr[8][2] = {};
@@ -472,14 +474,14 @@ void get_eeprom() {
     get_adr();
     get_time();
 }
-
+//*/
 void start_setup() {//начальная настройка
     //MCC сгенерировано
     SYSTEM_Initialize(); // initialize the device
     INTERRUPT_GlobalInterruptEnable(); // Enable the Global Interrupts
     INTERRUPT_PeripheralInterruptEnable(); // Enable the Peripheral Interrupts
     // end MCC
-    get_eeprom();
+   // get_eeprom();
     TMR0_SetInterruptHandler(switch_zum);
     TMR2_SetInterruptHandler(sec_tick_work);
     TMR2_StartTimer(); //начать секундный счет

@@ -287,7 +287,7 @@ adc_result_t ADC_GetConversionResult(void);
     conversion = ADC_GetConversion(AN1_Channel);
     </code>
 */
-adc_result_t ADC_GetConversion(adc_channel_t channel);
+char ADC_GetConversion(adc_channel_t channel);
 
 /**
   @Summary

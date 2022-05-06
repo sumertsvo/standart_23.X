@@ -4042,7 +4042,7 @@ _Bool ADC_IsConversionDone(void);
 # 260 "mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
 # 290 "mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
+char ADC_GetConversion(adc_channel_t channel);
 # 318 "mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
 # 58 "mcc_generated_files/mcc.h" 2
