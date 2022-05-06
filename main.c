@@ -27,25 +27,23 @@
 
 #define RELE_TIME 10// sec
 #define RELE_GAP 2 // sec
-const __uint24  BAD_WSP_VOLTAGE = 20000; //
-const __uint24  GOOD_WSP_VOLTAGE = 40000; //
-const __uint24  ROTATION_TIME = 120; //sec
+const __uint24 BAD_WSP_VOLTAGE = 20000; //
+const __uint24 GOOD_WSP_VOLTAGE = 40000; //
+const __uint24 ROTATION_TIME = 120; //sec
 
 #else
 
 #define RELE_TIME 120 // sec
 #define RELE_GAP 1 //sec
-const unsigned short long  BAD_WSP_VOLTAGE = LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256); //	TODO
-const unsigned short long  GOOD_WSP_VOLTAGE = HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); //	TODO
-const unsigned short long  ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const unsigned short long BAD_WSP_VOLTAGE = LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256); //	TODO
+const unsigned short long GOOD_WSP_VOLTAGE = HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); //	TODO
+const unsigned short long ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 
 #endif
 
 //END SETUP
 
 //Флаги
-
-
 
 struct f_field {
     unsigned ALARM : 1;
@@ -152,7 +150,7 @@ void get_fun() {//определение положения переключат
     if (res < LOW_PIN_VOLTAGE) fun_counter--;
     else fun_counter++;
 
-    
+
 #ifdef doubledd
     if (fun_counter > FUN_MEAS_COUNT) {
         fun_counter = FUN_MEAS_COUNT;
@@ -162,7 +160,7 @@ void get_fun() {//определение положения переключат
         FLAGS.bits._FUN_CONNECTED = 1;
     }
 #else
-       if (fun_counter > MEAS_COUNT) {
+    if (fun_counter > MEAS_COUNT) {
         fun_counter = MEAS_COUNT;
         FLAGS.bits._FUN_CONNECTED = 0;
     } else if (fun_counter<-MEAS_COUNT) {
@@ -183,9 +181,9 @@ void get_fun_full() {//определение положения переклю�
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
         if (res < LOW_PIN_VOLTAGE) fun_counter--;
         else fun_counter++;
-        
-        
-      
+
+
+
 #ifdef doubledd 
         if (fun_counter > FUN_MEAS_COUNT) {
             fun_counter = FUN_MEAS_COUNT;
@@ -197,7 +195,7 @@ void get_fun_full() {//определение положения переклю�
             flag = 1;
         }
 #else
-          if (fun_counter > MEAS_COUNT) {
+        if (fun_counter > MEAS_COUNT) {
             fun_counter = MEAS_COUNT;
             FLAGS.bits._FUN_CONNECTED = 0;
             flag = 1;
@@ -207,7 +205,7 @@ void get_fun_full() {//определение положения переклю�
             flag = 1;
         }
 #endif
-        
+
     } while (flag == 0);
 
     PIN_FUN_STATE_SetDigitalMode();
@@ -243,7 +241,7 @@ void get_jump() {//определение положения джампера (�
         FLAGS.bits._JUMP_CONNECTED = 1;
     }
 #endif
-    
+
     return;
 }
 
@@ -257,7 +255,7 @@ void get_jump_full() {//определение положения переклю
         if (res < LOW_PIN_VOLTAGE) jump_counter--;
         else jump_counter++;
 
-        
+
 #ifdef doubledd
         if (jump_counter > JUMP_MEAS_COUNT) {
             jump_counter = JUMP_MEAS_COUNT;
@@ -279,8 +277,8 @@ void get_jump_full() {//определение положения переклю
             flag = 1;
         }
 #endif
-        
-        
+
+
     } while (flag == 0);
     PIN_JUMP_STATE_SetDigitalMode();
 }
@@ -308,7 +306,7 @@ void rele_tick() {//закрытие кранов (задержка на раб�
 
 void sec_tick_work() {//работа секундного таймера
 #ifdef DEBUG_ENABLED
- //   switch_zum();
+    //   switch_zum();
 #endif
     time_s++;
     rele_tick();
@@ -355,7 +353,7 @@ void fun_work() {//работа переключателя
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
             //один низкий писк
-            beep( 40, 1); //_freq pause work_time count
+            beep(40, 1); //_freq pause work_time count
         };
         if (!FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.CLOSED &&
@@ -363,7 +361,7 @@ void fun_work() {//работа переключателя
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
             //два низких писка
-            beep( 40, 2); //_freq pause work_time count
+            beep(40, 2); //_freq pause work_time count
         }
     }
 }
@@ -372,14 +370,14 @@ void switch_wm() {//выбор режима работы
     if (FLAGS.bits._JUMP_CONNECTED) {//go_alt_mode
         if (FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
-         //   if (FLAGS.bits.CLOSED) go_close_alt();
+            //   if (FLAGS.bits.CLOSED) go_close_alt();
             //три высоких писка
-            beep( 40, 8); //_freq pause work_time count
+            beep(40, 8); //_freq pause work_time count
         }
     } else {//go_norm_mode
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
-        //    if (FLAGS.bits.CLOSED) go_close();
+            //    if (FLAGS.bits.CLOSED) go_close();
             //два высоких писка
             beep(40, 4); //_freq pause work_time count;
         }
@@ -433,13 +431,13 @@ void get_adr() {
     //конец блока адреса
 }
 
-void get_time(){
-     //блок значения
+void get_time() {
+    //блок значения
     char adr_error = 0;
-    char buf=0;
+    char buf = 0;
     __uint24 buf2 = 0;
     __uint24 times[3] = {};
-    char time_count[3]={};
+    char time_count[3] = {};
     for (unsigned char i = START_EEPROM_ADR; i < START_EEPROM_ADR + 0x10; i += 4) {//цикл по EEPROM
         buf2 = EEPROM_ReadShortLong(i);
 
@@ -451,9 +449,9 @@ void get_time(){
         }
         //блок обработки ошибки
         if (buf2 != 0) {
-            adr_error ++;
+            adr_error++;
             for (unsigned char q = 0; q < 3; q++)//цикл по значениям для добавления нового
-                if (times[q]== 0) {
+                if (times[q] == 0) {
                     times[q] = buf;
                     time_count[q] = 1;
                     buf = 0;
@@ -467,12 +465,12 @@ void get_time(){
     }
     time_s = times[buf];
     //смещение нового адреса
-    if (adr_error>1) START_EEPROM_ADR += 0x10;
+    if (adr_error > 1) START_EEPROM_ADR += 0x10;
 }
 
 void get_eeprom() {
     get_adr();
-    get_time();   
+    get_time();
 }
 
 void start_setup() {//начальная настройка
