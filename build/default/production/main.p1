@@ -1333,9 +1333,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _sec_tick_work ]
 [f ]
-"312
-[; ;main.c: 312:     switch_zum();
-[e ( _switch_zum ..  ]
 "314
 [; ;main.c: 314:     time_s++;
 [e ++ _time_s -> -> -> 1 `i `m `um ]
@@ -1508,8 +1505,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _switch_wm ]
 [f ]
 "373
-[; ;main.c: 373:     if (!FLAGS.bits._JUMP_CONNECTED) {
-[e $ ! ! != -> . . _FLAGS 1 4 `i -> 0 `i 469  ]
+[; ;main.c: 373:     if (FLAGS.bits._JUMP_CONNECTED) {
+[e $ ! != -> . . _FLAGS 1 4 `i -> 0 `i 469  ]
 {
 "374
 [; ;main.c: 374:         if (FLAGS.bits.NORMAL_WORK_MODE) {
@@ -1518,14 +1515,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "375
 [; ;main.c: 375:             FLAGS.bits.NORMAL_WORK_MODE = 0;
 [e = . . _FLAGS 1 1 -> -> 0 `i `uc ]
-"376
-[; ;main.c: 376:             if (FLAGS.bits.CLOSED) go_close_alt();
-[e $ ! != -> . . _FLAGS 1 2 `i -> 0 `i 471  ]
-[e ( _go_close_alt ..  ]
-[e :U 471 ]
 "378
-[; ;main.c: 378:             beep( 40, 7);
-[e ( _beep (2 , -> -> 40 `i `uc -> -> 7 `i `uc ]
+[; ;main.c: 378:             beep( 40, 8);
+[e ( _beep (2 , -> -> 40 `i `uc -> -> 8 `i `uc ]
 "379
 [; ;main.c: 379:         }
 }
@@ -1533,32 +1525,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 "380
 [; ;main.c: 380:     } else {
 }
-[e $U 472  ]
+[e $U 471  ]
 [e :U 469 ]
 {
 "381
 [; ;main.c: 381:         if (!FLAGS.bits.NORMAL_WORK_MODE) {
-[e $ ! ! != -> . . _FLAGS 1 1 `i -> 0 `i 473  ]
+[e $ ! ! != -> . . _FLAGS 1 1 `i -> 0 `i 472  ]
 {
 "382
 [; ;main.c: 382:             FLAGS.bits.NORMAL_WORK_MODE = 1;
 [e = . . _FLAGS 1 1 -> -> 1 `i `uc ]
-"383
-[; ;main.c: 383:             if (FLAGS.bits.CLOSED) go_close();
-[e $ ! != -> . . _FLAGS 1 2 `i -> 0 `i 474  ]
-[e ( _go_close ..  ]
-[e :U 474 ]
 "385
 [; ;main.c: 385:             beep(40, 4);
 [e ( _beep (2 , -> -> 40 `i `uc -> -> 4 `i `uc ]
 "386
 [; ;main.c: 386:         }
 }
-[e :U 473 ]
+[e :U 472 ]
 "387
 [; ;main.c: 387:     }
 }
-[e :U 472 ]
+[e :U 471 ]
 "388
 [; ;main.c: 388: }
 [e :UE 468 ]
@@ -1575,16 +1562,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _res -> ( _ADC_GetConversion (1 . `E2517 5 `ui ]
 "392
 [; ;main.c: 392:     if (res > 46200) {
-[e $ ! > -> _res `l -> 46200 `l 476  ]
+[e $ ! > -> _res `l -> 46200 `l 474  ]
 {
 "393
 [; ;main.c: 393:         for (char q = 0; q < 0x10; q++) {
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q -> -> 0 `i `uc ]
-[e $ < -> _q `i -> 16 `i 477  ]
-[e $U 478  ]
-[e :U 477 ]
+[e $ < -> _q `i -> 16 `i 475  ]
+[e $U 476  ]
+[e :U 475 ]
 {
 "394
 [; ;main.c: 394:             char buf = EEPROM_ReadByte(q);
@@ -1592,15 +1579,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _buf -> ( _EEPROM_ReadByte (1 -> _q `uc `uc ]
 "395
 [; ;main.c: 395:             if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
-[e $ ! != -> _buf `i -> _START_EEPROM_ADR `i 480  ]
+[e $ ! != -> _buf `i -> _START_EEPROM_ADR `i 478  ]
 [e ( _EEPROM_WriteByte (2 , -> _q `uc -> _START_EEPROM_ADR `uc ]
-[e :U 480 ]
+[e :U 478 ]
 "396
 [; ;main.c: 396:         }
 }
 [e ++ _q -> -> 1 `i `uc ]
-[e $ < -> _q `i -> 16 `i 477  ]
-[e :U 478 ]
+[e $ < -> _q `i -> 16 `i 475  ]
+[e :U 476 ]
 }
 "397
 [; ;main.c: 397:         __uint24 buf = time_s;
@@ -1611,8 +1598,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q _START_EEPROM_ADR ]
-[e $U 484  ]
-[e :U 481 ]
+[e $U 482  ]
+[e :U 479 ]
 {
 "399
 [; ;main.c: 399:             EEPROM_WriteShortLong(q, buf);
@@ -1621,17 +1608,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 400:         }
 }
 [e =+ _q -> -> 4 `i `uc ]
-[e :U 484 ]
-[e $ < -> _q `i + -> _START_EEPROM_ADR `i -> 12 `i 481  ]
 [e :U 482 ]
+[e $ < -> _q `i + -> _START_EEPROM_ADR `i -> 12 `i 479  ]
+[e :U 480 ]
 }
 "401
 [; ;main.c: 401:     }
 }
-[e :U 476 ]
+[e :U 474 ]
 "402
 [; ;main.c: 402: }
-[e :UE 475 ]
+[e :UE 473 ]
 }
 "404
 [; ;main.c: 404: void get_adr() {
@@ -1659,30 +1646,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 486  ]
-[e $U 487  ]
-[e :U 486 ]
+[e $ < -> _i `i -> 8 `i 484  ]
+[e $U 485  ]
+[e :U 484 ]
 {
 "409
 [; ;main.c: 409:         buf = EEPROM_ReadByte(i);
 [e = _buf -> ( _EEPROM_ReadByte (1 _i `uc ]
 "410
 [; ;main.c: 410:         if (buf == 0) continue;
-[e $ ! == -> _buf `i -> 0 `i 489  ]
-[e $U 488  ]
-[e :U 489 ]
+[e $ ! == -> _buf `i -> 0 `i 487  ]
+[e $U 486  ]
+[e :U 487 ]
 "411
 [; ;main.c: 411:         for (unsigned char q = 0; q < 8; q++) {
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q -> -> 0 `i `uc ]
-[e $ < -> _q `i -> 8 `i 490  ]
-[e $U 491  ]
-[e :U 490 ]
+[e $ < -> _q `i -> 8 `i 488  ]
+[e $U 489  ]
+[e :U 488 ]
 {
 "412
 [; ;main.c: 412:             if (buf == adr[q][0]) {
-[e $ ! == -> _buf `i -> *U + &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i 493  ]
+[e $ ! == -> _buf `i -> *U + &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i 491  ]
 {
 "413
 [; ;main.c: 413:                 (adr[q][1])++;
@@ -1693,29 +1680,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "415
 [; ;main.c: 415:             }
 }
-[e :U 493 ]
+[e :U 491 ]
 "416
 [; ;main.c: 416:         }
 }
 [e ++ _q -> -> 1 `i `uc ]
-[e $ < -> _q `i -> 8 `i 490  ]
-[e :U 491 ]
+[e $ < -> _q `i -> 8 `i 488  ]
+[e :U 489 ]
 }
 "418
 [; ;main.c: 418:         if (buf != 0) {
-[e $ ! != -> _buf `i -> 0 `i 494  ]
+[e $ ! != -> _buf `i -> 0 `i 492  ]
 {
 "419
 [; ;main.c: 419:             for (unsigned char q = 0; q < 8; q++)
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q -> -> 0 `i `uc ]
-[e $ < -> _q `i -> 8 `i 495  ]
-[e $U 496  ]
-[e :U 495 ]
+[e $ < -> _q `i -> 8 `i 493  ]
+[e $U 494  ]
+[e :U 493 ]
 "420
 [; ;main.c: 420:                 if (adr[q][0] == 0) {
-[e $ ! == -> *U + &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i -> 0 `i 498  ]
+[e $ ! == -> *U + &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _q `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i -> 0 `i 496  ]
 {
 "421
 [; ;main.c: 421:                     adr[q][0] = buf;
@@ -1728,26 +1715,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _buf -> -> 0 `i `uc ]
 "424
 [; ;main.c: 424:                     break;
-[e $U 496  ]
+[e $U 494  ]
 "425
 [; ;main.c: 425:                 }
 }
-[e :U 498 ]
-[e ++ _q -> -> 1 `i `uc ]
-[e $ < -> _q `i -> 8 `i 495  ]
 [e :U 496 ]
+[e ++ _q -> -> 1 `i `uc ]
+[e $ < -> _q `i -> 8 `i 493  ]
+[e :U 494 ]
 }
 "426
 [; ;main.c: 426:         }
 }
-[e :U 494 ]
+[e :U 492 ]
 "427
 [; ;main.c: 427:     }
 }
-[e :U 488 ]
+[e :U 486 ]
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 486  ]
-[e :U 487 ]
+[e $ < -> _i `i -> 8 `i 484  ]
+[e :U 485 ]
 }
 "428
 [; ;main.c: 428:     buf = 0;
@@ -1757,33 +1744,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 499  ]
-[e $U 500  ]
-[e :U 499 ]
+[e $ < -> _i `i -> 8 `i 497  ]
+[e $U 498  ]
+[e :U 497 ]
 {
 "430
 [; ;main.c: 430:         if (adr[i][1] > adr[buf][1]) buf = i;
-[e $ ! > -> *U + &U *U + &U _adr * -> _i `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _i `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _adr * -> _buf `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _buf `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i 502  ]
+[e $ ! > -> *U + &U *U + &U _adr * -> _i `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _i `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i -> *U + &U *U + &U _adr * -> _buf `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _buf `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux `i 500  ]
 [e = _buf -> _i `uc ]
-[e :U 502 ]
+[e :U 500 ]
 "431
 [; ;main.c: 431:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 499  ]
-[e :U 500 ]
+[e $ < -> _i `i -> 8 `i 497  ]
+[e :U 498 ]
 }
 "432
 [; ;main.c: 432:     START_EEPROM_ADR = adr[buf][0];
 [e = _START_EEPROM_ADR *U + &U *U + &U _adr * -> _buf `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _adr * -> _buf `ux -> * -> # *U &U *U &U _adr `ui -> -> 2 `i `ui `ux `ui `ux ]
 "433
 [; ;main.c: 433:     if (START_EEPROM_ADR == 0 || START_EEPROM_ADR == 0xFF) START_EEPROM_ADR = 0x10;
-[e $ ! || == -> _START_EEPROM_ADR `i -> 0 `i == -> _START_EEPROM_ADR `i -> 255 `i 503  ]
+[e $ ! || == -> _START_EEPROM_ADR `i -> 0 `i == -> _START_EEPROM_ADR `i -> 255 `i 501  ]
 [e = _START_EEPROM_ADR -> -> 16 `i `uc ]
-[e :U 503 ]
+[e :U 501 ]
 "435
 [; ;main.c: 435: }
-[e :UE 485 ]
+[e :UE 483 ]
 }
 "437
 [; ;main.c: 437: void get_time(){
@@ -1826,8 +1813,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> _START_EEPROM_ADR `uc ]
-[e $U 508  ]
-[e :U 505 ]
+[e $U 506  ]
+[e :U 503 ]
 {
 "445
 [; ;main.c: 445:         buf2 = EEPROM_ReadShortLong(i);
@@ -1837,13 +1824,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q -> -> 0 `i `uc ]
-[e $ < -> _q `i -> 3 `i 509  ]
-[e $U 510  ]
-[e :U 509 ]
+[e $ < -> _q `i -> 3 `i 507  ]
+[e $U 508  ]
+[e :U 507 ]
 {
 "448
 [; ;main.c: 448:             if (buf2 == times[q]) {
-[e $ ! == _buf2 *U + &U _times * -> _q `ux -> -> # *U &U _times `ui `ux 512  ]
+[e $ ! == _buf2 *U + &U _times * -> _q `ux -> -> # *U &U _times `ui `ux 510  ]
 {
 "449
 [; ;main.c: 449:                 time_count[q]++;
@@ -1854,17 +1841,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 "451
 [; ;main.c: 451:             }
 }
-[e :U 512 ]
+[e :U 510 ]
 "452
 [; ;main.c: 452:         }
 }
 [e ++ _q -> -> 1 `i `uc ]
-[e $ < -> _q `i -> 3 `i 509  ]
-[e :U 510 ]
+[e $ < -> _q `i -> 3 `i 507  ]
+[e :U 508 ]
 }
 "454
 [; ;main.c: 454:         if (buf2 != 0) {
-[e $ ! != _buf2 -> -> -> 0 `i `m `um 513  ]
+[e $ ! != _buf2 -> -> -> 0 `i `m `um 511  ]
 {
 "455
 [; ;main.c: 455:             adr_error ++;
@@ -1874,12 +1861,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q -> -> 0 `i `uc ]
-[e $ < -> _q `i -> 3 `i 514  ]
-[e $U 515  ]
-[e :U 514 ]
+[e $ < -> _q `i -> 3 `i 512  ]
+[e $U 513  ]
+[e :U 512 ]
 "457
 [; ;main.c: 457:                 if (times[q]== 0) {
-[e $ ! == *U + &U _times * -> _q `ux -> -> # *U &U _times `ui `ux -> -> -> 0 `i `m `um 517  ]
+[e $ ! == *U + &U _times * -> _q `ux -> -> # *U &U _times `ui `ux -> -> -> 0 `i `m `um 515  ]
 {
 "458
 [; ;main.c: 458:                     times[q] = buf;
@@ -1892,26 +1879,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _buf -> -> 0 `i `uc ]
 "461
 [; ;main.c: 461:                     break;
-[e $U 515  ]
+[e $U 513  ]
 "462
 [; ;main.c: 462:                 }
 }
-[e :U 517 ]
-[e ++ _q -> -> 1 `i `uc ]
-[e $ < -> _q `i -> 3 `i 514  ]
 [e :U 515 ]
+[e ++ _q -> -> 1 `i `uc ]
+[e $ < -> _q `i -> 3 `i 512  ]
+[e :U 513 ]
 }
 "463
 [; ;main.c: 463:         }
 }
-[e :U 513 ]
+[e :U 511 ]
 "464
 [; ;main.c: 464:     }
 }
 [e =+ _i -> -> 4 `i `uc ]
-[e :U 508 ]
-[e $ < -> _i `i + -> _START_EEPROM_ADR `i -> 16 `i 505  ]
 [e :U 506 ]
+[e $ < -> _i `i + -> _START_EEPROM_ADR `i -> 16 `i 503  ]
+[e :U 504 ]
 }
 "465
 [; ;main.c: 465:     buf = 0;
@@ -1921,33 +1908,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _q `uc ~T0 @X0 1 a ]
 [e = _q -> -> 0 `i `uc ]
-[e $ < -> _q `i -> 3 `i 518  ]
-[e $U 519  ]
-[e :U 518 ]
+[e $ < -> _q `i -> 3 `i 516  ]
+[e $U 517  ]
+[e :U 516 ]
 {
 "467
 [; ;main.c: 467:         if (time_count[q] > time_count[buf]) buf = q;
-[e $ ! > -> *U + &U _time_count * -> _q `ux -> -> # *U &U _time_count `ui `ux `i -> *U + &U _time_count * -> _buf `ux -> -> # *U &U _time_count `ui `ux `i 521  ]
+[e $ ! > -> *U + &U _time_count * -> _q `ux -> -> # *U &U _time_count `ui `ux `i -> *U + &U _time_count * -> _buf `ux -> -> # *U &U _time_count `ui `ux `i 519  ]
 [e = _buf -> _q `uc ]
-[e :U 521 ]
+[e :U 519 ]
 "468
 [; ;main.c: 468:     }
 }
 [e ++ _q -> -> 1 `i `uc ]
-[e $ < -> _q `i -> 3 `i 518  ]
-[e :U 519 ]
+[e $ < -> _q `i -> 3 `i 516  ]
+[e :U 517 ]
 }
 "469
 [; ;main.c: 469:     time_s = times[buf];
 [e = _time_s *U + &U _times * -> _buf `ux -> -> # *U &U _times `ui `ux ]
 "471
 [; ;main.c: 471:     if (adr_error>1) START_EEPROM_ADR += 0x10;
-[e $ ! > -> _adr_error `i -> 1 `i 522  ]
+[e $ ! > -> _adr_error `i -> 1 `i 520  ]
 [e =+ _START_EEPROM_ADR -> -> 16 `i `uc ]
-[e :U 522 ]
+[e :U 520 ]
 "472
 [; ;main.c: 472: }
-[e :UE 504 ]
+[e :UE 502 ]
 }
 "474
 [; ;main.c: 474: void get_eeprom() {
@@ -1963,7 +1950,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _get_time ..  ]
 "477
 [; ;main.c: 477: }
-[e :UE 523 ]
+[e :UE 521 ]
 }
 "479
 [; ;main.c: 479: void start_setup() {
@@ -1994,53 +1981,53 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _TMR2_StartTimer ..  ]
 "491
 [; ;main.c: 491:     do { ANSELCbits.ANSC3 = 0; } while(0);
-[e :U 527 ]
+[e :U 525 ]
 {
 [e = . . _ANSELCbits 0 3 -> -> 0 `i `uc ]
 }
-[e :U 526 ]
+[e :U 524 ]
 "492
 [; ;main.c: 492:     do { ANSELAbits.ANSA1 = 0; } while(0);
-[e :U 530 ]
+[e :U 528 ]
 {
 [e = . . _ANSELAbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 529 ]
+[e :U 527 ]
 "493
 [; ;main.c: 493:     do { ANSELCbits.ANSC2 = 0; } while(0);
-[e :U 533 ]
+[e :U 531 ]
 {
 [e = . . _ANSELCbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 532 ]
+[e :U 530 ]
 "496
 [; ;main.c: 496:     do { WPUAbits.WPUA1 = 0; } while(0);
-[e :U 536 ]
+[e :U 534 ]
 {
 [e = . . _WPUAbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 535 ]
+[e :U 533 ]
 "497
 [; ;main.c: 497:     do { TRISAbits.TRISA1 = 1; } while(0);
-[e :U 539 ]
+[e :U 537 ]
 {
 [e = . . _TRISAbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 538 ]
+[e :U 536 ]
 "498
 [; ;main.c: 498:     do { WPUCbits.WPUC2 = 0; } while(0);
-[e :U 542 ]
+[e :U 540 ]
 {
 [e = . . _WPUCbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 541 ]
+[e :U 539 ]
 "499
 [; ;main.c: 499:     do { TRISCbits.TRISC2 = 1; } while(0);
-[e :U 545 ]
+[e :U 543 ]
 {
 [e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
 }
-[e :U 544 ]
+[e :U 542 ]
 "500
 [; ;main.c: 500:     INTCONbits.TMR0IE = 0;
 [e = . . _INTCONbits 0 5 -> -> 0 `i `uc ]
@@ -2049,32 +2036,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . _FLAGS 0 -> -> 0 `i `uc ]
 "502
 [; ;main.c: 502:     do { LATCbits.LATC5 = 0; } while(0);
-[e :U 548 ]
+[e :U 546 ]
 {
 [e = . . _LATCbits 0 5 -> -> 0 `i `uc ]
 }
-[e :U 547 ]
+[e :U 545 ]
 "503
 [; ;main.c: 503:     do { LATCbits.LATC4 = 0; } while(0);
-[e :U 551 ]
+[e :U 549 ]
 {
 [e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
 }
-[e :U 550 ]
+[e :U 548 ]
 "504
 [; ;main.c: 504:     do { LATCbits.LATC0 = 0; } while(0);
-[e :U 554 ]
+[e :U 552 ]
 {
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 553 ]
+[e :U 551 ]
 "505
 [; ;main.c: 505:     do { TRISCbits.TRISC0 = 0; } while(0);
-[e :U 557 ]
+[e :U 555 ]
 {
 [e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
 }
-[e :U 556 ]
+[e :U 554 ]
 "508
 [; ;main.c: 508:     get_fun_full();
 [e ( _get_fun_full ..  ]
@@ -2084,57 +2071,57 @@ Version 4.0 HI-TECH Software Intermediate Code
 "510
 [; ;main.c: 510:     time_pow_s = 0;
 [e = _time_pow_s -> -> 0 `i `uc ]
-"512
-[; ;main.c: 512: }
-[e :UE 524 ]
+"511
+[; ;main.c: 511: }
+[e :UE 522 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"514
-[; ;main.c: 514: void main(void) {
+"513
+[; ;main.c: 513: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"516
-[; ;main.c: 516:     start_setup();
+"515
+[; ;main.c: 515:     start_setup();
 [e ( _start_setup ..  ]
+"517
+[; ;main.c: 517:     while (1) {
+[e :U 558 ]
+{
 "518
-[; ;main.c: 518:     while (1) {
-[e :U 560 ]
-{
-"519
-[; ;main.c: 519:         get_voltage();
+[; ;main.c: 518:         get_voltage();
 [e ( _get_voltage ..  ]
-"520
-[; ;main.c: 520:         if (!FLAGS.bits.ALARM) {
-[e $ ! ! != -> . . _FLAGS 1 0 `i -> 0 `i 562  ]
+"519
+[; ;main.c: 519:         if (!FLAGS.bits.ALARM) {
+[e $ ! ! != -> . . _FLAGS 1 0 `i -> 0 `i 560  ]
 {
-"521
-[; ;main.c: 521:             get_fun();
+"520
+[; ;main.c: 520:             get_fun();
 [e ( _get_fun ..  ]
-"522
-[; ;main.c: 522:             fun_work();
+"521
+[; ;main.c: 521:             fun_work();
 [e ( _fun_work ..  ]
-"523
-[; ;main.c: 523:             get_jump();
+"522
+[; ;main.c: 522:             get_jump();
 [e ( _get_jump ..  ]
-"524
-[; ;main.c: 524:             switch_wm();
+"523
+[; ;main.c: 523:             switch_wm();
 [e ( _switch_wm ..  ]
-"525
-[; ;main.c: 525:             povorot();
+"524
+[; ;main.c: 524:             povorot();
 [e ( _povorot ..  ]
+"525
+[; ;main.c: 525:         };
+}
+[e :U 560 ]
 "526
-[; ;main.c: 526:         };
+[; ;main.c: 526:     }
 }
-[e :U 562 ]
-"527
-[; ;main.c: 527:     }
-}
+[e :U 557 ]
+[e $U 558  ]
 [e :U 559 ]
-[e $U 560  ]
-[e :U 561 ]
-"528
-[; ;main.c: 528: }
-[e :UE 558 ]
+"527
+[; ;main.c: 527: }
+[e :UE 556 ]
 }

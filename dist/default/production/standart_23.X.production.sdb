@@ -92,7 +92,7 @@ channel_FVR 31
 [v _get_eeprom get_eeprom `(v  1 e 1 0 ]
 "479
 [v _start_setup start_setup `(v  1 e 1 0 ]
-"514
+"513
 [v _main main `(v  1 e 1 0 ]
 "67 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -409,10 +409,10 @@ channel_FVR 31
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"514 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"513 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"528
+"527
 } 0
 "372
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
@@ -422,7 +422,7 @@ channel_FVR 31
 "479
 [v _start_setup start_setup `(v  1 e 1 0 ]
 {
-"512
+"511
 } 0
 "251
 [v _get_jump_full get_jump_full `(v  1 e 1 0 ]

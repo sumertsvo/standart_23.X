@@ -1508,8 +1508,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _switch_wm ]
 [f ]
 "373
-[; ;main.c: 373:     if (FLAGS.bits._JUMP_CONNECTED) {
-[e $ ! != -> . . _FLAGS 1 4 `i -> 0 `i 469  ]
+[; ;main.c: 373:     if (!FLAGS.bits._JUMP_CONNECTED) {
+[e $ ! ! != -> . . _FLAGS 1 4 `i -> 0 `i 469  ]
 {
 "374
 [; ;main.c: 374:         if (FLAGS.bits.NORMAL_WORK_MODE) {
@@ -2084,57 +2084,57 @@ Version 4.0 HI-TECH Software Intermediate Code
 "510
 [; ;main.c: 510:     time_pow_s = 0;
 [e = _time_pow_s -> -> 0 `i `uc ]
-"512
-[; ;main.c: 512: }
+"511
+[; ;main.c: 511: }
 [e :UE 524 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"514
-[; ;main.c: 514: void main(void) {
+"513
+[; ;main.c: 513: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"516
-[; ;main.c: 516:     start_setup();
+"515
+[; ;main.c: 515:     start_setup();
 [e ( _start_setup ..  ]
-"518
-[; ;main.c: 518:     while (1) {
+"517
+[; ;main.c: 517:     while (1) {
 [e :U 560 ]
 {
-"519
-[; ;main.c: 519:         get_voltage();
+"518
+[; ;main.c: 518:         get_voltage();
 [e ( _get_voltage ..  ]
-"520
-[; ;main.c: 520:         if (!FLAGS.bits.ALARM) {
+"519
+[; ;main.c: 519:         if (!FLAGS.bits.ALARM) {
 [e $ ! ! != -> . . _FLAGS 1 0 `i -> 0 `i 562  ]
 {
-"521
-[; ;main.c: 521:             get_fun();
+"520
+[; ;main.c: 520:             get_fun();
 [e ( _get_fun ..  ]
-"522
-[; ;main.c: 522:             fun_work();
+"521
+[; ;main.c: 521:             fun_work();
 [e ( _fun_work ..  ]
-"523
-[; ;main.c: 523:             get_jump();
+"522
+[; ;main.c: 522:             get_jump();
 [e ( _get_jump ..  ]
-"524
-[; ;main.c: 524:             switch_wm();
+"523
+[; ;main.c: 523:             switch_wm();
 [e ( _switch_wm ..  ]
-"525
-[; ;main.c: 525:             povorot();
+"524
+[; ;main.c: 524:             povorot();
 [e ( _povorot ..  ]
-"526
-[; ;main.c: 526:         };
+"525
+[; ;main.c: 525:         };
 }
 [e :U 562 ]
-"527
-[; ;main.c: 527:     }
+"526
+[; ;main.c: 526:     }
 }
 [e :U 559 ]
 [e $U 560  ]
 [e :U 561 ]
-"528
-[; ;main.c: 528: }
+"527
+[; ;main.c: 527: }
 [e :UE 558 ]
 }

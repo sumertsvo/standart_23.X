@@ -4319,7 +4319,7 @@ void rele_tick() {
 
 void sec_tick_work() {
 
-    switch_zum();
+
 
     time_s++;
     rele_tick();
@@ -4380,17 +4380,17 @@ void fun_work() {
 }
 
 void switch_wm() {
-    if (!FLAGS.bits._JUMP_CONNECTED) {
+    if (FLAGS.bits._JUMP_CONNECTED) {
         if (FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
-            if (FLAGS.bits.CLOSED) go_close_alt();
 
-            beep( 40, 7);
+
+            beep( 40, 8);
         }
     } else {
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
-            if (FLAGS.bits.CLOSED) go_close();
+
 
             beep(40, 4);
         }
@@ -4518,7 +4518,6 @@ void start_setup() {
     get_fun_full();
     get_jump_full();
     time_pow_s = 0;
-
 }
 
 void main(void) {

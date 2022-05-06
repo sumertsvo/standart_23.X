@@ -4380,7 +4380,7 @@ void fun_work() {
 }
 
 void switch_wm() {
-    if (FLAGS.bits._JUMP_CONNECTED) {
+    if (!FLAGS.bits._JUMP_CONNECTED) {
         if (FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
             if (FLAGS.bits.CLOSED) go_close_alt();
@@ -4518,7 +4518,6 @@ void start_setup() {
     get_fun_full();
     get_jump_full();
     time_pow_s = 0;
-
 }
 
 void main(void) {

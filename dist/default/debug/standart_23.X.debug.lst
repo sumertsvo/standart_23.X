@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                               Fri Apr 29 17:35:04 2022
+                                                                                               Thu May 05 09:38:06 2022
 
 Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
      1                           	processor	16F1823
@@ -2006,7 +2006,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1992 ;;
   1993 ;; *************** function _main *****************
   1994 ;; Defined at:
-  1995 ;;		line 514 in file "main.c"
+  1995 ;;		line 513 in file "main.c"
   1996 ;; Parameters:    Size  Location     Type
   1997 ;;		None
   1998 ;; Auto vars:     Size  Location     Type
@@ -2047,15 +2047,15 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2033                           ; Regs used in _main: [wreg-fsr1h+status,2+status,0+pclath+cstack]
   2034                           
   2035                           
-  2036                           ;main.c: 516:     start_setup();
+  2036                           ;main.c: 515:     start_setup();
   2037  0607  3184  2489  3186   	fcall	_start_setup
   2038  060A                     l2701:
   2039                           
-  2040                           ;main.c: 519:         get_voltage();
+  2040                           ;main.c: 518:         get_voltage();
   2041  060A  3181  21D8  3186   	fcall	_get_voltage
   2042  060D                     l2703:
   2043                           
-  2044                           ;main.c: 520:         if (!FLAGS.bits.ALARM) {
+  2044                           ;main.c: 519:         if (!FLAGS.bits.ALARM) {
   2045  060D  187C               	btfsc	_FLAGS,0
   2046  060E  2E10               	goto	u2101
   2047  060F  2E11               	goto	u2100
@@ -2064,19 +2064,19 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2050  0611                     u2100:
   2051  0611                     l2705:
   2052                           
-  2053                           ;main.c: 521:             get_fun();
+  2053                           ;main.c: 520:             get_fun();
   2054  0611  3184  2411  3186   	fcall	_get_fun
   2055                           
-  2056                           ;main.c: 522:             fun_work();
+  2056                           ;main.c: 521:             fun_work();
   2057  0614  3183  234E  3186   	fcall	_fun_work
   2058                           
-  2059                           ;main.c: 523:             get_jump();
+  2059                           ;main.c: 522:             get_jump();
   2060  0617  3184  244F  3186   	fcall	_get_jump
   2061                           
-  2062                           ;main.c: 524:             switch_wm();
+  2062                           ;main.c: 523:             switch_wm();
   2063  061A  3184  24F3  3186   	fcall	_switch_wm
   2064                           
-  2065                           ;main.c: 525:             povorot();
+  2065                           ;main.c: 524:             povorot();
   2066  061D  3182  22C7  3186   	fcall	_povorot
   2067  0620  2E0A               	goto	l2701
   2068  0621  2826               	ljmp	start
@@ -2124,8 +2124,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2110                           ; Regs used in _switch_wm: [wreg+status,2+status,0+pclath+cstack]
   2111                           
   2112                           
-  2113                           ;main.c: 373:     if (FLAGS.bits._JUMP_CONNECTED) {
-  2114  04F3  1E7C               	btfss	_FLAGS,4
+  2113                           ;main.c: 373:     if (!FLAGS.bits._JUMP_CONNECTED) {
+  2114  04F3  1A7C               	btfsc	_FLAGS,4
   2115  04F4  2CF6               	goto	u1961
   2116  04F5  2CF7               	goto	u1960
   2117  04F6                     u1961:
@@ -7643,7 +7643,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                   Fri Apr 29 17:35:04 2022
+Symbol Table                                                                                   Thu May 05 09:38:06 2022
 
         __end_of_TMR2_SetInterruptHandler 0755                          get_fun_full@flag 0027  
                       get_fun@fun_counter 005D                            ___bmul@product 0022  
