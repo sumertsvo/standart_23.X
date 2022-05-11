@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+$C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 idloc IDLOC 5 8000 8000 4 2 1
 reset_vec CODE 0 0 0 2 2 1
 end_init CODE 0 26 26 1 2 1
@@ -142,24 +142,24 @@ STRING 47E-7FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/debug\standart_23.X.debug.o
-27 cinit CODE >2801:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-27 cinit CODE >2804:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-27 cinit CODE >2879:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-28 cinit CODE >2880:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-29 cinit CODE >2881:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-2A cinit CODE >2882:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-2B cinit CODE >2883:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-2C cinit CODE >2884:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-2D cinit CODE >2888:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-2E cinit CODE >2889:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-2F cinit CODE >2890:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-30 cinit CODE >2891:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-31 cinit CODE >2892:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-32 cinit CODE >2893:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-35 cinit CODE >2899:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-35 cinit CODE >2901:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-36 cinit CODE >2902:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-37 cinit CODE >2903:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
+27 cinit CODE >2801:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+27 cinit CODE >2804:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+27 cinit CODE >2879:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+28 cinit CODE >2880:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+29 cinit CODE >2881:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+2A cinit CODE >2882:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+2B cinit CODE >2883:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+2C cinit CODE >2884:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+2D cinit CODE >2888:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+2E cinit CODE >2889:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+2F cinit CODE >2890:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+30 cinit CODE >2891:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+31 cinit CODE >2892:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+32 cinit CODE >2893:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+35 cinit CODE >2899:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+35 cinit CODE >2901:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+36 cinit CODE >2902:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+37 cinit CODE >2903:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
 4 intentry CODE >52:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 E intentry CODE >57:C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
@@ -537,18 +537,18 @@ C5 text4 CODE >319:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 386 maintext CODE >566:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 386 maintext CODE >568:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 389 maintext CODE >572:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-38D maintext CODE >573:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-390 maintext CODE >574:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-393 maintext CODE >575:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-396 maintext CODE >576:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-446 clrtext CODE >2868:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-446 clrtext CODE >2869:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-447 clrtext CODE >2870:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-447 clrtext CODE >2871:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-448 clrtext CODE >2872:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-449 clrtext CODE >2873:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-44A clrtext CODE >2874:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
-44B clrtext CODE >2875:C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
+38D maintext CODE >574:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+390 maintext CODE >575:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+393 maintext CODE >577:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+396 maintext CODE >578:C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+446 clrtext CODE >2868:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+446 clrtext CODE >2869:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+447 clrtext CODE >2870:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+447 clrtext CODE >2871:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+448 clrtext CODE >2872:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+449 clrtext CODE >2873:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+44A clrtext CODE >2874:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
+44B clrtext CODE >2875:C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -585,13 +585,13 @@ _TMR2 1A 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _WPUA 20C 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _WPUC 20E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 _WREN CAA 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-___sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+___sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 _beep 52E 0 CODE 0 text25 dist/default/debug\standart_23.X.debug.o
 _boop 3F6 0 CODE 0 text2 dist/default/debug\standart_23.X.debug.o
 _main 70C 0 CODE 0 maintext dist/default/debug\standart_23.X.debug.o
 btemp 7E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __end_of_ADC_GetConversion 684 0 CODE 0 text19 dist/default/debug\standart_23.X.debug.o
-start 4C 0 CODE 0 init C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+start 4C 0 CODE 0 init C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 ms_tick@tick_count 23 0 BANK0 1 bssBANK0 dist/default/debug\standart_23.X.debug.o
 _TMR0_InterruptHandler 3C 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o
 _go_close_alt 8BA 0 CODE 0 text23 dist/default/debug\standart_23.X.debug.o
@@ -608,12 +608,12 @@ _TMR2_Initialize 78A 0 CODE 0 text9 dist/default/debug\standart_23.X.debug.o
 _TMR2_StartTimer 8DE 0 CODE 0 text6 dist/default/debug\standart_23.X.debug.o
 get_fun_full@res 39 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 TMR0_SetInterruptHandler@InterruptHandler 35 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 wtemp0 7E 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -647,8 +647,8 @@ _get_jump_full 102 0 CODE 0 text4 dist/default/debug\standart_23.X.debug.o
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
 __end_of_LOW_WATER_RESISTANSE 8F8 0 STRCODE 0 stringtext5 dist/default/debug\standart_23.X.debug.o
 _OPTION_REG 95 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
-___stackhi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-___stacklo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+___stackhi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+___stacklo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 _TMR2_SetInterruptHandler 898 0 CODE 0 text10 dist/default/debug\standart_23.X.debug.o
 __end_ofi1_ADC_GetConversion 6B4 0 CODE 0 text35 dist/default/debug\standart_23.X.debug.o
 _PIN_MANAGER_Initialize 736 0 CODE 0 text13 dist/default/debug\standart_23.X.debug.o
@@ -673,7 +673,7 @@ TMR2_SetInterruptHandler@InterruptHandler 35 0 BANK0 1 cstackBANK0 dist/default/
 _WDTCON 97 0 ABS 0 - dist/default/debug\standart_23.X.debug.o
 boop@time 38 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
 get_fun@res 39 0 BANK0 1 cstackBANK0 dist/default/debug\standart_23.X.debug.o
-___int_sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+___int_sp 0 0 STACK 2 stack C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 BANK2 1 bank2 -
@@ -832,7 +832,7 @@ __end_of_fun_work 212 0 CODE 0 text20 dist/default/debug\standart_23.X.debug.o
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
 i1_go_close_alt 8C4 0 CODE 0 text37 dist/default/debug\standart_23.X.debug.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __Lstringtext1 0 0 ABS 0 stringtext1 -
 __Lstringtext2 0 0 ABS 0 stringtext2 -
@@ -965,8 +965,8 @@ __Hstringtext2 0 0 ABS 0 stringtext2 -
 __Hstringtext3 0 0 ABS 0 stringtext3 -
 __Hstringtext4 0 0 ABS 0 stringtext4 -
 __Hstringtext5 0 0 ABS 0 stringtext5 -
-___heap_hi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
-___heap_lo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAsc70.o
+___heap_hi 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
+___heap_lo 0 0 ABS 0 - C:\Users\vlads\AppData\Local\Temp\xcAs9r0.o
 __end_of__initialization 6A 0 CODE 0 cinit dist/default/debug\standart_23.X.debug.o
 __Lfunctab 0 0 ENTRY 0 functab -
 _timer0ReloadVal 40 0 BANK0 1 nvBANK0 dist/default/debug\standart_23.X.debug.o

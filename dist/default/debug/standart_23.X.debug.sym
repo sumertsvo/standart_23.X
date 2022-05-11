@@ -452,7 +452,7 @@ stringtext1 8E4 8F7 STRCODE 8E4 0
 text29 8F8 8FB CODE 8F8 0
 %locals
 dist/default/debug\standart_23.X.debug.o
-C:\Users\vlads\AppData\Local\Temp\xcAsc70.s
+C:\Users\vlads\AppData\Local\Temp\xcAs9r0.s
 2801 27 0 CODE 0
 2804 27 0 CODE 0
 2879 27 0 CODE 0
@@ -483,10 +483,10 @@ main.c
 566 386 0 CODE 0
 568 386 0 CODE 0
 572 389 0 CODE 0
-573 38D 0 CODE 0
-574 390 0 CODE 0
-575 393 0 CODE 0
-576 396 0 CODE 0
+574 38D 0 CODE 0
+575 390 0 CODE 0
+577 393 0 CODE 0
+578 396 0 CODE 0
 413 2C7 0 CODE 0
 414 2C7 0 CODE 0
 415 2CB 0 CODE 0

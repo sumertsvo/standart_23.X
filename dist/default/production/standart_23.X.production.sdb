@@ -72,6 +72,8 @@ channel_FVR 31
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
 "345
 [v _sec_tick_work sec_tick_work `(v  1 e 1 0 ]
+"366
+[v _povorot povorot `(v  1 e 1 0 ]
 "387
 [v _fun_work fun_work `(v  1 e 1 0 ]
 "413
@@ -390,7 +392,7 @@ channel_FVR 31
 ]
 "76 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [u S497 . 2 `ui 1 value 2 0 `S480 1 bits 2 0 ]
-[v _FLAGS FLAGS `S497  1 e 2 0 ]
+[v _FLAGS FLAGS `S497  1 s 2 FLAGS ]
 "82
 [v _time_rotation time_rotation `um  1 e 3 0 ]
 "83
@@ -404,7 +406,7 @@ channel_FVR 31
 "566 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"580
+"583
 } 0
 "413
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
@@ -509,7 +511,12 @@ channel_FVR 31
 {
 "83
 } 0
-"253 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"366 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+[v _povorot povorot `(v  1 e 1 0 ]
+{
+"385
+} 0
+"253
 [v _get_jump get_jump `(v  1 e 1 0 ]
 {
 "257

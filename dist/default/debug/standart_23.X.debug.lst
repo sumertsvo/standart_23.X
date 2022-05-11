@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                               Wed May 11 15:25:38 2022
+                                                                                               Wed May 11 16:18:15 2022
 
 Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
      1                           	processor	16F1823
@@ -1895,17 +1895,17 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1881  038D                     u1860:
   1882  038D                     l2503:
   1883                           
-  1884                           ;main.c: 573:             get_fun();
-  1885  038D  3181  2109  3183   	fcall	_get_fun
+  1884                           ;main.c: 574:             get_jump();
+  1885  038D  3181  2187  3183   	fcall	_get_jump
   1886                           
-  1887                           ;main.c: 574:             fun_work();
-  1888  0390  3180  20C6  3183   	fcall	_fun_work
+  1887                           ;main.c: 575:             switch_wm();
+  1888  0390  3182  22C7  3183   	fcall	_switch_wm
   1889                           
-  1890                           ;main.c: 575:             get_jump();
-  1891  0393  3181  2187  3183   	fcall	_get_jump
+  1890                           ;main.c: 577:             get_fun();
+  1891  0393  3181  2109  3183   	fcall	_get_fun
   1892                           
-  1893                           ;main.c: 576:             switch_wm();
-  1894  0396  3182  22C7  3183   	fcall	_switch_wm
+  1893                           ;main.c: 578:             fun_work();
+  1894  0396  3180  20C6  3183   	fcall	_fun_work
   1895  0399  2B89               	goto	l2501
   1896  039A  2826               	ljmp	start
   1897  039B                     __end_of_main:
@@ -1950,8 +1950,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1936                           ; Regs used in _switch_wm: [wreg+status,2+status,0+pclath+cstack]
   1937                           
   1938                           
-  1939                           ;main.c: 414:     if (FLAGS.bits._JUMP_CONNECTED) {
-  1940  02C7  1DF7               	btfss	_FLAGS,3
+  1939                           ;main.c: 414:     if (!FLAGS.bits._JUMP_CONNECTED) {
+  1940  02C7  19F7               	btfsc	_FLAGS,3
   1941  02C8  2ACA               	goto	u1681
   1942  02C9  2ACB               	goto	u1680
   1943  02CA                     u1681:
@@ -3378,8 +3378,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3358  01B3  00B2               	movwf	get_jump@jump_counter
   3359  01B4                     l2121:
   3360                           
-  3361                           ;main.c: 273:         FLAGS.bits._JUMP_CONNECTED = 1;
-  3362  01B4  15F7               	bsf	_FLAGS,3
+  3361                           ;main.c: 273:         FLAGS.bits._JUMP_CONNECTED = 0;
+  3362  01B4  11F7               	bcf	_FLAGS,3
   3363                           
   3364                           ;main.c: 274:     } else if (jump_counter<-10) {
   3365  01B5  29C2               	goto	l396
@@ -3402,8 +3402,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3382  01C0  00B2               	movwf	get_jump@jump_counter
   3383  01C1                     l2127:
   3384                           
-  3385                           ;main.c: 276:         FLAGS.bits._JUMP_CONNECTED = 0;
-  3386  01C1  11F7               	bcf	_FLAGS,3
+  3385                           ;main.c: 276:         FLAGS.bits._JUMP_CONNECTED = 1;
+  3386  01C1  15F7               	bsf	_FLAGS,3
   3387  01C2                     l396:
   3388  01C2  0008               	return
   3389  01C3                     __end_of_get_jump:
@@ -5925,7 +5925,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                   Wed May 11 15:25:38 2022
+Symbol Table                                                                                   Wed May 11 16:18:15 2022
 
         __end_of_TMR2_SetInterruptHandler 0452                          get_fun_full@flag 003B  
                       get_fun@fun_counter 0034                     __end_of_sec_tick_work 0187  

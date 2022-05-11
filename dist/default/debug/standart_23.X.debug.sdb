@@ -390,7 +390,7 @@ channel_FVR 31
 ]
 "76 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [u S497 . 2 `ui 1 value 2 0 `S480 1 bits 2 0 ]
-[v _FLAGS FLAGS `S497  1 e 2 0 ]
+[v _FLAGS FLAGS `S497  1 s 2 FLAGS ]
 "82
 [v _time_rotation time_rotation `um  1 e 3 0 ]
 "83
@@ -404,7 +404,7 @@ channel_FVR 31
 "566 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"580
+"582
 } 0
 "413
 [v _switch_wm switch_wm `(v  1 e 1 0 ]

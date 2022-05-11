@@ -70,7 +70,7 @@ struct f_field {
     unsigned WATER_FALSE : 1;
 };
 
-union {
+static union {
     unsigned value;
     struct f_field bits;
 } FLAGS;
@@ -558,8 +558,8 @@ void start_setup() {//начальная настройка
     PIN_ALARM_STATE_SetDigitalOutput();
 
     //проверка текущего режима
-    get_jump_full();
-    get_fun_full();
+  //  get_jump_full();
+ //   get_fun_full();
     time_rele_power = 0;
 }
 
@@ -570,11 +570,14 @@ void main(void) {
     while (1) {
 //        get_voltage();
         if (!FLAGS.bits.ALARM) {
-            get_fun();
-            fun_work();
+            
             get_jump();
             switch_wm();
-          //  povorot();
+            
+            get_fun();
+            fun_work();
+            
+            povorot();
         };
     }
 }

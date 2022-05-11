@@ -4122,7 +4122,7 @@ struct f_field {
     unsigned WATER_FALSE : 1;
 };
 
-union {
+static union {
     unsigned value;
     struct f_field bits;
 } FLAGS;
@@ -4290,10 +4290,10 @@ void get_jump() {
 # 271 "main.c"
     if (jump_counter > 10) {
         jump_counter = 10;
-        FLAGS.bits._JUMP_CONNECTED = 1;
+        FLAGS.bits._JUMP_CONNECTED = 0;
     } else if (jump_counter<-10) {
         jump_counter = -10;
-        FLAGS.bits._JUMP_CONNECTED = 0;
+        FLAGS.bits._JUMP_CONNECTED = 1;
     }
 
 
@@ -4488,11 +4488,14 @@ void main(void) {
     while (1) {
 
         if (!FLAGS.bits.ALARM) {
-            get_fun();
-            fun_work();
+
             get_jump();
             switch_wm();
 
+            get_fun();
+            fun_work();
+
+            povorot();
         };
     }
 }
