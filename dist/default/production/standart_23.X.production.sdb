@@ -12,8 +12,8 @@ channel_Temp 29
 channel_DAC 30
 channel_FVR 31
 ]
-"136 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-[e E2517 . `uc
+"170 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+[e E2529 . `uc
 PIN_JUMP_STATE 1
 PIN_FUN_STATE 6
 PIN_WSP_STATE 7
@@ -23,8 +23,6 @@ channel_FVR 31
 ]
 "10 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul8.c
-[v ___bmul __bmul `(uc  1 e 1 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "6 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\pic\__eeprom.c
@@ -39,66 +37,56 @@ channel_FVR 31
 [v _EEPROM_WriteWord EEPROM_WriteWord `(v  1 e 1 0 ]
 "34
 [v _EEPROM_ReadWord EEPROM_ReadWord `(ui  1 e 2 0 ]
-"40
-[v _EEPROM_WriteShortLong EEPROM_WriteShortLong `(v  1 e 1 0 ]
-"48
-[v _EEPROM_ReadShortLong EEPROM_ReadShortLong `(um  1 e 3 0 ]
-"71 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"94 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _switch_zum switch_zum `(v  1 e 1 0 ]
 [v i1_switch_zum switch_zum `(v  1 e 1 0 ]
-"75
+"98
 [v _toggle_tone toggle_tone `(v  1 e 1 0 ]
-"79
+"102
 [v _beep beep `(v  1 e 1 0 ]
-"89
+"112
+[v _boop boop `(v  1 e 1 0 ]
+"122
 [v _go_close go_close `(v  1 e 1 0 ]
 [v i1_go_close go_close `(v  1 e 1 0 ]
-"100
+"134
 [v _go_open go_open `(v  1 e 1 0 ]
-"108
+"142
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
 [v i1_go_close_alt go_close_alt `(v  1 e 1 0 ]
-"114
+"148
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
-"121
+"155
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
-"132
+"166
 [v _get_measure get_measure `(v  1 e 1 0 ]
-"145
+"179
 [v _get_fun get_fun `(v  1 e 1 0 ]
-"177
+"211
 [v _get_fun_full get_fun_full `(v  1 e 1 0 ]
-"219
+"253
 [v _get_jump get_jump `(v  1 e 1 0 ]
-"251
+"283
 [v _get_jump_full get_jump_full `(v  1 e 1 0 ]
-"289
+"321
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
-"310
+"345
 [v _sec_tick_work sec_tick_work `(v  1 e 1 0 ]
-"331
-[v _povorot povorot `(v  1 e 1 0 ]
-"350
+"387
 [v _fun_work fun_work `(v  1 e 1 0 ]
-"372
+"413
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
-"390
-[v _get_voltage get_voltage `(v  1 e 1 0 ]
-"404
-[v _get_adr get_adr `(v  1 e 1 0 ]
-"437
-[v _get_time get_time `(v  1 e 1 0 ]
-"474
-[v _get_eeprom get_eeprom `(v  1 e 1 0 ]
-"479
+"445
+[v _ms_tick ms_tick `(v  1 e 1 0 ]
+"531
 [v _start_setup start_setup `(v  1 e 1 0 ]
-"513
+"566
 [v _main main `(v  1 e 1 0 ]
 "67 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
-"116
-[v _ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
-[v i1_ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
+"111
+[v _ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
+[v i1_ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/fvr.c
 [v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
 "52 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
@@ -125,11 +113,9 @@ channel_FVR 31
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
 "119
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]
-"137
-[v _TMR2_CallBack TMR2_CallBack `(v  1 e 1 0 ]
-"147
+"132
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
-"151
+"136
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
 [s S188 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
@@ -185,7 +171,7 @@ channel_FVR 31
 [v _T2CONbits T2CONbits `VES349  1 e 1 @28 ]
 "1492
 [v _TRISA TRISA `VEuc  1 e 1 @140 ]
-[s S648 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S630 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -193,11 +179,11 @@ channel_FVR 31
 `uc 1 TRISA5 1 0 :1:5 
 ]
 "1507
-[u S655 . 1 `S648 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES655  1 e 1 @140 ]
+[u S637 . 1 `S630 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES637  1 e 1 @140 ]
 "1542
 [v _TRISC TRISC `VEuc  1 e 1 @142 ]
-[s S687 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S669 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -205,8 +191,8 @@ channel_FVR 31
 `uc 1 TRISC5 1 0 :1:5 
 ]
 "1557
-[u S694 . 1 `S687 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES694  1 e 1 @142 ]
+[u S676 . 1 `S669 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES676  1 e 1 @142 ]
 [s S224 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
@@ -275,7 +261,7 @@ channel_FVR 31
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
 "2286
 [v _LATA LATA `VEuc  1 e 1 @268 ]
-[s S496 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S500 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -283,11 +269,11 @@ channel_FVR 31
 `uc 1 LATA5 1 0 :1:5 
 ]
 "2301
-[u S503 . 1 `S496 1 . 1 0 ]
-[v _LATAbits LATAbits `VES503  1 e 1 @268 ]
+[u S507 . 1 `S500 1 . 1 0 ]
+[v _LATAbits LATAbits `VES507  1 e 1 @268 ]
 "2331
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S533 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S537 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -295,13 +281,13 @@ channel_FVR 31
 `uc 1 LATC5 1 0 :1:5 
 ]
 "2346
-[u S540 . 1 `S533 1 . 1 0 ]
-[v _LATCbits LATCbits `VES540  1 e 1 @270 ]
+[u S544 . 1 `S537 1 . 1 0 ]
+[v _LATCbits LATCbits `VES544  1 e 1 @270 ]
 "2653
 [v _BORCON BORCON `VEuc  1 e 1 @278 ]
 "2680
 [v _FVRCON FVRCON `VEuc  1 e 1 @279 ]
-[s S446 . 1 `uc 1 ADFVR0 1 0 :1:0 
+[s S442 . 1 `uc 1 ADFVR0 1 0 :1:0 
 `uc 1 ADFVR1 1 0 :1:1 
 `uc 1 CDAFVR0 1 0 :1:2 
 `uc 1 CDAFVR1 1 0 :1:3 
@@ -311,38 +297,38 @@ channel_FVR 31
 `uc 1 FVREN 1 0 :1:7 
 ]
 "2701
-[s S455 . 1 `uc 1 ADFVR 1 0 :2:0 
+[s S451 . 1 `uc 1 ADFVR 1 0 :2:0 
 `uc 1 CDAFVR 1 0 :2:2 
 ]
-[u S458 . 1 `S446 1 . 1 0 `S455 1 . 1 0 ]
-[v _FVRCONbits FVRCONbits `VES458  1 e 1 @279 ]
+[u S454 . 1 `S442 1 . 1 0 `S451 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES454  1 e 1 @279 ]
 "2996
 [v _APFCON APFCON `VEuc  1 e 1 @285 ]
 "3116
 [v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
-[s S576 . 1 `uc 1 ANSA0 1 0 :1:0 
+[s S580 . 1 `uc 1 ANSA0 1 0 :1:0 
 `uc 1 ANSA1 1 0 :1:1 
 `uc 1 ANSA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 ANSA4 1 0 :1:4 
 ]
 "3133
-[s S582 . 1 `uc 1 ANSELA 1 0 :5:0 
+[s S586 . 1 `uc 1 ANSELA 1 0 :5:0 
 ]
-[u S584 . 1 `S576 1 . 1 0 `S582 1 . 1 0 ]
-[v _ANSELAbits ANSELAbits `VES584  1 e 1 @396 ]
+[u S588 . 1 `S580 1 . 1 0 `S586 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES588  1 e 1 @396 ]
 "3163
 [v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
-[s S550 . 1 `uc 1 ANSC0 1 0 :1:0 
+[s S554 . 1 `uc 1 ANSC0 1 0 :1:0 
 `uc 1 ANSC1 1 0 :1:1 
 `uc 1 ANSC2 1 0 :1:2 
 `uc 1 ANSC3 1 0 :1:3 
 ]
 "3179
-[s S555 . 1 `uc 1 ANSC 1 0 :4:0 
+[s S559 . 1 `uc 1 ANSC 1 0 :4:0 
 ]
-[u S557 . 1 `S550 1 . 1 0 `S555 1 . 1 0 ]
-[v _ANSELCbits ANSELCbits `VES557  1 e 1 @398 ]
+[u S561 . 1 `S554 1 . 1 0 `S559 1 . 1 0 ]
+[v _ANSELCbits ANSELCbits `VES561  1 e 1 @398 ]
 "3209
 [v _EEADR EEADR `VEus  1 e 2 @401 ]
 "3268
@@ -351,7 +337,7 @@ channel_FVR 31
 [v _EECON2 EECON2 `VEuc  1 e 1 @406 ]
 "3718
 [v _WPUA WPUA `VEuc  1 e 1 @524 ]
-[s S626 . 1 `uc 1 WPUA0 1 0 :1:0 
+[s S608 . 1 `uc 1 WPUA0 1 0 :1:0 
 `uc 1 WPUA1 1 0 :1:1 
 `uc 1 WPUA2 1 0 :1:2 
 `uc 1 WPUA3 1 0 :1:3 
@@ -359,13 +345,13 @@ channel_FVR 31
 `uc 1 WPUA5 1 0 :1:5 
 ]
 "3736
-[s S633 . 1 `uc 1 WPUA 1 0 :6:0 
+[s S615 . 1 `uc 1 WPUA 1 0 :6:0 
 ]
-[u S635 . 1 `S626 1 . 1 0 `S633 1 . 1 0 ]
-[v _WPUAbits WPUAbits `VES635  1 e 1 @524 ]
+[u S617 . 1 `S608 1 . 1 0 `S615 1 . 1 0 ]
+[v _WPUAbits WPUAbits `VES617  1 e 1 @524 ]
 "3776
 [v _WPUC WPUC `VEuc  1 e 1 @526 ]
-[s S665 . 1 `uc 1 WPUC0 1 0 :1:0 
+[s S647 . 1 `uc 1 WPUC0 1 0 :1:0 
 `uc 1 WPUC1 1 0 :1:1 
 `uc 1 WPUC2 1 0 :1:2 
 `uc 1 WPUC3 1 0 :1:3 
@@ -373,10 +359,10 @@ channel_FVR 31
 `uc 1 WPUC5 1 0 :1:5 
 ]
 "3794
-[s S672 . 1 `uc 1 WPUC 1 0 :6:0 
+[s S654 . 1 `uc 1 WPUC 1 0 :6:0 
 ]
-[u S674 . 1 `S665 1 . 1 0 `S672 1 . 1 0 ]
-[v _WPUCbits WPUCbits `VES674  1 e 1 @526 ]
+[u S656 . 1 `S647 1 . 1 0 `S654 1 . 1 0 ]
+[v _WPUCbits WPUCbits `VES656  1 e 1 @526 ]
 "6132
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "6504
@@ -385,135 +371,86 @@ channel_FVR 31
 [v _WR WR `VEb  1 e 0 @3241 ]
 "6963
 [v _WREN WREN `VEb  1 e 0 @3242 ]
-[s S484 f_field 1 `uc 1 ALARM 1 0 :1:0 
+[s S480 f_field 2 `uc 1 ALARM 1 0 :1:0 
 `uc 1 NORMAL_WORK_MODE 1 0 :1:1 
-`uc 1 CLOSED 1 0 :1:2 
-`uc 1 _FUN_CONNECTED 1 0 :1:3 
-`uc 1 _JUMP_CONNECTED 1 0 :1:4 
-`uc 1 RELE_POW_WAIT 1 0 :1:5 
-`uc 1 RELE_CON_WAIT 1 0 :1:6 
-`uc 1 FREE 1 0 :1:7 
+`uc 1 _FUN_CONNECTED 1 0 :1:2 
+`uc 1 _JUMP_CONNECTED 1 0 :1:3 
+`uc 1 MEASURE_ON 1 0 :1:4 
+`uc 1 RELE_POWER_WAIT 1 0 :1:5 
+`uc 1 RELE_CONTROL_WAIT 1 0 :1:6 
+`uc 1 OPENING 1 0 :1:7 
+`uc 1 OPENED 1 1 :1:0 
+`uc 1 CLOSING 1 1 :1:1 
+`uc 1 CLOSED 1 1 :1:2 
+`uc 1 BEEP_ON 1 1 :1:3 
+`uc 1 BOOP_ON 1 1 :1:4 
+`uc 1 ZUMM_ON 1 1 :1:5 
+`uc 1 WATER_TRUE 1 1 :1:6 
+`uc 1 WATER_FALSE 1 1 :1:7 
 ]
-"65 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-[u S493 Byte 1 `uc 1 value 1 0 `S484 1 bits 1 0 ]
-[v _FLAGS FLAGS `S493  1 e 1 0 ]
-"67
-[v _START_EEPROM_ADR START_EEPROM_ADR `uc  1 e 1 0 ]
-"68
-[v _time_pow_s time_pow_s `uc  1 e 1 0 ]
-"69
-[v _time_s time_s `um  1 e 3 0 ]
+"76 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+[u S497 . 2 `ui 1 value 2 0 `S480 1 bits 2 0 ]
+[v _FLAGS FLAGS `S497  1 e 2 0 ]
+"82
+[v _time_rotation time_rotation `um  1 e 3 0 ]
+"83
+[v _time_rele_power time_rele_power `ui  1 e 2 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _timer0ReloadVal timer0ReloadVal `VEuc  1 e 1 0 ]
 "59
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"513 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"566 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"527
+"580
 } 0
-"372
+"413
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
 {
-"388
+"429
 } 0
-"479
+"112
+[v _boop boop `(v  1 e 1 0 ]
+{
+[v boop@time time `uc  1 a 1 wreg ]
+"114
+[v boop@i i `uc  1 a 1 5 ]
+"113
+[v boop@j j `uc  1 a 1 4 ]
+"112
+[v boop@time time `uc  1 a 1 wreg ]
+[v boop@count count `uc  1 p 1 0 ]
+[v boop@time time `uc  1 a 1 3 ]
+"120
+} 0
+"531
 [v _start_setup start_setup `(v  1 e 1 0 ]
 {
-"511
+"564
 } 0
-"251
+"283
 [v _get_jump_full get_jump_full `(v  1 e 1 0 ]
 {
-"257
-[v get_jump_full@res res `ui  1 a 2 5 ]
-"255
-[v get_jump_full@flag flag `uc  1 a 1 7 ]
-"253
-[v get_jump_full@jump_counter jump_counter `c  1 s 1 jump_counter ]
+"289
+[v get_jump_full@res res `ui  1 a 2 4 ]
 "287
+[v get_jump_full@flag flag `uc  1 a 1 6 ]
+"285
+[v get_jump_full@jump_counter jump_counter `c  1 s 1 jump_counter ]
+"319
 } 0
-"177
+"211
 [v _get_fun_full get_fun_full `(v  1 e 1 0 ]
 {
-"184
-[v get_fun_full@res res `ui  1 a 2 5 ]
-"182
-[v get_fun_full@flag flag `uc  1 a 1 7 ]
-"179
+"218
+[v get_fun_full@res res `ui  1 a 2 4 ]
+"216
+[v get_fun_full@flag flag `uc  1 a 1 6 ]
+"213
 [v get_fun_full@fun_counter fun_counter `c  1 s 1 fun_counter ]
-"217
-} 0
-"474
-[v _get_eeprom get_eeprom `(v  1 e 1 0 ]
-{
-"477
-} 0
-"437
-[v _get_time get_time `(v  1 e 1 0 ]
-{
-"456
-[v get_time@q_822 q `uc  1 a 1 40 ]
-"447
-[v get_time@q q `uc  1 a 1 38 ]
-"466
-[v get_time@q_823 q `uc  1 a 1 39 ]
-"444
-[v get_time@i i `uc  1 a 1 36 ]
-"442
-[v get_time@times times `[3]um  1 a 9 20 ]
-"443
-[v get_time@time_count time_count `[3]uc  1 a 3 30 ]
-"441
-[v get_time@buf2 buf2 `um  1 a 3 33 ]
-"440
-[v get_time@buf buf `uc  1 a 1 37 ]
-"439
-[v get_time@adr_error adr_error `uc  1 a 1 29 ]
-"472
-} 0
-"4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul8.c
-[v ___bmul __bmul `(uc  1 e 1 0 ]
-{
-[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
-"6
-[v ___bmul@product product `uc  1 a 1 2 ]
-"4
-[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
-[v ___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
-"6
-[v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
-"51
-} 0
-"48 C:\Users\vlads\MPLABXProjects\standart_23.X\eeprom.c
-[v _EEPROM_ReadShortLong EEPROM_ReadShortLong `(um  1 e 3 0 ]
-{
-[v EEPROM_ReadShortLong@addr addr `uc  1 a 1 wreg ]
-"49
-[v EEPROM_ReadShortLong@dt dt `um  1 a 3 12 ]
-"48
-[v EEPROM_ReadShortLong@addr addr `uc  1 a 1 wreg ]
-[v EEPROM_ReadShortLong@addr addr `uc  1 a 1 15 ]
-"53
-} 0
-"404 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-[v _get_adr get_adr `(v  1 e 1 0 ]
-{
-"419
-[v get_adr@q_810 q `uc  1 a 1 23 ]
-"411
-[v get_adr@q q `uc  1 a 1 21 ]
-"429
-[v get_adr@i_811 i `uc  1 a 1 22 ]
-"408
-[v get_adr@i i `uc  1 a 1 20 ]
-"406
-[v get_adr@adr adr `[8][2]uc  1 a 16 4 ]
-"405
-[v get_adr@buf buf `uc  1 a 1 24 ]
-"435
+"251
 } 0
 "87 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
@@ -535,11 +472,11 @@ channel_FVR 31
 {
 "85
 } 0
-"147
+"132
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
 {
 [v TMR2_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 0 ]
-"149
+"134
 } 0
 "64 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
@@ -572,128 +509,76 @@ channel_FVR 31
 {
 "83
 } 0
-"331 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
-[v _povorot povorot `(v  1 e 1 0 ]
-{
-"348
-} 0
-"390
-[v _get_voltage get_voltage `(v  1 e 1 0 ]
-{
-"394
-[v get_voltage@buf buf `uc  1 a 1 21 ]
-"398
-[v get_voltage@q_801 q `uc  1 a 1 22 ]
-"393
-[v get_voltage@q q `uc  1 a 1 23 ]
-"397
-[v get_voltage@buf_800 buf `um  1 a 3 16 ]
-"391
-[v get_voltage@res res `ui  1 a 2 19 ]
-"402
-} 0
-"40 C:\Users\vlads\MPLABXProjects\standart_23.X\eeprom.c
-[v _EEPROM_WriteShortLong EEPROM_WriteShortLong `(v  1 e 1 0 ]
-{
-[v EEPROM_WriteShortLong@addr addr `uc  1 a 1 wreg ]
-"42
-[v EEPROM_WriteShortLong@dt dt `uc  1 a 1 12 ]
-"40
-[v EEPROM_WriteShortLong@addr addr `uc  1 a 1 wreg ]
-[v EEPROM_WriteShortLong@ucData ucData `um  1 p 3 5 ]
-[v EEPROM_WriteShortLong@addr addr `uc  1 a 1 13 ]
-"46
-} 0
-"6
-[v _EEPROM_WriteByte EEPROM_WriteByte `(v  1 e 1 0 ]
-{
-[v EEPROM_WriteByte@addr addr `uc  1 a 1 wreg ]
-"7
-[v EEPROM_WriteByte@status status `uc  1 a 1 4 ]
-"6
-[v EEPROM_WriteByte@addr addr `uc  1 a 1 wreg ]
-[v EEPROM_WriteByte@dt dt `uc  1 p 1 0 ]
-[v EEPROM_WriteByte@addr addr `uc  1 a 1 3 ]
-"19
-} 0
-"21
-[v _EEPROM_ReadByte EEPROM_ReadByte `(uc  1 e 1 0 ]
-{
-[v EEPROM_ReadByte@addr addr `uc  1 a 1 wreg ]
-[v EEPROM_ReadByte@addr addr `uc  1 a 1 wreg ]
-[v EEPROM_ReadByte@addr addr `uc  1 a 1 2 ]
-"26
-} 0
-"219 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"253 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _get_jump get_jump `(v  1 e 1 0 ]
 {
-"223
-[v get_jump@res res `ui  1 a 2 5 ]
-"221
+"257
+[v get_jump@res res `ui  1 a 2 4 ]
+"255
 [v get_jump@jump_counter jump_counter `c  1 s 1 jump_counter ]
-"249
+"281
 } 0
-"145
+"179
 [v _get_fun get_fun `(v  1 e 1 0 ]
 {
-"150
-[v get_fun@res res `ui  1 a 2 5 ]
-"147
+"184
+[v get_fun@res res `ui  1 a 2 4 ]
+"181
 [v get_fun@fun_counter fun_counter `c  1 s 1 fun_counter ]
-"175
+"209
 } 0
-"116 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-[v _ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
+"111 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+[v _ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
 {
 [v ADC_GetConversion@channel channel `E2178  1 a 1 wreg ]
 [v ADC_GetConversion@channel channel `E2178  1 a 1 wreg ]
-"119
-[v ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
-"137
+"114
+[v ADC_GetConversion@channel channel `E2178  1 a 1 1 ]
+"131
 } 0
-"350 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"387 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _fun_work fun_work `(v  1 e 1 0 ]
 {
-"370
+"411
 } 0
-"114
+"148
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
 {
-"119
+"153
 } 0
-"100
+"134
 [v _go_open go_open `(v  1 e 1 0 ]
 {
-"106
+"140
 } 0
-"108
+"142
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
 {
-"112
+"146
 } 0
-"89
+"122
 [v _go_close go_close `(v  1 e 1 0 ]
 {
-"98
+"132
 } 0
-"79
+"102
 [v _beep beep `(v  1 e 1 0 ]
 {
 [v beep@time time `uc  1 a 1 wreg ]
-"81
+"104
 [v beep@i i `uc  1 a 1 5 ]
-"80
+"103
 [v beep@j j `uc  1 a 1 4 ]
-"79
+"102
 [v beep@time time `uc  1 a 1 wreg ]
 [v beep@count count `uc  1 p 1 0 ]
 [v beep@time time `uc  1 a 1 3 ]
-"87
+"110
 } 0
-"71
+"94
 [v _switch_zum switch_zum `(v  1 e 1 0 ]
 {
-"73
+"96
 } 0
 "52 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
@@ -703,69 +588,69 @@ channel_FVR 31
 "119 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]
 {
-"121
-[v TMR2_ISR@CountCallBack CountCallBack `VEui  1 s 2 CountCallBack ]
-"135
+"129
 } 0
-"137
-[v _TMR2_CallBack TMR2_CallBack `(v  1 e 1 0 ]
-{
-"145
-} 0
-"151
+"136
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
 {
-"154
+"139
 } 0
-"310 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"445 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+[v _ms_tick ms_tick `(v  1 e 1 0 ]
+{
+"446
+[v ms_tick@tick_count tick_count `ui  1 s 2 tick_count ]
+"453
+} 0
+"345
 [v _sec_tick_work sec_tick_work `(v  1 e 1 0 ]
 {
-"322
+"357
 [v sec_tick_work@iled iled `uc  1 s 1 iled ]
-"329
+"364
 } 0
-"75
+"98
 [v _toggle_tone toggle_tone `(v  1 e 1 0 ]
 {
-"77
+"100
 } 0
-"289
+"321
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
 {
-"308
+"343
 } 0
-"132
+"166
 [v _get_measure get_measure `(v  1 e 1 0 ]
 {
-"136
-[v get_measure@res res `ui  1 a 2 5 ]
-"133
+"170
+[v get_measure@res res `ui  1 a 2 4 ]
+"167
 [v get_measure@measures measures `uc  1 s 1 measures ]
-"143
+"177
 } 0
-"116 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-[v i1_ADC_GetConversion ADC_GetConversion `(us  1 e 2 0 ]
+"111 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+[v i1_ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
 {
 [v i1ADC_GetConversion@channel channel `E2178  1 a 1 wreg ]
 [v i1ADC_GetConversion@channel channel `E2178  1 a 1 wreg ]
-"119
-[v i1ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
-"137
+"114
+[v i1ADC_GetConversion@channel channel `E2178  1 a 1 1 ]
+"131
 } 0
-"121 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"155 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
 {
-"130
+"164
 } 0
-"108
+"142
 [v i1_go_close_alt go_close_alt `(v  1 e 1 0 ]
 {
-"112
+"146
 } 0
-"89
+"122
 [v i1_go_close go_close `(v  1 e 1 0 ]
 {
-"98
+"132
 } 0
 "108 C:\Users\vlads\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
@@ -777,8 +662,8 @@ channel_FVR 31
 {
 "132
 } 0
-"71 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
+"94 C:\Users\vlads\MPLABXProjects\standart_23.X\main.c
 [v i1_switch_zum switch_zum `(v  1 e 1 0 ]
 {
-"73
+"96
 } 0

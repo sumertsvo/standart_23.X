@@ -3984,29 +3984,46 @@ _Bool FVR_IsOutputReady(void);
 # 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
-# 104 "./mcc_generated_files/tmr2.h"
+# 103 "./mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
-# 133 "./mcc_generated_files/tmr2.h"
+# 132 "./mcc_generated_files/tmr2.h"
 void TMR2_StartTimer(void);
-# 165 "./mcc_generated_files/tmr2.h"
+# 164 "./mcc_generated_files/tmr2.h"
 void TMR2_StopTimer(void);
-# 200 "./mcc_generated_files/tmr2.h"
+# 199 "./mcc_generated_files/tmr2.h"
 uint8_t TMR2_ReadTimer(void);
-# 239 "./mcc_generated_files/tmr2.h"
+# 238 "./mcc_generated_files/tmr2.h"
 void TMR2_WriteTimer(uint8_t timerVal);
-# 291 "./mcc_generated_files/tmr2.h"
+# 290 "./mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 309 "./mcc_generated_files/tmr2.h"
+# 308 "./mcc_generated_files/tmr2.h"
 void TMR2_ISR(void);
-# 327 "./mcc_generated_files/tmr2.h"
- void TMR2_CallBack(void);
-# 344 "./mcc_generated_files/tmr2.h"
+# 326 "./mcc_generated_files/tmr2.h"
  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 362 "./mcc_generated_files/tmr2.h"
+# 344 "./mcc_generated_files/tmr2.h"
 extern void (*TMR2_InterruptHandler)(void);
-# 380 "./mcc_generated_files/tmr2.h"
+# 362 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 98 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "./mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 168 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 204 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(void);
+# 219 "./mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 238 "./mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 256 "./mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 274 "./mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 58 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/adc.h" 1
 # 72 "./mcc_generated_files/adc.h"
@@ -4041,28 +4058,9 @@ _Bool ADC_IsConversionDone(void);
 # 260 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
 # 290 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
+char ADC_GetConversion(adc_channel_t channel);
 # 318 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 98 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 168 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 204 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(void);
-# 219 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 238 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 256 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 274 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 # 74 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -4097,30 +4095,53 @@ void EEPROM_WriteString(unsigned char addr, char* str1);
 
 void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 # 2 "main.c" 2
-# 31 "main.c"
-const __uint24 BAD_WSP_VOLTAGE = 20000;
-const __uint24 GOOD_WSP_VOLTAGE = 40000;
-const __uint24 ROTATION_TIME = 120;
-# 51 "main.c"
+# 13 "main.c"
+const unsigned LOW_WATER_RESISTANSE =20000;
+const unsigned HIGH_WATER_RESISTANSE =25000;
+const unsigned UP_RESISTANSE = 20000;
+# 34 "main.c"
+const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
+const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
+# 54 "main.c"
 struct f_field {
     unsigned ALARM : 1;
     unsigned NORMAL_WORK_MODE : 1;
-    unsigned CLOSED : 1;
     unsigned _FUN_CONNECTED : 1;
     unsigned _JUMP_CONNECTED : 1;
-    unsigned RELE_POW_WAIT : 1;
-    unsigned RELE_CON_WAIT : 1;
-    unsigned FREE : 1;
+    unsigned MEASURE_ON : 1;
+    unsigned RELE_POWER_WAIT : 1;
+    unsigned RELE_CONTROL_WAIT : 1;
+    unsigned OPENING : 1;
+    unsigned OPENED : 1;
+    unsigned CLOSING : 1;
+    unsigned CLOSED : 1;
+    unsigned BEEP_ON : 1;
+    unsigned BOOP_ON : 1;
+    unsigned ZUMM_ON : 1;
+    unsigned WATER_TRUE : 1;
+    unsigned WATER_FALSE : 1;
 };
 
-union Byte {
-    char value;
+union {
+    unsigned value;
     struct f_field bits;
 } FLAGS;
 
-char START_EEPROM_ADR;
-char time_pow_s;
-__uint24 time_s;
+char FRIMWARE_VERSION_EEPROM_ADR;
+
+
+
+__uint24 time_rotation;
+unsigned time_rele_power;
+unsigned time_rele_control;
+unsigned time_rele_gap;
+unsigned time_led;
+unsigned time_zummer;
+
+char time_meas;
+
+
+
 
 void switch_zum() {
     do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
@@ -4140,22 +4161,33 @@ void beep(char time, char count) {
     }
 }
 
+void boop(char time, char count) {
+    for (char j = 0; j < count; j++) {
+        for (char i = 0; i < time; i++) {
+            switch_zum();
+            _delay((unsigned long)((1)*(16000000/4000.0)));
+        }
+        _delay((unsigned long)((150)*(16000000/4000.0)));
+    }
+}
+
 void go_close() {
-    time_s = 0;
+    time_rotation = 0;
     do { LATCbits.LATC4 = 1; } while(0);
+    FLAGS.bits.CLOSING = 1;
     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 10;
-    FLAGS.bits.RELE_POW_WAIT = 1;
-    FLAGS.bits.RELE_CON_WAIT = 1;
+    time_rele_power = 10;
+    FLAGS.bits.RELE_POWER_WAIT = 1;
+    FLAGS.bits.RELE_CONTROL_WAIT = 1;
     return;
 }
 
 void go_open() {
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
-    time_pow_s = 10;
-    FLAGS.bits.RELE_POW_WAIT = 1;
+    time_rele_power = 10;
+    FLAGS.bits.RELE_POWER_WAIT = 1;
     return;
 }
 
@@ -4204,10 +4236,10 @@ void get_fun() {
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     do { ANSELCbits.ANSC2 = 0; } while(0);
     do { LATCbits.LATC1 = 0; } while(0);
-    if (res < 2000) fun_counter--;
+    if (res < 25) fun_counter--;
     else fun_counter++;
-# 166 "main.c"
-       if (fun_counter > 10) {
+# 200 "main.c"
+    if (fun_counter > 10) {
         fun_counter = 10;
         FLAGS.bits._FUN_CONNECTED = 0;
     } else if (fun_counter<-10) {
@@ -4226,10 +4258,10 @@ void get_fun_full() {
     char flag = 0;
     do {
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
-        if (res < 2000) fun_counter--;
+        if (res < 25) fun_counter--;
         else fun_counter++;
-# 201 "main.c"
-          if (fun_counter > 10) {
+# 235 "main.c"
+        if (fun_counter > 10) {
             fun_counter = 10;
             FLAGS.bits._FUN_CONNECTED = 0;
             flag = 1;
@@ -4253,17 +4285,15 @@ void get_jump() {
     do { ANSELAbits.ANSA1 = 1; } while(0);
     unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
     do { ANSELAbits.ANSA1 = 0; } while(0);
-
-
-    if (res < 2000) jump_counter--;
+    if (res < 25) jump_counter--;
     else jump_counter++;
-# 239 "main.c"
+# 271 "main.c"
     if (jump_counter > 10) {
         jump_counter = 10;
-        FLAGS.bits._JUMP_CONNECTED = 0;
+        FLAGS.bits._JUMP_CONNECTED = 1;
     } else if (jump_counter<-10) {
         jump_counter = -10;
-        FLAGS.bits._JUMP_CONNECTED = 1;
+        FLAGS.bits._JUMP_CONNECTED = 0;
     }
 
 
@@ -4277,9 +4307,9 @@ void get_jump_full() {
     char flag = 0;
     do {
         unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-        if (res < 2000) jump_counter--;
+        if (res < 25) jump_counter--;
         else jump_counter++;
-# 273 "main.c"
+# 305 "main.c"
         if (jump_counter > 10) {
             jump_counter = 10;
             FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4297,21 +4327,24 @@ void get_jump_full() {
 }
 
 void rele_tick() {
-    if (FLAGS.bits.RELE_POW_WAIT) {
-        if (time_pow_s > 0) {
-            time_pow_s--;
+    switch_zum();
+    if (FLAGS.bits.RELE_POWER_WAIT) {
+        if (time_rele_power > 0) {
+            time_rele_power--;
         } else {
-            if (FLAGS.bits.RELE_CON_WAIT) {
+            if (FLAGS.bits.RELE_CONTROL_WAIT) {
                 do { LATCbits.LATC5 = 0; } while(0);
                 _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
                 do { LATCbits.LATC4 = 0; } while(0);
+                FLAGS.bits.CLOSING =0;
                 FLAGS.bits.CLOSED = 1;
-                FLAGS.bits.RELE_CON_WAIT = 0;
-                FLAGS.bits.RELE_POW_WAIT = 0;
+                FLAGS.bits.RELE_CONTROL_WAIT = 0;
+                FLAGS.bits.RELE_POWER_WAIT = 0;
             } else {
                 do { LATCbits.LATC5 = 0; } while(0);
+                FLAGS.bits.OPENING = 0;
                 FLAGS.bits.CLOSED = 0;
-                FLAGS.bits.RELE_POW_WAIT = 0;
+                FLAGS.bits.RELE_POWER_WAIT = 0;
             }
         }
     }
@@ -4321,7 +4354,7 @@ void sec_tick_work() {
 
 
 
-    time_s++;
+    time_rotation++;
     rele_tick();
     __asm("clrwdt");
     if (FLAGS.bits.ALARM) {
@@ -4339,20 +4372,22 @@ void sec_tick_work() {
 }
 
 void povorot() {
-    if ((time_s > ROTATION_TIME) &&
+    if ((time_rotation > 120) &&
             !FLAGS.bits.CLOSED &&
+            !FLAGS.bits.CLOSING &&
             !FLAGS.bits.ALARM &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
         go_close();
     }
-    if ((time_s > (ROTATION_TIME + 10 + 2 * 2)) &&
+    if ((time_rotation > (120 + 10 + 2 * 2)) &&
             FLAGS.bits.CLOSED &&
+            FLAGS.bits.CLOSING &&
             FLAGS.bits.ALARM == 0 &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
         go_open();
-        time_s = 0;
+        time_rotation = 0;
     }
 
 }
@@ -4362,19 +4397,23 @@ void fun_work() {
         if (FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.ALARM &&
                 FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POW_WAIT) {
+                !FLAGS.bits.RELE_POWER_WAIT) {
+
+            beep(40, 1);
+
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
 
-            beep( 40, 1);
         };
         if (!FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POW_WAIT) {
+                !FLAGS.bits.RELE_POWER_WAIT) {
+
+            beep(40, 2);
+
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
 
-            beep( 40, 2);
         }
     }
 }
@@ -4385,116 +4424,37 @@ void switch_wm() {
             FLAGS.bits.NORMAL_WORK_MODE = 0;
 
 
-            beep( 40, 8);
+            boop(40, 2);
         }
     } else {
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
 
 
-            beep(40, 4);
+            boop(40, 1);
         }
     }
 }
+# 445 "main.c"
+void ms_tick(){
+    static unsigned tick_count =0;
+    tick_count++;
 
-void get_voltage() {
-    unsigned res = ADC_GetConversion(channel_FVR);
-    if (res > 46200) {
-        for (char q = 0; q < 0x10; q++) {
-            char buf = EEPROM_ReadByte(q);
-            if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
-        }
-        __uint24 buf = time_s;
-        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 12; q += 4) {
-            EEPROM_WriteShortLong(q, buf);
-        }
+    if (tick_count == 1000){
+    sec_tick_work();
+    tick_count=0;
     }
 }
-
-void get_adr() {
-    char buf = 0;
-    char adr[8][2] = {};
-
-    for (unsigned char i = 0; i < 8; i++) {
-        buf = EEPROM_ReadByte(i);
-        if (buf == 0) continue;
-        for (unsigned char q = 0; q < 8; q++) {
-            if (buf == adr[q][0]) {
-                (adr[q][1])++;
-                buf = 0;
-            }
-        }
-
-        if (buf != 0) {
-            for (unsigned char q = 0; q < 8; q++)
-                if (adr[q][0] == 0) {
-                    adr[q][0] = buf;
-                    adr[q][1] = 1;
-                    buf = 0;
-                    break;
-                }
-        }
-    }
-    buf = 0;
-    for (unsigned char i = 0; i < 8; i++) {
-        if (adr[i][1] > adr[buf][1]) buf = i;
-    }
-    START_EEPROM_ADR = adr[buf][0];
-    if (START_EEPROM_ADR == 0 || START_EEPROM_ADR == 0xFF) START_EEPROM_ADR = 0x10;
-
-}
-
-void get_time(){
-
-    char adr_error = 0;
-    char buf=0;
-    __uint24 buf2 = 0;
-    __uint24 times[3] = {};
-    char time_count[3]={};
-    for (unsigned char i = START_EEPROM_ADR; i < START_EEPROM_ADR + 0x10; i += 4) {
-        buf2 = EEPROM_ReadShortLong(i);
-
-        for (char q = 0; q < 3; q++) {
-            if (buf2 == times[q]) {
-                time_count[q]++;
-                buf2 = 0;
-            }
-        }
-
-        if (buf2 != 0) {
-            adr_error ++;
-            for (unsigned char q = 0; q < 3; q++)
-                if (times[q]== 0) {
-                    times[q] = buf;
-                    time_count[q] = 1;
-                    buf = 0;
-                    break;
-                }
-        }
-    }
-    buf = 0;
-    for (unsigned char q = 0; q < 3; q++) {
-        if (time_count[q] > time_count[buf]) buf = q;
-    }
-    time_s = times[buf];
-
-    if (adr_error>1) START_EEPROM_ADR += 0x10;
-}
-
-void get_eeprom() {
-    get_adr();
-    get_time();
-}
-
+# 531 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
     (INTCONbits.GIE = 1);
     (INTCONbits.PEIE = 1);
 
-    get_eeprom();
+
     TMR0_SetInterruptHandler(switch_zum);
-    TMR2_SetInterruptHandler(sec_tick_work);
+    TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
 
 
@@ -4509,15 +4469,16 @@ void start_setup() {
     do { TRISCbits.TRISC2 = 1; } while(0);
     INTCONbits.TMR0IE = 0;
     FLAGS.value = 0;
+    FLAGS.bits.ALARM =0;
     do { LATCbits.LATC5 = 0; } while(0);
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC0 = 0; } while(0);
     do { TRISCbits.TRISC0 = 0; } while(0);
 
 
-    get_fun_full();
     get_jump_full();
-    time_pow_s = 0;
+    get_fun_full();
+    time_rele_power = 0;
 }
 
 void main(void) {
@@ -4525,13 +4486,13 @@ void main(void) {
     start_setup();
 
     while (1) {
-        get_voltage();
+
         if (!FLAGS.bits.ALARM) {
             get_fun();
             fun_work();
             get_jump();
             switch_wm();
-            povorot();
+
         };
     }
 }

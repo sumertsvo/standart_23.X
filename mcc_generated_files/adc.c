@@ -126,7 +126,6 @@ char ADC_GetConversion(adc_channel_t channel)
     while (ADCON0bits.GO_nDONE)
     {
     }
-
     // Conversion finished, return the result
     return ( ADRESH);
 }

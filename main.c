@@ -10,10 +10,10 @@
 
 //SETUP 
 #define ROTATION_DAYS 14 //дней до поворота крана
-#define LOW_WATER_RESISTANSE 20000  //сопротивление датчика
-#define HIGH_WATER_RESISTANSE 25000 //
-#define UP_RESISTANSE 20000 //сопротивление делителя
-#define LOW_PIN_VOLTAGE 50 // "низкий логический уровень"
+const unsigned LOW_WATER_RESISTANSE =20000;  //сопротивление датчика
+const unsigned  HIGH_WATER_RESISTANSE =25000; //
+const unsigned  UP_RESISTANSE = 20000; //сопротивление делителя
+#define LOW_PIN_VOLTAGE 25 // "низкий логический уровень"
 
 //защита от дребезга
 #define WSP_MEAS_COUNT 2    //количество измерений датчика
@@ -31,8 +31,8 @@
 
 #define RELE_TIME 10// sec
 #define RELE_GAP 2 // sec
-#define BAD_WSP_VOLTAGE (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256))
-#define GOOD_WSP_VOLTAGE (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256)) 
+const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
+const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
 #define ROTATION_TIME  120 //sec
 
 
@@ -41,9 +41,9 @@
 
 #define RELE_TIME 120 // sec
 #define RELE_GAP 1 //sec
-#define BAD_WSP_VOLTAGE  LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256);
-#define GOOD_WSP_VOLTAGE  HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); 
-#define ROTATION_TIME  (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
+const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
+const unsigned ROTATION_TIME  = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 
 #endif
 
@@ -122,6 +122,7 @@ void boop(char time, char count) {//короткий писк
 void go_close() {//начало закрытия кранов
     time_rotation = 0;
     PIN_RELE_CONTROL_SetHigh();
+    FLAGS.bits.CLOSING = 1;
     __delay_ms(RELE_GAP * 1000);
     PIN_RELE_POWER_SetHigh();
     time_rele_power = RELE_TIME;
@@ -318,6 +319,7 @@ void get_jump_full() {//определение положения переклю
 }
 
 void rele_tick() {//закрытие кранов (задержка на работу привода)
+    switch_zum();
     if (FLAGS.bits.RELE_POWER_WAIT) {//если работает силовое реле
         if (time_rele_power > 0) { //время до закрытия
             time_rele_power--;
@@ -326,11 +328,13 @@ void rele_tick() {//закрытие кранов (задержка на раб�
                 PIN_RELE_POWER_SetLow();
                 __delay_ms(RELE_GAP * 1000);
                 PIN_RELE_CONTROL_SetLow();
+                FLAGS.bits.CLOSING =0;
                 FLAGS.bits.CLOSED = 1;
                 FLAGS.bits.RELE_CONTROL_WAIT = 0;
                 FLAGS.bits.RELE_POWER_WAIT = 0;
             } else {//если не активно то открываемся
                 PIN_RELE_POWER_SetLow();
+                FLAGS.bits.OPENING = 0;
                 FLAGS.bits.CLOSED = 0;
                 FLAGS.bits.RELE_POWER_WAIT = 0;
             }
@@ -362,6 +366,7 @@ void sec_tick_work() {//работа секундного таймера
 void povorot() {//автоповорот
     if ((time_rotation > ROTATION_TIME) &&
             !FLAGS.bits.CLOSED &&
+            !FLAGS.bits.CLOSING &&
             !FLAGS.bits.ALARM &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
@@ -369,6 +374,7 @@ void povorot() {//автоповорот
     }
     if ((time_rotation > (ROTATION_TIME + RELE_TIME + RELE_GAP * 2)) && //закрытие идёт указанное время
             FLAGS.bits.CLOSED &&
+            FLAGS.bits.CLOSING &&
             FLAGS.bits.ALARM == 0 &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
@@ -380,22 +386,26 @@ void povorot() {//автоповорот
 
 void fun_work() {//работа переключателя
     {
-        if (FLAGS.bits._FUN_CONNECTED &&
+        if (FLAGS.bits._FUN_CONNECTED &&//открытие
                 !FLAGS.bits.ALARM &&
                 FLAGS.bits.CLOSED &&
                 !FLAGS.bits.RELE_POWER_WAIT) {
+            //один низкий писк
+            beep(40, 1); 
+            
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
-            //один низкий писк
-            beep(40, 1); //_freq pause work_time count
+            
         };
-        if (!FLAGS.bits._FUN_CONNECTED &&
+        if (!FLAGS.bits._FUN_CONNECTED &&//закрытие
                 !FLAGS.bits.CLOSED &&
                 !FLAGS.bits.RELE_POWER_WAIT) {
+             //два низких писка
+            beep(40, 2);
+            
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
-            //два низких писка
-            beep(40, 2); //_freq pause work_time count
+           
         }
     }
 }
@@ -417,7 +427,7 @@ void switch_wm() {//выбор режима работы
         }
     }
 }
-
+/*
 void get_voltage() {
     unsigned res = ADC_GetConversion(channel_FVR);
     if (res > 46200) {
@@ -431,12 +441,12 @@ void get_voltage() {
         }
     }
 }
-
+//*/
 void ms_tick(){
     static unsigned tick_count =0;
     tick_count++;
     
-    if (tick_count=1000){
+    if (tick_count == 1000){
     sec_tick_work();
     tick_count=0;
     }
@@ -541,14 +551,15 @@ void start_setup() {//начальная настройка
     PIN_FUN_STATE_SetDigitalInput();
     INTCONbits.TMR0IE = 0; //выкл зуммер
     FLAGS.value = 0;
+    FLAGS.bits.ALARM =0;
     PIN_RELE_POWER_SetLow();
     PIN_RELE_CONTROL_SetLow();
     PIN_ALARM_STATE_SetLow();
     PIN_ALARM_STATE_SetDigitalOutput();
 
     //проверка текущего режима
-    get_fun_full();
     get_jump_full();
+    get_fun_full();
     time_rele_power = 0;
 }
 
@@ -557,13 +568,13 @@ void main(void) {
     start_setup();
 
     while (1) {
-        get_voltage();
+//        get_voltage();
         if (!FLAGS.bits.ALARM) {
             get_fun();
             fun_work();
             get_jump();
             switch_wm();
-            povorot();
+          //  povorot();
         };
     }
 }

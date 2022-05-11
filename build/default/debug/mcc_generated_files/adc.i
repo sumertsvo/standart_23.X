@@ -3924,7 +3924,6 @@ char ADC_GetConversion(adc_channel_t channel)
     {
     }
 
-
     return ( ADRESH);
 }
 

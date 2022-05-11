@@ -3984,29 +3984,46 @@ _Bool FVR_IsOutputReady(void);
 # 56 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr2.h" 1
-# 104 "./mcc_generated_files/tmr2.h"
+# 103 "./mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
-# 133 "./mcc_generated_files/tmr2.h"
+# 132 "./mcc_generated_files/tmr2.h"
 void TMR2_StartTimer(void);
-# 165 "./mcc_generated_files/tmr2.h"
+# 164 "./mcc_generated_files/tmr2.h"
 void TMR2_StopTimer(void);
-# 200 "./mcc_generated_files/tmr2.h"
+# 199 "./mcc_generated_files/tmr2.h"
 uint8_t TMR2_ReadTimer(void);
-# 239 "./mcc_generated_files/tmr2.h"
+# 238 "./mcc_generated_files/tmr2.h"
 void TMR2_WriteTimer(uint8_t timerVal);
-# 291 "./mcc_generated_files/tmr2.h"
+# 290 "./mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 309 "./mcc_generated_files/tmr2.h"
+# 308 "./mcc_generated_files/tmr2.h"
 void TMR2_ISR(void);
-# 327 "./mcc_generated_files/tmr2.h"
- void TMR2_CallBack(void);
-# 344 "./mcc_generated_files/tmr2.h"
+# 326 "./mcc_generated_files/tmr2.h"
  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 362 "./mcc_generated_files/tmr2.h"
+# 344 "./mcc_generated_files/tmr2.h"
 extern void (*TMR2_InterruptHandler)(void);
-# 380 "./mcc_generated_files/tmr2.h"
+# 362 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
 # 57 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/tmr0.h" 1
+# 98 "./mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+# 129 "./mcc_generated_files/tmr0.h"
+uint8_t TMR0_ReadTimer(void);
+# 168 "./mcc_generated_files/tmr0.h"
+void TMR0_WriteTimer(uint8_t timerVal);
+# 204 "./mcc_generated_files/tmr0.h"
+void TMR0_Reload(void);
+# 219 "./mcc_generated_files/tmr0.h"
+void TMR0_ISR(void);
+# 238 "./mcc_generated_files/tmr0.h"
+ void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+# 256 "./mcc_generated_files/tmr0.h"
+extern void (*TMR0_InterruptHandler)(void);
+# 274 "./mcc_generated_files/tmr0.h"
+void TMR0_DefaultInterruptHandler(void);
+# 58 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/adc.h" 1
 # 72 "./mcc_generated_files/adc.h"
@@ -4041,28 +4058,9 @@ _Bool ADC_IsConversionDone(void);
 # 260 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
 # 290 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversion(adc_channel_t channel);
+char ADC_GetConversion(adc_channel_t channel);
 # 318 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 98 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 168 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 204 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(void);
-# 219 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 238 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 256 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 274 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
 # 59 "./mcc_generated_files/mcc.h" 2
 # 74 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
