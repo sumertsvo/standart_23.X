@@ -5,6 +5,8 @@
 //
 #define DEBUG_ENABLED
 //#define doubledd
+//~настройка компиляции
+
 
 //SETUP 
 #define ROTATION_DAYS 14 //дней до поворота крана
@@ -16,30 +18,32 @@
 //защита от дребезга
 #define WSP_MEAS_COUNT 2    //количество измерений датчика
 
-
-
 #ifdef doubledd
 #define FUN_MEAS_COUNT 10   //количество измерений переключателя
 #define JUMP_MEAS_COUNT 10  //количество измерений джампера
 #else
 #define MEAS_COUNT 10
 #endif
+//~защита от дребезга
+
 
 #ifdef DEBUG_ENABLED
 
 #define RELE_TIME 10// sec
 #define RELE_GAP 2 // sec
-const __uint24 BAD_WSP_VOLTAGE = 120; //
-const __uint24 GOOD_WSP_VOLTAGE = 135; //
-const __uint24 ROTATION_TIME = 120; //sec
+#define BAD_WSP_VOLTAGE (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256))
+#define GOOD_WSP_VOLTAGE (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256)) 
+#define ROTATION_TIME  120 //sec
+
+
 
 #else
 
 #define RELE_TIME 120 // sec
 #define RELE_GAP 1 //sec
-const unsigned short long BAD_WSP_VOLTAGE = LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256); //	TODO
-const unsigned short long GOOD_WSP_VOLTAGE = HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); //	TODO
-const unsigned short long ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+#define BAD_WSP_VOLTAGE  LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256);
+#define GOOD_WSP_VOLTAGE  HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256); 
+#define ROTATION_TIME  (ROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 
 #endif
 
@@ -66,14 +70,26 @@ struct f_field {
     unsigned WATER_FALSE : 1;
 };
 
-union Byte {
-    char value;
+union {
+    unsigned value;
     struct f_field bits;
 } FLAGS;
 
-char START_EEPROM_ADR;
-char time_pow_s; //время до закрытия реле (сек)
-__uint24 time_s; //время до автоповорота (сек)
+char FRIMWARE_VERSION_EEPROM_ADR;
+
+//TIMES
+//sec_div
+__uint24 time_rotation; //время до автоповорота (сек)
+unsigned time_rele_power; //время до закрытия реле (сек)
+unsigned time_rele_control;
+unsigned time_rele_gap;
+unsigned time_led;
+unsigned time_zummer;
+//ms_div
+char time_meas;
+//~TIMES
+
+
 
 void switch_zum() {//одно переключение
     PIN_ZUMMER_Toggle();
@@ -104,11 +120,11 @@ void boop(char time, char count) {//короткий писк
 }
 
 void go_close() {//начало закрытия кранов
-    time_s = 0;
+    time_rotation = 0;
     PIN_RELE_CONTROL_SetHigh();
     __delay_ms(RELE_GAP * 1000);
     PIN_RELE_POWER_SetHigh();
-    time_pow_s = RELE_TIME;
+    time_rele_power = RELE_TIME;
     FLAGS.bits.RELE_POWER_WAIT = 1;
     FLAGS.bits.RELE_CONTROL_WAIT = 1;
     return;
@@ -117,7 +133,7 @@ void go_close() {//начало закрытия кранов
 void go_open() {//начало открытия кранов
     PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetHigh();
-    time_pow_s = RELE_TIME;
+    time_rele_power = RELE_TIME;
     FLAGS.bits.RELE_POWER_WAIT = 1;
     return;
 }
@@ -239,8 +255,6 @@ void get_jump() {//определение положения джампера (�
     PIN_JUMP_STATE_SetAnalogMode();
     unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
     PIN_JUMP_STATE_SetDigitalMode();
-
-
     if (res < LOW_PIN_VOLTAGE) jump_counter--;
     else jump_counter++;
 
@@ -305,8 +319,8 @@ void get_jump_full() {//определение положения переклю
 
 void rele_tick() {//закрытие кранов (задержка на работу привода)
     if (FLAGS.bits.RELE_POWER_WAIT) {//если работает силовое реле
-        if (time_pow_s > 0) { //время до закрытия
-            time_pow_s--;
+        if (time_rele_power > 0) { //время до закрытия
+            time_rele_power--;
         } else {
             if (FLAGS.bits.RELE_CONTROL_WAIT) {//если реле активно то закрываемся
                 PIN_RELE_POWER_SetLow();
@@ -328,7 +342,7 @@ void sec_tick_work() {//работа секундного таймера
 #ifdef DEBUG_ENABLED
     //   switch_zum();
 #endif
-    time_s++;
+    time_rotation++;
     rele_tick();
     CLRWDT(); // <2.1 сек
     if (FLAGS.bits.ALARM) {
@@ -346,20 +360,20 @@ void sec_tick_work() {//работа секундного таймера
 }
 
 void povorot() {//автоповорот
-    if ((time_s > ROTATION_TIME) &&
+    if ((time_rotation > ROTATION_TIME) &&
             !FLAGS.bits.CLOSED &&
             !FLAGS.bits.ALARM &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
         go_close();
     }
-    if ((time_s > (ROTATION_TIME + RELE_TIME + RELE_GAP * 2)) && //закрытие идёт указанное время
+    if ((time_rotation > (ROTATION_TIME + RELE_TIME + RELE_GAP * 2)) && //закрытие идёт указанное время
             FLAGS.bits.CLOSED &&
             FLAGS.bits.ALARM == 0 &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
         go_open();
-        time_s = 0; //обнуляем счетчик
+        time_rotation = 0; //обнуляем счетчик
     }
 
 }
@@ -409,12 +423,22 @@ void get_voltage() {
     if (res > 46200) {
         for (char q = 0; q < 0x10; q++) {
             char buf = EEPROM_ReadByte(q);
-            if (buf != START_EEPROM_ADR) EEPROM_WriteByte(q, START_EEPROM_ADR);
+            if (buf != FRIMWARE_VERSION_EEPROM_ADR) EEPROM_WriteByte(q, FRIMWARE_VERSION_EEPROM_ADR);
         }
-        __uint24 buf = time_s;
-        for (char q = START_EEPROM_ADR; q < START_EEPROM_ADR + 12; q += 4) {
+        __uint24 buf = time_rotation;
+        for (char q = FRIMWARE_VERSION_EEPROM_ADR; q < FRIMWARE_VERSION_EEPROM_ADR + 12; q += 4) {
             EEPROM_WriteShortLong(q, buf);
         }
+    }
+}
+
+void ms_tick(){
+    static unsigned tick_count =0;
+    tick_count++;
+    
+    if (tick_count=1000){
+    sec_tick_work();
+    tick_count=0;
     }
 }
 
@@ -502,7 +526,7 @@ void start_setup() {//начальная настройка
     // end MCC
     // get_eeprom();
     TMR0_SetInterruptHandler(switch_zum);
-    TMR2_SetInterruptHandler(sec_tick_work);
+    TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer(); //начать секундный счет
 
     //отключение аналоговых входов чтобы не мешали измерениям
@@ -525,7 +549,7 @@ void start_setup() {//начальная настройка
     //проверка текущего режима
     get_fun_full();
     get_jump_full();
-    time_pow_s = 0;
+    time_rele_power = 0;
 }
 
 void main(void) {
