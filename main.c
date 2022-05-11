@@ -50,12 +50,20 @@ const unsigned short long ROTATION_TIME = (ROTATION_DAYS * 24 * 60 * 60); //D*H*
 struct f_field {
     unsigned ALARM : 1;
     unsigned NORMAL_WORK_MODE : 1;
-    unsigned CLOSED : 1;
     unsigned _FUN_CONNECTED : 1;
     unsigned _JUMP_CONNECTED : 1;
-    unsigned RELE_POW_WAIT : 1;
-    unsigned RELE_CON_WAIT : 1;
-    unsigned FREE : 1;
+    unsigned MEASURE_ON : 1;
+    unsigned RELE_POWER_WAIT : 1;
+    unsigned RELE_CONTROL_WAIT : 1;
+    unsigned OPENING : 1;
+    unsigned OPENED : 1;
+    unsigned CLOSING : 1;
+    unsigned CLOSED : 1;
+    unsigned BEEP_ON : 1;
+    unsigned BOOP_ON : 1;
+    unsigned ZUMM_ON : 1;
+    unsigned WATER_TRUE : 1;
+    unsigned WATER_FALSE : 1;
 };
 
 union Byte {
@@ -85,14 +93,24 @@ void beep(char time, char count) {//короткий писк
     }
 }
 
+void boop(char time, char count) {//короткий писк
+    for (char j = 0; j < count; j++) {
+        for (char i = 0; i < time; i++) {
+            switch_zum();
+            __delay_ms(1);
+        }
+        __delay_ms(150);
+    }
+}
+
 void go_close() {//начало закрытия кранов
     time_s = 0;
     PIN_RELE_CONTROL_SetHigh();
     __delay_ms(RELE_GAP * 1000);
     PIN_RELE_POWER_SetHigh();
     time_pow_s = RELE_TIME;
-    FLAGS.bits.RELE_POW_WAIT = 1;
-    FLAGS.bits.RELE_CON_WAIT = 1;
+    FLAGS.bits.RELE_POWER_WAIT = 1;
+    FLAGS.bits.RELE_CONTROL_WAIT = 1;
     return;
 }
 
@@ -100,7 +118,7 @@ void go_open() {//начало открытия кранов
     PIN_RELE_CONTROL_SetLow();
     PIN_RELE_POWER_SetHigh();
     time_pow_s = RELE_TIME;
-    FLAGS.bits.RELE_POW_WAIT = 1;
+    FLAGS.bits.RELE_POWER_WAIT = 1;
     return;
 }
 
@@ -286,21 +304,21 @@ void get_jump_full() {//определение положения переклю
 }
 
 void rele_tick() {//закрытие кранов (задержка на работу привода)
-    if (FLAGS.bits.RELE_POW_WAIT) {//если работает силовое реле
+    if (FLAGS.bits.RELE_POWER_WAIT) {//если работает силовое реле
         if (time_pow_s > 0) { //время до закрытия
             time_pow_s--;
         } else {
-            if (FLAGS.bits.RELE_CON_WAIT) {//если реле активно то закрываемся
+            if (FLAGS.bits.RELE_CONTROL_WAIT) {//если реле активно то закрываемся
                 PIN_RELE_POWER_SetLow();
                 __delay_ms(RELE_GAP * 1000);
                 PIN_RELE_CONTROL_SetLow();
                 FLAGS.bits.CLOSED = 1;
-                FLAGS.bits.RELE_CON_WAIT = 0;
-                FLAGS.bits.RELE_POW_WAIT = 0;
+                FLAGS.bits.RELE_CONTROL_WAIT = 0;
+                FLAGS.bits.RELE_POWER_WAIT = 0;
             } else {//если не активно то открываемся
                 PIN_RELE_POWER_SetLow();
                 FLAGS.bits.CLOSED = 0;
-                FLAGS.bits.RELE_POW_WAIT = 0;
+                FLAGS.bits.RELE_POWER_WAIT = 0;
             }
         }
     }
@@ -351,7 +369,7 @@ void fun_work() {//работа переключателя
         if (FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.ALARM &&
                 FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POW_WAIT) {
+                !FLAGS.bits.RELE_POWER_WAIT) {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
             //один низкий писк
@@ -359,7 +377,7 @@ void fun_work() {//работа переключателя
         };
         if (!FLAGS.bits._FUN_CONNECTED &&
                 !FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POW_WAIT) {
+                !FLAGS.bits.RELE_POWER_WAIT) {
             if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
             //два низких писка
@@ -374,14 +392,14 @@ void switch_wm() {//выбор режима работы
             FLAGS.bits.NORMAL_WORK_MODE = 0;
             //   if (FLAGS.bits.CLOSED) go_close_alt();
             //три высоких писка
-            beep(40, 8); //_freq pause work_time count
+            boop(40, 2); //_freq pause work_time count
         }
     } else {//go_norm_mode
         if (!FLAGS.bits.NORMAL_WORK_MODE) {
             FLAGS.bits.NORMAL_WORK_MODE = 1;
             //    if (FLAGS.bits.CLOSED) go_close();
             //два высоких писка
-            beep(40, 4); //_freq pause work_time count;
+            boop(40, 1); //_freq pause work_time count;
         }
     }
 }
@@ -399,6 +417,7 @@ void get_voltage() {
         }
     }
 }
+
 /*
 void get_adr() {
     char buf = 0;
@@ -481,7 +500,7 @@ void start_setup() {//начальная настройка
     INTERRUPT_GlobalInterruptEnable(); // Enable the Global Interrupts
     INTERRUPT_PeripheralInterruptEnable(); // Enable the Peripheral Interrupts
     // end MCC
-   // get_eeprom();
+    // get_eeprom();
     TMR0_SetInterruptHandler(switch_zum);
     TMR2_SetInterruptHandler(sec_tick_work);
     TMR2_StartTimer(); //начать секундный счет
