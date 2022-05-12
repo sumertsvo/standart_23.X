@@ -10,7 +10,7 @@
 # 50 "mcc_generated_files/device_config.c"
 #pragma config FOSC = INTOSC
 #pragma config WDTE = OFF
-#pragma config PWRTE = OFF
+#pragma config PWRTE = ON
 #pragma config MCLRE = ON
 #pragma config CP = OFF
 #pragma config CPD = OFF

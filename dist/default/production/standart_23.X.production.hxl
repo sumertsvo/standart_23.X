@@ -9,12 +9,12 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 1h		(dist/default/production\standart_23.X.production.hex)
-  8h - 999h		(dist/default/production\standart_23.X.production.hex)
+  8h - 973h		(dist/default/production\standart_23.X.production.hex)
   10000h - 10007h		(dist/default/production\standart_23.X.production.hex)
   1000Eh - 10011h		(dist/default/production\standart_23.X.production.hex)
  Unused ranges:
   2h - 7h
-  99Ah - FFFFh
+  974h - FFFFh
   10008h - 1000Dh
 
 ### Hex Memory Map ###
@@ -175,9 +175,7 @@
 00000940 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000950 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000960 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000970 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000980 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000990 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- --
+00000970 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00010000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- H1 H1
 00010010 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --

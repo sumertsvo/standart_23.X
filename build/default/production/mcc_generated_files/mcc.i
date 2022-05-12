@@ -4098,5 +4098,5 @@ void OSCILLATOR_Initialize(void)
 void WDT_Initialize(void)
 {
 
-    WDTCON = 0x16;
+    WDTCON = 0x14;
 }

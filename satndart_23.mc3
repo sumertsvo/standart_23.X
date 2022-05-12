@@ -2028,7 +2028,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="System Module" registerAlias="CONFIG1"/>
-         <value>16356</value>
+         <value>16348</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="System Module" registerAlias="CONFIG2"/>
@@ -2068,11 +2068,11 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="PWRTE"/>
-         <value>OFF</value>
+         <value>ON</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="System Module" registerAlias="CONFIG1" settingAlias="WDTE"/>
-         <value>OFF</value>
+         <value>ON</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="System Module" registerAlias="CONFIG2" settingAlias="BORV"/>
@@ -2574,7 +2574,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.c</file>
-         <hash>9424fa60447c094cdb1c02434dda0dfe06f02cee3e326f3a92700fe23b321d72</hash>
+         <hash>28223c956513d877632bd7eca05c06e4c4a44ce216e46d9f64b0c4774031839a</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr2.c</file>
@@ -2601,12 +2601,12 @@
          <hash>2022f829436ee8531dee3db7fdca8320229fb85cd7fa349aac9083746a5351c5</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\fvr.c</file>
-         <hash>35876122ce29402a379407723e77b5935edb18f2e4592bfd4f90aa94f8a4dd4f</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\adc.c</file>
          <hash>71714280ffc8a9db8474ac7d9288de74b083d6c00de6263c4f34ae189b324d69</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\fvr.c</file>
+         <hash>35876122ce29402a379407723e77b5935edb18f2e4592bfd4f90aa94f8a4dd4f</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
@@ -2614,7 +2614,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\mcc.c</file>
-         <hash>0b8b442b5bf04e0a5f59ea9fd8c251883edffdf97b43d84accb93e3e45c8b4b8</hash>
+         <hash>e0de905f90630e40eebebb13088b97e8e778f479f9150bce7c511f1973db613e</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

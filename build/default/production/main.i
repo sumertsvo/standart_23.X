@@ -4144,7 +4144,9 @@ char time_meas;
 
 
 void switch_zum() {
-    do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+    do { LATAbits.LATA5 = 1; } while(0);
+    _delay((unsigned long)((5)*(16000000/4000000.0)));
+    do { LATAbits.LATA5 = 0; } while(0);
 }
 
 void toggle_tone() {
@@ -4219,6 +4221,7 @@ void get_measure() {
     static unsigned char measures;
     do { LATCbits.LATC1 = 1; } while(0);
     do { ANSELCbits.ANSC3 = 1; } while(0);
+    _delay((unsigned long)((1)*(16000000/4000.0)));
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
     do { ANSELCbits.ANSC3 = 0; } while(0);
     do { LATCbits.LATC1 = 0; } while(0);
@@ -4233,12 +4236,14 @@ void get_fun() {
     static signed char fun_counter;
     do { LATCbits.LATC1 = 1; } while(0);
     do { ANSELCbits.ANSC2 = 1; } while(0);
+
+    _delay((unsigned long)((1)*(16000000/4000.0)));
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     do { ANSELCbits.ANSC2 = 0; } while(0);
     do { LATCbits.LATC1 = 0; } while(0);
     if (res < 25) fun_counter--;
     else fun_counter++;
-# 200 "main.c"
+# 205 "main.c"
     if (fun_counter > 10) {
         fun_counter = 10;
         FLAGS.bits._FUN_CONNECTED = 0;
@@ -4257,10 +4262,11 @@ void get_fun_full() {
     do { ANSELCbits.ANSC2 = 1; } while(0);
     char flag = 0;
     do {
+        _delay((unsigned long)((1)*(16000000/4000.0)));
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
         if (res < 25) fun_counter--;
         else fun_counter++;
-# 235 "main.c"
+# 241 "main.c"
         if (fun_counter > 10) {
             fun_counter = 10;
             FLAGS.bits._FUN_CONNECTED = 0;
@@ -4287,7 +4293,7 @@ void get_jump() {
     do { ANSELAbits.ANSA1 = 0; } while(0);
     if (res < 25) jump_counter--;
     else jump_counter++;
-# 271 "main.c"
+# 277 "main.c"
     if (jump_counter > 10) {
         jump_counter = 10;
         FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4309,7 +4315,7 @@ void get_jump_full() {
         unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
         if (res < 25) jump_counter--;
         else jump_counter++;
-# 305 "main.c"
+# 311 "main.c"
         if (jump_counter > 10) {
             jump_counter = 10;
             FLAGS.bits._JUMP_CONNECTED = 0;
@@ -4327,7 +4333,10 @@ void get_jump_full() {
 }
 
 void rele_tick() {
+
     switch_zum();
+
+
     if (FLAGS.bits.RELE_POWER_WAIT) {
         if (time_rele_power > 0) {
             time_rele_power--;
@@ -4354,9 +4363,11 @@ void sec_tick_work() {
 
 
 
-    time_rotation++;
+    if (!FLAGS.bits.CLOSED) {
+        time_rotation++;
+    }
     rele_tick();
-    __asm("clrwdt");
+
     if (FLAGS.bits.ALARM) {
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
         toggle_tone();
@@ -4372,7 +4383,7 @@ void sec_tick_work() {
 }
 
 void povorot() {
-    if ((time_rotation > 120) &&
+    if ((time_rotation > 90) &&
             !FLAGS.bits.CLOSED &&
             !FLAGS.bits.CLOSING &&
             !FLAGS.bits.ALARM &&
@@ -4380,16 +4391,7 @@ void povorot() {
             ) {
         go_close();
     }
-    if ((time_rotation > (120 + 10 + 2 * 2)) &&
-            FLAGS.bits.CLOSED &&
-            FLAGS.bits.CLOSING &&
-            FLAGS.bits.ALARM == 0 &&
-            FLAGS.bits.NORMAL_WORK_MODE
-            ) {
-        go_open();
-        time_rotation = 0;
-    }
-
+# 397 "main.c"
 }
 
 void fun_work() {
@@ -4435,7 +4437,7 @@ void switch_wm() {
         }
     }
 }
-# 445 "main.c"
+# 457 "main.c"
 void ms_tick(){
     static unsigned tick_count =0;
     tick_count++;
@@ -4445,7 +4447,7 @@ void ms_tick(){
     tick_count=0;
     }
 }
-# 531 "main.c"
+# 543 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4476,8 +4478,8 @@ void start_setup() {
     do { TRISCbits.TRISC0 = 0; } while(0);
 
 
-    get_jump_full();
-    get_fun_full();
+ get_jump_full();
+   get_fun_full();
     time_rele_power = 0;
 }
 
@@ -4486,6 +4488,7 @@ void main(void) {
     start_setup();
 
     while (1) {
+         __asm("clrwdt");
 
         if (!FLAGS.bits.ALARM) {
 

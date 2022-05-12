@@ -33,7 +33,7 @@ const unsigned  UP_RESISTANSE = 20000; //сопротивление делите
 #define RELE_GAP 2 // sec
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
-#define ROTATION_TIME  120 //sec
+#define ROTATION_TIME  90 //sec
 
 
 
@@ -93,6 +93,7 @@ char time_meas;
 
 void switch_zum() {//одно переключение
     PIN_ZUMMER_SetHigh();
+    __delay_us(5);
     PIN_ZUMMER_SetLow();
 }
 
@@ -183,6 +184,7 @@ void get_fun() {//определение положения переключат
     static signed char fun_counter;
     PIN_POWER_MEAS_SetHigh();
     PIN_FUN_STATE_SetAnalogMode();
+
     __delay_ms(1);
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     PIN_FUN_STATE_SetDigitalMode();
@@ -353,9 +355,11 @@ void sec_tick_work() {//работа секундного таймера
 #ifdef DEBUG_ENABLED
     //   switch_zum();
 #endif
-    time_rotation++;
+    if (!FLAGS.bits.CLOSED) {
+        time_rotation++;
+    }
     rele_tick();
-   
+
     if (FLAGS.bits.ALARM) {
         PIN_LED_Toggle();
         toggle_tone();
@@ -377,17 +381,18 @@ void povorot() {//автоповорот
             !FLAGS.bits.ALARM &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
-        go_close();
+        go_close(); 
     }
+    /*
     if ((time_rotation > (ROTATION_TIME + RELE_TIME + RELE_GAP * 2)) && //закрытие идёт указанное время
             FLAGS.bits.CLOSED &&
             FLAGS.bits.CLOSING &&
             FLAGS.bits.ALARM == 0 &&
             FLAGS.bits.NORMAL_WORK_MODE
             ) {
-        go_open();
-        time_rotation = 0; //обнуляем счетчик
+        go_open(); 
     }
+    //*/
 
 }
 
@@ -565,8 +570,8 @@ void start_setup() {//начальная настройка
     PIN_ALARM_STATE_SetDigitalOutput();
 
     //проверка текущего режима
-  //  get_jump_full();
- //   get_fun_full();
+ get_jump_full();
+   get_fun_full();
     time_rele_power = 0;
 }
 
