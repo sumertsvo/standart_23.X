@@ -68,8 +68,8 @@ void ADC_Initialize(void)
 {
     // set the ADC to the options selected in the User Interface
     
-    // ADFM left; ADPREF VDD; ADCS FOSC/16; 
-    ADCON1 = 0x50;
+    // ADFM left; ADPREF VDD; ADCS FOSC/8; 
+    ADCON1 = 0x10;
     
     // ADRESL 0; 
     ADRESL = 0x00;
@@ -95,6 +95,7 @@ void ADC_StartConversion(void)
     // Start the conversion
     ADCON0bits.GO_nDONE = 1;
 }
+
 
 bool ADC_IsConversionDone(void)
 {
@@ -126,8 +127,9 @@ char ADC_GetConversion(adc_channel_t channel)
     while (ADCON0bits.GO_nDONE)
     {
     }
+
     // Conversion finished, return the result
-    return ( ADRESH);
+    return (ADRESH);
 }
 
 void ADC_TemperatureAcquisitionDelay(void)
