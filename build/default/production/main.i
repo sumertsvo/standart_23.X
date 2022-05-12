@@ -3976,13 +3976,6 @@ char *tempnam(const char *, const char *);
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 55 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/fvr.h" 1
-# 93 "./mcc_generated_files/fvr.h"
- void FVR_Initialize(void);
-# 127 "./mcc_generated_files/fvr.h"
-_Bool FVR_IsOutputReady(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 103 "./mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
@@ -4004,6 +3997,42 @@ void TMR2_ISR(void);
 extern void (*TMR2_InterruptHandler)(void);
 # 362 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
+# 56 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/adc.h" 1
+# 72 "./mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+
+
+
+typedef struct
+{
+    adc_result_t adcResult1;
+    adc_result_t adcResult2;
+} adc_sync_double_result_t;
+# 95 "./mcc_generated_files/adc.h"
+typedef enum
+{
+    PIN_WSP_STATE = 0x7,
+    channel_Temp = 0x1D,
+    channel_DAC = 0x1E,
+    channel_FVR = 0x1F
+} adc_channel_t;
+# 136 "./mcc_generated_files/adc.h"
+void ADC_Initialize(void);
+# 166 "./mcc_generated_files/adc.h"
+void ADC_SelectChannel(adc_channel_t channel);
+# 193 "./mcc_generated_files/adc.h"
+void ADC_StartConversion(void);
+# 225 "./mcc_generated_files/adc.h"
+_Bool ADC_IsConversionDone(void);
+# 258 "./mcc_generated_files/adc.h"
+adc_result_t ADC_GetConversionResult(void);
+# 288 "./mcc_generated_files/adc.h"
+char ADC_GetConversion(adc_channel_t channel);
+# 316 "./mcc_generated_files/adc.h"
+void ADC_TemperatureAcquisitionDelay(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr0.h" 1
@@ -4024,49 +4053,11 @@ extern void (*TMR0_InterruptHandler)(void);
 # 274 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
 # 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/adc.h" 1
-# 72 "./mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-
-
-
-typedef struct
-{
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "./mcc_generated_files/adc.h"
-typedef enum
-{
-    PIN_JUMP_STATE = 0x1,
-    PIN_FUN_STATE = 0x6,
-    PIN_WSP_STATE = 0x7,
-    channel_Temp = 0x1D,
-    channel_DAC = 0x1E,
-    channel_FVR = 0x1F
-} adc_channel_t;
-# 138 "./mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 168 "./mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 195 "./mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 227 "./mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 260 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 290 "./mcc_generated_files/adc.h"
-char ADC_GetConversion(adc_channel_t channel);
-# 318 "./mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 59 "./mcc_generated_files/mcc.h" 2
-# 74 "./mcc_generated_files/mcc.h"
+# 73 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 87 "./mcc_generated_files/mcc.h"
+# 86 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 99 "./mcc_generated_files/mcc.h"
+# 98 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
 # 1 "main.c" 2
 
@@ -4083,9 +4074,9 @@ void EEPROM_WriteWord(unsigned char addr, unsigned int ucData);
 
 unsigned int EEPROM_ReadWord(unsigned char addr);
 
-void EEPROM_WriteShortLong(unsigned char addr, __uint24 ucData);
+void EEPROM_Writeint24(unsigned char addr, __uint24 ucData);
 
-__uint24 EEPROM_ReadShortLong(unsigned char addr);
+__uint24 EEPROM_Readint24(unsigned char addr);
 
 void EEPROM_WriteDword(unsigned char addr, unsigned long ucData);
 
@@ -4095,37 +4086,38 @@ void EEPROM_WriteString(unsigned char addr, char* str1);
 
 void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 # 2 "main.c" 2
-# 13 "main.c"
-const unsigned LOW_WATER_RESISTANSE =20000;
-const unsigned HIGH_WATER_RESISTANSE =25000;
+# 14 "main.c"
+const unsigned LOW_WATER_RESISTANSE = 20000;
+const unsigned HIGH_WATER_RESISTANSE = 25000;
 const unsigned UP_RESISTANSE = 20000;
-# 34 "main.c"
+# 37 "main.c"
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
-# 54 "main.c"
+# 59 "main.c"
 struct f_field {
     unsigned ALARM : 1;
     unsigned NORMAL_WORK_MODE : 1;
     unsigned _FUN_CONNECTED : 1;
     unsigned _JUMP_CONNECTED : 1;
-    unsigned MEASURE_ON : 1;
+    unsigned ALLOW_MEASURE : 1;
     unsigned RELE_POWER_WAIT : 1;
     unsigned RELE_CONTROL_WAIT : 1;
     unsigned OPENING : 1;
     unsigned OPENED : 1;
     unsigned CLOSING : 1;
     unsigned CLOSED : 1;
-    unsigned BEEP_ON : 1;
-    unsigned BOOP_ON : 1;
+    unsigned BEEP_SHORT_ON : 1;
+    unsigned BEEP_LONG_ON : 1;
     unsigned ZUMM_ON : 1;
     unsigned WATER_TRUE : 1;
     unsigned WATER_FALSE : 1;
+    unsigned : 1;
 };
 
 static union {
     unsigned value;
     struct f_field bits;
-} FLAGS;
+} FF;
 
 char FRIMWARE_VERSION_EEPROM_ADR;
 
@@ -4137,49 +4129,73 @@ unsigned time_rele_control;
 unsigned time_rele_gap;
 unsigned time_led;
 unsigned time_zummer;
+unsigned time_zummer_short;
+
 
 char time_meas;
 
 
+char beep_short_count;
+char beep_long_count;
 
 
-void switch_zum() {
+
+
+void toggle_zummer() {
+    do { LATAbits.LATA5 = 1; } while(0);
+    do { LATAbits.LATA5 = 0; } while(0);
+}
+# 119 "main.c"
+void timer0_switch() {
     do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
 }
 
-void toggle_tone() {
-    INTCONbits.TMR0IE = ~INTCONbits.TMR0IE;
+void start_tone() {
+    INTCONbits.TMR0IE = 1;
+    FF.bits.ZUMM_ON = 1;
 }
 
-void beep(char time, char count) {
-    for (char j = 0; j < count; j++) {
-        for (char i = 0; i < time; i++) {
-            switch_zum();
-            _delay((unsigned long)((300)*(16000000/4000000.0)));
-        }
-        _delay((unsigned long)((100)*(16000000/4000.0)));
-    }
+void stop_tone() {
+    INTCONbits.TMR0IE = 0;
+    FF.bits.ZUMM_ON = 0;
+    do { LATAbits.LATA5 = 0; } while(0);
 }
 
-void boop(char time, char count) {
-    for (char j = 0; j < count; j++) {
-        for (char i = 0; i < time; i++) {
-            switch_zum();
-            _delay((unsigned long)((1)*(16000000/4000.0)));
-        }
-        _delay((unsigned long)((150)*(16000000/4000.0)));
-    }
+void beep_short(char count) {
+    start_tone();
+    FF.bits.BEEP_SHORT_ON = 1;
+    time_zummer_short = 30;
+    beep_short_count = count;
+}
+
+void beep_long(char count) {
+    start_tone();
+    FF.bits.BEEP_LONG_ON = 1;
+    time_zummer_short = 130;
+    beep_long_count = count;
 }
 
 void go_close() {
     time_rotation = 0;
     do { LATCbits.LATC4 = 1; } while(0);
-    FLAGS.bits.CLOSING = 1;
+    FF.bits.CLOSING = 1;
     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
     time_rele_power = 10;
-    FLAGS.bits.RELE_POWER_WAIT = 1;
-    FLAGS.bits.RELE_CONTROL_WAIT = 1;
+    FF.bits.RELE_POWER_WAIT = 1;
+    FF.bits.RELE_CONTROL_WAIT = 1;
+    return;
+}
+
+void go_close_short() {
+    time_rotation = 0;
+    do { LATCbits.LATC4 = 1; } while(0);
+    FF.bits.CLOSING = 1;
+    _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
+    do { LATCbits.LATC5 = 1; } while(0);
+    time_rele_power = 2;
+    FF.bits.RELE_POWER_WAIT = 1;
+    FF.bits.RELE_CONTROL_WAIT = 1;
     return;
 }
 
@@ -4187,28 +4203,28 @@ void go_open() {
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
     time_rele_power = 10;
-    FLAGS.bits.RELE_POWER_WAIT = 1;
+    FF.bits.RELE_POWER_WAIT = 1;
     return;
 }
 
 void go_close_alt() {
-    FLAGS.bits.CLOSED = 1;
+    FF.bits.CLOSED = 1;
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
 }
 
 void go_open_alt() {
-    FLAGS.bits.CLOSED = 0;
+    FF.bits.CLOSED = 0;
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 0; } while(0);
     return;
 }
 
 void start_alarm() {
-    FLAGS.bits.ALARM = 1;
+    FF.bits.ALARM = 1;
     do { LATCbits.LATC0 = 1; } while(0);
     INTCONbits.TMR0IE = 1;
-    if (FLAGS.bits.NORMAL_WORK_MODE) {
+    if (FF.bits.NORMAL_WORK_MODE) {
         go_close();
     } else {
         go_close_alt();
@@ -4219,32 +4235,33 @@ void get_measure() {
     static unsigned char measures;
     do { LATCbits.LATC1 = 1; } while(0);
     do { ANSELCbits.ANSC3 = 1; } while(0);
+    _delay((unsigned long)((1)*(16000000/4000.0)));
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
     do { ANSELCbits.ANSC3 = 0; } while(0);
     do { LATCbits.LATC1 = 0; } while(0);
     if (res < BAD_WSP_VOLTAGE) measures++;
     else if (res > GOOD_WSP_VOLTAGE) measures = 0;
-    if (measures > 2) start_alarm();
+    if (measures > 8) start_alarm();
     return;
 }
 
 void get_fun() {
-
     static signed char fun_counter;
     do { LATCbits.LATC1 = 1; } while(0);
-    do { ANSELCbits.ANSC2 = 1; } while(0);
-    unsigned res = ADC_GetConversion(PIN_FUN_STATE);
+    _delay((unsigned long)((1)*(16000000/4000.0)));
+
     do { ANSELCbits.ANSC2 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    if (res < 25) fun_counter--;
+    do { TRISCbits.TRISC2 = 1; } while(0);
+    if (PORTCbits.RC2) fun_counter--;
     else fun_counter++;
-# 200 "main.c"
+    do { LATCbits.LATC1 = 0; } while(0);
+# 242 "main.c"
     if (fun_counter > 10) {
         fun_counter = 10;
-        FLAGS.bits._FUN_CONNECTED = 0;
+        FF.bits._FUN_CONNECTED = 0;
     } else if (fun_counter<-10) {
         fun_counter = -10;
-        FLAGS.bits._FUN_CONNECTED = 1;
+        FF.bits._FUN_CONNECTED = 1;
     }
 
     return;
@@ -4257,17 +4274,16 @@ void get_fun_full() {
     do { ANSELCbits.ANSC2 = 1; } while(0);
     char flag = 0;
     do {
-        unsigned res = ADC_GetConversion(PIN_FUN_STATE);
-        if (res < 25) fun_counter--;
-        else fun_counter++;
-# 235 "main.c"
+        if (PORTCbits.RC2) fun_counter++;
+        else fun_counter--;
+# 276 "main.c"
         if (fun_counter > 10) {
             fun_counter = 10;
-            FLAGS.bits._FUN_CONNECTED = 0;
+            FF.bits._FUN_CONNECTED = 0;
             flag = 1;
         } else if (fun_counter<-10) {
             fun_counter = 10;
-            FLAGS.bits._FUN_CONNECTED = 1;
+            FF.bits._FUN_CONNECTED = 1;
             flag = 1;
         }
 
@@ -4282,18 +4298,17 @@ void get_fun_full() {
 void get_jump() {
 
     static signed char jump_counter;
-    do { ANSELAbits.ANSA1 = 1; } while(0);
-    unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
     do { ANSELAbits.ANSA1 = 0; } while(0);
-    if (res < 25) jump_counter--;
-    else jump_counter++;
-# 271 "main.c"
+    do { TRISAbits.TRISA1 = 1; } while(0);
+    if (PORTAbits.RA1) jump_counter++;
+    else jump_counter--;
+# 316 "main.c"
     if (jump_counter > 10) {
         jump_counter = 10;
-        FLAGS.bits._JUMP_CONNECTED = 0;
+        FF.bits._JUMP_CONNECTED = 0;
     } else if (jump_counter<-10) {
         jump_counter = -10;
-        FLAGS.bits._JUMP_CONNECTED = 1;
+        FF.bits._JUMP_CONNECTED = 1;
     }
 
 
@@ -4306,17 +4321,17 @@ void get_jump_full() {
     do { ANSELAbits.ANSA1 = 1; } while(0);
     char flag = 0;
     do {
-        unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-        if (res < 25) jump_counter--;
-        else jump_counter++;
-# 305 "main.c"
+
+        if (PORTAbits.RA1) jump_counter++;
+        else jump_counter--;
+# 350 "main.c"
         if (jump_counter > 10) {
             jump_counter = 10;
-            FLAGS.bits._JUMP_CONNECTED = 0;
+            FF.bits._JUMP_CONNECTED = 0;
             flag = 1;
         } else if (jump_counter<-10) {
             jump_counter = -10;
-            FLAGS.bits._JUMP_CONNECTED = 1;
+            FF.bits._JUMP_CONNECTED = 1;
             flag = 1;
         }
 
@@ -4327,24 +4342,24 @@ void get_jump_full() {
 }
 
 void rele_tick() {
-    switch_zum();
-    if (FLAGS.bits.RELE_POWER_WAIT) {
+    toggle_zummer();
+    if (FF.bits.RELE_POWER_WAIT) {
         if (time_rele_power > 0) {
             time_rele_power--;
         } else {
-            if (FLAGS.bits.RELE_CONTROL_WAIT) {
+            if (FF.bits.RELE_CONTROL_WAIT) {
                 do { LATCbits.LATC5 = 0; } while(0);
                 _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
                 do { LATCbits.LATC4 = 0; } while(0);
-                FLAGS.bits.CLOSING =0;
-                FLAGS.bits.CLOSED = 1;
-                FLAGS.bits.RELE_CONTROL_WAIT = 0;
-                FLAGS.bits.RELE_POWER_WAIT = 0;
+                FF.bits.CLOSING = 0;
+                FF.bits.CLOSED = 1;
+                FF.bits.RELE_CONTROL_WAIT = 0;
+                FF.bits.RELE_POWER_WAIT = 0;
             } else {
                 do { LATCbits.LATC5 = 0; } while(0);
-                FLAGS.bits.OPENING = 0;
-                FLAGS.bits.CLOSED = 0;
-                FLAGS.bits.RELE_POWER_WAIT = 0;
+                FF.bits.OPENING = 0;
+                FF.bits.CLOSED = 0;
+                FF.bits.RELE_POWER_WAIT = 0;
             }
         }
     }
@@ -4354,14 +4369,17 @@ void sec_tick_work() {
 
 
 
-    time_rotation++;
+    if (!FF.bits.CLOSED) time_rotation++;
     rele_tick();
-    __asm("clrwdt");
-    if (FLAGS.bits.ALARM) {
+
+    if (FF.bits.ALARM) {
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-        toggle_tone();
+
+
+        toggle_zummer();
+
     } else {
-        get_measure();
+
         static char iled;
         iled++;
         if (iled > 2) {
@@ -4373,79 +4391,88 @@ void sec_tick_work() {
 
 void povorot() {
     if ((time_rotation > 120) &&
-            !FLAGS.bits.CLOSED &&
-            !FLAGS.bits.CLOSING &&
-            !FLAGS.bits.ALARM &&
-            FLAGS.bits.NORMAL_WORK_MODE
+            !FF.bits.CLOSED &&
+            !FF.bits.CLOSING &&
+            !FF.bits.ALARM &&
+            FF.bits.NORMAL_WORK_MODE
             ) {
-        go_close();
+        go_close_short();
     }
     if ((time_rotation > (120 + 10 + 2 * 2)) &&
-            FLAGS.bits.CLOSED &&
-            FLAGS.bits.CLOSING &&
-            FLAGS.bits.ALARM == 0 &&
-            FLAGS.bits.NORMAL_WORK_MODE
+            FF.bits.CLOSED &&
+            FF.bits.CLOSING &&
+            FF.bits.ALARM == 0 &&
+            FF.bits.NORMAL_WORK_MODE
             ) {
         go_open();
         time_rotation = 0;
     }
-
 }
 
 void fun_work() {
     {
-        if (FLAGS.bits._FUN_CONNECTED &&
-                !FLAGS.bits.ALARM &&
-                FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POWER_WAIT) {
+        if (FF.bits._FUN_CONNECTED &&
+                !FF.bits.ALARM &&
+                FF.bits.CLOSED &&
+                !FF.bits.RELE_POWER_WAIT) {
 
-            beep(40, 1);
+            beep_short(1);
 
-            if (FLAGS.bits.NORMAL_WORK_MODE) go_open();
+            if (FF.bits.NORMAL_WORK_MODE) go_open();
             else go_open_alt();
-
         };
-        if (!FLAGS.bits._FUN_CONNECTED &&
-                !FLAGS.bits.CLOSED &&
-                !FLAGS.bits.RELE_POWER_WAIT) {
+        if (!FF.bits._FUN_CONNECTED &&
+                !FF.bits.CLOSED &&
+                !FF.bits.RELE_POWER_WAIT) {
 
-            beep(40, 2);
+               beep_short(2);
 
-            if (FLAGS.bits.NORMAL_WORK_MODE) go_close();
+            if (FF.bits.NORMAL_WORK_MODE) go_close();
             else go_close_alt();
-
         }
     }
 }
 
 void switch_wm() {
-    if (FLAGS.bits._JUMP_CONNECTED) {
-        if (FLAGS.bits.NORMAL_WORK_MODE) {
-            FLAGS.bits.NORMAL_WORK_MODE = 0;
+    if (FF.bits._JUMP_CONNECTED) {
+        if (FF.bits.NORMAL_WORK_MODE) {
+            FF.bits.NORMAL_WORK_MODE = 0;
 
 
-            boop(40, 2);
+               beep_long(2);
         }
     } else {
-        if (!FLAGS.bits.NORMAL_WORK_MODE) {
-            FLAGS.bits.NORMAL_WORK_MODE = 1;
+        if (!FF.bits.NORMAL_WORK_MODE) {
+            FF.bits.NORMAL_WORK_MODE = 1;
 
 
-            boop(40, 1);
+               beep_long(1);
         }
     }
 }
-# 445 "main.c"
-void ms_tick(){
-    static unsigned tick_count =0;
+# 491 "main.c"
+void ms_tick() {
+    static unsigned tick_count = 0;
     tick_count++;
 
-    if (tick_count == 1000){
-    sec_tick_work();
-    tick_count=0;
+    if (tick_count == 100) {
+        FF.bits.ALLOW_MEASURE = 1;
+        tick_count = 0;
+    }
+
+    if (tick_count == 1000) {
+        sec_tick_work();
+        tick_count = 0;
     }
 }
-# 531 "main.c"
+# 582 "main.c"
+void eeprom_set() {
+    char adres = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
+    if (adres == 0xFF) {
+        EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, 1);
+    }
+}
+
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4453,7 +4480,9 @@ void start_setup() {
     (INTCONbits.PEIE = 1);
 
 
-    TMR0_SetInterruptHandler(switch_zum);
+    eeprom_set();
+
+    TMR0_SetInterruptHandler(timer0_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
 
@@ -4468,16 +4497,16 @@ void start_setup() {
     do { WPUCbits.WPUC2 = 0; } while(0);
     do { TRISCbits.TRISC2 = 1; } while(0);
     INTCONbits.TMR0IE = 0;
-    FLAGS.value = 0;
-    FLAGS.bits.ALARM =0;
+    FF.value = 0;
+    FF.bits.ALARM = 0;
     do { LATCbits.LATC5 = 0; } while(0);
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC0 = 0; } while(0);
     do { TRISCbits.TRISC0 = 0; } while(0);
 
 
-    get_jump_full();
-    get_fun_full();
+
+
     time_rele_power = 0;
 }
 
@@ -4487,7 +4516,7 @@ void main(void) {
 
     while (1) {
 
-        if (!FLAGS.bits.ALARM) {
+        if (!FF.bits.ALARM) {
 
             get_jump();
             switch_wm();
@@ -4495,7 +4524,12 @@ void main(void) {
             get_fun();
             fun_work();
 
+            if (FF.bits.ALLOW_MEASURE) {
+                get_measure();
+                FF.bits.ALLOW_MEASURE =0;
+            }
             povorot();
+            __asm("clrwdt");
         };
     }
 }

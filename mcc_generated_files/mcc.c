@@ -53,9 +53,8 @@ void SYSTEM_Initialize(void)
     PIN_MANAGER_Initialize();
     OSCILLATOR_Initialize();
     WDT_Initialize();
-    FVR_Initialize();
-    ADC_Initialize();
     TMR2_Initialize();
+    ADC_Initialize();
     TMR0_Initialize();
 }
 
@@ -71,8 +70,8 @@ void OSCILLATOR_Initialize(void)
 
 void WDT_Initialize(void)
 {
-    // WDTPS 1:65536; SWDTEN OFF; 
-    WDTCON = 0x16;
+    // WDTPS 1:1024; SWDTEN OFF; 
+    WDTCON = 0x0A;
 }
 
 /**

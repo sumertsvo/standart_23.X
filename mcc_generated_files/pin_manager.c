@@ -69,8 +69,8 @@ void PIN_MANAGER_Initialize(void)
     /**
     ANSELx registers
     */
-    ANSELC = 0x0C;
-    ANSELA = 0x07;
+    ANSELC = 0x08;
+    ANSELA = 0x05;
 
     /**
     WPUx registers
@@ -85,9 +85,16 @@ void PIN_MANAGER_Initialize(void)
     */
     APFCON = 0x00;  
     
+
+
+
+   
+    
 }
   
-void PIN_MANAGER_IOC(void){}
+void PIN_MANAGER_IOC(void)
+{   
+}
 
 /**
  End of File

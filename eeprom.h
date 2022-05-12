@@ -10,9 +10,9 @@ void EEPROM_WriteWord(unsigned char addr, unsigned int ucData);
 
 unsigned int EEPROM_ReadWord(unsigned char addr);
 
-void EEPROM_WriteShortLong(unsigned char addr, __uint24 ucData);
+void EEPROM_Writeint24(unsigned char addr, __uint24 ucData);
 
-__uint24 EEPROM_ReadShortLong(unsigned char addr);
+__uint24 EEPROM_Readint24(unsigned char addr);
 
 void EEPROM_WriteDword(unsigned char addr, unsigned long ucData);
 

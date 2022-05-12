@@ -514,10 +514,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 309 ]
 }
 "40
-[; ;eeprom.c: 40: void EEPROM_WriteShortLong(unsigned char addr, __uint24 ucData) {
-[v _EEPROM_WriteShortLong `(v ~T0 @X0 1 ef2`uc`um ]
+[; ;eeprom.c: 40: void EEPROM_Writeint24(unsigned char addr, __uint24 ucData) {
+[v _EEPROM_Writeint24 `(v ~T0 @X0 1 ef2`uc`um ]
 {
-[e :U _EEPROM_WriteShortLong ]
+[e :U _EEPROM_Writeint24 ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _ucData `um ~T0 @X0 1 r2 ]
 [f ]
@@ -542,10 +542,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 310 ]
 }
 "48
-[; ;eeprom.c: 48: __uint24 EEPROM_ReadShortLong( char addr) {
-[v _EEPROM_ReadShortLong `(um ~T0 @X0 1 ef1`uc ]
+[; ;eeprom.c: 48: __uint24 EEPROM_Readint24( char addr) {
+[v _EEPROM_Readint24 `(um ~T0 @X0 1 ef1`uc ]
 {
-[e :U _EEPROM_ReadShortLong ]
+[e :U _EEPROM_Readint24 ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [f ]
 "49

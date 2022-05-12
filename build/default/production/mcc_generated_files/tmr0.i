@@ -3842,13 +3842,13 @@ void TMR0_Initialize(void)
 
 
 
-    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD2 & 0x3F));
+    OPTION_REG = (uint8_t)((OPTION_REG & 0xC0) | (0xD1 & 0x3F));
 
 
-    TMR0 = 0x9C;
+    TMR0 = 0x00;
 
 
-    timer0ReloadVal= 156;
+    timer0ReloadVal= 0;
 
 
     INTCONbits.TMR0IF = 0;

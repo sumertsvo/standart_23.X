@@ -37,7 +37,7 @@ unsigned int EEPROM_ReadWord(unsigned char addr) {
     return dt;
 }
 
-void EEPROM_WriteShortLong(unsigned char addr,  __uint24 ucData) {
+void EEPROM_Writeint24(unsigned char addr,  __uint24 ucData) {
     EEPROM_WriteByte(addr, (unsigned char) ucData);
      char dt = ucData >> 8;
     EEPROM_WriteByte(addr + 1, dt);
@@ -45,7 +45,7 @@ void EEPROM_WriteShortLong(unsigned char addr,  __uint24 ucData) {
     EEPROM_WriteByte(addr + 2, dt);
 }
 
-__uint24 EEPROM_ReadShortLong( char addr) {
+__uint24 EEPROM_Readint24( char addr) {
     __uint24  dt = EEPROM_ReadByte(addr + 2)*256*256;
     dt += EEPROM_ReadByte(addr + 1)*256;
     dt += EEPROM_ReadByte(addr);

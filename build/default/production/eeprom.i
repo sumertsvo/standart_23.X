@@ -3976,13 +3976,6 @@ char *tempnam(const char *, const char *);
 # 1 "./mcc_generated_files/interrupt_manager.h" 1
 # 55 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/fvr.h" 1
-# 93 "./mcc_generated_files/fvr.h"
- void FVR_Initialize(void);
-# 127 "./mcc_generated_files/fvr.h"
-_Bool FVR_IsOutputReady(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
 # 1 "./mcc_generated_files/tmr2.h" 1
 # 103 "./mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
@@ -4004,6 +3997,42 @@ void TMR2_ISR(void);
 extern void (*TMR2_InterruptHandler)(void);
 # 362 "./mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
+# 56 "./mcc_generated_files/mcc.h" 2
+
+# 1 "./mcc_generated_files/adc.h" 1
+# 72 "./mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+
+
+
+typedef struct
+{
+    adc_result_t adcResult1;
+    adc_result_t adcResult2;
+} adc_sync_double_result_t;
+# 95 "./mcc_generated_files/adc.h"
+typedef enum
+{
+    PIN_WSP_STATE = 0x7,
+    channel_Temp = 0x1D,
+    channel_DAC = 0x1E,
+    channel_FVR = 0x1F
+} adc_channel_t;
+# 136 "./mcc_generated_files/adc.h"
+void ADC_Initialize(void);
+# 166 "./mcc_generated_files/adc.h"
+void ADC_SelectChannel(adc_channel_t channel);
+# 193 "./mcc_generated_files/adc.h"
+void ADC_StartConversion(void);
+# 225 "./mcc_generated_files/adc.h"
+_Bool ADC_IsConversionDone(void);
+# 258 "./mcc_generated_files/adc.h"
+adc_result_t ADC_GetConversionResult(void);
+# 288 "./mcc_generated_files/adc.h"
+char ADC_GetConversion(adc_channel_t channel);
+# 316 "./mcc_generated_files/adc.h"
+void ADC_TemperatureAcquisitionDelay(void);
 # 57 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/tmr0.h" 1
@@ -4024,49 +4053,11 @@ extern void (*TMR0_InterruptHandler)(void);
 # 274 "./mcc_generated_files/tmr0.h"
 void TMR0_DefaultInterruptHandler(void);
 # 58 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/adc.h" 1
-# 72 "./mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
-
-
-
-
-typedef struct
-{
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "./mcc_generated_files/adc.h"
-typedef enum
-{
-    PIN_JUMP_STATE = 0x1,
-    PIN_FUN_STATE = 0x6,
-    PIN_WSP_STATE = 0x7,
-    channel_Temp = 0x1D,
-    channel_DAC = 0x1E,
-    channel_FVR = 0x1F
-} adc_channel_t;
-# 138 "./mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 168 "./mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 195 "./mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 227 "./mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 260 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 290 "./mcc_generated_files/adc.h"
-char ADC_GetConversion(adc_channel_t channel);
-# 318 "./mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 59 "./mcc_generated_files/mcc.h" 2
-# 74 "./mcc_generated_files/mcc.h"
+# 73 "./mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
-# 87 "./mcc_generated_files/mcc.h"
+# 86 "./mcc_generated_files/mcc.h"
 void OSCILLATOR_Initialize(void);
-# 99 "./mcc_generated_files/mcc.h"
+# 98 "./mcc_generated_files/mcc.h"
 void WDT_Initialize(void);
 # 1 "eeprom.c" 2
 
@@ -4108,7 +4099,7 @@ unsigned int EEPROM_ReadWord(unsigned char addr) {
     return dt;
 }
 
-void EEPROM_WriteShortLong(unsigned char addr, __uint24 ucData) {
+void EEPROM_Writeint24(unsigned char addr, __uint24 ucData) {
     EEPROM_WriteByte(addr, (unsigned char) ucData);
      char dt = ucData >> 8;
     EEPROM_WriteByte(addr + 1, dt);
@@ -4116,7 +4107,7 @@ void EEPROM_WriteShortLong(unsigned char addr, __uint24 ucData) {
     EEPROM_WriteByte(addr + 2, dt);
 }
 
-__uint24 EEPROM_ReadShortLong( char addr) {
+__uint24 EEPROM_Readint24( char addr) {
     __uint24 dt = EEPROM_ReadByte(addr + 2)*256*256;
     dt += EEPROM_ReadByte(addr + 1)*256;
     dt += EEPROM_ReadByte(addr);
