@@ -92,7 +92,8 @@ char time_meas;
 
 
 void switch_zum() {//одно переключение
-    PIN_ZUMMER_Toggle();
+    PIN_ZUMMER_SetHigh();
+    PIN_ZUMMER_SetLow();
 }
 
 void toggle_tone() {//вкл/выкл зуммер
@@ -167,6 +168,7 @@ void get_measure() {//измерение состояния датчиков
     static unsigned char measures;
     PIN_POWER_MEAS_SetHigh();
     PIN_WSP_STATE_SetAnalogMode();
+    __delay_ms(1);
     unsigned res = ADC_GetConversion(PIN_WSP_STATE);
     PIN_WSP_STATE_SetDigitalMode();
     PIN_POWER_MEAS_SetLow();
@@ -181,6 +183,7 @@ void get_fun() {//определение положения переключат
     static signed char fun_counter;
     PIN_POWER_MEAS_SetHigh();
     PIN_FUN_STATE_SetAnalogMode();
+    __delay_ms(1);
     unsigned res = ADC_GetConversion(PIN_FUN_STATE);
     PIN_FUN_STATE_SetDigitalMode();
     PIN_POWER_MEAS_SetLow();
@@ -215,6 +218,7 @@ void get_fun_full() {//определение положения переклю�
     PIN_FUN_STATE_SetAnalogMode();
     char flag = 0;
     do {
+        __delay_ms(1);
         unsigned res = ADC_GetConversion(PIN_FUN_STATE);
         if (res < LOW_PIN_VOLTAGE) fun_counter--;
         else fun_counter++;
@@ -319,7 +323,10 @@ void get_jump_full() {//определение положения переклю
 }
 
 void rele_tick() {//закрытие кранов (задержка на работу привода)
+#ifdef DEBUG_ENABLED
     switch_zum();
+#endif
+   
     if (FLAGS.bits.RELE_POWER_WAIT) {//если работает силовое реле
         if (time_rele_power > 0) { //время до закрытия
             time_rele_power--;
@@ -348,7 +355,7 @@ void sec_tick_work() {//работа секундного таймера
 #endif
     time_rotation++;
     rele_tick();
-    CLRWDT(); // <2.1 сек
+   
     if (FLAGS.bits.ALARM) {
         PIN_LED_Toggle();
         toggle_tone();
@@ -568,6 +575,7 @@ void main(void) {
     start_setup();
 
     while (1) {
+         CLRWDT(); // <2.1 сек
 //        get_voltage();
         if (!FLAGS.bits.ALARM) {
             
