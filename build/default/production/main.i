@@ -4093,30 +4093,43 @@ const unsigned UP_RESISTANSE = 20000;
 # 37 "main.c"
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
-# 59 "main.c"
-struct f_field {
-    unsigned ALARM : 1;
-    unsigned NORMAL_WORK_MODE : 1;
-    unsigned _FUN_CONNECTED : 1;
-    unsigned _JUMP_CONNECTED : 1;
-    unsigned ALLOW_MEASURE : 1;
-    unsigned RELE_POWER_WAIT : 1;
-    unsigned RELE_CONTROL_WAIT : 1;
-    unsigned OPENING : 1;
-    unsigned OPENED : 1;
-    unsigned CLOSING : 1;
-    unsigned CLOSED : 1;
-    unsigned BEEP_SHORT_ON : 1;
-    unsigned BEEP_LONG_ON : 1;
-    unsigned ZUMM_ON : 1;
-    unsigned WATER_TRUE : 1;
-    unsigned WATER_FALSE : 1;
-    unsigned : 1;
-};
-
+# 60 "main.c"
 static union {
-    unsigned value;
-    struct f_field bits;
+    unsigned long value;
+    struct {
+        unsigned ALARM_ON : 1;
+        unsigned ALARM_OFF : 1;
+        unsigned FUN_HIGH : 1;
+        unsigned FUN_LOW : 1;
+        unsigned ALLOW_MEASURE : 1;
+        unsigned ALLOW_FUN : 1;
+        unsigned ALLOW_JUMP : 1;
+        unsigned JUMP_LOW : 1;
+        unsigned JUMP_HIGH : 1;
+        unsigned OPENING : 1;
+        unsigned OPENED : 1;
+        unsigned CLOSING : 1;
+        unsigned CLOSED : 1;
+        unsigned RELE_POWER_ON : 1;
+        unsigned RELE_CONTROL_ON : 1;
+        unsigned WATER_TRUE : 1;
+        unsigned WATER_FALSE : 1;
+        unsigned TONE_ON : 1;
+        unsigned TONE_OFF : 1;
+        unsigned BEEP_LONG : 1;
+        unsigned ZUM_BUSY : 1;
+        unsigned BEEP_SHORT : 1;
+        unsigned GO_CLOSE : 1;
+        unsigned GO_OPEN : 1;
+        unsigned NORMAL_WORK_MODE_ON : 1;
+        unsigned UNIVERSAL_VORK_MODE_ON : 1;
+        unsigned : 1;
+        unsigned : 1;
+        unsigned : 1;
+        unsigned : 1;
+        unsigned : 1;
+        unsigned : 1;
+    } bits;
 } FF;
 
 char FRIMWARE_VERSION_EEPROM_ADR;
@@ -4130,6 +4143,8 @@ unsigned time_rele_gap;
 unsigned time_led;
 unsigned time_zummer;
 unsigned time_zummer_short;
+unsigned time_zummer_long;
+
 
 
 char time_meas;
@@ -4137,6 +4152,7 @@ char time_meas;
 
 char beep_short_count;
 char beep_long_count;
+char beep_double_count;
 
 
 
@@ -4145,34 +4161,41 @@ void toggle_zummer() {
     do { LATAbits.LATA5 = 1; } while(0);
     do { LATAbits.LATA5 = 0; } while(0);
 }
-# 119 "main.c"
+# 135 "main.c"
 void timer0_switch() {
     do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
 }
 
 void start_tone() {
     INTCONbits.TMR0IE = 1;
-    FF.bits.ZUMM_ON = 1;
+    FF.bits.TONE_ON = 1;
 }
 
 void stop_tone() {
     INTCONbits.TMR0IE = 0;
-    FF.bits.ZUMM_ON = 0;
+    FF.bits.TONE_ON = 0;
     do { LATAbits.LATA5 = 0; } while(0);
 }
 
 void beep_short(char count) {
     start_tone();
-    FF.bits.BEEP_SHORT_ON = 1;
-    time_zummer_short = 30;
+    FF.bits.ZUM_BUSY = 1;
+    time_zummer = 30;
     beep_short_count = count;
 }
 
 void beep_long(char count) {
     start_tone();
-    FF.bits.BEEP_LONG_ON = 1;
-    time_zummer_short = 130;
+    FF.bits.ZUM_BUSY = 1;
+    time_zummer = 30;
     beep_long_count = count;
+}
+
+void beep_double(char count) {
+    start_tone();
+    FF.bits.ZUM_BUSY = 1;
+    time_zummer = 30;
+    beep_double_count = count;
 }
 
 void go_close() {
@@ -4182,8 +4205,8 @@ void go_close() {
     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
     time_rele_power = 10;
-    FF.bits.RELE_POWER_WAIT = 1;
-    FF.bits.RELE_CONTROL_WAIT = 1;
+    FF.bits.RELE_POWER_ON = 1;
+    FF.bits.RELE_CONTROL_ON = 1;
     return;
 }
 
@@ -4194,8 +4217,8 @@ void go_close_short() {
     _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
     do { LATCbits.LATC5 = 1; } while(0);
     time_rele_power = 2;
-    FF.bits.RELE_POWER_WAIT = 1;
-    FF.bits.RELE_CONTROL_WAIT = 1;
+    FF.bits.RELE_POWER_ON = 1;
+    FF.bits.RELE_CONTROL_ON = 1;
     return;
 }
 
@@ -4203,7 +4226,7 @@ void go_open() {
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC5 = 1; } while(0);
     time_rele_power = 10;
-    FF.bits.RELE_POWER_WAIT = 1;
+    FF.bits.RELE_POWER_ON = 1;
     return;
 }
 
@@ -4221,12 +4244,12 @@ void go_open_alt() {
 }
 
 void start_alarm() {
-    FF.bits.ALARM = 1;
+    FF.bits.ALARM_ON = 1;
     do { LATCbits.LATC0 = 1; } while(0);
     INTCONbits.TMR0IE = 1;
-    if (FF.bits.NORMAL_WORK_MODE) {
+    if (FF.bits.NORMAL_WORK_MODE_ON) {
         go_close();
-    } else {
+    } else if (FF.bits.UNIVERSAL_VORK_MODE_ON) {
         go_close_alt();
     }
 }
@@ -4255,15 +4278,22 @@ void get_fun() {
     if (PORTCbits.RC2) fun_counter--;
     else fun_counter++;
     do { LATCbits.LATC1 = 0; } while(0);
-# 242 "main.c"
+
+
+
+
+
+
     if (fun_counter > 10) {
         fun_counter = 10;
-        FF.bits._FUN_CONNECTED = 0;
+        FF.bits.FUN_LOW = 0;
+        FF.bits.FUN_HIGH = 1;
     } else if (fun_counter<-10) {
         fun_counter = -10;
-        FF.bits._FUN_CONNECTED = 1;
+        FF.bits.FUN_LOW = 1;
+        FF.bits.FUN_HIGH = 0;
     }
-
+# 277 "main.c"
     return;
 }
 
@@ -4276,18 +4306,22 @@ void get_fun_full() {
     do {
         if (PORTCbits.RC2) fun_counter++;
         else fun_counter--;
-# 276 "main.c"
+
+
+
+
         if (fun_counter > 10) {
             fun_counter = 10;
-            FF.bits._FUN_CONNECTED = 0;
+            FF.bits.FUN_LOW = 0;
+            FF.bits.FUN_HIGH = 1;
             flag = 1;
         } else if (fun_counter<-10) {
-            fun_counter = 10;
-            FF.bits._FUN_CONNECTED = 1;
+            fun_counter = -10;
+            FF.bits.FUN_LOW = 1;
+            FF.bits.FUN_HIGH = 0;
             flag = 1;
         }
-
-
+# 318 "main.c"
     } while (flag == 0);
 
     do { ANSELCbits.ANSC2 = 0; } while(0);
@@ -4302,16 +4336,23 @@ void get_jump() {
     do { TRISAbits.TRISA1 = 1; } while(0);
     if (PORTAbits.RA1) jump_counter++;
     else jump_counter--;
-# 316 "main.c"
+
+
+
+
+
+
+
     if (jump_counter > 10) {
         jump_counter = 10;
-        FF.bits._JUMP_CONNECTED = 0;
+        FF.bits.JUMP_LOW = 0;
+        FF.bits.JUMP_HIGH = 1;
     } else if (jump_counter<-10) {
         jump_counter = -10;
-        FF.bits._JUMP_CONNECTED = 1;
+        FF.bits.JUMP_LOW = 1;
+        FF.bits.JUMP_HIGH = 0;
     }
-
-
+# 360 "main.c"
     return;
 }
 
@@ -4324,42 +4365,45 @@ void get_jump_full() {
 
         if (PORTAbits.RA1) jump_counter++;
         else jump_counter--;
-# 350 "main.c"
+
+
+
         if (jump_counter > 10) {
             jump_counter = 10;
-            FF.bits._JUMP_CONNECTED = 0;
+            FF.bits.JUMP_LOW = 0;
+            FF.bits.JUMP_HIGH = 1;
+            ;
             flag = 1;
         } else if (jump_counter<-10) {
             jump_counter = -10;
-            FF.bits._JUMP_CONNECTED = 1;
+            FF.bits.JUMP_LOW = 1;
+            FF.bits.JUMP_HIGH = 0;
             flag = 1;
         }
-
-
-
+# 402 "main.c"
     } while (flag == 0);
     do { ANSELAbits.ANSA1 = 0; } while(0);
 }
 
 void rele_tick() {
     toggle_zummer();
-    if (FF.bits.RELE_POWER_WAIT) {
+    if (FF.bits.RELE_POWER_ON) {
         if (time_rele_power > 0) {
             time_rele_power--;
         } else {
-            if (FF.bits.RELE_CONTROL_WAIT) {
+            if (FF.bits.RELE_CONTROL_ON) {
                 do { LATCbits.LATC5 = 0; } while(0);
                 _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
                 do { LATCbits.LATC4 = 0; } while(0);
                 FF.bits.CLOSING = 0;
                 FF.bits.CLOSED = 1;
-                FF.bits.RELE_CONTROL_WAIT = 0;
-                FF.bits.RELE_POWER_WAIT = 0;
+                FF.bits.RELE_CONTROL_ON = 0;
+                FF.bits.RELE_POWER_ON = 0;
             } else {
                 do { LATCbits.LATC5 = 0; } while(0);
                 FF.bits.OPENING = 0;
                 FF.bits.CLOSED = 0;
-                FF.bits.RELE_POWER_WAIT = 0;
+                FF.bits.RELE_POWER_ON = 0;
             }
         }
     }
@@ -4369,16 +4413,16 @@ void sec_tick_work() {
 
 
 
-    if (!FF.bits.CLOSED) time_rotation++;
+    if (FF.bits.OPENED && FF.bits.NORMAL_WORK_MODE_ON) time_rotation++;
     rele_tick();
 
-    if (FF.bits.ALARM) {
+    if (FF.bits.ALARM_ON) {
         do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
 
 
         toggle_zummer();
 
-    } else {
+    } else if (FF.bits.ALARM_OFF) {
 
         static char iled;
         iled++;
@@ -4393,68 +4437,78 @@ void povorot() {
     if ((time_rotation > 120) &&
             !FF.bits.CLOSED &&
             !FF.bits.CLOSING &&
-            !FF.bits.ALARM &&
-            FF.bits.NORMAL_WORK_MODE
+            FF.bits.ALARM_OFF &&
+            FF.bits.NORMAL_WORK_MODE_ON
             ) {
         go_close_short();
     }
+
     if ((time_rotation > (120 + 10 + 2 * 2)) &&
             FF.bits.CLOSED &&
             FF.bits.CLOSING &&
-            FF.bits.ALARM == 0 &&
-            FF.bits.NORMAL_WORK_MODE
+            FF.bits.ALARM_OFF &&
+            FF.bits.NORMAL_WORK_MODE_ON
             ) {
         go_open();
         time_rotation = 0;
     }
+
 }
 
 void fun_work() {
     {
-        if (FF.bits._FUN_CONNECTED &&
-                !FF.bits.ALARM &&
+        if (FF.bits.FUN_LOW &&
+                FF.bits.ALARM_OFF &&
                 FF.bits.CLOSED &&
-                !FF.bits.RELE_POWER_WAIT) {
+                !FF.bits.RELE_POWER_ON) {
 
             beep_short(1);
 
-            if (FF.bits.NORMAL_WORK_MODE) go_open();
-            else go_open_alt();
+            if (FF.bits.NORMAL_WORK_MODE_ON) go_open();
+            else if (FF.bits.UNIVERSAL_VORK_MODE_ON) go_open_alt();
         };
-        if (!FF.bits._FUN_CONNECTED &&
-                !FF.bits.CLOSED &&
-                !FF.bits.RELE_POWER_WAIT) {
+        if (!FF.bits.FUN_LOW &&
+                FF.bits.OPENED &&
+                !FF.bits.RELE_POWER_ON) {
 
-               beep_short(2);
+            beep_short(2);
 
-            if (FF.bits.NORMAL_WORK_MODE) go_close();
-            else go_close_alt();
+            if (FF.bits.NORMAL_WORK_MODE_ON) go_close();
+            else if (FF.bits.UNIVERSAL_VORK_MODE_ON) go_close_alt();
         }
     }
 }
 
 void switch_wm() {
-    if (FF.bits._JUMP_CONNECTED) {
-        if (FF.bits.NORMAL_WORK_MODE) {
-            FF.bits.NORMAL_WORK_MODE = 0;
+    if (FF.bits.JUMP_LOW) {
+        if (FF.bits.NORMAL_WORK_MODE_ON) {
+            FF.bits.NORMAL_WORK_MODE_ON = 0;
+            FF.bits.UNIVERSAL_VORK_MODE_ON = 1;
 
 
-               beep_long(2);
+            beep_long(2);
         }
     } else {
-        if (!FF.bits.NORMAL_WORK_MODE) {
-            FF.bits.NORMAL_WORK_MODE = 1;
+        if (FF.bits.UNIVERSAL_VORK_MODE_ON) {
+            FF.bits.NORMAL_WORK_MODE_ON = 1;
+            FF.bits.UNIVERSAL_VORK_MODE_ON = 0;
 
 
-               beep_long(1);
+            beep_long(1);
         }
     }
 }
-# 491 "main.c"
+# 535 "main.c"
 void ms_tick() {
     static unsigned tick_count = 0;
     tick_count++;
 
+    if (FF.bits.BEEP_SHORT) {
+        time_zummer_short--;
+    }
+    if (FF.bits.BEEP_LONG) {
+        time_zummer_long--;
+    }
     if (tick_count == 100) {
         FF.bits.ALLOW_MEASURE = 1;
         tick_count = 0;
@@ -4465,7 +4519,7 @@ void ms_tick() {
         tick_count = 0;
     }
 }
-# 582 "main.c"
+# 632 "main.c"
 void eeprom_set() {
     char adres = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
     if (adres == 0xFF) {
@@ -4498,7 +4552,8 @@ void start_setup() {
     do { TRISCbits.TRISC2 = 1; } while(0);
     INTCONbits.TMR0IE = 0;
     FF.value = 0;
-    FF.bits.ALARM = 0;
+    FF.bits.ALARM_ON = 0;
+    FF.bits.ALARM_OFF = 1;
     do { LATCbits.LATC5 = 0; } while(0);
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC0 = 0; } while(0);
@@ -4516,7 +4571,8 @@ void main(void) {
 
     while (1) {
 
-        if (!FF.bits.ALARM) {
+
+        if (!FF.bits.ALARM_OFF) {
 
             get_jump();
             switch_wm();
@@ -4526,7 +4582,7 @@ void main(void) {
 
             if (FF.bits.ALLOW_MEASURE) {
                 get_measure();
-                FF.bits.ALLOW_MEASURE =0;
+                FF.bits.ALLOW_MEASURE = 0;
             }
             povorot();
             __asm("clrwdt");
