@@ -636,7 +636,7 @@ void main(void) {
     start_setup();
 
     while (1) {
-        if 
+    //    if 
         //        get_voltage(); //  deleted, unused
         if (!FF.bits.ALARM) {
 
