@@ -56,7 +56,7 @@ static union {
         unsigned WATER_FALSE : 1;
         unsigned TONE_ON : 1;
         unsigned TONE_OFF : 1;
-        unsigned BEEP_LONG : 1;
+        unsigned SIREN : 1;
         unsigned ZUM_BUSY : 1;
         unsigned BEEP_SHORT : 1;
         unsigned GO_CLOSE : 1;
@@ -86,6 +86,9 @@ unsigned time_rele_control;
 unsigned time_rele_gap;
 unsigned time_led;
 unsigned time_tone; //s
+//char time_siren; //s
+//char time_silent; //s
+char time_melody; //minute
 unsigned time_zummer_short; //ms
 unsigned time_zummer_long; //ms
 
@@ -104,7 +107,7 @@ char beep_double_count;
 /*█████████████████████████████████████████████████████████████████████*/
 /*█████████████████████████████████████████████████████████████████████*/
 
-
+/*SERVICE*/
 
 #ifdef DEBUG_ENABLED
 
@@ -115,35 +118,39 @@ void toggle_zummer() {
 #endif
 
 void start_tone() {//вкл/выкл зуммер
+    ff.bits.ZUM_BUSY = 1;
     ff.bits.TONE_ON = 1;
     ff.bits.TONE_OFF = 0;
 }
 
 void stop_tone() {//вкл/выкл зуммер
+    ff.bits.ZUM_BUSY = 0;
     ff.bits.TONE_ON = 0;
     ff.bits.TONE_OFF = 1;
 }
 
-void beep_short(char count) { //короткий писк
-    start_tone();
-    ff.bits.ZUM_BUSY = 1;
-    time_tone = SHORT_ZUMMER_DELAY;
-    ff.bits.BEEP_SHORT = 1;
-    beep_short_count = count;
+void beep_short() { //короткий писк
+    if (!ff.bits.ZUM_BUSY) {
+        if (beep_short_count > 0) beep_short_count--;
+        time_tone = SHORT_ZUMMER_DELAY;
+        start_tone();
+    }
 }
 
-void beep_long(char count) {//короткий писк
-    start_tone();
-    ff.bits.ZUM_BUSY = 1;
-    time_tone = 30;
-    beep_long_count = count;
+void beep_long() {//короткий писк
+    if (!ff.bits.ZUM_BUSY) {
+        if (beep_long_count > 0) beep_long_count--;
+        time_tone = LONG_ZUMMER_DELAY;
+        start_tone();
+    }
 }
 
-void beep_double(char count) {//TODO
-    start_tone();
-    ff.bits.ZUM_BUSY = 1;
-    time_tone = 30;
-    beep_double_count = count;
+void beep_double() {//TODO
+    if (ff.bits.LAST_BEEP_LONG) {
+        beep_short();
+    } else {
+        beep_long();
+    }
 }
 
 void go_close() {//начало закрытия кранов
@@ -152,14 +159,15 @@ void go_close() {//начало закрытия кранов
     ff.bits.OPENED = 0;
     ff.bits.OPENING = 0;
 
-    time_rotation = 0;
+    ff.bits.RELE_POWER_ON = 0;
     ff.bits.RELE_CONTROL_ON = 1;
 
     time_rele_control = RELE_GAP + RELE_POWER_WORK_DELAY + RELE_GAP;
     time_rele_power = RELE_POWER_WORK_DELAY;
     time_rele_gap = RELE_GAP;
 
-    return;
+    time_rotation = 0;
+
 }
 
 void go_close_short() {//начало закрытия кранов при автоповороте
@@ -168,23 +176,21 @@ void go_close_short() {//начало закрытия кранов при ав�
     ff.bits.OPENED = 0;
     ff.bits.OPENING = 0;
 
-
-    time_rotation = 0;
-
+    ff.bits.RELE_POWER_ON = 0;
     ff.bits.RELE_CONTROL_ON = 1;
 
     time_rele_control = RELE_GAP + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP;
     time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
     time_rele_gap = RELE_GAP;
 
-    return;
+    time_rotation = 0;
 }
 
 void go_open() {//начало открытия кранов
 
+    ff.bits.OPENING = 1;
     ff.bits.CLOSED = 0;
     ff.bits.CLOSING = 0;
-    ff.bits.OPENING = 1;
 
 
     ff.bits.RELE_CONTROL_ON = 0;
@@ -218,25 +224,21 @@ void go_open_alt() {//открытие кранов 2 режим
 
 void close() {
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        go_close;
+        go_close();
     } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-        go_close_alt;
+        go_close_alt();
     }
 }
 
 void open() {
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        go_open;
+        go_open();
     } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-        go_open_alt;
+        go_open_alt();
     }
 }
 
 void rele_tick() {//закрытие кранов (задержка на работу привода)
-
-#ifdef DEBUG_ENABLED
-    toggle_zummer();
-#endif
 
     if (ff.bits.OPENING && ff.bits.CLOSING) {
         return;
@@ -260,7 +262,7 @@ void rele_tick() {//закрытие кранов (задержка на раб�
             time_rele_gap--;
         }
 
-        if (time_rele_gap = 0) {
+        if (time_rele_gap == 0) {
             time_rele_power--;
             if (time_rele_power == 0) {
                 ff.bits.RELE_POWER_ON = 0;
@@ -283,11 +285,232 @@ void start_alarm() {//обнаружена протечка
 
     ff.bits.ALARM_ON = 1;
     ff.bits.ALARM_OFF = 0;
-
     ff.bits.MELODY_ON = 1;
-
-
+    ff.bits.SIREN = 1;
     close();
+}
+
+void fun_work() {//работа переключателя
+    {
+        if (//открытие
+                ff.bits.FUN_LOW &&
+                !ff.bits.FUN_HIGH &&
+                ff.bits.ALARM_OFF &&
+                !ff.bits.OPENED &&
+                !ff.bits.OPENING) {
+            beep_short_count = 1;
+            open();
+        };
+        if (//закрытие
+                ff.bits.FUN_HIGH &&
+                !ff.bits.FUN_LOW &&
+                !ff.bits.CLOSED &&
+                !ff.bits.CLOSING) {
+            beep_short_count = 2;
+            close();
+        }
+    }
+}
+
+void switch_wm() {//выбор режима работы
+    if (ff.bits.JUMP_LOW) {//go_alt_mode
+        if (ff.bits.NORMAL_WORK_MODE_ON) {
+            ff.bits.NORMAL_WORK_MODE_ON = 0;
+            ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
+
+            //три высоких писка
+            beep_long_count = 2; //_freq pause work_time count
+        }
+    } else if (ff.bits.JUMP_HIGH) {//go_norm_mode
+        if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+            ff.bits.NORMAL_WORK_MODE_ON = 1;
+            ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
+
+            //два высоких писка
+            beep_long_count = 1; //_freq pause work_time count;
+        }
+    }
+}
+
+void autorotation_work() {//автоповорот
+    if ((time_rotation > AUTOROTATION_DELAY) &&
+            !ff.bits.CLOSED &&
+            !ff.bits.CLOSING &&
+            ff.bits.ALARM_OFF &&
+            ff.bits.NORMAL_WORK_MODE_ON
+            ) {
+        go_close_short();
+    }
+
+    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_WORK_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
+            ff.bits.CLOSED &&
+            ff.bits.CLOSING &&
+            ff.bits.ALARM_OFF &&
+            ff.bits.NORMAL_WORK_MODE_ON
+            ) {
+        go_open();
+        time_rotation = 0; //обнуляем счетчик
+    }
+
+}
+
+
+/*█████████████████████████████████████████████████████████████████████*/
+
+/*TIMES*/
+
+
+void minute_tick() {
+
+    //  static unsigned minute_count = 0;
+
+    if (time_melody > 0) {
+        time_melody--;
+        if (time_melody == 0) {
+            ff.bits.SIREN = 1;
+            time_melody = 30;
+        }
+    };
+
+    /*
+    if (minute_count = 24 * 60 * AUTOROTATION_DAYS) {
+        autorotation_work();
+    }
+     */
+
+}
+
+void sec_30_work() {
+    if (ff.bits.SIREN) {
+        ff.bits.SIREN = 0;
+    } else {
+        beep_short_count = 3;
+    }
+}
+
+void sec_work() {//работа секундного таймера
+
+#ifdef DEBUG_ENABLED
+    toggle_zummer();
+#endif
+
+    static char sec_count = 0;
+
+    sec_count++;
+
+    if (ff.bits.OPENED && ff.bits.NORMAL_WORK_MODE_ON) time_rotation++;
+
+    rele_tick();
+
+    if (ff.bits.ALARM_ON) {
+
+        if (sec_count == 30) {
+            sec_30_work();
+        }
+
+        ff.bits.LED_ON = !ff.bits.LED_ON;
+
+    } else if (ff.bits.ALARM_OFF) {
+
+        static char iled;
+        iled++;
+        if (iled > 2) {
+            ff.bits.LED_ON = !ff.bits.LED_ON;
+            iled = 0;
+        }
+
+    }
+
+
+    if (sec_count == 60) {
+        minute_tick();
+        sec_count = 0;
+    }
+
+}
+
+void ms_200_work() {
+    if (ff.bits.ALARM_ON) {
+        if (ff.bits.SIREN > 0) {
+            beep_double();
+        } else {
+            if (beep_short_count > 0) {
+                beep_short();
+            }
+        }
+    }
+
+    if (ff.bits.ALARM_OFF) {
+        if ((beep_short_count > 0) && (beep_long_count > 0)) {
+            beep_double();
+        } else {
+            if (beep_short_count > 0) {
+                beep_short();
+            }
+            if (beep_long_count > 0) {
+                beep_long();
+            }
+        }
+
+    }
+}
+
+void ms_100_work() {
+    if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
+        ff.bits.ALLOW_MEASURE = 1;
+    }
+}
+
+void ms_tick() {
+    static unsigned ms_count = 0;
+
+    ms_count++;
+
+    if (ms_count == 100) {
+        ms_100_work();
+    }
+
+    if (ms_count == 200) {
+        ms_200_work();
+    }
+
+    if (ms_count == 1000) {
+        sec_work();
+        ms_count = 0;
+    }
+
+}
+
+/*█████████████████████████████████████████████████████████████████████*/
+
+/*HARDWARE*/
+
+void eeprom_set() {
+    char vers = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
+    if (vers == 0xFF) {
+        EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, VERSION);
+    }
+    //add_eeprom_setup
+}
+
+void hardware_work() {
+    PIN_ALARM_STATE_LAT = ff.bits.ALARM_ON;
+    PIN_POWER_MEAS_LAT = ff.bits.MEAS_ON;
+    PIN_RELE_CONTROL_LAT = ff.bits.RELE_CONTROL_ON;
+    PIN_RELE_POWER_LAT = ff.bits.RELE_POWER_ON;
+    PIN_LED_LAT = ff.bits.LED_ON;
+    // PIN_ZUMMER_LAT = ff.bits.ZUM_ON;
+    if (ff.bits.TONE_ON) {
+        INTCONbits.TMR0IE = 1;
+    };
+    if (ff.bits.TONE_OFF) {
+        INTCONbits.TMR0IE = 0;
+        PIN_ZUMMER_SetLow();
+    };
+}
+
+void timer0_switch() {//одно переключение
+    PIN_ZUMMER_Toggle();
 }
 
 void get_measure() {//измерение состояния датчиков
@@ -424,144 +647,6 @@ void get_jump_full() {//определение положения переклю
     PIN_JUMP_STATE_SetDigitalMode();
 }
 
-void sec_tick_work() {//работа секундного таймера
-
-    if (ff.bits.OPENED && ff.bits.NORMAL_WORK_MODE_ON) time_rotation++;
-    rele_tick();
-
-    if (ff.bits.ALARM_ON) {
-        PIN_LED_Toggle();
-
-#ifdef DEBUG_ENABLED
-        toggle_zummer();
-#endif
-    } else if (ff.bits.ALARM_OFF) {//if not alarm
-
-        static char iled;
-        iled++;
-        if (iled > 2) {
-            PIN_LED_Toggle();
-            iled = 0;
-        }
-    }
-}
-
-void autorotation_work() {//автоповорот
-    if ((time_rotation > AUTOROTATION_DELAY) &&
-            !ff.bits.CLOSED &&
-            !ff.bits.CLOSING &&
-            ff.bits.ALARM_OFF &&
-            ff.bits.NORMAL_WORK_MODE_ON
-            ) {
-        go_close_short();
-    }
-
-    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_WORK_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
-            ff.bits.CLOSED &&
-            ff.bits.CLOSING &&
-            ff.bits.ALARM_OFF &&
-            ff.bits.NORMAL_WORK_MODE_ON
-            ) {
-        go_open();
-        time_rotation = 0; //обнуляем счетчик
-    }
-
-}
-
-void fun_work() {//работа переключателя
-    {
-        if (//открытие
-                ff.bits.FUN_LOW &&
-                !ff.bits.FUN_HIGH &&
-                ff.bits.ALARM_OFF &&
-                ff.bits.CLOSED &&
-                !ff.bits.RELE_POWER_ON) {
-            beep_short(1);
-            open();
-        };
-        if (//закрытие
-                ff.bits.FUN_HIGH &&
-                !ff.bits.FUN_LOW &&
-                ff.bits.OPENED &&
-                !ff.bits.RELE_POWER_ON) {
-            beep_short(2);
-            close();
-        }
-    }
-}
-
-void switch_wm() {//выбор режима работы
-    if (ff.bits.JUMP_LOW) {//go_alt_mode
-        if (ff.bits.NORMAL_WORK_MODE_ON) {
-            ff.bits.NORMAL_WORK_MODE_ON = 0;
-            ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
-            //   if (*FLAGS.bits.CLOSED) go_close_alt();
-            //три высоких писка
-            beep_long(2); //_freq pause work_time count
-        }
-    } else if (ff.bits.JUMP_HIGH) {//go_norm_mode
-        if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-            ff.bits.NORMAL_WORK_MODE_ON = 1;
-            ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
-            //    if (*FLAGS.bits.CLOSED) go_close();
-            //два высоких писка
-            beep_long(1); //_freq pause work_time count;
-        }
-    }
-}
-
-void ms_tick() {
-    static unsigned tick_count = 0;
-    tick_count++;
-
-    if (ff.bits.BEEP_SHORT) {
-        time_zummer_short--;
-    }
-    if (ff.bits.BEEP_LONG) {
-        time_zummer_long--;
-    }
-    if (tick_count == 100) {
-        ff.bits.ALLOW_MEASURE = 1;
-        tick_count = 0;
-    }
-
-    if (tick_count == 1000) {
-        sec_tick_work();
-        tick_count = 0;
-    }
-}
-
-/*█████████████████████████████████████████████████████████████████████*/
-
-/*HARDWARE*/
-void eeprom_set() {
-    char vers = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
-    if (vers == 0xFF) {
-        EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, VERSION);
-    }
-    //add_eeprom_setup
-}
-
-void hardware_work() {
-    PIN_ALARM_STATE_LAT = ff.bits.ALARM_ON;
-    PIN_POWER_MEAS_LAT = ff.bits.MEAS_ON;
-    PIN_RELE_CONTROL_LAT = ff.bits.RELE_CONTROL_ON;
-    PIN_RELE_POWER_LAT = ff.bits.RELE_POWER_ON;
-    PIN_LED_LAT = ff.bits.LED_ON;
-    // PIN_ZUMMER_LAT = ff.bits.ZUM_ON;
-    if (ff.bits.TONE_ON) {
-        INTCONbits.TMR0IE = 1;
-    };
-    if (ff.bits.TONE_OFF) {
-        INTCONbits.TMR0IE = 0;
-        PIN_ZUMMER_SetLow();
-    };
-}
-
-void timer0_switch() {//одно переключение
-    PIN_ZUMMER_Toggle();
-}
-
 void start_setup() {//начальная настройка
     //MCC сгенерировано
     SYSTEM_Initialize(); // initialize the device
@@ -594,9 +679,6 @@ void start_setup() {//начальная настройка
     PIN_ALARM_STATE_SetLow();
     PIN_ALARM_STATE_SetDigitalOutput();
 
-    //проверка текущего режима
-    //  get_jump_full();
-    //   get_fun_full();
     time_rele_power = 0;
 }
 
@@ -631,10 +713,9 @@ void main(void) {
     start_setup();
 
     while (1) {
-        //    if 
-        //        get_voltage(); //  deleted, unused
         CLRWDT();
         hardware_work();
+
         if (!ff.bits.ALARM_OFF) {
 
             get_jump();
