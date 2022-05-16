@@ -84,7 +84,6 @@ __uint24 time_rotation; //время до автоповорота (сек)
 unsigned time_rele_power; //время до закрытия реле (сек)
 unsigned time_rele_control;
 unsigned time_rele_gap;
-unsigned time_led;
 unsigned time_tone; //s
 //char time_siren; //s
 //char time_silent; //s
@@ -281,13 +280,17 @@ void rele_tick() {//закрытие кранов (задержка на раб�
 
 }
 
-void start_alarm() {//обнаружена протечка
-
+void start_alarm() {
     ff.bits.ALARM_ON = 1;
     ff.bits.ALARM_OFF = 0;
     ff.bits.MELODY_ON = 1;
     ff.bits.SIREN = 1;
     close();
+}
+
+void clear_alarm() {
+    ff.bits.ALARM_ON = 0;
+    ff.bits.ALARM_OFF = 1;
 }
 
 void fun_work() {//работа переключателя
@@ -314,7 +317,7 @@ void fun_work() {//работа переключателя
 
 void switch_wm() {//выбор режима работы
     if (ff.bits.JUMP_LOW) {//go_alt_mode
-        if (ff.bits.NORMAL_WORK_MODE_ON) {
+        if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 0;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
 
@@ -322,7 +325,7 @@ void switch_wm() {//выбор режима работы
             beep_long_count = 2; //_freq pause work_time count
         }
     } else if (ff.bits.JUMP_HIGH) {//go_norm_mode
-        if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+        if (!ff.bits.NORMAL_WORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 1;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
 
@@ -430,6 +433,7 @@ void sec_work() {//работа секундного таймера
 }
 
 void ms_200_work() {
+
     if (ff.bits.ALARM_ON) {
         if (ff.bits.SIREN > 0) {
             beep_double();
@@ -441,6 +445,8 @@ void ms_200_work() {
     }
 
     if (ff.bits.ALARM_OFF) {
+
+       
         if ((beep_short_count > 0) && (beep_long_count > 0)) {
             beep_double();
         } else {
@@ -464,7 +470,17 @@ void ms_100_work() {
 void ms_tick() {
     static unsigned ms_count = 0;
 
+
     ms_count++;
+   
+    if (time_tone > 0) {
+        time_tone--;
+        if (time_tone == 0){
+            stop_tone();
+        }
+    } 
+     ff.bits.ALLOW_FUN = 1;
+    ff.bits.ALLOW_JUMP = 1;
 
     if (ms_count == 100) {
         ms_100_work();
@@ -509,52 +525,65 @@ void hardware_work() {
     };
 }
 
-void timer0_switch() {//одно переключение
+void zummer_switch() {//одно переключение
     PIN_ZUMMER_Toggle();
 }
 
-void get_measure() {//измерение состояния датчиков
-    static unsigned char measures;
-    PIN_POWER_MEAS_SetHigh();
-    PIN_WSP_STATE_SetAnalogMode();
-    __delay_ms(1);
-    unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-    PIN_WSP_STATE_SetDigitalMode();
-    PIN_POWER_MEAS_SetLow();
-    if (res < BAD_WSP_VOLTAGE) measures++;
-    else if (res > GOOD_WSP_VOLTAGE) measures = 0;
-    if (measures > WSP_MEAS_COUNT) start_alarm();
-    return;
+void get_wsp() {//измерение состояния датчиков
+
+    if (ff.bits.ALLOW_MEASURE) {
+
+        static signed char bad_measures_counter = 0;
+        PIN_POWER_MEAS_SetHigh();
+        PIN_WSP_STATE_SetAnalogMode();
+        __delay_ms(1);
+        unsigned res = ADC_GetConversion(PIN_WSP_STATE);
+        PIN_WSP_STATE_SetDigitalMode();
+        PIN_POWER_MEAS_SetLow();
+        if (res < BAD_WSP_VOLTAGE) bad_measures_counter++;
+        else if (res > GOOD_WSP_VOLTAGE) bad_measures_counter--;
+        if (bad_measures_counter > WSP_MEAS_COUNT) {
+            start_alarm();
+        }
+        if (bad_measures_counter < -WSP_MEAS_COUNT) {
+            clear_alarm();
+        }
+        ff.bits.ALLOW_MEASURE = 0;
+    }
 }
 
 void get_fun() {//определение положения переключателя (антидребезг 1 шаг)
-    static signed char fun_counter;
-    PIN_POWER_MEAS_SetHigh();
-    __delay_ms(1);
-    //   unsigned res = ADC_GetConversion(PIN_FUN_STATE);
-    PIN_FUN_STATE_SetDigitalMode();
-    PIN_FUN_STATE_SetDigitalInput();
-    if (PIN_FUN_STATE_GetValue()) fun_counter--;
-    else fun_counter++;
-    PIN_POWER_MEAS_SetLow();
-    /*
-    if (res < LOW_PIN_VOLTAGE) fun_counter--;
-    else fun_counter++;
-     * */
 
-    if (fun_counter > FUN_MEAS_COUNT) {
-        fun_counter = FUN_MEAS_COUNT;
-        ff.bits.FUN_LOW = 0;
-        ff.bits.FUN_HIGH = 1;
-    } else if (fun_counter<-FUN_MEAS_COUNT) {
-        fun_counter = -FUN_MEAS_COUNT;
-        ff.bits.FUN_LOW = 1;
-        ff.bits.FUN_HIGH = 0;
+    if (ff.bits.ALLOW_FUN) {
+
+        static signed char fun_counter;
+        PIN_POWER_MEAS_SetHigh();
+        __delay_ms(1);
+        //   unsigned res = ADC_GetConversion(PIN_FUN_STATE);
+        PIN_FUN_STATE_SetDigitalMode();
+        PIN_FUN_STATE_SetDigitalInput();
+        if (PIN_FUN_STATE_GetValue()) fun_counter--;
+        else fun_counter++;
+        PIN_POWER_MEAS_SetLow();
+        /*
+        if (res < LOW_PIN_VOLTAGE) fun_counter--;
+        else fun_counter++;
+         * */
+
+        if (fun_counter > FUN_MEAS_COUNT) {
+            fun_counter = FUN_MEAS_COUNT;
+            ff.bits.FUN_LOW = 0;
+            ff.bits.FUN_HIGH = 1;
+        } else if (fun_counter<-FUN_MEAS_COUNT) {
+            fun_counter = -FUN_MEAS_COUNT;
+            ff.bits.FUN_LOW = 1;
+            ff.bits.FUN_HIGH = 0;
+        }
+        ff.bits.ALLOW_FUN = 0;
     }
-
-    return;
 }
 
+/*
 void get_fun_full() {//определение положения переключателя (антидребезг все шаги)
 
     static signed char fun_counter;
@@ -587,35 +616,40 @@ void get_fun_full() {//определение положения переклю�
     PIN_POWER_MEAS_SetLow();
     return;
 }
+ */
 
 void get_jump() {//определение положения джампера (антидребезг 1 шаг)
 
     static signed char jump_counter;
-    PIN_JUMP_STATE_SetDigitalMode();
-    PIN_JUMP_STATE_SetDigitalInput();
-    if (PIN_JUMP_STATE_GetValue()) jump_counter++;
-    else jump_counter--;
-    /*
-    unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
-    if (res < LOW_PIN_VOLTAGE) jump_counter--;
-    else jump_counter++;
-     */
+
+    if (ff.bits.ALLOW_JUMP) {
+
+        PIN_JUMP_STATE_SetDigitalMode();
+        PIN_JUMP_STATE_SetDigitalInput();
+        if (PIN_JUMP_STATE_GetValue()) jump_counter++;
+        else jump_counter--;
+        /*
+        unsigned res = ADC_GetConversion(PIN_JUMP_STATE);
+        if (res < LOW_PIN_VOLTAGE) jump_counter--;
+        else jump_counter++;
+         */
 
 
-    if (jump_counter > JUMP_MEAS_COUNT) {
-        jump_counter = JUMP_MEAS_COUNT;
-        ff.bits.JUMP_LOW = 0;
-        ff.bits.JUMP_HIGH = 1;
-    } else if (jump_counter<-JUMP_MEAS_COUNT) {
-        jump_counter = -JUMP_MEAS_COUNT;
-        ff.bits.JUMP_LOW = 1;
-        ff.bits.JUMP_HIGH = 0;
+        if (jump_counter > JUMP_MEAS_COUNT) {
+            jump_counter = JUMP_MEAS_COUNT;
+            ff.bits.JUMP_LOW = 0;
+            ff.bits.JUMP_HIGH = 1;
+        } else if (jump_counter<-JUMP_MEAS_COUNT) {
+            jump_counter = -JUMP_MEAS_COUNT;
+            ff.bits.JUMP_LOW = 1;
+            ff.bits.JUMP_HIGH = 0;
+        }
+        ff.bits.ALLOW_JUMP = 0;
     }
 
-
-    return;
 }
 
+/*
 void get_jump_full() {//определение положения переключателя (антидребезг все шаги)
 
     static signed char jump_counter;
@@ -646,6 +680,7 @@ void get_jump_full() {//определение положения переклю
     } while (flag == 0);
     PIN_JUMP_STATE_SetDigitalMode();
 }
+ */
 
 void start_setup() {//начальная настройка
     //MCC сгенерировано
@@ -656,10 +691,11 @@ void start_setup() {//начальная настройка
     // get_eeprom();
     eeprom_set();
 
-    TMR0_SetInterruptHandler(timer0_switch);
+    TMR0_SetInterruptHandler(zummer_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer(); //начать секундный счет
 
+    /*
     //отключение аналоговых входов чтобы не мешали измерениям
     PIN_WSP_STATE_SetDigitalMode();
     PIN_JUMP_STATE_SetDigitalMode();
@@ -670,16 +706,34 @@ void start_setup() {//начальная настройка
     PIN_JUMP_STATE_SetDigitalInput();
     PIN_FUN_STATE_ResetPullup();
     PIN_FUN_STATE_SetDigitalInput();
+     
+    PIN_ALARM_STATE_SetDigitalOutput();
+     */
+
     INTCONbits.TMR0IE = 0; //выкл зуммер
     ff.value = 0;
-    ff.bits.ALARM_ON = 0;
-    ff.bits.ALARM_OFF = 1;
     PIN_RELE_POWER_SetLow();
     PIN_RELE_CONTROL_SetLow();
     PIN_ALARM_STATE_SetLow();
-    PIN_ALARM_STATE_SetDigitalOutput();
+    PIN_POWER_MEAS_SetLow();
+    PIN_ZUMMER_SetLow();
+    PIN_LED_SetLow();
 
+    time_rotation = 0;
     time_rele_power = 0;
+    time_rele_control = 0;
+    time_rele_gap = 0;
+    time_tone = 0;
+
+    
+    // time_siren = 0;
+    // time_silent = 0;
+    time_melody = 0;
+    time_zummer_short = 0;
+    time_zummer_long = 0;
+
+    /*ms_div*/
+     time_meas  = 0;
 }
 
 #ifdef DEBUG_ENABLED
@@ -714,9 +768,13 @@ void main(void) {
 
     while (1) {
         CLRWDT();
+
+
         hardware_work();
 
-        if (!ff.bits.ALARM_OFF) {
+
+
+        if (!ff.bits.ALARM_ON) {
 
             get_jump();
             switch_wm();
@@ -724,10 +782,8 @@ void main(void) {
             get_fun();
             fun_work();
 
-            if (ff.bits.ALLOW_MEASURE) {
-                get_measure();
-                ff.bits.ALLOW_MEASURE = 0;
-            }
+            get_wsp();
+
             autorotation_work();
 
         };
