@@ -4086,16 +4086,36 @@ void EEPROM_WriteString(unsigned char addr, char* str1);
 
 void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 # 2 "main.c" 2
-# 14 "main.c"
+# 12 "main.c"
+const char SHORT_ZUMMER_DELAY = 30;
+const char LONG_ZUMMER_DELAY = 130;
+const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
+const char AUTOROTATION_DAYS = 14;
+const char MOVING_WAIT_DELAY = 2;
 const unsigned LOW_WATER_RESISTANSE = 20000;
 const unsigned HIGH_WATER_RESISTANSE = 25000;
 const unsigned UP_RESISTANSE = 20000;
-# 37 "main.c"
+
+
+const char WSP_MEAS_COUNT = 4;
+const char FUN_MEAS_COUNT = 10;
+const char JUMP_MEAS_COUNT = 10;
+
+const char RELE_POWER_WORK_DELAY = 15;
+const char RELE_POWER_AUTOROTATION_DELAY = 5;
+const char RELE_GAP = 2;
+const char MELODY_REPEAT_DELAY = 3;
+const unsigned AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60);
+
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
-# 60 "main.c"
+
+
+
+
 static union {
     unsigned long value;
+
     struct {
         unsigned ALARM_ON : 1;
         unsigned ALARM_OFF : 1;
@@ -4116,338 +4136,294 @@ static union {
         unsigned WATER_FALSE : 1;
         unsigned TONE_ON : 1;
         unsigned TONE_OFF : 1;
-        unsigned BEEP_LONG : 1;
+        unsigned SIREN : 1;
         unsigned ZUM_BUSY : 1;
         unsigned BEEP_SHORT : 1;
         unsigned GO_CLOSE : 1;
-        unsigned GO_OPEN : 1;
+        unsigned MOVING_ALLOWED : 1;
         unsigned NORMAL_WORK_MODE_ON : 1;
         unsigned UNIVERSAL_VORK_MODE_ON : 1;
-        unsigned : 1;
-        unsigned : 1;
-        unsigned : 1;
-        unsigned : 1;
-        unsigned : 1;
-        unsigned : 1;
+        unsigned LED_ON : 1;
+        unsigned ZUM_ON : 1;
+        unsigned MEAS_ON : 1;
+        unsigned AUTOROTATION_WORK : 1;
+        unsigned MELODY_ON : 1;
+        unsigned LAST_BEEP_LONG : 1;
     } bits;
-} FF;
-
-char FRIMWARE_VERSION_EEPROM_ADR;
-
-
-
+} ff;
+# 85 "main.c"
 __uint24 time_rotation;
 unsigned time_rele_power;
 unsigned time_rele_control;
 unsigned time_rele_gap;
-unsigned time_led;
-unsigned time_zummer;
+unsigned time_tone;
+
+
+char time_melody;
+char time_moving_wait;
 unsigned time_zummer_short;
 unsigned time_zummer_long;
-
 
 
 char time_meas;
 
 
+
+
+
+
 char beep_short_count;
 char beep_long_count;
 char beep_double_count;
-
-
-
-
-void toggle_zummer() {
-    do { LATAbits.LATA5 = 1; } while(0);
-    do { LATAbits.LATA5 = 0; } while(0);
-}
-# 135 "main.c"
-void timer0_switch() {
-    do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
-}
-
+# 122 "main.c"
 void start_tone() {
-    INTCONbits.TMR0IE = 1;
-    FF.bits.TONE_ON = 1;
+    ff.bits.ZUM_BUSY = 1;
+    ff.bits.TONE_ON = 1;
+    ff.bits.TONE_OFF = 0;
 }
 
 void stop_tone() {
-    INTCONbits.TMR0IE = 0;
-    FF.bits.TONE_ON = 0;
-    do { LATAbits.LATA5 = 0; } while(0);
+    ff.bits.ZUM_BUSY = 0;
+    ff.bits.TONE_ON = 0;
+    ff.bits.TONE_OFF = 1;
 }
 
-void beep_short(char count) {
-    start_tone();
-    FF.bits.ZUM_BUSY = 1;
-    time_zummer = 30;
-    beep_short_count = count;
+void beep_short() {
+    if (!ff.bits.ZUM_BUSY) {
+        if (beep_short_count > 0) beep_short_count--;
+        time_tone = SHORT_ZUMMER_DELAY;
+        ff.bits.LAST_BEEP_LONG = 0;
+        start_tone();
+    }
 }
 
-void beep_long(char count) {
-    start_tone();
-    FF.bits.ZUM_BUSY = 1;
-    time_zummer = 30;
-    beep_long_count = count;
+void beep_long() {
+    if (!ff.bits.ZUM_BUSY) {
+        if (beep_long_count > 0) beep_long_count--;
+        time_tone = LONG_ZUMMER_DELAY;
+        ff.bits.LAST_BEEP_LONG = 1;
+        start_tone();
+    }
 }
 
-void beep_double(char count) {
-    start_tone();
-    FF.bits.ZUM_BUSY = 1;
-    time_zummer = 30;
-    beep_double_count = count;
+void beep_double() {
+    if (ff.bits.LAST_BEEP_LONG) {
+        beep_short();
+    } else {
+        beep_long();
+    }
 }
 
 void go_close() {
-    time_rotation = 0;
-    do { LATCbits.LATC4 = 1; } while(0);
-    FF.bits.CLOSING = 1;
-    _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
-    do { LATCbits.LATC5 = 1; } while(0);
-    time_rele_power = 10;
-    FF.bits.RELE_POWER_ON = 1;
-    FF.bits.RELE_CONTROL_ON = 1;
-    return;
-}
 
-void go_close_short() {
-    time_rotation = 0;
-    do { LATCbits.LATC4 = 1; } while(0);
-    FF.bits.CLOSING = 1;
-    _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
-    do { LATCbits.LATC5 = 1; } while(0);
-    time_rele_power = 2;
-    FF.bits.RELE_POWER_ON = 1;
-    FF.bits.RELE_CONTROL_ON = 1;
-    return;
+    if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
+        ff.bits.CLOSING = 1;
+        ff.bits.OPENED = 0;
+        ff.bits.OPENING = 0;
+
+        ff.bits.RELE_POWER_ON = 0;
+        ff.bits.RELE_CONTROL_ON = 1;
+
+        time_rele_control = RELE_GAP + RELE_POWER_WORK_DELAY + RELE_GAP;
+        time_rele_power = RELE_POWER_WORK_DELAY;
+        time_rele_gap = RELE_GAP;
+
+        time_rotation = 0;
+
+    }
 }
 
 void go_open() {
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC5 = 1; } while(0);
-    time_rele_power = 10;
-    FF.bits.RELE_POWER_ON = 1;
-    return;
+
+    if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
+        ff.bits.OPENING = 1;
+        ff.bits.CLOSED = 0;
+        ff.bits.CLOSING = 0;
+
+
+        ff.bits.RELE_CONTROL_ON = 0;
+        ff.bits.RELE_POWER_ON = 1;
+
+        time_rele_power = RELE_POWER_WORK_DELAY;
+
+        ff.bits.AUTOROTATION_WORK = 0;
+        return;
+    }
 }
 
 void go_close_alt() {
-    FF.bits.CLOSED = 1;
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC5 = 1; } while(0);
+
+    if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
+        ff.bits.OPENED = 0;
+        ff.bits.CLOSED = 1;
+
+        ff.bits.RELE_CONTROL_ON = 0;
+        ff.bits.RELE_POWER_ON = 1;
+    }
 }
 
 void go_open_alt() {
-    FF.bits.CLOSED = 0;
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC5 = 0; } while(0);
-    return;
-}
+    if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
+        ff.bits.CLOSED = 0;
+        ff.bits.OPENED = 1;
 
-void start_alarm() {
-    FF.bits.ALARM_ON = 1;
-    do { LATCbits.LATC0 = 1; } while(0);
-    INTCONbits.TMR0IE = 1;
-    if (FF.bits.NORMAL_WORK_MODE_ON) {
-        go_close();
-    } else if (FF.bits.UNIVERSAL_VORK_MODE_ON) {
-        go_close_alt();
+        ff.bits.RELE_CONTROL_ON = 0;
+        ff.bits.RELE_POWER_ON = 0;
     }
 }
 
-void get_measure() {
-    static unsigned char measures;
-    do { LATCbits.LATC1 = 1; } while(0);
-    do { ANSELCbits.ANSC3 = 1; } while(0);
-    _delay((unsigned long)((1)*(16000000/4000.0)));
-    unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-    do { ANSELCbits.ANSC3 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    if (res < BAD_WSP_VOLTAGE) measures++;
-    else if (res > GOOD_WSP_VOLTAGE) measures = 0;
-    if (measures > 8) start_alarm();
-    return;
-}
-
-void get_fun() {
-    static signed char fun_counter;
-    do { LATCbits.LATC1 = 1; } while(0);
-    _delay((unsigned long)((1)*(16000000/4000.0)));
-
-    do { ANSELCbits.ANSC2 = 0; } while(0);
-    do { TRISCbits.TRISC2 = 1; } while(0);
-    if (PORTCbits.RC2) fun_counter--;
-    else fun_counter++;
-    do { LATCbits.LATC1 = 0; } while(0);
-
-
-
-
-
-
-    if (fun_counter > 10) {
-        fun_counter = 10;
-        FF.bits.FUN_LOW = 0;
-        FF.bits.FUN_HIGH = 1;
-    } else if (fun_counter<-10) {
-        fun_counter = -10;
-        FF.bits.FUN_LOW = 1;
-        FF.bits.FUN_HIGH = 0;
+void rele_off() {
+    ff.bits.RELE_CONTROL_ON = 0;
+    ff.bits.RELE_POWER_ON = 0;
+    ff.bits.CLOSING = 0;
+    ff.bits.OPENING = 0;
+    ff.bits.CLOSED = 0;
+    if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+        ff.bits.OPENED = 1;
+    } else {
+        ff.bits.OPENED = 0;
     }
-# 277 "main.c"
-    return;
+    ff.bits.MOVING_ALLOWED = 0;
+    time_moving_wait = MOVING_WAIT_DELAY;
 }
 
-void get_fun_full() {
-
-    static signed char fun_counter;
-    do { LATCbits.LATC1 = 1; } while(0);
-    do { ANSELCbits.ANSC2 = 1; } while(0);
-    char flag = 0;
-    do {
-        if (PORTCbits.RC2) fun_counter++;
-        else fun_counter--;
-
-
-
-
-        if (fun_counter > 10) {
-            fun_counter = 10;
-            FF.bits.FUN_LOW = 0;
-            FF.bits.FUN_HIGH = 1;
-            flag = 1;
-        } else if (fun_counter<-10) {
-            fun_counter = -10;
-            FF.bits.FUN_LOW = 1;
-            FF.bits.FUN_HIGH = 0;
-            flag = 1;
+void close() {
+    if (ff.bits.OPENING) {
+        rele_off();
+    } else {
+        if (ff.bits.NORMAL_WORK_MODE_ON) {
+            go_close();
+        } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+            go_close_alt();
         }
-# 318 "main.c"
-    } while (flag == 0);
-
-    do { ANSELCbits.ANSC2 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    return;
-}
-
-void get_jump() {
-
-    static signed char jump_counter;
-    do { ANSELAbits.ANSA1 = 0; } while(0);
-    do { TRISAbits.TRISA1 = 1; } while(0);
-    if (PORTAbits.RA1) jump_counter++;
-    else jump_counter--;
-
-
-
-
-
-
-
-    if (jump_counter > 10) {
-        jump_counter = 10;
-        FF.bits.JUMP_LOW = 0;
-        FF.bits.JUMP_HIGH = 1;
-    } else if (jump_counter<-10) {
-        jump_counter = -10;
-        FF.bits.JUMP_LOW = 1;
-        FF.bits.JUMP_HIGH = 0;
     }
-# 360 "main.c"
-    return;
 }
 
-void get_jump_full() {
-
-    static signed char jump_counter;
-    do { ANSELAbits.ANSA1 = 1; } while(0);
-    char flag = 0;
-    do {
-
-        if (PORTAbits.RA1) jump_counter++;
-        else jump_counter--;
-
-
-
-        if (jump_counter > 10) {
-            jump_counter = 10;
-            FF.bits.JUMP_LOW = 0;
-            FF.bits.JUMP_HIGH = 1;
-            ;
-            flag = 1;
-        } else if (jump_counter<-10) {
-            jump_counter = -10;
-            FF.bits.JUMP_LOW = 1;
-            FF.bits.JUMP_HIGH = 0;
-            flag = 1;
+void open() {
+    if (ff.bits.CLOSING) {
+        rele_off();
+    } else {
+        if (ff.bits.NORMAL_WORK_MODE_ON) {
+            go_open();
+        } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+            go_open_alt();
         }
-# 402 "main.c"
-    } while (flag == 0);
-    do { ANSELAbits.ANSA1 = 0; } while(0);
+    }
 }
 
 void rele_tick() {
-    toggle_zummer();
-    if (FF.bits.RELE_POWER_ON) {
+
+    if (ff.bits.OPENING && ff.bits.CLOSING) {
+        return;
+    }
+
+
+    if (ff.bits.OPENING) {
         if (time_rele_power > 0) {
             time_rele_power--;
-        } else {
-            if (FF.bits.RELE_CONTROL_ON) {
-                do { LATCbits.LATC5 = 0; } while(0);
-                _delay((unsigned long)((2 * 1000)*(16000000/4000.0)));
-                do { LATCbits.LATC4 = 0; } while(0);
-                FF.bits.CLOSING = 0;
-                FF.bits.CLOSED = 1;
-                FF.bits.RELE_CONTROL_ON = 0;
-                FF.bits.RELE_POWER_ON = 0;
-            } else {
-                do { LATCbits.LATC5 = 0; } while(0);
-                FF.bits.OPENING = 0;
-                FF.bits.CLOSED = 0;
-                FF.bits.RELE_POWER_ON = 0;
+            if (time_rele_power == 0) {
+                ff.bits.RELE_POWER_ON = 0;
+                ff.bits.OPENED = 1;
+                ff.bits.OPENING = 0;
             }
         }
     }
+
+
+    if (ff.bits.CLOSING) {
+
+        if (time_rele_gap == 0) {
+            if (time_rele_power > 0) {
+                ff.bits.RELE_POWER_ON = 1;
+                time_rele_power--;
+            } else {
+                ff.bits.RELE_POWER_ON = 0;
+            }
+        } else {
+            time_rele_gap--;
+        }
+
+        if (time_rele_control > 0) {
+            time_rele_control--;
+            if (time_rele_control == 0) {
+                ff.bits.RELE_CONTROL_ON = 0;
+                ff.bits.CLOSED = 1;
+                ff.bits.CLOSING = 0;
+            }
+        }
+    }
+
 }
 
-void sec_tick_work() {
+void start_alarm() {
+    ff.bits.ALARM_ON = 1;
+    ff.bits.ALARM_OFF = 0;
+    ff.bits.MELODY_ON = 1;
+    ff.bits.SIREN = 1;
+}
 
+void clear_alarm() {
+    ff.bits.ALARM_ON = 0;
+    ff.bits.ALARM_OFF = 1;
+}
 
-
-    if (FF.bits.OPENED && FF.bits.NORMAL_WORK_MODE_ON) time_rotation++;
-    rele_tick();
-
-    if (FF.bits.ALARM_ON) {
-        do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-
-
-        toggle_zummer();
-
-    } else if (FF.bits.ALARM_OFF) {
-
-        static char iled;
-        iled++;
-        if (iled > 2) {
-            do { LATAbits.LATA4 = ~LATAbits.LATA4; } while(0);
-            iled = 0;
+void fun_work() {
+    {
+        if (
+                ff.bits.FUN_LOW &&
+                !ff.bits.FUN_HIGH &&
+                ff.bits.ALARM_OFF &&
+                !ff.bits.OPENED &&
+                !ff.bits.OPENING) {
+            beep_short_count = 1;
+            open();
+        };
+        if (
+                ff.bits.FUN_HIGH &&
+                !ff.bits.FUN_LOW &&
+                !ff.bits.CLOSED &&
+                !ff.bits.CLOSING) {
+            beep_short_count = 2;
+            close();
         }
     }
 }
 
-void povorot() {
-    if ((time_rotation > 120) &&
-            !FF.bits.CLOSED &&
-            !FF.bits.CLOSING &&
-            FF.bits.ALARM_OFF &&
-            FF.bits.NORMAL_WORK_MODE_ON
+void switch_wm() {
+    if (ff.bits.JUMP_LOW) {
+        if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
+            ff.bits.NORMAL_WORK_MODE_ON = 0;
+            ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
+            rele_off();
+
+            beep_long_count = 2;
+        }
+    } else if (ff.bits.JUMP_HIGH) {
+        if (!ff.bits.NORMAL_WORK_MODE_ON) {
+            ff.bits.NORMAL_WORK_MODE_ON = 1;
+            ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
+            rele_off();
+
+            beep_long_count = 1;
+        }
+    }
+}
+
+void autorotation_work() {
+    if ((time_rotation > AUTOROTATION_DELAY) &&
+            !ff.bits.CLOSED &&
+            !ff.bits.CLOSING &&
+            ff.bits.ALARM_OFF &&
+            ff.bits.NORMAL_WORK_MODE_ON
             ) {
-        go_close_short();
+
     }
 
-    if ((time_rotation > (120 + 10 + 2 * 2)) &&
-            FF.bits.CLOSED &&
-            FF.bits.CLOSING &&
-            FF.bits.ALARM_OFF &&
-            FF.bits.NORMAL_WORK_MODE_ON
+    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_WORK_DELAY + RELE_GAP * 2)) &&
+            ff.bits.CLOSED &&
+            ff.bits.CLOSING &&
+            ff.bits.ALARM_OFF &&
+            ff.bits.NORMAL_WORK_MODE_ON
             ) {
         go_open();
         time_rotation = 0;
@@ -4455,78 +4431,281 @@ void povorot() {
 
 }
 
-void fun_work() {
-    {
-        if (FF.bits.FUN_LOW &&
-                FF.bits.ALARM_OFF &&
-                FF.bits.CLOSED &&
-                !FF.bits.RELE_POWER_ON) {
 
-            beep_short(1);
 
-            if (FF.bits.NORMAL_WORK_MODE_ON) go_open();
-            else if (FF.bits.UNIVERSAL_VORK_MODE_ON) go_open_alt();
-        };
-        if (!FF.bits.FUN_LOW &&
-                FF.bits.OPENED &&
-                !FF.bits.RELE_POWER_ON) {
 
-            beep_short(2);
 
-            if (FF.bits.NORMAL_WORK_MODE_ON) go_close();
-            else if (FF.bits.UNIVERSAL_VORK_MODE_ON) go_close_alt();
+
+
+void minute_tick() {
+
+
+
+    if (time_melody > 0) {
+        time_melody--;
+        if (time_melody == 0) {
+            ff.bits.SIREN = 1;
+            time_melody = MELODY_REPEAT_DELAY;
         }
-    }
+    };
+
+
+
+
+
+
+
 }
 
-void switch_wm() {
-    if (FF.bits.JUMP_LOW) {
-        if (FF.bits.NORMAL_WORK_MODE_ON) {
-            FF.bits.NORMAL_WORK_MODE_ON = 0;
-            FF.bits.UNIVERSAL_VORK_MODE_ON = 1;
-
-
-            beep_long(2);
-        }
+void sec_30_work() {
+    if (ff.bits.SIREN) {
+        ff.bits.SIREN = 0;
     } else {
-        if (FF.bits.UNIVERSAL_VORK_MODE_ON) {
-            FF.bits.NORMAL_WORK_MODE_ON = 1;
-            FF.bits.UNIVERSAL_VORK_MODE_ON = 0;
+        beep_short_count = 3;
+    }
+}
+
+void sec_work() {
 
 
-            beep_long(1);
+
+
+
+    static char sec_count = 0;
+
+    sec_count++;
+    if (!ff.bits.MOVING_ALLOWED) {
+        if (time_moving_wait > 0) {
+            time_moving_wait--;
+        } else {
+            ff.bits.MOVING_ALLOWED = 1;
         }
     }
+    if (ff.bits.NORMAL_WORK_MODE_ON) {
+        if (ff.bits.OPENED) time_rotation++;
+        rele_tick();
+    }
+
+    if (ff.bits.ALARM_ON) {
+
+        if (sec_count == 30|| sec_count==60) {
+            sec_30_work();
+        }
+
+        ff.bits.LED_ON = !ff.bits.LED_ON;
+
+    } else if (ff.bits.ALARM_OFF) {
+
+        static char iled;
+        iled++;
+        if (iled > 2) {
+            ff.bits.LED_ON = !ff.bits.LED_ON;
+            iled = 0;
+        }
+
+    }
+
+
+    if (sec_count == 60) {
+        minute_tick();
+        sec_count = 0;
+    }
+
 }
-# 535 "main.c"
+
+void ms_200_work() {
+    if (ff.bits.ALARM_ON) {
+        if (ff.bits.SIREN) {
+            beep_double();
+        } else {
+            if (beep_short_count > 0) {
+                beep_short();
+            }
+        }
+    } else if (ff.bits.ALARM_OFF) {
+
+
+        if ((beep_short_count > 0) && (beep_long_count > 0)) {
+            beep_double();
+        } else {
+            if (beep_short_count > 0) {
+                beep_short();
+            }
+            if (beep_long_count > 0) {
+                beep_long();
+            }
+        }
+
+    }
+}
+
+void ms_100_work() {
+    if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
+        ff.bits.ALLOW_MEASURE = 1;
+    }
+}
+
 void ms_tick() {
-    static unsigned tick_count = 0;
-    tick_count++;
-
-    if (FF.bits.BEEP_SHORT) {
-        time_zummer_short--;
-    }
-    if (FF.bits.BEEP_LONG) {
-        time_zummer_long--;
-    }
-    if (tick_count == 100) {
-        FF.bits.ALLOW_MEASURE = 1;
-        tick_count = 0;
+    static unsigned ms_count = 0;
+    static unsigned s_count = 0;
+    ms_count++;
+    if (time_tone > 0) {
+        time_tone--;
+        if (time_tone == 0) {
+            stop_tone();
+        }
     }
 
-    if (tick_count == 1000) {
-        sec_tick_work();
-        tick_count = 0;
+    ff.bits.ALLOW_FUN = 1;
+    ff.bits.ALLOW_JUMP = 1;
+
+    if (ms_count == 100) {
+        ms_100_work();
+        ms_200_work();
+        s_count++;
+        ms_count = 0;
+
     }
+
+    if (ms_count == 200) {
+
+    }
+
+    if (s_count == 10) {
+        sec_work();
+        s_count = 0;
+    }
+
 }
-# 632 "main.c"
+
+
+
+
+
 void eeprom_set() {
-    char adres = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
-    if (adres == 0xFF) {
+    char vers = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
+    if (vers == 0xFF) {
         EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, 1);
     }
+
 }
 
+void hardware_work() {
+    LATCbits.LATC0 = ff.bits.ALARM_ON;
+    LATCbits.LATC1 = ff.bits.MEAS_ON;
+    LATCbits.LATC4 = ff.bits.RELE_CONTROL_ON;
+    LATCbits.LATC5 = ff.bits.RELE_POWER_ON;
+    LATAbits.LATA4 = ff.bits.LED_ON;
+
+    if (ff.bits.TONE_ON) {
+        INTCONbits.TMR0IE = 1;
+    };
+    if (ff.bits.TONE_OFF) {
+        INTCONbits.TMR0IE = 0;
+        do { LATAbits.LATA5 = 0; } while(0);
+    };
+}
+
+void zummer_switch() {
+
+
+
+
+    do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+
+}
+
+void get_wsp() {
+
+    if (ff.bits.ALLOW_MEASURE) {
+
+        static signed char bad_measures_counter = 0;
+        do { LATCbits.LATC1 = 1; } while(0);
+        do { ANSELCbits.ANSC3 = 1; } while(0);
+        _delay((unsigned long)((1)*(16000000/4000.0)));
+        unsigned res = ADC_GetConversion(PIN_WSP_STATE);
+        do { ANSELCbits.ANSC3 = 0; } while(0);
+        do { LATCbits.LATC1 = 0; } while(0);
+        if (res < BAD_WSP_VOLTAGE) {
+            bad_measures_counter++;
+        } else {
+            if (res > GOOD_WSP_VOLTAGE) {
+                bad_measures_counter--;
+            }
+        }
+        if (bad_measures_counter > WSP_MEAS_COUNT) {
+            start_alarm();
+            bad_measures_counter = WSP_MEAS_COUNT;
+        }
+        if (bad_measures_counter < -WSP_MEAS_COUNT) {
+            clear_alarm();
+            bad_measures_counter = -WSP_MEAS_COUNT;
+        }
+        ff.bits.ALLOW_MEASURE = 0;
+    }
+}
+
+void get_fun() {
+
+    if (ff.bits.ALLOW_FUN) {
+
+        static signed char fun_counter;
+        do { LATCbits.LATC1 = 1; } while(0);
+        _delay((unsigned long)((1)*(16000000/4000.0)));
+        do { ANSELCbits.ANSC2 = 0; } while(0);
+        do { TRISCbits.TRISC2 = 1; } while(0);
+        if (PORTCbits.RC2) fun_counter--;
+        else fun_counter++;
+        do { LATCbits.LATC1 = 0; } while(0);
+
+
+
+
+
+        if (fun_counter > FUN_MEAS_COUNT) {
+            fun_counter = FUN_MEAS_COUNT;
+            ff.bits.FUN_LOW = 0;
+            ff.bits.FUN_HIGH = 1;
+        } else if (fun_counter<-FUN_MEAS_COUNT) {
+            fun_counter = -FUN_MEAS_COUNT;
+            ff.bits.FUN_LOW = 1;
+            ff.bits.FUN_HIGH = 0;
+        }
+        ff.bits.ALLOW_FUN = 0;
+    }
+}
+# 656 "main.c"
+void get_jump() {
+
+    static signed char jump_counter;
+
+    if (ff.bits.ALLOW_JUMP) {
+
+        do { ANSELAbits.ANSA1 = 0; } while(0);
+        do { TRISAbits.TRISA1 = 1; } while(0);
+        if (PORTAbits.RA1) jump_counter++;
+        else jump_counter--;
+
+
+
+
+
+
+
+        if (jump_counter > JUMP_MEAS_COUNT) {
+            jump_counter = JUMP_MEAS_COUNT;
+            ff.bits.JUMP_LOW = 0;
+            ff.bits.JUMP_HIGH = 1;
+        } else if (jump_counter<-JUMP_MEAS_COUNT) {
+            jump_counter = -JUMP_MEAS_COUNT;
+            ff.bits.JUMP_LOW = 1;
+            ff.bits.JUMP_HIGH = 0;
+        }
+        ff.bits.ALLOW_JUMP = 0;
+    }
+
+}
+# 720 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4536,43 +4715,51 @@ void start_setup() {
 
     eeprom_set();
 
-    TMR0_SetInterruptHandler(timer0_switch);
+    TMR0_SetInterruptHandler(zummer_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
-
-
-    do { ANSELCbits.ANSC3 = 0; } while(0);
-    do { ANSELAbits.ANSA1 = 0; } while(0);
-    do { ANSELCbits.ANSC2 = 0; } while(0);
-
-
-    do { WPUAbits.WPUA1 = 0; } while(0);
-    do { TRISAbits.TRISA1 = 1; } while(0);
-    do { WPUCbits.WPUC2 = 0; } while(0);
-    do { TRISCbits.TRISC2 = 1; } while(0);
+# 748 "main.c"
     INTCONbits.TMR0IE = 0;
-    FF.value = 0;
-    FF.bits.ALARM_ON = 0;
-    FF.bits.ALARM_OFF = 1;
+    ff.value = 0;
+
     do { LATCbits.LATC5 = 0; } while(0);
     do { LATCbits.LATC4 = 0; } while(0);
     do { LATCbits.LATC0 = 0; } while(0);
-    do { TRISCbits.TRISC0 = 0; } while(0);
+    do { LATCbits.LATC1 = 0; } while(0);
+    do { LATAbits.LATA5 = 0; } while(0);
+    do { LATAbits.LATA4 = 0; } while(0);
 
-
-
-
+    time_rotation = 0;
     time_rele_power = 0;
-}
+    time_rele_control = 0;
+    time_rele_gap = 0;
+    time_tone = 0;
 
+
+
+
+    time_melody = 0;
+    time_zummer_short = 0;
+    time_zummer_long = 0;
+
+
+    time_meas = 0;
+}
+# 800 "main.c"
 void main(void) {
 
     start_setup();
 
+
     while (1) {
+        __asm("clrwdt");
 
 
-        if (!FF.bits.ALARM_OFF) {
+        hardware_work();
+
+
+
+        if (!ff.bits.ALARM_ON) {
 
             get_jump();
             switch_wm();
@@ -4580,12 +4767,14 @@ void main(void) {
             get_fun();
             fun_work();
 
-            if (FF.bits.ALLOW_MEASURE) {
-                get_measure();
-                FF.bits.ALLOW_MEASURE = 0;
-            }
-            povorot();
-            __asm("clrwdt");
+            get_wsp();
+
+
+
+        } else {
+            close();
         };
+
+
     }
 }

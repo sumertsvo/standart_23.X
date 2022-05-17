@@ -4,7 +4,7 @@
 
 
 
-#define DEBUG_ENABLED
+//#define DEBUG_ENABLED
 
 
 /*DEFAULT_SETTINGS*/
@@ -431,7 +431,7 @@ void sec_work() {//работа секундного таймера
 
     if (ff.bits.ALARM_ON) {
 
-        if (sec_count == 30) {
+        if (sec_count == 30|| sec_count==60) {
             sec_30_work();
         }
 
@@ -457,9 +457,8 @@ void sec_work() {//работа секундного таймера
 }
 
 void ms_200_work() {
-
     if (ff.bits.ALARM_ON) {
-        if (ff.bits.SIREN > 0) {
+        if (ff.bits.SIREN) {
             beep_double();
         } else {
             if (beep_short_count > 0) {
@@ -486,12 +485,13 @@ void ms_200_work() {
 void ms_100_work() {
     if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
         ff.bits.ALLOW_MEASURE = 1;
-    }
+    } 
 }
 
 void ms_tick() {
     static unsigned ms_count = 0;
-
+    static unsigned s_count = 0;
+    ms_count++;
     if (time_tone > 0) {
         time_tone--;
         if (time_tone == 0) {
@@ -505,18 +505,20 @@ void ms_tick() {
     if (ms_count == 100) {
         ms_100_work();
         ms_200_work();
-
+        s_count++;
+        ms_count = 0;
+    //PIN_ALARM_STATE_Toggle();
     }
 
     if (ms_count == 200) {
-        //   ms_200_work();
+    //   ms_200_work();
     }
 
-    if (ms_count == 1000) {
+    if (s_count == 10) {
         sec_work();
-        ms_count = 0;
+        s_count = 0;
     }
-    ms_count++;
+   
 }
 
 /*█████████████████████████████████████████████████████████████████████*/
@@ -593,7 +595,6 @@ void get_fun() {//определение положения переключат
         static signed char fun_counter;
         PIN_POWER_MEAS_SetHigh();
         __delay_ms(1);
-        //   unsigned res = ADC_GetConversion(PIN_FUN_STATE);
         PIN_FUN_STATE_SetDigitalMode();
         PIN_FUN_STATE_SetDigitalInput();
         if (PIN_FUN_STATE_GetValue()) fun_counter--;

@@ -2000,7 +2000,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR0" name="actualPeriod"/>
-         <value>0.000256</value>
+         <value>0.000125</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR0" name="clockFreqKey"/>
@@ -2032,7 +2032,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR0" name="requestedPeriod"/>
-         <value>0.000256</value>
+         <value>0.000125</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="TMR0" name="t0ckiPin"/>
@@ -2120,7 +2120,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="TMR0" registerAlias="TMR"/>
-         <value>0</value>
+         <value>131</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR0" registerAlias="OPTION_REG" settingAlias="INTEDG"/>
@@ -2148,7 +2148,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR0" registerAlias="TMR" settingAlias="TMR"/>
-         <value>0</value>
+         <value>131</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="TMR0" registerAlias="TMRI" settingAlias="enable"/>
@@ -2445,16 +2445,16 @@
    </tokenMap>
    <generatedFileHashHistoryMap class="java.util.HashMap">
       <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>e591cb4a26cac0ce82d00184cdb2235f6abeea5ef9cffb20dc60e8d90657c808</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\mcc.h</file>
          <hash>a391f0d7713c1302f1044cfccb115e71d9ee21221a48241d626275898c94b45f</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\device_config.h</file>
          <hash>b557396ebbdb065bf86d09d5e1e4aa087c7c30fabea1ec9dfc476f06ce5d0c50</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>e591cb4a26cac0ce82d00184cdb2235f6abeea5ef9cffb20dc60e8d90657c808</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\tmr0.h</file>
@@ -2465,12 +2465,12 @@
          <hash>98ec2c98aa6af9b5ccaf0633bf427c38f0175796df2c9df47f453c4803a7193b</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\tmr2.h</file>
-         <hash>7c0f929fc1a20d93f62da5c8e0c7a597e97b6cd60ddfd14eb03cf1b592262dca</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\device_config.c</file>
          <hash>28223c956513d877632bd7eca05c06e4c4a44ce216e46d9f64b0c4774031839a</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\tmr2.h</file>
+         <hash>7c0f929fc1a20d93f62da5c8e0c7a597e97b6cd60ddfd14eb03cf1b592262dca</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.h</file>
@@ -2486,7 +2486,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\tmr0.c</file>
-         <hash>ecfdac175e698be5201fb1ad9639a978046a4ee5e81c96d3e4a0fa741045cd66</hash>
+         <hash>57d19370802325e953626cf926fa81a593b993c900d49aff8842055b5ef8540a</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.c</file>
@@ -2497,12 +2497,12 @@
          <hash>8751fb7931894a5190df268adc51f196383dc3780b8049d81fad1c95cd0e5fed</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.c</file>
-         <hash>4ed5cfa8ca6ac4700271dc4e741c7cd28ae935166ab8ba21769340f590b81a9a</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\mcc.c</file>
          <hash>ffc17d39fdbf4e218e3de5ce8b2d07ba74831e1bee513b9682f653f2aa230e86</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\interrupt_manager.c</file>
+         <hash>4ed5cfa8ca6ac4700271dc4e741c7cd28ae935166ab8ba21769340f590b81a9a</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>
