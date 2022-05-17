@@ -13,18 +13,20 @@ const char SHORT_ZUMMER_DELAY = 30;
 const char LONG_ZUMMER_DELAY = 130;
 const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
 const char AUTOROTATION_DAYS = 14; //дней до поворота крана
+const char MOVING_WAIT_DELAY = 2;
 const unsigned LOW_WATER_RESISTANSE = 20000; //сопротивление датчика
 const unsigned HIGH_WATER_RESISTANSE = 25000; //
 const unsigned UP_RESISTANSE = 20000; //сопротивление делителя
 //const char LOW_PIN_VOLTAGE=25; // "низкий логический уровень"
 /*защита от дребезга*/
-const char WSP_MEAS_COUNT = 8; //количество измерений датчика
+const char WSP_MEAS_COUNT = 4; //количество измерений датчика
 const char FUN_MEAS_COUNT = 10; //количество измерений переключателя
 const char JUMP_MEAS_COUNT = 10; //количество измерений джампера
 /*задержки*/
-const char RELE_POWER_WORK_DELAY = 120; // sec
-const char RELE_POWER_AUTOROTATION_DELAY = 10; // sec
-const char RELE_GAP = 1; //sec
+const char RELE_POWER_WORK_DELAY = 15; // sec
+const char RELE_POWER_AUTOROTATION_DELAY = 5; // sec
+const char RELE_GAP = 2; //sec
+const char MELODY_REPEAT_DELAY = 3; // 30; //min
 const unsigned AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 /*voltages*/
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
@@ -60,7 +62,7 @@ static union {
         unsigned ZUM_BUSY : 1;
         unsigned BEEP_SHORT : 1;
         unsigned GO_CLOSE : 1;
-        unsigned GO_OPEN : 1;
+        unsigned MOVING_ALLOWED : 1;
         unsigned NORMAL_WORK_MODE_ON : 1;
         unsigned UNIVERSAL_VORK_MODE_ON : 1;
         unsigned LED_ON : 1;
@@ -88,6 +90,7 @@ unsigned time_tone; //s
 //char time_siren; //s
 //char time_silent; //s
 char time_melody; //minute
+char time_moving_wait;
 unsigned time_zummer_short; //ms
 unsigned time_zummer_long; //ms
 
@@ -132,6 +135,7 @@ void beep_short() { //короткий писк
     if (!ff.bits.ZUM_BUSY) {
         if (beep_short_count > 0) beep_short_count--;
         time_tone = SHORT_ZUMMER_DELAY;
+        ff.bits.LAST_BEEP_LONG = 0;
         start_tone();
     }
 }
@@ -140,6 +144,7 @@ void beep_long() {//короткий писк
     if (!ff.bits.ZUM_BUSY) {
         if (beep_long_count > 0) beep_long_count--;
         time_tone = LONG_ZUMMER_DELAY;
+        ff.bits.LAST_BEEP_LONG = 1;
         start_tone();
     }
 }
@@ -154,86 +159,98 @@ void beep_double() {//TODO
 
 void go_close() {//начало закрытия кранов
 
-    ff.bits.CLOSING = 1;
-    ff.bits.OPENED = 0;
-    ff.bits.OPENING = 0;
+    if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
+        ff.bits.CLOSING = 1;
+        ff.bits.OPENED = 0;
+        ff.bits.OPENING = 0;
 
-    ff.bits.RELE_POWER_ON = 0;
-    ff.bits.RELE_CONTROL_ON = 1;
+        ff.bits.RELE_POWER_ON = 0;
+        ff.bits.RELE_CONTROL_ON = 1;
 
-    time_rele_control = RELE_GAP + RELE_POWER_WORK_DELAY + RELE_GAP;
-    time_rele_power = RELE_POWER_WORK_DELAY;
-    time_rele_gap = RELE_GAP;
+        time_rele_control = RELE_GAP + RELE_POWER_WORK_DELAY + RELE_GAP;
+        time_rele_power = RELE_POWER_WORK_DELAY;
+        time_rele_gap = RELE_GAP;
 
-    time_rotation = 0;
+        time_rotation = 0;
 
-}
-
-void go_close_short() {//начало закрытия кранов при автоповороте
-
-    ff.bits.CLOSING = 1;
-    ff.bits.OPENED = 0;
-    ff.bits.OPENING = 0;
-
-    ff.bits.RELE_POWER_ON = 0;
-    ff.bits.RELE_CONTROL_ON = 1;
-
-    time_rele_control = RELE_GAP + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP;
-    time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
-    time_rele_gap = RELE_GAP;
-
-    time_rotation = 0;
+    }
 }
 
 void go_open() {//начало открытия кранов
 
-    ff.bits.OPENING = 1;
-    ff.bits.CLOSED = 0;
-    ff.bits.CLOSING = 0;
+    if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
+        ff.bits.OPENING = 1;
+        ff.bits.CLOSED = 0;
+        ff.bits.CLOSING = 0;
 
 
-    ff.bits.RELE_CONTROL_ON = 0;
-    ff.bits.RELE_POWER_ON = 1;
+        ff.bits.RELE_CONTROL_ON = 0;
+        ff.bits.RELE_POWER_ON = 1;
 
-    time_rele_power = RELE_POWER_WORK_DELAY;
+        time_rele_power = RELE_POWER_WORK_DELAY;
 
-    ff.bits.AUTOROTATION_WORK = 0;
-    return;
+        ff.bits.AUTOROTATION_WORK = 0;
+        return;
+    }
 }
 
 void go_close_alt() {//закрытие кранов 2 режим
 
-    ff.bits.OPENED = 0;
-    ff.bits.CLOSED = 1;
+    if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
+        ff.bits.OPENED = 0;
+        ff.bits.CLOSED = 1;
 
-    ff.bits.RELE_CONTROL_ON = 0;
-    ff.bits.RELE_POWER_ON = 1;
-
+        ff.bits.RELE_CONTROL_ON = 0;
+        ff.bits.RELE_POWER_ON = 1;
+    }
 }
 
 void go_open_alt() {//открытие кранов 2 режим
+    if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
+        ff.bits.CLOSED = 0;
+        ff.bits.OPENED = 1;
 
-    ff.bits.CLOSED = 0;
-    ff.bits.OPENED = 1;
+        ff.bits.RELE_CONTROL_ON = 0;
+        ff.bits.RELE_POWER_ON = 0;
+    }
+}
 
+void rele_off() {
     ff.bits.RELE_CONTROL_ON = 0;
     ff.bits.RELE_POWER_ON = 0;
-
+    ff.bits.CLOSING = 0;
+    ff.bits.OPENING = 0;
+    ff.bits.CLOSED = 0;
+    if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+        ff.bits.OPENED = 1;
+    } else {
+        ff.bits.OPENED = 0;
+    }
+    ff.bits.MOVING_ALLOWED = 0;
+    time_moving_wait = MOVING_WAIT_DELAY;
 }
 
 void close() {
-    if (ff.bits.NORMAL_WORK_MODE_ON) {
-        go_close();
-    } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-        go_close_alt();
+    if (ff.bits.OPENING) {
+        rele_off();
+    } else {
+        if (ff.bits.NORMAL_WORK_MODE_ON) {
+            go_close();
+        } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+            go_close_alt();
+        }
     }
 }
 
 void open() {
-    if (ff.bits.NORMAL_WORK_MODE_ON) {
-        go_open();
-    } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-        go_open_alt();
+    if (ff.bits.CLOSING) {
+        rele_off();
+    } else {
+        if (ff.bits.NORMAL_WORK_MODE_ON) {
+            go_open();
+        } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+            go_open_alt();
+        }
     }
 }
 
@@ -247,25 +264,26 @@ void rele_tick() {//закрытие кранов (задержка на раб�
     if (ff.bits.OPENING) {
         if (time_rele_power > 0) {
             time_rele_power--;
-            if (time_rele_power == 0)
+            if (time_rele_power == 0) {
                 ff.bits.RELE_POWER_ON = 0;
-            ff.bits.OPENED = 1;
-            ff.bits.OPENING = 0;
+                ff.bits.OPENED = 1;
+                ff.bits.OPENING = 0;
+            }
         }
     }
 
 
     if (ff.bits.CLOSING) {
 
-        if (time_rele_gap > 0) {
-            time_rele_gap--;
-        }
-
         if (time_rele_gap == 0) {
-            time_rele_power--;
-            if (time_rele_power == 0) {
+            if (time_rele_power > 0) {
+                ff.bits.RELE_POWER_ON = 1;
+                time_rele_power--;
+            } else {
                 ff.bits.RELE_POWER_ON = 0;
             }
+        } else {
+            time_rele_gap--;
         }
 
         if (time_rele_control > 0) {
@@ -285,7 +303,6 @@ void start_alarm() {
     ff.bits.ALARM_OFF = 0;
     ff.bits.MELODY_ON = 1;
     ff.bits.SIREN = 1;
-    close();
 }
 
 void clear_alarm() {
@@ -320,7 +337,7 @@ void switch_wm() {//выбор режима работы
         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 0;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
-
+            rele_off();
             //три высоких писка
             beep_long_count = 2; //_freq pause work_time count
         }
@@ -328,7 +345,7 @@ void switch_wm() {//выбор режима работы
         if (!ff.bits.NORMAL_WORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 1;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
-
+            rele_off();
             //два высоких писка
             beep_long_count = 1; //_freq pause work_time count;
         }
@@ -342,7 +359,7 @@ void autorotation_work() {//автоповорот
             ff.bits.ALARM_OFF &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
-        go_close_short();
+        //      go_close_short();
     }
 
     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_WORK_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
@@ -371,7 +388,7 @@ void minute_tick() {
         time_melody--;
         if (time_melody == 0) {
             ff.bits.SIREN = 1;
-            time_melody = 30;
+            time_melody = MELODY_REPEAT_DELAY;
         }
     };
 
@@ -400,10 +417,17 @@ void sec_work() {//работа секундного таймера
     static char sec_count = 0;
 
     sec_count++;
-
-    if (ff.bits.OPENED && ff.bits.NORMAL_WORK_MODE_ON) time_rotation++;
-
-    rele_tick();
+    if (!ff.bits.MOVING_ALLOWED) {
+        if (time_moving_wait > 0) {
+            time_moving_wait--;
+        } else {
+            ff.bits.MOVING_ALLOWED = 1;
+        }
+    }
+    if (ff.bits.NORMAL_WORK_MODE_ON) {
+        if (ff.bits.OPENED) time_rotation++;
+        rele_tick();
+    }
 
     if (ff.bits.ALARM_ON) {
 
@@ -442,11 +466,9 @@ void ms_200_work() {
                 beep_short();
             }
         }
-    }
+    } else if (ff.bits.ALARM_OFF) {
 
-    if (ff.bits.ALARM_OFF) {
 
-       
         if ((beep_short_count > 0) && (beep_long_count > 0)) {
             beep_double();
         } else {
@@ -470,31 +492,31 @@ void ms_100_work() {
 void ms_tick() {
     static unsigned ms_count = 0;
 
-
-    ms_count++;
-   
     if (time_tone > 0) {
         time_tone--;
-        if (time_tone == 0){
+        if (time_tone == 0) {
             stop_tone();
         }
-    } 
-     ff.bits.ALLOW_FUN = 1;
+    }
+
+    ff.bits.ALLOW_FUN = 1;
     ff.bits.ALLOW_JUMP = 1;
 
     if (ms_count == 100) {
         ms_100_work();
+        ms_200_work();
+
     }
 
     if (ms_count == 200) {
-        ms_200_work();
+        //   ms_200_work();
     }
 
     if (ms_count == 1000) {
         sec_work();
         ms_count = 0;
     }
-
+    ms_count++;
 }
 
 /*█████████████████████████████████████████████████████████████████████*/
@@ -526,7 +548,12 @@ void hardware_work() {
 }
 
 void zummer_switch() {//одно переключение
+#ifdef DEBbUG_ENABLED
+    PIN_ZUMMER_SetHigh();
+    PIN_ZUMMER_SetLow();
+#else
     PIN_ZUMMER_Toggle();
+#endif 
 }
 
 void get_wsp() {//измерение состояния датчиков
@@ -540,13 +567,20 @@ void get_wsp() {//измерение состояния датчиков
         unsigned res = ADC_GetConversion(PIN_WSP_STATE);
         PIN_WSP_STATE_SetDigitalMode();
         PIN_POWER_MEAS_SetLow();
-        if (res < BAD_WSP_VOLTAGE) bad_measures_counter++;
-        else if (res > GOOD_WSP_VOLTAGE) bad_measures_counter--;
+        if (res < BAD_WSP_VOLTAGE) {
+            bad_measures_counter++;
+        } else {
+            if (res > GOOD_WSP_VOLTAGE) {
+                bad_measures_counter--;
+            }
+        }
         if (bad_measures_counter > WSP_MEAS_COUNT) {
             start_alarm();
+            bad_measures_counter = WSP_MEAS_COUNT;
         }
         if (bad_measures_counter < -WSP_MEAS_COUNT) {
             clear_alarm();
+            bad_measures_counter = -WSP_MEAS_COUNT;
         }
         ff.bits.ALLOW_MEASURE = 0;
     }
@@ -712,6 +746,7 @@ void start_setup() {//начальная настройка
 
     INTCONbits.TMR0IE = 0; //выкл зуммер
     ff.value = 0;
+
     PIN_RELE_POWER_SetLow();
     PIN_RELE_CONTROL_SetLow();
     PIN_ALARM_STATE_SetLow();
@@ -725,7 +760,7 @@ void start_setup() {//начальная настройка
     time_rele_gap = 0;
     time_tone = 0;
 
-    
+
     // time_siren = 0;
     // time_silent = 0;
     time_melody = 0;
@@ -733,7 +768,7 @@ void start_setup() {//начальная настройка
     time_zummer_long = 0;
 
     /*ms_div*/
-     time_meas  = 0;
+    time_meas = 0;
 }
 
 #ifdef DEBUG_ENABLED
@@ -744,7 +779,6 @@ void flag_error() {
             ((ff.bits.ALLOW_FUN + ff.bits.ALLOW_JUMP + ff.bits.ALLOW_MEASURE) > 1) ||
             ((ff.bits.CLOSED + ff.bits.CLOSING + ff.bits.OPENED + ff.bits.OPENING) > 1) ||
             (ff.bits.FUN_HIGH && ff.bits.FUN_LOW) ||
-            (ff.bits.GO_CLOSE && ff.bits.GO_OPEN) ||
             (ff.bits.JUMP_HIGH && ff.bits.JUMP_LOW) ||
             (ff.bits.NORMAL_WORK_MODE_ON && ff.bits.UNIVERSAL_VORK_MODE_ON) ||
             (ff.bits.TONE_OFF && ff.bits.TONE_ON) ||
@@ -766,6 +800,7 @@ void main(void) {
 
     start_setup();
 
+
     while (1) {
         CLRWDT();
 
@@ -784,8 +819,12 @@ void main(void) {
 
             get_wsp();
 
-            autorotation_work();
+            //    autorotation_work();
 
+        } else {
+            close();
         };
+
+
     }
 }
