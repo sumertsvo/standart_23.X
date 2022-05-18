@@ -398,8 +398,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _dt `uc ~T0 @X0 1 r2 ]
 [f ]
 "7
-[; ;eeprom.c: 7:     unsigned char status;
-[v _status `uc ~T0 @X0 1 a ]
+[; ;eeprom.c: 7:    static __bit status;
+[v F2548 `b ~T0 @X0 1 s status ]
 "8
 [; ;eeprom.c: 8:     while (WR);
 [e $U 301  ]
@@ -409,7 +409,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 303 ]
 "9
 [; ;eeprom.c: 9:     status = GIE;
-[e = _status -> _GIE `uc ]
+[e = F2548 _GIE ]
 "10
 [; ;eeprom.c: 10:     GIE = 0;
 [e = _GIE -> -> 0 `i `b ]
@@ -433,7 +433,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _WR -> -> 1 `i `b ]
 "17
 [; ;eeprom.c: 17:     GIE = status;
-[e = _GIE -> _status `b ]
+[e = _GIE F2548 ]
 "18
 [; ;eeprom.c: 18:     WREN = 0;
 [e = _WREN -> -> 0 `i `b ]
@@ -525,7 +525,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;eeprom.c: 41:     EEPROM_WriteByte(addr, (unsigned char) ucData);
 [e ( _EEPROM_WriteByte (2 , _addr -> _ucData `uc ]
 "42
-[; ;eeprom.c: 42:      char dt = ucData >> 8;
+[; ;eeprom.c: 42:     char dt = ucData >> 8;
 [v _dt `uc ~T0 @X0 1 a ]
 [e = _dt -> >> _ucData -> 8 `i `uc ]
 "43

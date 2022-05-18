@@ -3833,8 +3833,8 @@ void PIN_MANAGER_Initialize(void)
 
 
 
-    ANSELC = 0x0C;
-    ANSELA = 0x07;
+    ANSELC = 0x08;
+    ANSELA = 0x05;
 
 
 

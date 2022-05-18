@@ -17,7 +17,6 @@ const char MOVING_WAIT_DELAY = 2;
 const unsigned LOW_WATER_RESISTANSE = 20000; //сопротивление датчика
 const unsigned HIGH_WATER_RESISTANSE = 25000; //
 const unsigned UP_RESISTANSE = 20000; //сопротивление делителя
-//const char LOW_PIN_VOLTAGE=25; // "низкий логический уровень"
 /*защита от дребезга*/
 const char WSP_MEAS_COUNT = 4; //количество измерений датчика
 const char FUN_MEAS_COUNT = 10; //количество измерений переключателя
@@ -27,7 +26,7 @@ const char RELE_POWER_WORK_DELAY = 15; // sec
 const char RELE_POWER_AUTOROTATION_DELAY = 5; // sec
 const char RELE_GAP = 2; //sec
 const char MELODY_REPEAT_DELAY = 3; // 30; //min
-const unsigned AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const unsigned AUTOROTATION_DELAY = 120;// (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 /*voltages*/
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
@@ -86,7 +85,8 @@ __uint24 time_rotation; //время до автоповорота (сек)
 unsigned time_rele_power; //время до закрытия реле (сек)
 unsigned time_rele_control;
 unsigned time_rele_gap;
-unsigned time_tone; //s
+unsigned time_tone; 
+char sec_count = 0;
 //char time_siren; //s
 //char time_silent; //s
 char time_melody; //minute
@@ -175,6 +175,26 @@ void go_close() {//начало закрытия кранов
 
     }
 }
+
+void go_close_short() {//начало закрытия кранов
+
+    if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
+        ff.bits.CLOSING = 1;
+        ff.bits.OPENED = 0;
+        ff.bits.OPENING = 0;
+
+        ff.bits.RELE_POWER_ON = 0;
+        ff.bits.RELE_CONTROL_ON = 1;
+
+        time_rele_control = RELE_GAP + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP;
+        time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
+        time_rele_gap = RELE_GAP;
+
+        time_rotation = 0;
+
+    }
+}
+
 
 void go_open() {//начало открытия кранов
 
@@ -303,6 +323,7 @@ void start_alarm() {
     ff.bits.ALARM_OFF = 0;
     ff.bits.MELODY_ON = 1;
     ff.bits.SIREN = 1;
+    sec_count=0;
 }
 
 void clear_alarm() {
@@ -316,6 +337,7 @@ void fun_work() {//работа переключателя
                 ff.bits.FUN_LOW &&
                 !ff.bits.FUN_HIGH &&
                 ff.bits.ALARM_OFF &&
+                ff.bits.MOVING_ALLOWED &&
                 !ff.bits.OPENED &&
                 !ff.bits.OPENING) {
             beep_short_count = 1;
@@ -323,6 +345,7 @@ void fun_work() {//работа переключателя
         };
         if (//закрытие
                 ff.bits.FUN_HIGH &&
+                 ff.bits.MOVING_ALLOWED &&
                 !ff.bits.FUN_LOW &&
                 !ff.bits.CLOSED &&
                 !ff.bits.CLOSING) {
@@ -357,15 +380,19 @@ void autorotation_work() {//автоповорот
             !ff.bits.CLOSED &&
             !ff.bits.CLOSING &&
             ff.bits.ALARM_OFF &&
+            ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
-        //      go_close_short();
+              go_close_short();
+              beep_short_count=3;
+              beep_long_count=3;
     }
 
-    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_WORK_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
+    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
             ff.bits.CLOSED &&
             ff.bits.CLOSING &&
             ff.bits.ALARM_OFF &&
+            ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
         go_open();
@@ -414,7 +441,7 @@ void sec_work() {//работа секундного таймера
     toggle_zummer();
 #endif
 
-    static char sec_count = 0;
+  
 
     sec_count++;
     if (!ff.bits.MOVING_ALLOWED) {
@@ -425,7 +452,9 @@ void sec_work() {//работа секундного таймера
         }
     }
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        if (ff.bits.OPENED) time_rotation++;
+        if (ff.bits.OPENED){
+            time_rotation++;
+        }
         rele_tick();
     }
 
@@ -820,7 +849,7 @@ void main(void) {
 
             get_wsp();
 
-            //    autorotation_work();
+               autorotation_work();
 
         } else {
             close();

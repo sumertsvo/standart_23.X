@@ -4096,7 +4096,6 @@ const unsigned LOW_WATER_RESISTANSE = 20000;
 const unsigned HIGH_WATER_RESISTANSE = 25000;
 const unsigned UP_RESISTANSE = 20000;
 
-
 const char WSP_MEAS_COUNT = 4;
 const char FUN_MEAS_COUNT = 10;
 const char JUMP_MEAS_COUNT = 10;
@@ -4105,7 +4104,7 @@ const char RELE_POWER_WORK_DELAY = 15;
 const char RELE_POWER_AUTOROTATION_DELAY = 5;
 const char RELE_GAP = 2;
 const char MELODY_REPEAT_DELAY = 3;
-const unsigned AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60);
+const unsigned AUTOROTATION_DELAY = 120;
 
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
@@ -4151,12 +4150,13 @@ static union {
         unsigned LAST_BEEP_LONG : 1;
     } bits;
 } ff;
-# 85 "main.c"
+# 84 "main.c"
 __uint24 time_rotation;
 unsigned time_rele_power;
 unsigned time_rele_control;
 unsigned time_rele_gap;
 unsigned time_tone;
+char sec_count = 0;
 
 
 char time_melody;
@@ -4232,6 +4232,26 @@ void go_close() {
 
     }
 }
+
+void go_close_short() {
+
+    if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
+        ff.bits.CLOSING = 1;
+        ff.bits.OPENED = 0;
+        ff.bits.OPENING = 0;
+
+        ff.bits.RELE_POWER_ON = 0;
+        ff.bits.RELE_CONTROL_ON = 1;
+
+        time_rele_control = RELE_GAP + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP;
+        time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
+        time_rele_gap = RELE_GAP;
+
+        time_rotation = 0;
+
+    }
+}
+
 
 void go_open() {
 
@@ -4360,6 +4380,7 @@ void start_alarm() {
     ff.bits.ALARM_OFF = 0;
     ff.bits.MELODY_ON = 1;
     ff.bits.SIREN = 1;
+    sec_count=0;
 }
 
 void clear_alarm() {
@@ -4373,6 +4394,7 @@ void fun_work() {
                 ff.bits.FUN_LOW &&
                 !ff.bits.FUN_HIGH &&
                 ff.bits.ALARM_OFF &&
+                ff.bits.MOVING_ALLOWED &&
                 !ff.bits.OPENED &&
                 !ff.bits.OPENING) {
             beep_short_count = 1;
@@ -4380,6 +4402,7 @@ void fun_work() {
         };
         if (
                 ff.bits.FUN_HIGH &&
+                 ff.bits.MOVING_ALLOWED &&
                 !ff.bits.FUN_LOW &&
                 !ff.bits.CLOSED &&
                 !ff.bits.CLOSING) {
@@ -4414,15 +4437,19 @@ void autorotation_work() {
             !ff.bits.CLOSED &&
             !ff.bits.CLOSING &&
             ff.bits.ALARM_OFF &&
+            ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
-
+              go_close_short();
+              beep_short_count=3;
+              beep_long_count=3;
     }
 
-    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_WORK_DELAY + RELE_GAP * 2)) &&
+    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
             ff.bits.CLOSED &&
             ff.bits.CLOSING &&
             ff.bits.ALARM_OFF &&
+            ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
         go_open();
@@ -4471,7 +4498,7 @@ void sec_work() {
 
 
 
-    static char sec_count = 0;
+
 
     sec_count++;
     if (!ff.bits.MOVING_ALLOWED) {
@@ -4482,7 +4509,9 @@ void sec_work() {
         }
     }
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        if (ff.bits.OPENED) time_rotation++;
+        if (ff.bits.OPENED){
+            time_rotation++;
+        }
         rele_tick();
     }
 
@@ -4674,7 +4703,7 @@ void get_fun() {
         ff.bits.ALLOW_FUN = 0;
     }
 }
-# 656 "main.c"
+# 685 "main.c"
 void get_jump() {
 
     static signed char jump_counter;
@@ -4705,7 +4734,7 @@ void get_jump() {
     }
 
 }
-# 720 "main.c"
+# 749 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4718,7 +4747,7 @@ void start_setup() {
     TMR0_SetInterruptHandler(zummer_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
-# 748 "main.c"
+# 777 "main.c"
     INTCONbits.TMR0IE = 0;
     ff.value = 0;
 
@@ -4745,7 +4774,7 @@ void start_setup() {
 
     time_meas = 0;
 }
-# 800 "main.c"
+# 829 "main.c"
 void main(void) {
 
     start_setup();
@@ -4769,7 +4798,7 @@ void main(void) {
 
             get_wsp();
 
-
+               autorotation_work();
 
         } else {
             close();

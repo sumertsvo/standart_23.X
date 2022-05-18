@@ -4066,7 +4066,7 @@ void WDT_Initialize(void);
 
 
 void EEPROM_WriteByte(unsigned char addr, unsigned char dt) {
-    unsigned char status;
+   static __bit status;
     while (WR);
     status = GIE;
     GIE = 0;
@@ -4101,7 +4101,7 @@ unsigned int EEPROM_ReadWord(unsigned char addr) {
 
 void EEPROM_Writeint24(unsigned char addr, __uint24 ucData) {
     EEPROM_WriteByte(addr, (unsigned char) ucData);
-     char dt = ucData >> 8;
+    char dt = ucData >> 8;
     EEPROM_WriteByte(addr + 1, dt);
     dt = ucData >> 16;
     EEPROM_WriteByte(addr + 2, dt);

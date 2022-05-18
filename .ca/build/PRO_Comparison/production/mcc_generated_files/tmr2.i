@@ -3808,27 +3808,25 @@ extern __bank0 __bit __timeout;
 # 55 "mcc_generated_files/tmr2.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdbool.h" 1 3
 # 55 "mcc_generated_files/tmr2.h" 2
-# 104 "mcc_generated_files/tmr2.h"
+# 103 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
-# 133 "mcc_generated_files/tmr2.h"
+# 132 "mcc_generated_files/tmr2.h"
 void TMR2_StartTimer(void);
-# 165 "mcc_generated_files/tmr2.h"
+# 164 "mcc_generated_files/tmr2.h"
 void TMR2_StopTimer(void);
-# 200 "mcc_generated_files/tmr2.h"
+# 199 "mcc_generated_files/tmr2.h"
 uint8_t TMR2_ReadTimer(void);
-# 239 "mcc_generated_files/tmr2.h"
+# 238 "mcc_generated_files/tmr2.h"
 void TMR2_WriteTimer(uint8_t timerVal);
-# 291 "mcc_generated_files/tmr2.h"
+# 290 "mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 309 "mcc_generated_files/tmr2.h"
+# 308 "mcc_generated_files/tmr2.h"
 void TMR2_ISR(void);
-# 327 "mcc_generated_files/tmr2.h"
- void TMR2_CallBack(void);
-# 344 "mcc_generated_files/tmr2.h"
+# 326 "mcc_generated_files/tmr2.h"
  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 362 "mcc_generated_files/tmr2.h"
+# 344 "mcc_generated_files/tmr2.h"
 extern void (*TMR2_InterruptHandler)(void);
-# 380 "mcc_generated_files/tmr2.h"
+# 362 "mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
 # 52 "mcc_generated_files/tmr2.c" 2
 
@@ -3848,7 +3846,7 @@ void TMR2_Initialize(void)
 
 
 
-    PR2 = 0xF9;
+    PR2 = 0x63;
 
 
     TMR2 = 0x00;
@@ -3863,7 +3861,7 @@ void TMR2_Initialize(void)
     TMR2_SetInterruptHandler(TMR2_DefaultInterruptHandler);
 
 
-    T2CON = 0x4E;
+    T2CON = 0x4D;
 }
 
 void TMR2_StartTimer(void)
@@ -3900,31 +3898,16 @@ void TMR2_LoadPeriodRegister(uint8_t periodVal)
 
 void TMR2_ISR(void)
 {
-    static volatile unsigned int CountCallBack = 0;
 
 
     PIR1bits.TMR2IF = 0;
-
-
-    if (++CountCallBack >= 100)
-    {
-
-        TMR2_CallBack();
-
-
-        CountCallBack = 0;
-    }
-}
-
-void TMR2_CallBack(void)
-{
-
 
     if(TMR2_InterruptHandler)
     {
         TMR2_InterruptHandler();
     }
 }
+
 
 void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
     TMR2_InterruptHandler = InterruptHandler;
