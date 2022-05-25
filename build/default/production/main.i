@@ -4469,7 +4469,8 @@ void minute_tick() {
 
 
     if (time_melody > 0) {
-        time_melody--;
+       time_melody--;
+    } else {
         if (time_melody == 0) {
             ff.bits.SIREN = 1;
             time_melody = MELODY_REPEAT_DELAY;
@@ -4703,7 +4704,7 @@ void get_fun() {
         ff.bits.ALLOW_FUN = 0;
     }
 }
-# 685 "main.c"
+# 686 "main.c"
 void get_jump() {
 
     static signed char jump_counter;
@@ -4734,7 +4735,7 @@ void get_jump() {
     }
 
 }
-# 749 "main.c"
+# 750 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4747,7 +4748,7 @@ void start_setup() {
     TMR0_SetInterruptHandler(zummer_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
-# 777 "main.c"
+# 778 "main.c"
     INTCONbits.TMR0IE = 0;
     ff.value = 0;
 
@@ -4774,7 +4775,7 @@ void start_setup() {
 
     time_meas = 0;
 }
-# 829 "main.c"
+# 830 "main.c"
 void main(void) {
 
     start_setup();
