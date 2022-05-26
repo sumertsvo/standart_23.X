@@ -4252,6 +4252,7 @@ void go_close_short() {
     }
 }
 
+
 void go_open() {
 
     if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
@@ -4379,7 +4380,7 @@ void start_alarm() {
     ff.bits.ALARM_OFF = 0;
     ff.bits.MELODY_ON = 1;
     ff.bits.SIREN = 1;
-    sec_count = 0;
+    sec_count=0;
 }
 
 void clear_alarm() {
@@ -4401,7 +4402,7 @@ void fun_work() {
         };
         if (
                 ff.bits.FUN_HIGH &&
-                ff.bits.MOVING_ALLOWED &&
+                 ff.bits.MOVING_ALLOWED &&
                 !ff.bits.FUN_LOW &&
                 !ff.bits.CLOSED &&
                 !ff.bits.CLOSING) {
@@ -4439,9 +4440,9 @@ void autorotation_work() {
             ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
-        go_close_short();
-        beep_short_count = 3;
-        beep_long_count = 3;
+              go_close_short();
+              beep_short_count=3;
+              beep_long_count=3;
     }
 
     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
@@ -4469,12 +4470,10 @@ void minute_tick() {
 
     if (time_melody > 0) {
         time_melody--;
-    };
-
-    if (time_melody == 0) {
-        ff.bits.SIREN = 1;
-        time_melody = MELODY_REPEAT_DELAY;
-
+        if (time_melody == 0) {
+            ff.bits.SIREN = 1;
+            time_melody = MELODY_REPEAT_DELAY;
+        }
     };
 
 
@@ -4510,7 +4509,7 @@ void sec_work() {
         }
     }
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        if (ff.bits.OPENED) {
+        if (ff.bits.OPENED){
             time_rotation++;
         }
         rele_tick();
@@ -4518,7 +4517,7 @@ void sec_work() {
 
     if (ff.bits.ALARM_ON) {
 
-        if (sec_count == 30 || sec_count == 60) {
+        if (sec_count == 30|| sec_count==60) {
             sec_30_work();
         }
 
@@ -4704,7 +4703,7 @@ void get_fun() {
         ff.bits.ALLOW_FUN = 0;
     }
 }
-# 686 "main.c"
+# 685 "main.c"
 void get_jump() {
 
     static signed char jump_counter;
@@ -4735,7 +4734,7 @@ void get_jump() {
     }
 
 }
-# 750 "main.c"
+# 749 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4748,7 +4747,7 @@ void start_setup() {
     TMR0_SetInterruptHandler(zummer_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
-# 778 "main.c"
+# 777 "main.c"
     INTCONbits.TMR0IE = 0;
     ff.value = 0;
 
@@ -4775,7 +4774,7 @@ void start_setup() {
 
     time_meas = 0;
 }
-# 830 "main.c"
+# 829 "main.c"
 void main(void) {
 
     start_setup();
@@ -4799,7 +4798,7 @@ void main(void) {
 
             get_wsp();
 
-            autorotation_work();
+               autorotation_work();
 
         } else {
             close();

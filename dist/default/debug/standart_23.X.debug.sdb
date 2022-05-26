@@ -10,7 +10,7 @@ channel_Temp 29
 channel_DAC 30
 channel_FVR 31
 ]
-"599 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"598 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [e E2514 . `uc
 PIN_WSP_STATE 7
 channel_Temp 29
@@ -47,57 +47,57 @@ channel_FVR 31
 [v _go_close go_close `(v  1 e 1 0 ]
 "179
 [v _go_close_short go_close_short `(v  1 e 1 0 ]
-"198
+"199
 [v _go_open go_open `(v  1 e 1 0 ]
-"216
+"217
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
-"227
+"228
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
-"237
+"238
 [v _rele_off rele_off `(v  1 e 1 0 ]
-"252
+"253
 [v _close close `(v  1 e 1 0 ]
-"264
+"265
 [v _open open `(v  1 e 1 0 ]
-"276
+"277
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
-"320
+"321
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
-"328
+"329
 [v _clear_alarm clear_alarm `(v  1 e 1 0 ]
-"333
+"334
 [v _fun_work fun_work `(v  1 e 1 0 ]
-"357
+"358
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
-"377
+"378
 [v _autorotation_work autorotation_work `(v  1 e 1 0 ]
-"409
+"410
 [v _minute_tick minute_tick `(v  1 e 1 0 ]
-"431
+"430
 [v _sec_30_work sec_30_work `(v  1 e 1 0 ]
-"439
+"438
 [v _sec_work sec_work `(v  1 e 1 0 ]
-"489
+"488
 [v _ms_200_work ms_200_work `(v  1 e 1 0 ]
-"515
+"514
 [v _ms_100_work ms_100_work `(v  1 e 1 0 ]
-"521
+"520
 [v _ms_tick ms_tick `(v  1 e 1 0 ]
-"558
+"557
 [v _eeprom_set eeprom_set `(v  1 e 1 0 ]
-"566
+"565
 [v _hardware_work hardware_work `(v  1 e 1 0 ]
-"582
+"581
 [v _zummer_switch zummer_switch `(v  1 e 1 0 ]
-"591
+"590
 [v _get_wsp get_wsp `(v  1 e 1 0 ]
-"621
+"620
 [v _get_fun get_fun `(v  1 e 1 0 ]
-"686
+"685
 [v _get_jump get_jump `(v  1 e 1 0 ]
-"750
+"749
 [v _start_setup start_setup `(v  1 e 1 0 ]
-"830
+"829
 [v _main main `(v  1 e 1 0 ]
 "67 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -519,27 +519,27 @@ channel_FVR 31
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "58 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"830 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"829 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"861
+"860
 } 0
-"357
+"358
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
 {
-"375
+"376
 } 0
-"750
+"749
 [v _start_setup start_setup `(v  1 e 1 0 ]
 {
-"803
+"802
 } 0
-"558
+"557
 [v _eeprom_set eeprom_set `(v  1 e 1 0 ]
 {
-"559
+"558
 [v eeprom_set@vers vers `uc  1 a 1 1 ]
-"564
+"563
 } 0
 "6 C:\Users\U3B6\MPLABXProjects\standart_23.X\eeprom.c
 [v _EEPROM_WriteByte EEPROM_WriteByte `(v  1 e 1 0 ]
@@ -613,29 +613,29 @@ channel_FVR 31
 {
 "83
 } 0
-"566 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"565 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _hardware_work hardware_work `(v  1 e 1 0 ]
 {
-"580
+"579
 } 0
-"591
+"590
 [v _get_wsp get_wsp `(v  1 e 1 0 ]
 {
-"599
+"598
 [v get_wsp@res res `ui  1 a 2 0 ]
-"595
+"594
 [v get_wsp@bad_measures_counter bad_measures_counter `c  1 s 1 bad_measures_counter ]
-"619
+"618
 } 0
-"320
+"321
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
 {
-"326
+"327
 } 0
-"328
+"329
 [v _clear_alarm clear_alarm `(v  1 e 1 0 ]
 {
-"331
+"332
 } 0
 "112 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
@@ -646,64 +646,64 @@ channel_FVR 31
 [v ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
 "133
 } 0
-"686 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"685 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _get_jump get_jump `(v  1 e 1 0 ]
 {
-"688
+"687
 [v get_jump@jump_counter jump_counter `c  1 s 1 jump_counter ]
-"715
+"714
 } 0
-"621
+"620
 [v _get_fun get_fun `(v  1 e 1 0 ]
 {
-"625
+"624
 [v get_fun@fun_counter fun_counter `c  1 s 1 fun_counter ]
-"649
+"648
 } 0
-"333
+"334
 [v _fun_work fun_work `(v  1 e 1 0 ]
 {
-"355
+"356
 } 0
-"264
+"265
 [v _open open `(v  1 e 1 0 ]
 {
-"274
+"275
 } 0
-"227
+"228
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
 {
-"235
+"236
 } 0
-"252
+"253
 [v _close close `(v  1 e 1 0 ]
 {
-"262
+"263
 } 0
-"237
+"238
 [v _rele_off rele_off `(v  1 e 1 0 ]
 {
-"250
+"251
 } 0
-"216
+"217
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
 {
-"225
+"226
 } 0
 "160
 [v _go_close go_close `(v  1 e 1 0 ]
 {
 "177
 } 0
-"377
+"378
 [v _autorotation_work autorotation_work `(v  1 e 1 0 ]
 {
-"401
+"402
 } 0
-"198
+"199
 [v _go_open go_open `(v  1 e 1 0 ]
 {
-"214
+"215
 } 0
 "179
 [v _go_close_short go_close_short `(v  1 e 1 0 ]
@@ -725,46 +725,46 @@ channel_FVR 31
 {
 "139
 } 0
-"521 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"520 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _ms_tick ms_tick `(v  1 e 1 0 ]
 {
-"522
+"521
 [v ms_tick@ms_count ms_count `ui  1 s 2 ms_count ]
-"523
+"522
 [v ms_tick@s_count s_count `ui  1 s 2 s_count ]
-"552
+"551
 } 0
 "128
 [v _stop_tone stop_tone `(v  1 e 1 0 ]
 {
 "132
 } 0
-"439
+"438
 [v _sec_work sec_work `(v  1 e 1 0 ]
 {
-"472
+"471
 [v sec_work@iled iled `uc  1 s 1 iled ]
-"487
+"486
 } 0
-"431
+"430
 [v _sec_30_work sec_30_work `(v  1 e 1 0 ]
 {
-"437
+"436
 } 0
-"276
+"277
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
 {
-"318
+"319
 } 0
-"409
+"410
 [v _minute_tick minute_tick `(v  1 e 1 0 ]
 {
-"429
+"428
 } 0
-"489
+"488
 [v _ms_200_work ms_200_work `(v  1 e 1 0 ]
 {
-"513
+"512
 } 0
 "152
 [v _beep_double beep_double `(v  1 e 1 0 ]
@@ -786,10 +786,10 @@ channel_FVR 31
 {
 "126
 } 0
-"515
+"514
 [v _ms_100_work ms_100_work `(v  1 e 1 0 ]
 {
-"519
+"518
 } 0
 "108 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
@@ -801,8 +801,8 @@ channel_FVR 31
 {
 "132
 } 0
-"582 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"581 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _zummer_switch zummer_switch `(v  1 e 1 0 ]
 {
-"589
+"588
 } 0

@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                               Thu May 26 14:59:26 2022
+                                                                                               Thu May 26 14:49:23 2022
 
 Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
      1                           	processor	16F1823
@@ -1855,7 +1855,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1841 ;;
   1842 ;; *************** function _main *****************
   1843 ;; Defined at:
-  1844 ;;		line 830 in file "main.c"
+  1844 ;;		line 829 in file "main.c"
   1845 ;; Parameters:    Size  Location     Type
   1846 ;;		None
   1847 ;; Auto vars:     Size  Location     Type
@@ -1894,7 +1894,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1880                           ;psect for function _main
   1881                           
   1882                           
-  1883                           ;main.c: 832:     start_setup();
+  1883                           ;main.c: 831:     start_setup();
   1884                           
   1885                           ;incstack = 0
   1886                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
@@ -1902,38 +1902,38 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1888  038B  2B92               	goto	l548
   1889  038C                     l2683:
   1890                           
-  1891                           ;main.c: 845:             get_jump();
+  1891                           ;main.c: 844:             get_jump();
   1892  038C  2202               	fcall	_get_jump
   1893                           
-  1894                           ;main.c: 846:             switch_wm();
+  1894                           ;main.c: 845:             switch_wm();
   1895  038D  22C3               	fcall	_switch_wm
   1896                           
-  1897                           ;main.c: 848:             get_fun();
+  1897                           ;main.c: 847:             get_fun();
   1898  038E  2176               	fcall	_get_fun
   1899                           
-  1900                           ;main.c: 849:             fun_work();
+  1900                           ;main.c: 848:             fun_work();
   1901  038F  22A7               	fcall	_fun_work
   1902                           
-  1903                           ;main.c: 851:             get_wsp();
+  1903                           ;main.c: 850:             get_wsp();
   1904  0390  207F               	fcall	_get_wsp
   1905                           
-  1906                           ;main.c: 853:             autorotation_work();
+  1906                           ;main.c: 852:                autorotation_work();
   1907  0391  20C7               	fcall	_autorotation_work
   1908  0392                     l548:	
-  1909                           ;main.c: 835:     while (1) {
+  1909                           ;main.c: 834:     while (1) {
   1910                           
-  1911                           ;main.c: 855:         } else {
+  1911                           ;main.c: 854:         } else {
   1912                           
   1913  0392  0064               	clrwdt	;# 
   1914                           
-  1915                           ;main.c: 839:         hardware_work();
+  1915                           ;main.c: 838:         hardware_work();
   1916  0393  21D8               	fcall	_hardware_work
   1917                           
-  1918                           ;main.c: 843:         if (!ff.bits.ALARM_ON) {
+  1918                           ;main.c: 842:         if (!ff.bits.ALARM_ON) {
   1919  0394  1C76               	btfss	_ff,0
   1920  0395  2B8C               	goto	l2683
   1921                           
-  1922                           ;main.c: 856:             close();
+  1922                           ;main.c: 855:             close();
   1923  0396  23C0               	fcall	_close
   1924  0397  2B92               	goto	l548
   1925  0398                     __end_of_main:
@@ -1942,7 +1942,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1928  02C3                     __ptext1:	
   1929 ;; *************** function _switch_wm *****************
   1930 ;; Defined at:
-  1931 ;;		line 357 in file "main.c"
+  1931 ;;		line 358 in file "main.c"
   1932 ;; Parameters:    Size  Location     Type
   1933 ;;		None
   1934 ;; Auto vars:     Size  Location     Type
@@ -1974,27 +1974,27 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1960                           ;psect for function _switch_wm
   1961                           
   1962                           
-  1963                           ;main.c: 358:     if (ff.bits.JUMP_LOW) {
+  1963                           ;main.c: 359:     if (ff.bits.JUMP_LOW) {
   1964                           
   1965                           ;incstack = 0
   1966                           ; Regs used in _switch_wm: [wreg+status,2+status,0+pclath+cstack]
   1967  02C3  1FF6               	btfss	_ff,7
   1968  02C4  2AD0               	goto	l390
   1969                           
-  1970                           ;main.c: 359:         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
+  1970                           ;main.c: 360:         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
   1971  02C5  18F9               	btfsc	_ff+3,1
   1972  02C6  0008               	return
   1973                           
-  1974                           ;main.c: 360:             ff.bits.NORMAL_WORK_MODE_ON = 0;
+  1974                           ;main.c: 361:             ff.bits.NORMAL_WORK_MODE_ON = 0;
   1975  02C7  1079               	bcf	_ff+3,0
   1976                           
-  1977                           ;main.c: 361:             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
+  1977                           ;main.c: 362:             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
   1978  02C8  14F9               	bsf	_ff+3,1
   1979                           
-  1980                           ;main.c: 362:             rele_off();
+  1980                           ;main.c: 363:             rele_off();
   1981  02C9  232C               	fcall	_rele_off
   1982                           
-  1983                           ;main.c: 364:             beep_long_count = 2;
+  1983                           ;main.c: 365:             beep_long_count = 2;
   1984  02CA  3002               	movlw	2
   1985  02CB  00F3               	movwf	??_switch_wm
   1986  02CC  0873               	movf	??_switch_wm,w
@@ -2005,20 +2005,20 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1991  02D0  1C77               	btfss	_ff+1,0
   1992  02D1  0008               	return
   1993                           
-  1994                           ;main.c: 367:         if (!ff.bits.NORMAL_WORK_MODE_ON) {
+  1994                           ;main.c: 368:         if (!ff.bits.NORMAL_WORK_MODE_ON) {
   1995  02D2  1879               	btfsc	_ff+3,0
   1996  02D3  0008               	return
   1997                           
-  1998                           ;main.c: 368:             ff.bits.NORMAL_WORK_MODE_ON = 1;
+  1998                           ;main.c: 369:             ff.bits.NORMAL_WORK_MODE_ON = 1;
   1999  02D4  1479               	bsf	_ff+3,0
   2000                           
-  2001                           ;main.c: 369:             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
+  2001                           ;main.c: 370:             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
   2002  02D5  10F9               	bcf	_ff+3,1
   2003                           
-  2004                           ;main.c: 370:             rele_off();
+  2004                           ;main.c: 371:             rele_off();
   2005  02D6  232C               	fcall	_rele_off
   2006                           
-  2007                           ;main.c: 372:             beep_long_count = 1;
+  2007                           ;main.c: 373:             beep_long_count = 1;
   2008  02D7  0020               	movlb	0	; select bank0
   2009  02D8  01BA               	clrf	_beep_long_count
   2010  02D9  0ABA               	incf	_beep_long_count,f
@@ -2029,7 +2029,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2015  0141                     __ptext2:	
   2016 ;; *************** function _start_setup *****************
   2017 ;; Defined at:
-  2018 ;;		line 750 in file "main.c"
+  2018 ;;		line 749 in file "main.c"
   2019 ;; Parameters:    Size  Location     Type
   2020 ;;		None
   2021 ;; Auto vars:     Size  Location     Type
@@ -2065,42 +2065,42 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2051                           ;psect for function _start_setup
   2052                           
   2053                           
-  2054                           ;main.c: 752:     SYSTEM_Initialize();
+  2054                           ;main.c: 751:     SYSTEM_Initialize();
   2055                           
   2056                           ;incstack = 0
   2057                           ; Regs used in _start_setup: [wreg+status,2+status,0+pclath+cstack]
   2058  0141  2409               	fcall	_SYSTEM_Initialize
   2059                           
-  2060                           ;main.c: 753:     (INTCONbits.GIE = 1);
+  2060                           ;main.c: 752:     (INTCONbits.GIE = 1);
   2061  0142  178B               	bsf	11,7	;volatile
   2062                           
-  2063                           ;main.c: 754:     (INTCONbits.PEIE = 1);
+  2063                           ;main.c: 753:     (INTCONbits.PEIE = 1);
   2064  0143  170B               	bsf	11,6	;volatile
   2065                           
-  2066                           ;main.c: 757:     eeprom_set();
+  2066                           ;main.c: 756:     eeprom_set();
   2067  0144  2398               	fcall	_eeprom_set
   2068                           
-  2069                           ;main.c: 759:     TMR0_SetInterruptHandler(zummer_switch);
+  2069                           ;main.c: 758:     TMR0_SetInterruptHandler(zummer_switch);
   2070  0145  30D8               	movlw	low _zummer_switch
   2071  0146  00F2               	movwf	TMR0_SetInterruptHandler@InterruptHandler
   2072  0147  3003               	movlw	high _zummer_switch
   2073  0148  00F3               	movwf	TMR0_SetInterruptHandler@InterruptHandler+1
   2074  0149  242A               	fcall	_TMR0_SetInterruptHandler
   2075                           
-  2076                           ;main.c: 760:     TMR2_SetInterruptHandler(ms_tick);
+  2076                           ;main.c: 759:     TMR2_SetInterruptHandler(ms_tick);
   2077  014A  30AB               	movlw	low _ms_tick
   2078  014B  00F2               	movwf	TMR2_SetInterruptHandler@InterruptHandler
   2079  014C  3001               	movlw	high _ms_tick
   2080  014D  00F3               	movwf	TMR2_SetInterruptHandler@InterruptHandler+1
   2081  014E  2424               	fcall	_TMR2_SetInterruptHandler
   2082                           
-  2083                           ;main.c: 761:     TMR2_StartTimer();
+  2083                           ;main.c: 760:     TMR2_StartTimer();
   2084  014F  2448               	fcall	_TMR2_StartTimer
   2085                           
-  2086                           ;main.c: 778:     INTCONbits.TMR0IE = 0;
+  2086                           ;main.c: 777:     INTCONbits.TMR0IE = 0;
   2087  0150  128B               	bcf	11,5	;volatile
   2088                           
-  2089                           ;main.c: 779:     ff.value = 0;
+  2089                           ;main.c: 778:     ff.value = 0;
   2090  0151  3000               	movlw	0
   2091  0152  00F9               	movwf	_ff+3
   2092  0153  3000               	movlw	0
@@ -2117,7 +2117,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2103  015E  128C               	bcf	12,5	;volatile
   2104  015F  120C               	bcf	12,4	;volatile
   2105                           
-  2106                           ;main.c: 788:     time_rotation = 0;
+  2106                           ;main.c: 787:     time_rotation = 0;
   2107  0160  3000               	movlw	0
   2108  0161  0020               	movlb	0	; select bank0
   2109  0162  00A0               	movwf	_time_rotation
@@ -2126,34 +2126,34 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2112  0165  3000               	movlw	0
   2113  0166  00A2               	movwf	_time_rotation+2
   2114                           
-  2115                           ;main.c: 789:     time_rele_power = 0;
+  2115                           ;main.c: 788:     time_rele_power = 0;
   2116  0167  01B1               	clrf	_time_rele_power
   2117  0168  01B2               	clrf	_time_rele_power+1
   2118                           
-  2119                           ;main.c: 790:     time_rele_control = 0;
+  2119                           ;main.c: 789:     time_rele_control = 0;
   2120  0169  01AF               	clrf	_time_rele_control
   2121  016A  01B0               	clrf	_time_rele_control+1
   2122                           
-  2123                           ;main.c: 791:     time_rele_gap = 0;
+  2123                           ;main.c: 790:     time_rele_gap = 0;
   2124  016B  01AD               	clrf	_time_rele_gap
   2125  016C  01AE               	clrf	_time_rele_gap+1
   2126                           
-  2127                           ;main.c: 792:     time_tone = 0;
+  2127                           ;main.c: 791:     time_tone = 0;
   2128  016D  01AB               	clrf	_time_tone
   2129  016E  01AC               	clrf	_time_tone+1
   2130                           
-  2131                           ;main.c: 797:     time_melody = 0;
+  2131                           ;main.c: 796:     time_melody = 0;
   2132  016F  01BD               	clrf	_time_melody
   2133                           
-  2134                           ;main.c: 798:     time_zummer_short = 0;
+  2134                           ;main.c: 797:     time_zummer_short = 0;
   2135  0170  01A9               	clrf	_time_zummer_short
   2136  0171  01AA               	clrf	_time_zummer_short+1
   2137                           
-  2138                           ;main.c: 799:     time_zummer_long = 0;
+  2138                           ;main.c: 798:     time_zummer_long = 0;
   2139  0172  01A7               	clrf	_time_zummer_long
   2140  0173  01A8               	clrf	_time_zummer_long+1
   2141                           
-  2142                           ;main.c: 802:     time_meas = 0;
+  2142                           ;main.c: 801:     time_meas = 0;
   2143  0174  01BB               	clrf	_time_meas
   2144  0175  0008               	return
   2145  0176                     __end_of_start_setup:
@@ -2162,7 +2162,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2148  0398                     __ptext3:	
   2149 ;; *************** function _eeprom_set *****************
   2150 ;; Defined at:
-  2151 ;;		line 558 in file "main.c"
+  2151 ;;		line 557 in file "main.c"
   2152 ;; Parameters:    Size  Location     Type
   2153 ;;		None
   2154 ;; Auto vars:     Size  Location     Type
@@ -2195,7 +2195,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2181                           ;psect for function _eeprom_set
   2182                           
   2183                           
-  2184                           ;main.c: 559:     char vers = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
+  2184                           ;main.c: 558:     char vers = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
   2185                           
   2186                           ;incstack = 0
   2187                           ; Regs used in _eeprom_set: [wreg+status,2+status,0+pclath+cstack]
@@ -2206,12 +2206,12 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2192  039C  0844               	movf	??_eeprom_set,w
   2193  039D  00C5               	movwf	eeprom_set@vers
   2194                           
-  2195                           ;main.c: 560:     if (vers == 0xFF) {
+  2195                           ;main.c: 559:     if (vers == 0xFF) {
   2196  039E  0A45               	incf	eeprom_set@vers,w
   2197  039F  1D03               	btfss	3,2
   2198  03A0  0008               	return
   2199                           
-  2200                           ;main.c: 561:         EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, 1);
+  2200                           ;main.c: 560:         EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, 1);
   2201  03A1  01F2               	clrf	EEPROM_WriteByte@dt
   2202  03A2  0AF2               	incf	EEPROM_WriteByte@dt,f
   2203  03A3  3001               	movlw	1
@@ -2982,7 +2982,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2965  01D8                     __ptext16:	
   2966 ;; *************** function _hardware_work *****************
   2967 ;; Defined at:
-  2968 ;;		line 566 in file "main.c"
+  2968 ;;		line 565 in file "main.c"
   2969 ;; Parameters:    Size  Location     Type
   2970 ;;		None
   2971 ;; Auto vars:     Size  Location     Type
@@ -3014,7 +3014,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   2997                           ;psect for function _hardware_work
   2998                           
   2999                           
-  3000                           ;main.c: 567:     LATCbits.LATC0 = ff.bits.ALARM_ON;
+  3000                           ;main.c: 566:     LATCbits.LATC0 = ff.bits.ALARM_ON;
   3001                           
   3002                           ;incstack = 0
   3003                           ; Regs used in _hardware_work: []
@@ -3028,7 +3028,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3011  01DE  100E               	bcf	14,0	;volatile
   3012  01DF                     u1044:
   3013                           
-  3014                           ;main.c: 568:     LATCbits.LATC1 = ff.bits.MEAS_ON;
+  3014                           ;main.c: 567:     LATCbits.LATC1 = ff.bits.MEAS_ON;
   3015  01DF  1E79               	btfss	_ff+3,4
   3016  01E0  29E4               	goto	u1050
   3017  01E1  0022               	movlb	2	; select bank2
@@ -3039,7 +3039,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3022  01E5  108E               	bcf	14,1	;volatile
   3023  01E6                     u1064:
   3024                           
-  3025                           ;main.c: 569:     LATCbits.LATC4 = ff.bits.RELE_CONTROL_ON;
+  3025                           ;main.c: 568:     LATCbits.LATC4 = ff.bits.RELE_CONTROL_ON;
   3026  01E6  1F77               	btfss	_ff+1,6
   3027  01E7  29EB               	goto	u1070
   3028  01E8  0022               	movlb	2	; select bank2
@@ -3050,7 +3050,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3033  01EC  120E               	bcf	14,4	;volatile
   3034  01ED                     u1084:
   3035                           
-  3036                           ;main.c: 570:     LATCbits.LATC5 = ff.bits.RELE_POWER_ON;
+  3036                           ;main.c: 569:     LATCbits.LATC5 = ff.bits.RELE_POWER_ON;
   3037  01ED  1EF7               	btfss	_ff+1,5
   3038  01EE  29F2               	goto	u1090
   3039  01EF  0022               	movlb	2	; select bank2
@@ -3061,7 +3061,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3044  01F3  128E               	bcf	14,5	;volatile
   3045  01F4                     u1104:
   3046                           
-  3047                           ;main.c: 571:     LATAbits.LATA4 = ff.bits.LED_ON;
+  3047                           ;main.c: 570:     LATAbits.LATA4 = ff.bits.LED_ON;
   3048  01F4  1D79               	btfss	_ff+3,2
   3049  01F5  29F9               	goto	u1110
   3050  01F6  0022               	movlb	2	; select bank2
@@ -3072,22 +3072,22 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3055  01FA  120C               	bcf	12,4	;volatile
   3056  01FB                     u1124:
   3057                           
-  3058                           ;main.c: 573:     if (ff.bits.TONE_ON) {
+  3058                           ;main.c: 572:     if (ff.bits.TONE_ON) {
   3059  01FB  18F8               	btfsc	_ff+2,1
   3060                           
-  3061                           ;main.c: 574:         INTCONbits.TMR0IE = 1;
+  3061                           ;main.c: 573:         INTCONbits.TMR0IE = 1;
   3062  01FC  168B               	bsf	11,5	;volatile
   3063                           
-  3064                           ;main.c: 576:     if (ff.bits.TONE_OFF) {
+  3064                           ;main.c: 575:     if (ff.bits.TONE_OFF) {
   3065                           
-  3066                           ;main.c: 575:     };
+  3066                           ;main.c: 574:     };
   3067  01FD  1D78               	btfss	_ff+2,2
   3068  01FE  0008               	return
   3069                           
-  3070                           ;main.c: 577:         INTCONbits.TMR0IE = 0;
+  3070                           ;main.c: 576:         INTCONbits.TMR0IE = 0;
   3071  01FF  128B               	bcf	11,5	;volatile
   3072                           
-  3073                           ;main.c: 578:         do { LATAbits.LATA5 = 0; } while(0);
+  3073                           ;main.c: 577:         do { LATAbits.LATA5 = 0; } while(0);
   3074  0200  128C               	bcf	12,5	;volatile
   3075  0201  0008               	return
   3076  0202                     __end_of_hardware_work:
@@ -3096,7 +3096,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3079  007F                     __ptext17:	
   3080 ;; *************** function _get_wsp *****************
   3081 ;; Defined at:
-  3082 ;;		line 591 in file "main.c"
+  3082 ;;		line 590 in file "main.c"
   3083 ;; Parameters:    Size  Location     Type
   3084 ;;		None
   3085 ;; Auto vars:     Size  Location     Type
@@ -3130,23 +3130,23 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3113                           ;psect for function _get_wsp
   3114                           
   3115                           
-  3116                           ;main.c: 593:     if (ff.bits.ALLOW_MEASURE) {
+  3116                           ;main.c: 592:     if (ff.bits.ALLOW_MEASURE) {
   3117                           
   3118                           ;incstack = 0
   3119                           ; Regs used in _get_wsp: [wreg+status,2+status,0+pclath+cstack]
   3120  007F  1E76               	btfss	_ff,4
   3121  0080  0008               	return
   3122                           
-  3123                           ;main.c: 595:         static signed char bad_measures_counter = 0;;main.c: 596:         
+  3123                           ;main.c: 594:         static signed char bad_measures_counter = 0;;main.c: 595:         
       +                          do { LATCbits.LATC1 = 1; } while(0);
   3124  0081  0022               	movlb	2	; select bank2
   3125  0082  148E               	bsf	14,1	;volatile
   3126                           
-  3127                           ;main.c: 597:         do { ANSELCbits.ANSC3 = 1; } while(0);
+  3127                           ;main.c: 596:         do { ANSELCbits.ANSC3 = 1; } while(0);
   3128  0083  0023               	movlb	3	; select bank3
   3129  0084  158E               	bsf	14,3	;volatile
   3130                           
-  3131                           ;main.c: 598:         _delay((unsigned long)((1)*(16000000/4000.0)));
+  3131                           ;main.c: 597:         _delay((unsigned long)((1)*(16000000/4000.0)));
   3132  0085  3006               	movlw	6
   3133  0086  00F4               	movwf	??_get_wsp
   3134  0087  3030               	movlw	48
@@ -3157,7 +3157,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3139  008B  2888               	goto	u2827
   3140  008C  3200               	nop2
   3141                           
-  3142                           ;main.c: 599:         unsigned res = ADC_GetConversion(PIN_WSP_STATE);
+  3142                           ;main.c: 598:         unsigned res = ADC_GetConversion(PIN_WSP_STATE);
   3143  008D  3007               	movlw	7
   3144  008E  22DB               	fcall	_ADC_GetConversion
   3145  008F  00F4               	movwf	??_get_wsp
@@ -3172,7 +3172,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3154  0098  0022               	movlb	2	; select bank2
   3155  0099  108E               	bcf	14,1	;volatile
   3156                           
-  3157                           ;main.c: 602:         if (res < BAD_WSP_VOLTAGE) {
+  3157                           ;main.c: 601:         if (res < BAD_WSP_VOLTAGE) {
   3158  009A  3000               	movlw	0
   3159  009B  0020               	movlb	0	; select bank0
   3160  009C  0245               	subwf	get_wsp@res+1,w
@@ -3182,14 +3182,14 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3164  00A0  1803               	skipnc
   3165  00A1  28A4               	goto	l2607
   3166                           
-  3167                           ;main.c: 603:             bad_measures_counter++;
+  3167                           ;main.c: 602:             bad_measures_counter++;
   3168  00A2  3001               	movlw	1
   3169  00A3  28AC               	goto	L1
   3170  00A4                     l2607:	
-  3171                           ;main.c: 604:         } else {
+  3171                           ;main.c: 603:         } else {
   3172                           
   3173                           
-  3174                           ;main.c: 605:             if (res > GOOD_WSP_VOLTAGE) {
+  3174                           ;main.c: 604:             if (res > GOOD_WSP_VOLTAGE) {
   3175  00A4  3000               	movlw	0
   3176  00A5  0245               	subwf	get_wsp@res+1,w
   3177  00A6  308F               	movlw	143
@@ -3198,7 +3198,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3180  00A9  1C03               	skipc
   3181  00AA  28AF               	goto	l2611
   3182                           
-  3183                           ;main.c: 606:                 bad_measures_counter--;
+  3183                           ;main.c: 605:                 bad_measures_counter--;
   3184  00AB  30FF               	movlw	255
   3185  00AC                     L1:
   3186  00AC  00F4               	movwf	??_get_wsp
@@ -3206,17 +3206,17 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3188  00AE  07B7               	addwf	get_wsp@bad_measures_counter,f
   3189  00AF                     l2611:
   3190                           
-  3191                           ;main.c: 609:         if (bad_measures_counter > WSP_MEAS_COUNT) {
+  3191                           ;main.c: 608:         if (bad_measures_counter > WSP_MEAS_COUNT) {
   3192  00AF  0837               	movf	get_wsp@bad_measures_counter,w
   3193  00B0  3A80               	xorlw	128
   3194  00B1  3E7B               	addlw	-133
   3195  00B2  1C03               	skipc
   3196  00B3  28BA               	goto	l2617
   3197                           
-  3198                           ;main.c: 610:             start_alarm();
+  3198                           ;main.c: 609:             start_alarm();
   3199  00B4  2417               	fcall	_start_alarm
   3200                           
-  3201                           ;main.c: 611:             bad_measures_counter = WSP_MEAS_COUNT;
+  3201                           ;main.c: 610:             bad_measures_counter = WSP_MEAS_COUNT;
   3202  00B5  3004               	movlw	4
   3203  00B6  00F4               	movwf	??_get_wsp
   3204  00B7  0874               	movf	??_get_wsp,w
@@ -3224,17 +3224,17 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3206  00B9  00B7               	movwf	get_wsp@bad_measures_counter
   3207  00BA                     l2617:
   3208                           
-  3209                           ;main.c: 613:         if (bad_measures_counter < -WSP_MEAS_COUNT) {
+  3209                           ;main.c: 612:         if (bad_measures_counter < -WSP_MEAS_COUNT) {
   3210  00BA  0837               	movf	get_wsp@bad_measures_counter,w
   3211  00BB  3A80               	xorlw	128
   3212  00BC  3E84               	addlw	132
   3213  00BD  1803               	skipnc
   3214  00BE  28C5               	goto	l2623
   3215                           
-  3216                           ;main.c: 614:             clear_alarm();
+  3216                           ;main.c: 613:             clear_alarm();
   3217  00BF  244B               	fcall	_clear_alarm
   3218                           
-  3219                           ;main.c: 615:             bad_measures_counter = -WSP_MEAS_COUNT;
+  3219                           ;main.c: 614:             bad_measures_counter = -WSP_MEAS_COUNT;
   3220  00C0  30FC               	movlw	252
   3221  00C1  00F4               	movwf	??_get_wsp
   3222  00C2  0874               	movf	??_get_wsp,w
@@ -3242,7 +3242,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3224  00C4  00B7               	movwf	get_wsp@bad_measures_counter
   3225  00C5                     l2623:
   3226                           
-  3227                           ;main.c: 617:         ff.bits.ALLOW_MEASURE = 0;
+  3227                           ;main.c: 616:         ff.bits.ALLOW_MEASURE = 0;
   3228  00C5  1276               	bcf	_ff,4
   3229  00C6  0008               	return
   3230  00C7                     __end_of_get_wsp:
@@ -3251,7 +3251,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3233  0417                     __ptext18:	
   3234 ;; *************** function _start_alarm *****************
   3235 ;; Defined at:
-  3236 ;;		line 320 in file "main.c"
+  3236 ;;		line 321 in file "main.c"
   3237 ;; Parameters:    Size  Location     Type
   3238 ;;		None
   3239 ;; Auto vars:     Size  Location     Type
@@ -3283,22 +3283,22 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3265                           ;psect for function _start_alarm
   3266                           
   3267                           
-  3268                           ;main.c: 321:     ff.bits.ALARM_ON = 1;
+  3268                           ;main.c: 322:     ff.bits.ALARM_ON = 1;
   3269                           
   3270                           ;incstack = 0
   3271                           ; Regs used in _start_alarm: [status,2]
   3272  0417  1476               	bsf	_ff,0
   3273                           
-  3274                           ;main.c: 322:     ff.bits.ALARM_OFF = 0;
+  3274                           ;main.c: 323:     ff.bits.ALARM_OFF = 0;
   3275  0418  10F6               	bcf	_ff,1
   3276                           
-  3277                           ;main.c: 323:     ff.bits.MELODY_ON = 1;
+  3277                           ;main.c: 324:     ff.bits.MELODY_ON = 1;
   3278  0419  1779               	bsf	_ff+3,6
   3279                           
-  3280                           ;main.c: 324:     ff.bits.SIREN = 1;
+  3280                           ;main.c: 325:     ff.bits.SIREN = 1;
   3281  041A  15F8               	bsf	_ff+2,3
   3282                           
-  3283                           ;main.c: 325:     sec_count = 0;
+  3283                           ;main.c: 326:     sec_count=0;
   3284  041B  0020               	movlb	0	; select bank0
   3285  041C  01BE               	clrf	_sec_count
   3286  041D  0008               	return
@@ -3308,7 +3308,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3290  044B                     __ptext19:	
   3291 ;; *************** function _clear_alarm *****************
   3292 ;; Defined at:
-  3293 ;;		line 328 in file "main.c"
+  3293 ;;		line 329 in file "main.c"
   3294 ;; Parameters:    Size  Location     Type
   3295 ;;		None
   3296 ;; Auto vars:     Size  Location     Type
@@ -3340,13 +3340,13 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3322                           ;psect for function _clear_alarm
   3323                           
   3324                           
-  3325                           ;main.c: 329:     ff.bits.ALARM_ON = 0;
+  3325                           ;main.c: 330:     ff.bits.ALARM_ON = 0;
   3326                           
   3327                           ;incstack = 0
   3328                           ; Regs used in _clear_alarm: []
   3329  044B  1076               	bcf	_ff,0
   3330                           
-  3331                           ;main.c: 330:     ff.bits.ALARM_OFF = 1;
+  3331                           ;main.c: 331:     ff.bits.ALARM_OFF = 1;
   3332  044C  14F6               	bsf	_ff,1
   3333  044D  0008               	return
   3334  044E                     __end_of_clear_alarm:
@@ -3435,7 +3435,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3416  0202                     __ptext21:	
   3417 ;; *************** function _get_jump *****************
   3418 ;; Defined at:
-  3419 ;;		line 686 in file "main.c"
+  3419 ;;		line 685 in file "main.c"
   3420 ;; Parameters:    Size  Location     Type
   3421 ;;		None
   3422 ;; Auto vars:     Size  Location     Type
@@ -3467,7 +3467,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3448                           ;psect for function _get_jump
   3449                           
   3450                           
-  3451                           ;main.c: 688:     static signed char jump_counter;;main.c: 690:     if (ff.bits.ALLOW_JU
+  3451                           ;main.c: 687:     static signed char jump_counter;;main.c: 689:     if (ff.bits.ALLOW_JU
       +                          MP) {
   3452                           
   3453                           ;incstack = 0
@@ -3475,15 +3475,15 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3455  0202  1F76               	btfss	_ff,6
   3456  0203  0008               	return
   3457                           
-  3458                           ;main.c: 692:         do { ANSELAbits.ANSA1 = 0; } while(0);
+  3458                           ;main.c: 691:         do { ANSELAbits.ANSA1 = 0; } while(0);
   3459  0204  0023               	movlb	3	; select bank3
   3460  0205  108C               	bcf	12,1	;volatile
   3461                           
-  3462                           ;main.c: 693:         do { TRISAbits.TRISA1 = 1; } while(0);
+  3462                           ;main.c: 692:         do { TRISAbits.TRISA1 = 1; } while(0);
   3463  0206  0021               	movlb	1	; select bank1
   3464  0207  148C               	bsf	12,1	;volatile
   3465                           
-  3466                           ;main.c: 694:         if (PORTAbits.RA1) jump_counter++;
+  3466                           ;main.c: 693:         if (PORTAbits.RA1) jump_counter++;
   3467  0208  0020               	movlb	0	; select bank0
   3468  0209  1C8C               	btfss	12,1	;volatile
   3469  020A  2A0D               	goto	l2411
@@ -3496,26 +3496,26 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3476  020F  0872               	movf	??_get_jump,w
   3477  0210  07B5               	addwf	get_jump@jump_counter,f
   3478                           
-  3479                           ;main.c: 703:         if (jump_counter > JUMP_MEAS_COUNT) {
+  3479                           ;main.c: 702:         if (jump_counter > JUMP_MEAS_COUNT) {
   3480  0211  0835               	movf	get_jump@jump_counter,w
   3481  0212  3A80               	xorlw	128
   3482  0213  3E75               	addlw	-139
   3483  0214  1C03               	skipc
   3484  0215  2A1D               	goto	l2421
   3485                           
-  3486                           ;main.c: 704:             jump_counter = JUMP_MEAS_COUNT;
+  3486                           ;main.c: 703:             jump_counter = JUMP_MEAS_COUNT;
   3487  0216  300A               	movlw	10
   3488  0217  00F2               	movwf	??_get_jump
   3489  0218  0872               	movf	??_get_jump,w
   3490  0219  00B5               	movwf	get_jump@jump_counter
   3491                           
-  3492                           ;main.c: 705:             ff.bits.JUMP_LOW = 0;
+  3492                           ;main.c: 704:             ff.bits.JUMP_LOW = 0;
   3493  021A  13F6               	bcf	_ff,7
   3494                           
-  3495                           ;main.c: 706:             ff.bits.JUMP_HIGH = 1;
+  3495                           ;main.c: 705:             ff.bits.JUMP_HIGH = 1;
   3496  021B  1477               	bsf	_ff+1,0
   3497                           
-  3498                           ;main.c: 707:         } else if (jump_counter<-JUMP_MEAS_COUNT) {
+  3498                           ;main.c: 706:         } else if (jump_counter<-JUMP_MEAS_COUNT) {
   3499  021C  2A28               	goto	l2429
   3500  021D                     l2421:
   3501  021D  0835               	movf	get_jump@jump_counter,w
@@ -3524,20 +3524,20 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3504  0220  1803               	skipnc
   3505  0221  2A28               	goto	l2429
   3506                           
-  3507                           ;main.c: 708:             jump_counter = -JUMP_MEAS_COUNT;
+  3507                           ;main.c: 707:             jump_counter = -JUMP_MEAS_COUNT;
   3508  0222  30F6               	movlw	246
   3509  0223  00F2               	movwf	??_get_jump
   3510  0224  0872               	movf	??_get_jump,w
   3511  0225  00B5               	movwf	get_jump@jump_counter
   3512                           
-  3513                           ;main.c: 709:             ff.bits.JUMP_LOW = 1;
+  3513                           ;main.c: 708:             ff.bits.JUMP_LOW = 1;
   3514  0226  17F6               	bsf	_ff,7
   3515                           
-  3516                           ;main.c: 710:             ff.bits.JUMP_HIGH = 0;
+  3516                           ;main.c: 709:             ff.bits.JUMP_HIGH = 0;
   3517  0227  1077               	bcf	_ff+1,0
   3518  0228                     l2429:
   3519                           
-  3520                           ;main.c: 712:         ff.bits.ALLOW_JUMP = 0;
+  3520                           ;main.c: 711:         ff.bits.ALLOW_JUMP = 0;
   3521  0228  1376               	bcf	_ff,6
   3522  0229  0008               	return
   3523  022A                     __end_of_get_jump:
@@ -3546,7 +3546,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3526  0176                     __ptext22:	
   3527 ;; *************** function _get_fun *****************
   3528 ;; Defined at:
-  3529 ;;		line 621 in file "main.c"
+  3529 ;;		line 620 in file "main.c"
   3530 ;; Parameters:    Size  Location     Type
   3531 ;;		None
   3532 ;; Auto vars:     Size  Location     Type
@@ -3578,19 +3578,19 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3558                           ;psect for function _get_fun
   3559                           
   3560                           
-  3561                           ;main.c: 623:     if (ff.bits.ALLOW_FUN) {
+  3561                           ;main.c: 622:     if (ff.bits.ALLOW_FUN) {
   3562                           
   3563                           ;incstack = 0
   3564                           ; Regs used in _get_fun: [wreg+status,2+status,0]
   3565  0176  1EF6               	btfss	_ff,5
   3566  0177  0008               	return
   3567                           
-  3568                           ;main.c: 625:         static signed char fun_counter;;main.c: 626:         do { LATCbits
+  3568                           ;main.c: 624:         static signed char fun_counter;;main.c: 625:         do { LATCbits
       +                          .LATC1 = 1; } while(0);
   3569  0178  0022               	movlb	2	; select bank2
   3570  0179  148E               	bsf	14,1	;volatile
   3571                           
-  3572                           ;main.c: 627:         _delay((unsigned long)((1)*(16000000/4000.0)));
+  3572                           ;main.c: 626:         _delay((unsigned long)((1)*(16000000/4000.0)));
   3573  017A  3006               	movlw	6
   3574  017B  00F2               	movwf	??_get_fun
   3575  017C  3030               	movlw	48
@@ -3605,7 +3605,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3584  0184  0021               	movlb	1	; select bank1
   3585  0185  150E               	bsf	14,2	;volatile
   3586                           
-  3587                           ;main.c: 630:         if (PORTCbits.RC2) fun_counter--;
+  3587                           ;main.c: 629:         if (PORTCbits.RC2) fun_counter--;
   3588  0186  0020               	movlb	0	; select bank0
   3589  0187  1D0E               	btfss	14,2	;volatile
   3590  0188  298B               	goto	l2385
@@ -3620,7 +3620,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3599  018F  0022               	movlb	2	; select bank2
   3600  0190  108E               	bcf	14,1	;volatile
   3601                           
-  3602                           ;main.c: 638:         if (fun_counter > FUN_MEAS_COUNT) {
+  3602                           ;main.c: 637:         if (fun_counter > FUN_MEAS_COUNT) {
   3603  0191  0020               	movlb	0	; select bank0
   3604  0192  0836               	movf	get_fun@fun_counter,w
   3605  0193  3A80               	xorlw	128
@@ -3628,19 +3628,19 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3607  0195  1C03               	skipc
   3608  0196  299E               	goto	l2397
   3609                           
-  3610                           ;main.c: 639:             fun_counter = FUN_MEAS_COUNT;
+  3610                           ;main.c: 638:             fun_counter = FUN_MEAS_COUNT;
   3611  0197  300A               	movlw	10
   3612  0198  00F2               	movwf	??_get_fun
   3613  0199  0872               	movf	??_get_fun,w
   3614  019A  00B6               	movwf	get_fun@fun_counter
   3615                           
-  3616                           ;main.c: 640:             ff.bits.FUN_LOW = 0;
+  3616                           ;main.c: 639:             ff.bits.FUN_LOW = 0;
   3617  019B  11F6               	bcf	_ff,3
   3618                           
-  3619                           ;main.c: 641:             ff.bits.FUN_HIGH = 1;
+  3619                           ;main.c: 640:             ff.bits.FUN_HIGH = 1;
   3620  019C  1576               	bsf	_ff,2
   3621                           
-  3622                           ;main.c: 642:         } else if (fun_counter<-FUN_MEAS_COUNT) {
+  3622                           ;main.c: 641:         } else if (fun_counter<-FUN_MEAS_COUNT) {
   3623  019D  29A9               	goto	l2405
   3624  019E                     l2397:
   3625  019E  0836               	movf	get_fun@fun_counter,w
@@ -3649,20 +3649,20 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3628  01A1  1803               	skipnc
   3629  01A2  29A9               	goto	l2405
   3630                           
-  3631                           ;main.c: 643:             fun_counter = -FUN_MEAS_COUNT;
+  3631                           ;main.c: 642:             fun_counter = -FUN_MEAS_COUNT;
   3632  01A3  30F6               	movlw	246
   3633  01A4  00F2               	movwf	??_get_fun
   3634  01A5  0872               	movf	??_get_fun,w
   3635  01A6  00B6               	movwf	get_fun@fun_counter
   3636                           
-  3637                           ;main.c: 644:             ff.bits.FUN_LOW = 1;
+  3637                           ;main.c: 643:             ff.bits.FUN_LOW = 1;
   3638  01A7  15F6               	bsf	_ff,3
   3639                           
-  3640                           ;main.c: 645:             ff.bits.FUN_HIGH = 0;
+  3640                           ;main.c: 644:             ff.bits.FUN_HIGH = 0;
   3641  01A8  1176               	bcf	_ff,2
   3642  01A9                     l2405:
   3643                           
-  3644                           ;main.c: 647:         ff.bits.ALLOW_FUN = 0;
+  3644                           ;main.c: 646:         ff.bits.ALLOW_FUN = 0;
   3645  01A9  12F6               	bcf	_ff,5
   3646  01AA  0008               	return
   3647  01AB                     __end_of_get_fun:
@@ -3671,7 +3671,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3650  02A7                     __ptext23:	
   3651 ;; *************** function _fun_work *****************
   3652 ;; Defined at:
-  3653 ;;		line 333 in file "main.c"
+  3653 ;;		line 334 in file "main.c"
   3654 ;; Parameters:    Size  Location     Type
   3655 ;;		None
   3656 ;; Auto vars:     Size  Location     Type
@@ -3704,7 +3704,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3683                           ;psect for function _fun_work
   3684                           
   3685                           
-  3686                           ;main.c: 334:     {;main.c: 335:         if (
+  3686                           ;main.c: 335:     {;main.c: 336:         if (
   3687                           
   3688                           ;incstack = 0
   3689                           ; Regs used in _fun_work: [wreg+status,2+status,0+pclath+cstack]
@@ -3718,16 +3718,16 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3697  02AE  18F7               	btfsc	_ff+1,1
   3698  02AF  2AB3               	goto	l2275
   3699                           
-  3700                           ;main.c: 341:                 !ff.bits.OPENING) {;main.c: 342:             beep_short_co
+  3700                           ;main.c: 342:                 !ff.bits.OPENING) {;main.c: 343:             beep_short_co
       +                          unt = 1;
   3701  02B0  01FA               	clrf	_beep_short_count
   3702  02B1  0AFA               	incf	_beep_short_count,f
   3703                           
-  3704                           ;main.c: 343:             open();
+  3704                           ;main.c: 344:             open();
   3705  02B2  23B4               	fcall	_open
   3706  02B3                     l2275:
   3707                           
-  3708                           ;main.c: 345:         if (
+  3708                           ;main.c: 346:         if (
   3709  02B3  1D76               	btfss	_ff,2
   3710  02B4  0008               	return
   3711  02B5  1FF8               	btfss	_ff+2,7
@@ -3739,14 +3739,14 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3717  02BB  19F7               	btfsc	_ff+1,3
   3718  02BC  0008               	return
   3719                           
-  3720                           ;main.c: 350:                 !ff.bits.CLOSING) {;main.c: 351:             beep_short_co
+  3720                           ;main.c: 351:                 !ff.bits.CLOSING) {;main.c: 352:             beep_short_co
       +                          unt = 2;
   3721  02BD  3002               	movlw	2
   3722  02BE  00F3               	movwf	??_fun_work
   3723  02BF  0873               	movf	??_fun_work,w
   3724  02C0  00FA               	movwf	_beep_short_count
   3725                           
-  3726                           ;main.c: 352:             close();
+  3726                           ;main.c: 353:             close();
   3727  02C1  23C0               	fcall	_close
   3728  02C2  0008               	return
   3729  02C3                     __end_of_fun_work:
@@ -3755,7 +3755,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3732  03B4                     __ptext24:	
   3733 ;; *************** function _open *****************
   3734 ;; Defined at:
-  3735 ;;		line 264 in file "main.c"
+  3735 ;;		line 265 in file "main.c"
   3736 ;; Parameters:    Size  Location     Type
   3737 ;;		None
   3738 ;; Auto vars:     Size  Location     Type
@@ -3789,34 +3789,34 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3766                           ;psect for function _open
   3767                           
   3768                           
-  3769                           ;main.c: 265:     if (ff.bits.CLOSING) {
+  3769                           ;main.c: 266:     if (ff.bits.CLOSING) {
   3770                           
   3771                           ;incstack = 0
   3772                           ; Regs used in _open: [wreg+status,2+status,0+pclath+cstack]
   3773  03B4  1DF7               	btfss	_ff+1,3
   3774  03B5  2BB8               	goto	l357
   3775                           
-  3776                           ;main.c: 266:         rele_off();
+  3776                           ;main.c: 267:         rele_off();
   3777  03B6  232C               	fcall	_rele_off
   3778                           
-  3779                           ;main.c: 267:     } else {
+  3779                           ;main.c: 268:     } else {
   3780  03B7  0008               	return
   3781  03B8                     l357:
   3782                           
-  3783                           ;main.c: 268:         if (ff.bits.NORMAL_WORK_MODE_ON) {
+  3783                           ;main.c: 269:         if (ff.bits.NORMAL_WORK_MODE_ON) {
   3784  03B8  1C79               	btfss	_ff+3,0
   3785  03B9  2BBC               	goto	l359
   3786                           
-  3787                           ;main.c: 269:             go_open();
+  3787                           ;main.c: 270:             go_open();
   3788  03BA  231A               	fcall	_go_open
   3789                           
-  3790                           ;main.c: 270:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+  3790                           ;main.c: 271:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
   3791  03BB  0008               	return
   3792  03BC                     l359:
   3793  03BC  1CF9               	btfss	_ff+3,1
   3794  03BD  0008               	return
   3795                           
-  3796                           ;main.c: 271:             go_open_alt();
+  3796                           ;main.c: 272:             go_open_alt();
   3797  03BE  23EF               	fcall	_go_open_alt
   3798  03BF  0008               	return
   3799  03C0                     __end_of_open:
@@ -3825,7 +3825,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3802  03EF                     __ptext25:	
   3803 ;; *************** function _go_open_alt *****************
   3804 ;; Defined at:
-  3805 ;;		line 227 in file "main.c"
+  3805 ;;		line 228 in file "main.c"
   3806 ;; Parameters:    Size  Location     Type
   3807 ;;		None
   3808 ;; Auto vars:     Size  Location     Type
@@ -3857,7 +3857,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3834                           ;psect for function _go_open_alt
   3835                           
   3836                           
-  3837                           ;main.c: 228:     if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
+  3837                           ;main.c: 229:     if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
   3838                           
   3839                           ;incstack = 0
   3840                           ; Regs used in _go_open_alt: []
@@ -3866,16 +3866,16 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3843  03F1  1FF8               	btfss	_ff+2,7
   3844  03F2  0008               	return
   3845                           
-  3846                           ;main.c: 229:         ff.bits.CLOSED = 0;
+  3846                           ;main.c: 230:         ff.bits.CLOSED = 0;
   3847  03F3  1277               	bcf	_ff+1,4
   3848                           
-  3849                           ;main.c: 230:         ff.bits.OPENED = 1;
+  3849                           ;main.c: 231:         ff.bits.OPENED = 1;
   3850  03F4  1577               	bsf	_ff+1,2
   3851                           
-  3852                           ;main.c: 232:         ff.bits.RELE_CONTROL_ON = 0;
+  3852                           ;main.c: 233:         ff.bits.RELE_CONTROL_ON = 0;
   3853  03F5  1377               	bcf	_ff+1,6
   3854                           
-  3855                           ;main.c: 233:         ff.bits.RELE_POWER_ON = 0;
+  3855                           ;main.c: 234:         ff.bits.RELE_POWER_ON = 0;
   3856  03F6  12F7               	bcf	_ff+1,5
   3857  03F7  0008               	return
   3858  03F8                     __end_of_go_open_alt:
@@ -3884,7 +3884,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3861  03C0                     __ptext26:	
   3862 ;; *************** function _close *****************
   3863 ;; Defined at:
-  3864 ;;		line 252 in file "main.c"
+  3864 ;;		line 253 in file "main.c"
   3865 ;; Parameters:    Size  Location     Type
   3866 ;;		None
   3867 ;; Auto vars:     Size  Location     Type
@@ -3919,34 +3919,34 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3896                           ;psect for function _close
   3897                           
   3898                           
-  3899                           ;main.c: 253:     if (ff.bits.OPENING) {
+  3899                           ;main.c: 254:     if (ff.bits.OPENING) {
   3900                           
   3901                           ;incstack = 0
   3902                           ; Regs used in _close: [wreg+status,2+status,0+pclath+cstack]
   3903  03C0  1CF7               	btfss	_ff+1,1
   3904  03C1  2BC4               	goto	l349
   3905                           
-  3906                           ;main.c: 254:         rele_off();
+  3906                           ;main.c: 255:         rele_off();
   3907  03C2  232C               	fcall	_rele_off
   3908                           
-  3909                           ;main.c: 255:     } else {
+  3909                           ;main.c: 256:     } else {
   3910  03C3  0008               	return
   3911  03C4                     l349:
   3912                           
-  3913                           ;main.c: 256:         if (ff.bits.NORMAL_WORK_MODE_ON) {
+  3913                           ;main.c: 257:         if (ff.bits.NORMAL_WORK_MODE_ON) {
   3914  03C4  1C79               	btfss	_ff+3,0
   3915  03C5  2BC8               	goto	l351
   3916                           
-  3917                           ;main.c: 257:             go_close();
+  3917                           ;main.c: 258:             go_close();
   3918  03C6  224A               	fcall	_go_close
   3919                           
-  3920                           ;main.c: 258:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+  3920                           ;main.c: 259:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
   3921  03C7  0008               	return
   3922  03C8                     l351:
   3923  03C8  1CF9               	btfss	_ff+3,1
   3924  03C9  0008               	return
   3925                           
-  3926                           ;main.c: 259:             go_close_alt();
+  3926                           ;main.c: 260:             go_close_alt();
   3927  03CA  23E4               	fcall	_go_close_alt
   3928  03CB  0008               	return
   3929  03CC                     __end_of_close:
@@ -3955,7 +3955,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3932  032C                     __ptext27:	
   3933 ;; *************** function _rele_off *****************
   3934 ;; Defined at:
-  3935 ;;		line 237 in file "main.c"
+  3935 ;;		line 238 in file "main.c"
   3936 ;; Parameters:    Size  Location     Type
   3937 ;;		None
   3938 ;; Auto vars:     Size  Location     Type
@@ -3989,45 +3989,45 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   3966                           ;psect for function _rele_off
   3967                           
   3968                           
-  3969                           ;main.c: 238:     ff.bits.RELE_CONTROL_ON = 0;
+  3969                           ;main.c: 239:     ff.bits.RELE_CONTROL_ON = 0;
   3970                           
   3971                           ;incstack = 0
   3972                           ; Regs used in _rele_off: [wreg]
   3973  032C  1377               	bcf	_ff+1,6
   3974                           
-  3975                           ;main.c: 239:     ff.bits.RELE_POWER_ON = 0;
+  3975                           ;main.c: 240:     ff.bits.RELE_POWER_ON = 0;
   3976  032D  12F7               	bcf	_ff+1,5
   3977                           
-  3978                           ;main.c: 240:     ff.bits.CLOSING = 0;
+  3978                           ;main.c: 241:     ff.bits.CLOSING = 0;
   3979  032E  11F7               	bcf	_ff+1,3
   3980                           
-  3981                           ;main.c: 241:     ff.bits.OPENING = 0;
+  3981                           ;main.c: 242:     ff.bits.OPENING = 0;
   3982  032F  10F7               	bcf	_ff+1,1
   3983                           
-  3984                           ;main.c: 242:     ff.bits.CLOSED = 0;
+  3984                           ;main.c: 243:     ff.bits.CLOSED = 0;
   3985  0330  1277               	bcf	_ff+1,4
   3986                           
-  3987                           ;main.c: 243:     if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+  3987                           ;main.c: 244:     if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
   3988  0331  1CF9               	btfss	_ff+3,1
   3989  0332  2B35               	goto	l344
   3990                           
-  3991                           ;main.c: 244:         ff.bits.OPENED = 1;
+  3991                           ;main.c: 245:         ff.bits.OPENED = 1;
   3992  0333  1577               	bsf	_ff+1,2
   3993                           
-  3994                           ;main.c: 245:     } else {
+  3994                           ;main.c: 246:     } else {
   3995  0334  2B36               	goto	l345
   3996  0335                     l344:
   3997                           
-  3998                           ;main.c: 246:         ff.bits.OPENED = 0;
+  3998                           ;main.c: 247:         ff.bits.OPENED = 0;
   3999  0335  1177               	bcf	_ff+1,2
   4000  0336                     l345:	
-  4001                           ;main.c: 247:     }
+  4001                           ;main.c: 248:     }
   4002                           
   4003                           
-  4004                           ;main.c: 248:     ff.bits.MOVING_ALLOWED = 0;
+  4004                           ;main.c: 249:     ff.bits.MOVING_ALLOWED = 0;
   4005  0336  13F8               	bcf	_ff+2,7
   4006                           
-  4007                           ;main.c: 249:     time_moving_wait = MOVING_WAIT_DELAY;
+  4007                           ;main.c: 250:     time_moving_wait = MOVING_WAIT_DELAY;
   4008  0337  3002               	movlw	2
   4009  0338  00F2               	movwf	??_rele_off
   4010  0339  0872               	movf	??_rele_off,w
@@ -4040,7 +4040,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4017  03E4                     __ptext28:	
   4018 ;; *************** function _go_close_alt *****************
   4019 ;; Defined at:
-  4020 ;;		line 216 in file "main.c"
+  4020 ;;		line 217 in file "main.c"
   4021 ;; Parameters:    Size  Location     Type
   4022 ;;		None
   4023 ;; Auto vars:     Size  Location     Type
@@ -4072,7 +4072,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4049                           ;psect for function _go_close_alt
   4050                           
   4051                           
-  4052                           ;main.c: 218:     if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
+  4052                           ;main.c: 219:     if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
   4053                           
   4054                           ;incstack = 0
   4055                           ; Regs used in _go_close_alt: []
@@ -4085,16 +4085,16 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4062  03E9  0008               	return
   4063  03EA                     l334:
   4064                           
-  4065                           ;main.c: 219:         ff.bits.OPENED = 0;
+  4065                           ;main.c: 220:         ff.bits.OPENED = 0;
   4066  03EA  1177               	bcf	_ff+1,2
   4067                           
-  4068                           ;main.c: 220:         ff.bits.CLOSED = 1;
+  4068                           ;main.c: 221:         ff.bits.CLOSED = 1;
   4069  03EB  1677               	bsf	_ff+1,4
   4070                           
-  4071                           ;main.c: 222:         ff.bits.RELE_CONTROL_ON = 0;
+  4071                           ;main.c: 223:         ff.bits.RELE_CONTROL_ON = 0;
   4072  03EC  1377               	bcf	_ff+1,6
   4073                           
-  4074                           ;main.c: 223:         ff.bits.RELE_POWER_ON = 1;
+  4074                           ;main.c: 224:         ff.bits.RELE_POWER_ON = 1;
   4075  03ED  16F7               	bsf	_ff+1,5
   4076  03EE  0008               	return
   4077  03EF                     __end_of_go_close_alt:
@@ -4194,7 +4194,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4171  00C7                     __ptext30:	
   4172 ;; *************** function _autorotation_work *****************
   4173 ;; Defined at:
-  4174 ;;		line 377 in file "main.c"
+  4174 ;;		line 378 in file "main.c"
   4175 ;; Parameters:    Size  Location     Type
   4176 ;;		None
   4177 ;; Auto vars:     Size  Location     Type
@@ -4227,7 +4227,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4204                           ;psect for function _autorotation_work
   4205                           
   4206                           
-  4207                           ;main.c: 378:     if ((time_rotation > AUTOROTATION_DELAY) &&
+  4207                           ;main.c: 379:     if ((time_rotation > AUTOROTATION_DELAY) &&
   4208                           
   4209                           ;incstack = 0
   4210                           ; Regs used in _autorotation_work: [wreg+status,2+status,0+pclath+cstack]
@@ -4253,16 +4253,16 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4230  00D9  1C79               	btfss	_ff+3,0
   4231  00DA  28E5               	goto	l2325
   4232                           
-  4233                           ;main.c: 384:             ) {;main.c: 385:         go_close_short();
+  4233                           ;main.c: 385:             ) {;main.c: 386:               go_close_short();
   4234  00DB  2269               	fcall	_go_close_short
   4235                           
-  4236                           ;main.c: 386:         beep_short_count = 3;
+  4236                           ;main.c: 387:               beep_short_count=3;
   4237  00DC  3003               	movlw	3
   4238  00DD  00F2               	movwf	??_autorotation_work
   4239  00DE  0872               	movf	??_autorotation_work,w
   4240  00DF  00FA               	movwf	_beep_short_count
   4241                           
-  4242                           ;main.c: 387:         beep_long_count = 3;
+  4242                           ;main.c: 388:               beep_long_count=3;
   4243  00E0  3003               	movlw	3
   4244  00E1  00F2               	movwf	??_autorotation_work
   4245  00E2  0872               	movf	??_autorotation_work,w
@@ -4270,7 +4270,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4247  00E4  00BA               	movwf	_beep_long_count
   4248  00E5                     l2325:
   4249                           
-  4250                           ;main.c: 390:     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DEL
+  4250                           ;main.c: 391:     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DEL
       +                          AY + RELE_GAP * 2)) &&
   4251  00E5  3000               	movlw	0
   4252  00E6  0222               	subwf	_time_rotation+2,w
@@ -4296,10 +4296,10 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4272  00F9  1C79               	btfss	_ff+3,0
   4273  00FA  0008               	return
   4274                           
-  4275                           ;main.c: 396:             ) {;main.c: 397:         go_open();
+  4275                           ;main.c: 397:             ) {;main.c: 398:         go_open();
   4276  00FB  231A               	fcall	_go_open
   4277                           
-  4278                           ;main.c: 398:         time_rotation = 0;
+  4278                           ;main.c: 399:         time_rotation = 0;
   4279  00FC  3000               	movlw	0
   4280  00FD  0020               	movlb	0	; select bank0
   4281  00FE  00A0               	movwf	_time_rotation
@@ -4314,7 +4314,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4290  031A                     __ptext31:	
   4291 ;; *************** function _go_open *****************
   4292 ;; Defined at:
-  4293 ;;		line 198 in file "main.c"
+  4293 ;;		line 199 in file "main.c"
   4294 ;; Parameters:    Size  Location     Type
   4295 ;;		None
   4296 ;; Auto vars:     Size  Location     Type
@@ -4347,7 +4347,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4323                           ;psect for function _go_open
   4324                           
   4325                           
-  4326                           ;main.c: 200:     if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
+  4326                           ;main.c: 201:     if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
   4327                           
   4328                           ;incstack = 0
   4329                           ; Regs used in _go_open: [wreg]
@@ -4358,29 +4358,29 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4334  031E  1FF8               	btfss	_ff+2,7
   4335  031F  0008               	return
   4336                           
-  4337                           ;main.c: 201:         ff.bits.OPENING = 1;
+  4337                           ;main.c: 202:         ff.bits.OPENING = 1;
   4338  0320  14F7               	bsf	_ff+1,1
   4339                           
-  4340                           ;main.c: 202:         ff.bits.CLOSED = 0;
+  4340                           ;main.c: 203:         ff.bits.CLOSED = 0;
   4341  0321  1277               	bcf	_ff+1,4
   4342                           
-  4343                           ;main.c: 203:         ff.bits.CLOSING = 0;
+  4343                           ;main.c: 204:         ff.bits.CLOSING = 0;
   4344  0322  11F7               	bcf	_ff+1,3
   4345                           
-  4346                           ;main.c: 206:         ff.bits.RELE_CONTROL_ON = 0;
+  4346                           ;main.c: 207:         ff.bits.RELE_CONTROL_ON = 0;
   4347  0323  1377               	bcf	_ff+1,6
   4348                           
-  4349                           ;main.c: 207:         ff.bits.RELE_POWER_ON = 1;
+  4349                           ;main.c: 208:         ff.bits.RELE_POWER_ON = 1;
   4350  0324  16F7               	bsf	_ff+1,5
   4351                           
-  4352                           ;main.c: 209:         time_rele_power = RELE_POWER_WORK_DELAY;
+  4352                           ;main.c: 210:         time_rele_power = RELE_POWER_WORK_DELAY;
   4353  0325  300F               	movlw	15
   4354  0326  0020               	movlb	0	; select bank0
   4355  0327  00B1               	movwf	_time_rele_power
   4356  0328  3000               	movlw	0
   4357  0329  00B2               	movwf	_time_rele_power+1
   4358                           
-  4359                           ;main.c: 211:         ff.bits.AUTOROTATION_WORK = 0;
+  4359                           ;main.c: 212:         ff.bits.AUTOROTATION_WORK = 0;
   4360  032A  12F9               	bcf	_ff+3,5
   4361  032B  0008               	return
   4362  032C                     __end_of_go_open:
@@ -4664,7 +4664,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4633  01AB                     __ptext36:	
   4634 ;; *************** function _ms_tick *****************
   4635 ;; Defined at:
-  4636 ;;		line 521 in file "main.c"
+  4636 ;;		line 520 in file "main.c"
   4637 ;; Parameters:    Size  Location     Type
   4638 ;;		None
   4639 ;; Auto vars:     Size  Location     Type
@@ -4700,8 +4700,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4669                           ;psect for function _ms_tick
   4670                           
   4671                           
-  4672                           ;main.c: 522:     static unsigned ms_count = 0;;main.c: 523:     static unsigned s_count
-      +                           = 0;;main.c: 524:     ms_count++;
+  4672                           ;main.c: 521:     static unsigned ms_count = 0;;main.c: 522:     static unsigned s_count
+      +                           = 0;;main.c: 523:     ms_count++;
   4673                           
   4674                           ;incstack = 0
   4675                           ; Regs used in _ms_tick: [wreg+status,2+status,0+pclath+cstack]
@@ -4711,35 +4711,35 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4679  01AE  3000               	movlw	0
   4680  01AF  3DA6               	addwfc	ms_tick@ms_count+1,f
   4681                           
-  4682                           ;main.c: 525:     if (time_tone > 0) {
+  4682                           ;main.c: 524:     if (time_tone > 0) {
   4683  01B0  082B               	movf	_time_tone,w
   4684  01B1  042C               	iorwf	_time_tone+1,w
   4685  01B2  1903               	btfsc	3,2
   4686  01B3  29BD               	goto	i1l2217
   4687                           
-  4688                           ;main.c: 526:         time_tone--;
+  4688                           ;main.c: 525:         time_tone--;
   4689  01B4  3001               	movlw	1
   4690  01B5  02AB               	subwf	_time_tone,f
   4691  01B6  3000               	movlw	0
   4692  01B7  3BAC               	subwfb	_time_tone+1,f
   4693                           
-  4694                           ;main.c: 527:         if (time_tone == 0) {
+  4694                           ;main.c: 526:         if (time_tone == 0) {
   4695  01B8  082B               	movf	_time_tone,w
   4696  01B9  042C               	iorwf	_time_tone+1,w
   4697  01BA  1D03               	btfss	3,2
   4698  01BB  29BD               	goto	i1l2217
   4699                           
-  4700                           ;main.c: 528:             stop_tone();
+  4700                           ;main.c: 527:             stop_tone();
   4701  01BC  2440               	fcall	_stop_tone
   4702  01BD                     i1l2217:
   4703                           
-  4704                           ;main.c: 532:     ff.bits.ALLOW_FUN = 1;
+  4704                           ;main.c: 531:     ff.bits.ALLOW_FUN = 1;
   4705  01BD  16F6               	bsf	_ff,5
   4706                           
-  4707                           ;main.c: 533:     ff.bits.ALLOW_JUMP = 1;
+  4707                           ;main.c: 532:     ff.bits.ALLOW_JUMP = 1;
   4708  01BE  1776               	bsf	_ff,6
   4709                           
-  4710                           ;main.c: 535:     if (ms_count == 100) {
+  4710                           ;main.c: 534:     if (ms_count == 100) {
   4711  01BF  3064               	movlw	100
   4712  01C0  0020               	movlb	0	; select bank0
   4713  01C1  0625               	xorwf	ms_tick@ms_count,w
@@ -4747,35 +4747,35 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4715  01C3  1D03               	btfss	3,2
   4716  01C4  29CE               	goto	i1l2231
   4717                           
-  4718                           ;main.c: 536:         ms_100_work();
+  4718                           ;main.c: 535:         ms_100_work();
   4719  01C5  2436               	fcall	_ms_100_work
   4720                           
-  4721                           ;main.c: 537:         ms_200_work();
+  4721                           ;main.c: 536:         ms_200_work();
   4722  01C6  2288               	fcall	_ms_200_work
   4723                           
-  4724                           ;main.c: 538:         s_count++;
+  4724                           ;main.c: 537:         s_count++;
   4725  01C7  3001               	movlw	1
   4726  01C8  0020               	movlb	0	; select bank0
   4727  01C9  07A3               	addwf	ms_tick@s_count,f
   4728  01CA  3000               	movlw	0
   4729  01CB  3DA4               	addwfc	ms_tick@s_count+1,f
   4730                           
-  4731                           ;main.c: 539:         ms_count = 0;
+  4731                           ;main.c: 538:         ms_count = 0;
   4732  01CC  01A5               	clrf	ms_tick@ms_count
   4733  01CD  01A6               	clrf	ms_tick@ms_count+1
   4734  01CE                     i1l2231:
   4735                           
-  4736                           ;main.c: 547:     if (s_count == 10) {
+  4736                           ;main.c: 546:     if (s_count == 10) {
   4737  01CE  300A               	movlw	10
   4738  01CF  0623               	xorwf	ms_tick@s_count,w
   4739  01D0  0424               	iorwf	ms_tick@s_count+1,w
   4740  01D1  1D03               	btfss	3,2
   4741  01D2  0008               	return
   4742                           
-  4743                           ;main.c: 548:         sec_work();
+  4743                           ;main.c: 547:         sec_work();
   4744  01D3  2026               	fcall	_sec_work
   4745                           
-  4746                           ;main.c: 549:         s_count = 0;
+  4746                           ;main.c: 548:         s_count = 0;
   4747  01D4  0020               	movlb	0	; select bank0
   4748  01D5  01A3               	clrf	ms_tick@s_count
   4749  01D6  01A4               	clrf	ms_tick@s_count+1
@@ -4835,7 +4835,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4803  0026                     __ptext38:	
   4804 ;; *************** function _sec_work *****************
   4805 ;; Defined at:
-  4806 ;;		line 439 in file "main.c"
+  4806 ;;		line 438 in file "main.c"
   4807 ;; Parameters:    Size  Location     Type
   4808 ;;		None
   4809 ;; Auto vars:     Size  Location     Type
@@ -4869,7 +4869,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4837                           ;psect for function _sec_work
   4838                           
   4839                           
-  4840                           ;main.c: 447:     sec_count++;
+  4840                           ;main.c: 446:     sec_count++;
   4841                           
   4842                           ;incstack = 0
   4843                           ; Regs used in _sec_work: [wreg+status,2+status,0+pclath+cstack]
@@ -4879,38 +4879,38 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4847  0029  0020               	movlb	0	; select bank0
   4848  002A  07BE               	addwf	_sec_count,f
   4849                           
-  4850                           ;main.c: 448:     if (!ff.bits.MOVING_ALLOWED) {
+  4850                           ;main.c: 447:     if (!ff.bits.MOVING_ALLOWED) {
   4851  002B  1BF8               	btfsc	_ff+2,7
   4852  002C  2834               	goto	i1l413
   4853                           
-  4854                           ;main.c: 449:         if (time_moving_wait > 0) {
+  4854                           ;main.c: 448:         if (time_moving_wait > 0) {
   4855  002D  083C               	movf	_time_moving_wait,w
   4856  002E  1903               	btfsc	3,2
   4857  002F  2833               	goto	i1l414
   4858                           
-  4859                           ;main.c: 450:             time_moving_wait--;
+  4859                           ;main.c: 449:             time_moving_wait--;
   4860  0030  3001               	movlw	1
   4861  0031  02BC               	subwf	_time_moving_wait,f
   4862                           
-  4863                           ;main.c: 451:         } else {
+  4863                           ;main.c: 450:         } else {
   4864  0032  2834               	goto	i1l413
   4865  0033                     i1l414:
   4866                           
-  4867                           ;main.c: 452:             ff.bits.MOVING_ALLOWED = 1;
+  4867                           ;main.c: 451:             ff.bits.MOVING_ALLOWED = 1;
   4868  0033  17F8               	bsf	_ff+2,7
   4869  0034                     i1l413:	
-  4870                           ;main.c: 454:     }
+  4870                           ;main.c: 453:     }
   4871                           
   4872                           
-  4873                           ;main.c: 455:     if (ff.bits.NORMAL_WORK_MODE_ON) {
+  4873                           ;main.c: 454:     if (ff.bits.NORMAL_WORK_MODE_ON) {
   4874  0034  1C79               	btfss	_ff+3,0
   4875  0035  2843               	goto	i1l2085
   4876                           
-  4877                           ;main.c: 456:         if (ff.bits.OPENED) {
+  4877                           ;main.c: 455:         if (ff.bits.OPENED){
   4878  0036  1D77               	btfss	_ff+1,2
   4879  0037  2842               	goto	i1l2083
   4880                           
-  4881                           ;main.c: 457:             time_rotation++;
+  4881                           ;main.c: 456:             time_rotation++;
   4882  0038  3001               	movlw	1
   4883  0039  07A0               	addwf	_time_rotation,f
   4884  003A  3000               	movlw	0
@@ -4923,15 +4923,15 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4891  0041  07A2               	addwf	_time_rotation+2,f
   4892  0042                     i1l2083:
   4893                           
-  4894                           ;main.c: 459:         rele_tick();
+  4894                           ;main.c: 458:         rele_tick();
   4895  0042  2104               	fcall	_rele_tick
   4896  0043                     i1l2085:
   4897                           
-  4898                           ;main.c: 462:     if (ff.bits.ALARM_ON) {
+  4898                           ;main.c: 461:     if (ff.bits.ALARM_ON) {
   4899  0043  1C76               	btfss	_ff,0
   4900  0044  285D               	goto	i1l418
   4901                           
-  4902                           ;main.c: 464:         if (sec_count == 30 || sec_count == 60) {
+  4902                           ;main.c: 463:         if (sec_count == 30|| sec_count==60) {
   4903  0045  301E               	movlw	30
   4904  0046  0020               	movlb	0	; select bank0
   4905  0047  063E               	xorwf	_sec_count,w
@@ -4943,11 +4943,11 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4911  004D  284F               	goto	i1l2093
   4912  004E                     i1l2091:
   4913                           
-  4914                           ;main.c: 465:             sec_30_work();
+  4914                           ;main.c: 464:             sec_30_work();
   4915  004E  23F8               	fcall	_sec_30_work
   4916  004F                     i1l2093:
   4917                           
-  4918                           ;main.c: 468:         ff.bits.LED_ON = !ff.bits.LED_ON;
+  4918                           ;main.c: 467:         ff.bits.LED_ON = !ff.bits.LED_ON;
   4919  004F  1003               	clrc
   4920  0050  1D79               	btfss	_ff+3,2
   4921  0051  1403               	setc
@@ -4962,26 +4962,26 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4930  005A  0671               	xorwf	??_sec_work,w
   4931  005B  00F9               	movwf	_ff+3
   4932                           
-  4933                           ;main.c: 470:     } else if (ff.bits.ALARM_OFF) {
+  4933                           ;main.c: 469:     } else if (ff.bits.ALARM_OFF) {
   4934  005C  2876               	goto	i1l2103
   4935  005D                     i1l418:
   4936  005D  1CF6               	btfss	_ff,1
   4937  005E  2876               	goto	i1l2103
   4938                           
-  4939                           ;main.c: 472:         static char iled;;main.c: 473:         iled++;
+  4939                           ;main.c: 471:         static char iled;;main.c: 472:         iled++;
   4940  005F  3001               	movlw	1
   4941  0060  00F1               	movwf	??_sec_work
   4942  0061  0871               	movf	??_sec_work,w
   4943  0062  0020               	movlb	0	; select bank0
   4944  0063  07B8               	addwf	sec_work@iled,f
   4945                           
-  4946                           ;main.c: 474:         if (iled > 2) {
+  4946                           ;main.c: 473:         if (iled > 2) {
   4947  0064  3003               	movlw	3
   4948  0065  0238               	subwf	sec_work@iled,w
   4949  0066  1C03               	skipc
   4950  0067  2876               	goto	i1l2103
   4951                           
-  4952                           ;main.c: 475:             ff.bits.LED_ON = !ff.bits.LED_ON;
+  4952                           ;main.c: 474:             ff.bits.LED_ON = !ff.bits.LED_ON;
   4953  0068  1003               	clrc
   4954  0069  1D79               	btfss	_ff+3,2
   4955  006A  1403               	setc
@@ -4996,21 +4996,21 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4964  0073  0671               	xorwf	??_sec_work,w
   4965  0074  00F9               	movwf	_ff+3
   4966                           
-  4967                           ;main.c: 476:             iled = 0;
+  4967                           ;main.c: 475:             iled = 0;
   4968  0075  01B8               	clrf	sec_work@iled
   4969  0076                     i1l2103:
   4970                           
-  4971                           ;main.c: 482:     if (sec_count == 60) {
+  4971                           ;main.c: 481:     if (sec_count == 60) {
   4972  0076  303C               	movlw	60
   4973  0077  0020               	movlb	0	; select bank0
   4974  0078  063E               	xorwf	_sec_count,w
   4975  0079  1D03               	btfss	3,2
   4976  007A  0008               	return
   4977                           
-  4978                           ;main.c: 483:         minute_tick();
+  4978                           ;main.c: 482:         minute_tick();
   4979  007B  235D               	fcall	_minute_tick
   4980                           
-  4981                           ;main.c: 484:         sec_count = 0;
+  4981                           ;main.c: 483:         sec_count = 0;
   4982  007C  0020               	movlb	0	; select bank0
   4983  007D  01BE               	clrf	_sec_count
   4984  007E  0008               	return
@@ -5020,7 +5020,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   4988  03F8                     __ptext39:	
   4989 ;; *************** function _sec_30_work *****************
   4990 ;; Defined at:
-  4991 ;;		line 431 in file "main.c"
+  4991 ;;		line 430 in file "main.c"
   4992 ;; Parameters:    Size  Location     Type
   4993 ;;		None
   4994 ;; Auto vars:     Size  Location     Type
@@ -5051,21 +5051,21 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5019                           ;psect for function _sec_30_work
   5020                           
   5021                           
-  5022                           ;main.c: 432:     if (ff.bits.SIREN) {
+  5022                           ;main.c: 431:     if (ff.bits.SIREN) {
   5023                           
   5024                           ;incstack = 0
   5025                           ; Regs used in _sec_30_work: [wreg]
   5026  03F8  1DF8               	btfss	_ff+2,3
   5027  03F9  2BFC               	goto	i1l1987
   5028                           
-  5029                           ;main.c: 433:         ff.bits.SIREN = 0;
+  5029                           ;main.c: 432:         ff.bits.SIREN = 0;
   5030  03FA  11F8               	bcf	_ff+2,3
   5031                           
-  5032                           ;main.c: 434:     } else {
+  5032                           ;main.c: 433:     } else {
   5033  03FB  0008               	return
   5034  03FC                     i1l1987:
   5035                           
-  5036                           ;main.c: 435:         beep_short_count = 3;
+  5036                           ;main.c: 434:         beep_short_count = 3;
   5037  03FC  3003               	movlw	3
   5038  03FD  00F0               	movwf	??_sec_30_work
   5039  03FE  0870               	movf	??_sec_30_work,w
@@ -5077,7 +5077,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5045  0104                     __ptext40:	
   5046 ;; *************** function _rele_tick *****************
   5047 ;; Defined at:
-  5048 ;;		line 276 in file "main.c"
+  5048 ;;		line 277 in file "main.c"
   5049 ;; Parameters:    Size  Location     Type
   5050 ;;		None
   5051 ;; Auto vars:     Size  Location     Type
@@ -5108,7 +5108,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5076                           ;psect for function _rele_tick
   5077                           
   5078                           
-  5079                           ;main.c: 278:     if (ff.bits.OPENING && ff.bits.CLOSING) {
+  5079                           ;main.c: 279:     if (ff.bits.OPENING && ff.bits.CLOSING) {
   5080                           
   5081                           ;incstack = 0
   5082                           ; Regs used in _rele_tick: [wreg+status,2+status,0]
@@ -5117,111 +5117,111 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5085  0106  19F7               	btfsc	_ff+1,3
   5086  0107  0008               	return
   5087  0108                     i1l365:	
-  5088                           ;main.c: 280:     }
+  5088                           ;main.c: 281:     }
   5089                           
   5090                           
-  5091                           ;main.c: 283:     if (ff.bits.OPENING) {
+  5091                           ;main.c: 284:     if (ff.bits.OPENING) {
   5092  0108  1CF7               	btfss	_ff+1,1
   5093  0109  291A               	goto	i1l367
   5094                           
-  5095                           ;main.c: 284:         if (time_rele_power > 0) {
+  5095                           ;main.c: 285:         if (time_rele_power > 0) {
   5096  010A  0020               	movlb	0	; select bank0
   5097  010B  0831               	movf	_time_rele_power,w
   5098  010C  0432               	iorwf	_time_rele_power+1,w
   5099  010D  1903               	btfsc	3,2
   5100  010E  291A               	goto	i1l367
   5101                           
-  5102                           ;main.c: 285:             time_rele_power--;
+  5102                           ;main.c: 286:             time_rele_power--;
   5103  010F  3001               	movlw	1
   5104  0110  02B1               	subwf	_time_rele_power,f
   5105  0111  3000               	movlw	0
   5106  0112  3BB2               	subwfb	_time_rele_power+1,f
   5107                           
-  5108                           ;main.c: 286:             if (time_rele_power == 0) {
+  5108                           ;main.c: 287:             if (time_rele_power == 0) {
   5109  0113  0831               	movf	_time_rele_power,w
   5110  0114  0432               	iorwf	_time_rele_power+1,w
   5111  0115  1D03               	btfss	3,2
   5112  0116  291A               	goto	i1l367
   5113                           
-  5114                           ;main.c: 287:                 ff.bits.RELE_POWER_ON = 0;
+  5114                           ;main.c: 288:                 ff.bits.RELE_POWER_ON = 0;
   5115  0117  12F7               	bcf	_ff+1,5
   5116                           
-  5117                           ;main.c: 288:                 ff.bits.OPENED = 1;
+  5117                           ;main.c: 289:                 ff.bits.OPENED = 1;
   5118  0118  1577               	bsf	_ff+1,2
   5119                           
-  5120                           ;main.c: 289:                 ff.bits.OPENING = 0;
+  5120                           ;main.c: 290:                 ff.bits.OPENING = 0;
   5121  0119  10F7               	bcf	_ff+1,1
   5122  011A                     i1l367:	
-  5123                           ;main.c: 292:     }
+  5123                           ;main.c: 293:     }
   5124                           
   5125                           
-  5126                           ;main.c: 295:     if (ff.bits.CLOSING) {
+  5126                           ;main.c: 296:     if (ff.bits.CLOSING) {
   5127  011A  1DF7               	btfss	_ff+1,3
   5128  011B  0008               	return
   5129                           
-  5130                           ;main.c: 297:         if (time_rele_gap == 0) {
+  5130                           ;main.c: 298:         if (time_rele_gap == 0) {
   5131  011C  0020               	movlb	0	; select bank0
   5132  011D  082D               	movf	_time_rele_gap,w
   5133  011E  042E               	iorwf	_time_rele_gap+1,w
   5134  011F  1D03               	btfss	3,2
   5135  0120  292D               	goto	i1l1965
   5136                           
-  5137                           ;main.c: 298:             if (time_rele_power > 0) {
+  5137                           ;main.c: 299:             if (time_rele_power > 0) {
   5138  0121  0831               	movf	_time_rele_power,w
   5139  0122  0432               	iorwf	_time_rele_power+1,w
   5140  0123  1903               	btfsc	3,2
   5141  0124  292B               	goto	i1l372
   5142                           
-  5143                           ;main.c: 299:                 ff.bits.RELE_POWER_ON = 1;
+  5143                           ;main.c: 300:                 ff.bits.RELE_POWER_ON = 1;
   5144  0125  16F7               	bsf	_ff+1,5
   5145                           
-  5146                           ;main.c: 300:                 time_rele_power--;
+  5146                           ;main.c: 301:                 time_rele_power--;
   5147  0126  3001               	movlw	1
   5148  0127  02B1               	subwf	_time_rele_power,f
   5149  0128  3000               	movlw	0
   5150  0129  3BB2               	subwfb	_time_rele_power+1,f
   5151                           
-  5152                           ;main.c: 301:             } else {
+  5152                           ;main.c: 302:             } else {
   5153  012A  2931               	goto	i1l1967
   5154  012B                     i1l372:
   5155                           
-  5156                           ;main.c: 302:                 ff.bits.RELE_POWER_ON = 0;
+  5156                           ;main.c: 303:                 ff.bits.RELE_POWER_ON = 0;
   5157  012B  12F7               	bcf	_ff+1,5
   5158  012C  2931               	goto	i1l1967
   5159  012D                     i1l1965:
   5160                           
-  5161                           ;main.c: 305:             time_rele_gap--;
+  5161                           ;main.c: 306:             time_rele_gap--;
   5162  012D  3001               	movlw	1
   5163  012E  02AD               	subwf	_time_rele_gap,f
   5164  012F  3000               	movlw	0
   5165  0130  3BAE               	subwfb	_time_rele_gap+1,f
   5166  0131                     i1l1967:
   5167                           
-  5168                           ;main.c: 308:         if (time_rele_control > 0) {
+  5168                           ;main.c: 309:         if (time_rele_control > 0) {
   5169  0131  082F               	movf	_time_rele_control,w
   5170  0132  0430               	iorwf	_time_rele_control+1,w
   5171  0133  1903               	btfsc	3,2
   5172  0134  0008               	return
   5173                           
-  5174                           ;main.c: 309:             time_rele_control--;
+  5174                           ;main.c: 310:             time_rele_control--;
   5175  0135  3001               	movlw	1
   5176  0136  02AF               	subwf	_time_rele_control,f
   5177  0137  3000               	movlw	0
   5178  0138  3BB0               	subwfb	_time_rele_control+1,f
   5179                           
-  5180                           ;main.c: 310:             if (time_rele_control == 0) {
+  5180                           ;main.c: 311:             if (time_rele_control == 0) {
   5181  0139  082F               	movf	_time_rele_control,w
   5182  013A  0430               	iorwf	_time_rele_control+1,w
   5183  013B  1D03               	btfss	3,2
   5184  013C  0008               	return
   5185                           
-  5186                           ;main.c: 311:                 ff.bits.RELE_CONTROL_ON = 0;
+  5186                           ;main.c: 312:                 ff.bits.RELE_CONTROL_ON = 0;
   5187  013D  1377               	bcf	_ff+1,6
   5188                           
-  5189                           ;main.c: 312:                 ff.bits.CLOSED = 1;
+  5189                           ;main.c: 313:                 ff.bits.CLOSED = 1;
   5190  013E  1677               	bsf	_ff+1,4
   5191                           
-  5192                           ;main.c: 313:                 ff.bits.CLOSING = 0;
+  5192                           ;main.c: 314:                 ff.bits.CLOSING = 0;
   5193  013F  11F7               	bcf	_ff+1,3
   5194  0140  0008               	return
   5195  0141                     __end_of_rele_tick:
@@ -5230,7 +5230,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5198  035D                     __ptext41:	
   5199 ;; *************** function _minute_tick *****************
   5200 ;; Defined at:
-  5201 ;;		line 409 in file "main.c"
+  5201 ;;		line 410 in file "main.c"
   5202 ;; Parameters:    Size  Location     Type
   5203 ;;		None
   5204 ;; Auto vars:     Size  Location     Type
@@ -5261,654 +5261,651 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5229                           ;psect for function _minute_tick
   5230                           
   5231                           
-  5232                           ;main.c: 413:     if (time_melody > 0) {
+  5232                           ;main.c: 414:     if (time_melody > 0) {
   5233                           
   5234                           ;incstack = 0
   5235                           ; Regs used in _minute_tick: [wreg+status,2+status,0]
   5236  035D  0020               	movlb	0	; select bank0
   5237  035E  083D               	movf	_time_melody,w
   5238  035F  1903               	btfsc	3,2
-  5239  0360  2B63               	goto	i1l403
+  5239  0360  0008               	return
   5240                           
-  5241                           ;main.c: 414:         time_melody--;
+  5241                           ;main.c: 415:         time_melody--;
   5242  0361  3001               	movlw	1
   5243  0362  02BD               	subwf	_time_melody,f
-  5244  0363                     i1l403:	
-  5245                           ;main.c: 415:     };
-  5246                           
-  5247                           
-  5248                           ;main.c: 417:     if (time_melody == 0) {
-  5249  0363  083D               	movf	_time_melody,w
-  5250  0364  1D03               	btfss	3,2
-  5251  0365  0008               	return
+  5244                           
+  5245                           ;main.c: 416:         if (time_melody == 0) {
+  5246  0363  083D               	movf	_time_melody,w
+  5247  0364  1D03               	btfss	3,2
+  5248  0365  0008               	return
+  5249                           
+  5250                           ;main.c: 417:             ff.bits.SIREN = 1;
+  5251  0366  15F8               	bsf	_ff+2,3
   5252                           
-  5253                           ;main.c: 418:         ff.bits.SIREN = 1;
-  5254  0366  15F8               	bsf	_ff+2,3
-  5255                           
-  5256                           ;main.c: 419:         time_melody = MELODY_REPEAT_DELAY;
-  5257  0367  3003               	movlw	3
-  5258  0368  00F0               	movwf	??_minute_tick
-  5259  0369  0870               	movf	??_minute_tick,w
-  5260  036A  00BD               	movwf	_time_melody
-  5261  036B  0008               	return
-  5262  036C                     __end_of_minute_tick:
-  5263                           
-  5264                           	psect	text42
-  5265  0288                     __ptext42:	
-  5266 ;; *************** function _ms_200_work *****************
-  5267 ;; Defined at:
-  5268 ;;		line 489 in file "main.c"
-  5269 ;; Parameters:    Size  Location     Type
-  5270 ;;		None
-  5271 ;; Auto vars:     Size  Location     Type
-  5272 ;;		None
-  5273 ;; Return value:  Size  Location     Type
-  5274 ;;                  1    wreg      void 
-  5275 ;; Registers used:
-  5276 ;;		wreg, status,2, status,0, pclath, cstack
-  5277 ;; Tracked objects:
-  5278 ;;		On entry : 0/0
-  5279 ;;		On exit  : 0/0
-  5280 ;;		Unchanged: 0/0
-  5281 ;; Data sizes:     COMMON   BANK0   BANK1
-  5282 ;;      Params:         0       0       0
-  5283 ;;      Locals:         0       0       0
-  5284 ;;      Temps:          0       0       0
-  5285 ;;      Totals:         0       0       0
-  5286 ;;Total ram usage:        0 bytes
-  5287 ;; Hardware stack levels used: 1
-  5288 ;; Hardware stack levels required when called: 3
-  5289 ;; This function calls:
-  5290 ;;		_beep_double
-  5291 ;;		_beep_long
-  5292 ;;		_beep_short
-  5293 ;; This function is called by:
-  5294 ;;		_ms_tick
-  5295 ;; This function uses a non-reentrant model
-  5296 ;;
+  5253                           ;main.c: 418:             time_melody = MELODY_REPEAT_DELAY;
+  5254  0367  3003               	movlw	3
+  5255  0368  00F0               	movwf	??_minute_tick
+  5256  0369  0870               	movf	??_minute_tick,w
+  5257  036A  00BD               	movwf	_time_melody
+  5258  036B  0008               	return
+  5259  036C                     __end_of_minute_tick:
+  5260                           
+  5261                           	psect	text42
+  5262  0288                     __ptext42:	
+  5263 ;; *************** function _ms_200_work *****************
+  5264 ;; Defined at:
+  5265 ;;		line 488 in file "main.c"
+  5266 ;; Parameters:    Size  Location     Type
+  5267 ;;		None
+  5268 ;; Auto vars:     Size  Location     Type
+  5269 ;;		None
+  5270 ;; Return value:  Size  Location     Type
+  5271 ;;                  1    wreg      void 
+  5272 ;; Registers used:
+  5273 ;;		wreg, status,2, status,0, pclath, cstack
+  5274 ;; Tracked objects:
+  5275 ;;		On entry : 0/0
+  5276 ;;		On exit  : 0/0
+  5277 ;;		Unchanged: 0/0
+  5278 ;; Data sizes:     COMMON   BANK0   BANK1
+  5279 ;;      Params:         0       0       0
+  5280 ;;      Locals:         0       0       0
+  5281 ;;      Temps:          0       0       0
+  5282 ;;      Totals:         0       0       0
+  5283 ;;Total ram usage:        0 bytes
+  5284 ;; Hardware stack levels used: 1
+  5285 ;; Hardware stack levels required when called: 3
+  5286 ;; This function calls:
+  5287 ;;		_beep_double
+  5288 ;;		_beep_long
+  5289 ;;		_beep_short
+  5290 ;; This function is called by:
+  5291 ;;		_ms_tick
+  5292 ;; This function uses a non-reentrant model
+  5293 ;;
+  5294                           
+  5295  0288                     _ms_200_work:	
+  5296                           ;psect for function _ms_200_work
   5297                           
-  5298  0288                     _ms_200_work:	
-  5299                           ;psect for function _ms_200_work
+  5298                           
+  5299                           ;main.c: 489:     if (ff.bits.ALARM_ON) {
   5300                           
-  5301                           
-  5302                           ;main.c: 490:     if (ff.bits.ALARM_ON) {
-  5303                           
-  5304                           ;incstack = 0
-  5305                           ; Regs used in _ms_200_work: [wreg+status,2+status,0+pclath+cstack]
-  5306  0288  1C76               	btfss	_ff,0
-  5307  0289  2A98               	goto	i1l431
-  5308                           
-  5309                           ;main.c: 491:         if (ff.bits.SIREN) {
-  5310  028A  19F8               	btfsc	_ff+2,3
-  5311  028B  2A91               	goto	i1l2113
-  5312  028C  2A93               	goto	i1l2115
-  5313  028D                     i1l2121:
-  5314  028D  0020               	movlb	0	; select bank0
-  5315  028E  083A               	movf	_beep_long_count,w
-  5316  028F  1903               	btfsc	3,2
-  5317  0290  2A9D               	goto	i1l2125
-  5318  0291                     i1l2113:
+  5301                           ;incstack = 0
+  5302                           ; Regs used in _ms_200_work: [wreg+status,2+status,0+pclath+cstack]
+  5303  0288  1C76               	btfss	_ff,0
+  5304  0289  2A98               	goto	i1l431
+  5305                           
+  5306                           ;main.c: 490:         if (ff.bits.SIREN) {
+  5307  028A  19F8               	btfsc	_ff+2,3
+  5308  028B  2A91               	goto	i1l2113
+  5309  028C  2A93               	goto	i1l2115
+  5310  028D                     i1l2121:
+  5311  028D  0020               	movlb	0	; select bank0
+  5312  028E  083A               	movf	_beep_long_count,w
+  5313  028F  1903               	btfsc	3,2
+  5314  0290  2A9D               	goto	i1l2125
+  5315  0291                     i1l2113:
+  5316                           
+  5317                           ;main.c: 491:             beep_double();
+  5318  0291  2430               	fcall	_beep_double
   5319                           
-  5320                           ;main.c: 492:             beep_double();
-  5321  0291  2430               	fcall	_beep_double
-  5322                           
-  5323                           ;main.c: 493:         } else {
-  5324  0292  0008               	return
-  5325  0293                     i1l2115:
-  5326                           
-  5327                           ;main.c: 494:             if (beep_short_count > 0) {
-  5328  0293  087A               	movf	_beep_short_count,w
-  5329  0294  1903               	btfsc	3,2
-  5330  0295  0008               	return
-  5331                           
-  5332                           ;main.c: 495:                 beep_short();
-  5333  0296  236C               	fcall	_beep_short
-  5334  0297  0008               	return
-  5335  0298                     i1l431:
-  5336  0298  1CF6               	btfss	_ff,1
-  5337  0299  0008               	return
-  5338                           
-  5339                           ;main.c: 501:         if ((beep_short_count > 0) && (beep_long_count > 0)) {
-  5340  029A  087A               	movf	_beep_short_count,w
-  5341  029B  1D03               	btfss	3,2
-  5342  029C  2A8D               	goto	i1l2121
-  5343  029D                     i1l2125:
-  5344                           
-  5345                           ;main.c: 504:             if (beep_short_count > 0) {
-  5346  029D  087A               	movf	_beep_short_count,w
-  5347  029E  1903               	btfsc	3,2
-  5348  029F  2AA1               	goto	i1l2129
-  5349                           
-  5350                           ;main.c: 505:                 beep_short();
-  5351  02A0  236C               	fcall	_beep_short
-  5352  02A1                     i1l2129:
-  5353                           
-  5354                           ;main.c: 507:             if (beep_long_count > 0) {
-  5355  02A1  0020               	movlb	0	; select bank0
-  5356  02A2  083A               	movf	_beep_long_count,w
-  5357  02A3  1903               	btfsc	3,2
-  5358  02A4  0008               	return
-  5359                           
-  5360                           ;main.c: 508:                 beep_long();
-  5361  02A5  237B               	fcall	_beep_long
-  5362  02A6  0008               	return
-  5363  02A7                     __end_of_ms_200_work:
-  5364                           
-  5365                           	psect	text43
-  5366  0430                     __ptext43:	
-  5367 ;; *************** function _beep_double *****************
-  5368 ;; Defined at:
-  5369 ;;		line 152 in file "main.c"
-  5370 ;; Parameters:    Size  Location     Type
-  5371 ;;		None
-  5372 ;; Auto vars:     Size  Location     Type
-  5373 ;;		None
-  5374 ;; Return value:  Size  Location     Type
-  5375 ;;                  1    wreg      void 
-  5376 ;; Registers used:
-  5377 ;;		wreg, status,2, status,0, pclath, cstack
-  5378 ;; Tracked objects:
-  5379 ;;		On entry : 0/0
-  5380 ;;		On exit  : 0/0
-  5381 ;;		Unchanged: 0/0
-  5382 ;; Data sizes:     COMMON   BANK0   BANK1
-  5383 ;;      Params:         0       0       0
-  5384 ;;      Locals:         0       0       0
-  5385 ;;      Temps:          0       0       0
-  5386 ;;      Totals:         0       0       0
-  5387 ;;Total ram usage:        0 bytes
-  5388 ;; Hardware stack levels used: 1
-  5389 ;; Hardware stack levels required when called: 2
-  5390 ;; This function calls:
-  5391 ;;		_beep_long
-  5392 ;;		_beep_short
-  5393 ;; This function is called by:
-  5394 ;;		_ms_200_work
-  5395 ;; This function uses a non-reentrant model
-  5396 ;;
+  5320                           ;main.c: 492:         } else {
+  5321  0292  0008               	return
+  5322  0293                     i1l2115:
+  5323                           
+  5324                           ;main.c: 493:             if (beep_short_count > 0) {
+  5325  0293  087A               	movf	_beep_short_count,w
+  5326  0294  1903               	btfsc	3,2
+  5327  0295  0008               	return
+  5328                           
+  5329                           ;main.c: 494:                 beep_short();
+  5330  0296  236C               	fcall	_beep_short
+  5331  0297  0008               	return
+  5332  0298                     i1l431:
+  5333  0298  1CF6               	btfss	_ff,1
+  5334  0299  0008               	return
+  5335                           
+  5336                           ;main.c: 500:         if ((beep_short_count > 0) && (beep_long_count > 0)) {
+  5337  029A  087A               	movf	_beep_short_count,w
+  5338  029B  1D03               	btfss	3,2
+  5339  029C  2A8D               	goto	i1l2121
+  5340  029D                     i1l2125:
+  5341                           
+  5342                           ;main.c: 503:             if (beep_short_count > 0) {
+  5343  029D  087A               	movf	_beep_short_count,w
+  5344  029E  1903               	btfsc	3,2
+  5345  029F  2AA1               	goto	i1l2129
+  5346                           
+  5347                           ;main.c: 504:                 beep_short();
+  5348  02A0  236C               	fcall	_beep_short
+  5349  02A1                     i1l2129:
+  5350                           
+  5351                           ;main.c: 506:             if (beep_long_count > 0) {
+  5352  02A1  0020               	movlb	0	; select bank0
+  5353  02A2  083A               	movf	_beep_long_count,w
+  5354  02A3  1903               	btfsc	3,2
+  5355  02A4  0008               	return
+  5356                           
+  5357                           ;main.c: 507:                 beep_long();
+  5358  02A5  237B               	fcall	_beep_long
+  5359  02A6  0008               	return
+  5360  02A7                     __end_of_ms_200_work:
+  5361                           
+  5362                           	psect	text43
+  5363  0430                     __ptext43:	
+  5364 ;; *************** function _beep_double *****************
+  5365 ;; Defined at:
+  5366 ;;		line 152 in file "main.c"
+  5367 ;; Parameters:    Size  Location     Type
+  5368 ;;		None
+  5369 ;; Auto vars:     Size  Location     Type
+  5370 ;;		None
+  5371 ;; Return value:  Size  Location     Type
+  5372 ;;                  1    wreg      void 
+  5373 ;; Registers used:
+  5374 ;;		wreg, status,2, status,0, pclath, cstack
+  5375 ;; Tracked objects:
+  5376 ;;		On entry : 0/0
+  5377 ;;		On exit  : 0/0
+  5378 ;;		Unchanged: 0/0
+  5379 ;; Data sizes:     COMMON   BANK0   BANK1
+  5380 ;;      Params:         0       0       0
+  5381 ;;      Locals:         0       0       0
+  5382 ;;      Temps:          0       0       0
+  5383 ;;      Totals:         0       0       0
+  5384 ;;Total ram usage:        0 bytes
+  5385 ;; Hardware stack levels used: 1
+  5386 ;; Hardware stack levels required when called: 2
+  5387 ;; This function calls:
+  5388 ;;		_beep_long
+  5389 ;;		_beep_short
+  5390 ;; This function is called by:
+  5391 ;;		_ms_200_work
+  5392 ;; This function uses a non-reentrant model
+  5393 ;;
+  5394                           
+  5395  0430                     _beep_double:	
+  5396                           ;psect for function _beep_double
   5397                           
-  5398  0430                     _beep_double:	
-  5399                           ;psect for function _beep_double
+  5398                           
+  5399                           ;main.c: 153:     if (ff.bits.LAST_BEEP_LONG) {
   5400                           
-  5401                           
-  5402                           ;main.c: 153:     if (ff.bits.LAST_BEEP_LONG) {
-  5403                           
-  5404                           ;incstack = 0
-  5405                           ; Regs used in _beep_double: [wreg+status,2+status,0+pclath+cstack]
-  5406  0430  1FF9               	btfss	_ff+3,7
-  5407  0431  2C34               	goto	i1l1941
+  5401                           ;incstack = 0
+  5402                           ; Regs used in _beep_double: [wreg+status,2+status,0+pclath+cstack]
+  5403  0430  1FF9               	btfss	_ff+3,7
+  5404  0431  2C34               	goto	i1l1941
+  5405                           
+  5406                           ;main.c: 154:         beep_short();
+  5407  0432  236C               	fcall	_beep_short
   5408                           
-  5409                           ;main.c: 154:         beep_short();
-  5410  0432  236C               	fcall	_beep_short
-  5411                           
-  5412                           ;main.c: 155:     } else {
-  5413  0433  0008               	return
-  5414  0434                     i1l1941:
-  5415                           
-  5416                           ;main.c: 156:         beep_long();
-  5417  0434  237B               	fcall	_beep_long
-  5418  0435  0008               	return
-  5419  0436                     __end_of_beep_double:
-  5420                           
-  5421                           	psect	text44
-  5422  036C                     __ptext44:	
-  5423 ;; *************** function _beep_short *****************
-  5424 ;; Defined at:
-  5425 ;;		line 134 in file "main.c"
-  5426 ;; Parameters:    Size  Location     Type
-  5427 ;;		None
-  5428 ;; Auto vars:     Size  Location     Type
-  5429 ;;		None
-  5430 ;; Return value:  Size  Location     Type
-  5431 ;;                  1    wreg      void 
-  5432 ;; Registers used:
-  5433 ;;		wreg, status,2, status,0, pclath, cstack
-  5434 ;; Tracked objects:
-  5435 ;;		On entry : 0/0
-  5436 ;;		On exit  : 0/0
-  5437 ;;		Unchanged: 0/0
-  5438 ;; Data sizes:     COMMON   BANK0   BANK1
-  5439 ;;      Params:         0       0       0
-  5440 ;;      Locals:         0       0       0
-  5441 ;;      Temps:          0       0       0
-  5442 ;;      Totals:         0       0       0
-  5443 ;;Total ram usage:        0 bytes
-  5444 ;; Hardware stack levels used: 1
-  5445 ;; Hardware stack levels required when called: 1
-  5446 ;; This function calls:
-  5447 ;;		_start_tone
-  5448 ;; This function is called by:
-  5449 ;;		_beep_double
-  5450 ;;		_ms_200_work
-  5451 ;; This function uses a non-reentrant model
-  5452 ;;
+  5409                           ;main.c: 155:     } else {
+  5410  0433  0008               	return
+  5411  0434                     i1l1941:
+  5412                           
+  5413                           ;main.c: 156:         beep_long();
+  5414  0434  237B               	fcall	_beep_long
+  5415  0435  0008               	return
+  5416  0436                     __end_of_beep_double:
+  5417                           
+  5418                           	psect	text44
+  5419  036C                     __ptext44:	
+  5420 ;; *************** function _beep_short *****************
+  5421 ;; Defined at:
+  5422 ;;		line 134 in file "main.c"
+  5423 ;; Parameters:    Size  Location     Type
+  5424 ;;		None
+  5425 ;; Auto vars:     Size  Location     Type
+  5426 ;;		None
+  5427 ;; Return value:  Size  Location     Type
+  5428 ;;                  1    wreg      void 
+  5429 ;; Registers used:
+  5430 ;;		wreg, status,2, status,0, pclath, cstack
+  5431 ;; Tracked objects:
+  5432 ;;		On entry : 0/0
+  5433 ;;		On exit  : 0/0
+  5434 ;;		Unchanged: 0/0
+  5435 ;; Data sizes:     COMMON   BANK0   BANK1
+  5436 ;;      Params:         0       0       0
+  5437 ;;      Locals:         0       0       0
+  5438 ;;      Temps:          0       0       0
+  5439 ;;      Totals:         0       0       0
+  5440 ;;Total ram usage:        0 bytes
+  5441 ;; Hardware stack levels used: 1
+  5442 ;; Hardware stack levels required when called: 1
+  5443 ;; This function calls:
+  5444 ;;		_start_tone
+  5445 ;; This function is called by:
+  5446 ;;		_beep_double
+  5447 ;;		_ms_200_work
+  5448 ;; This function uses a non-reentrant model
+  5449 ;;
+  5450                           
+  5451  036C                     _beep_short:	
+  5452                           ;psect for function _beep_short
   5453                           
-  5454  036C                     _beep_short:	
-  5455                           ;psect for function _beep_short
+  5454                           
+  5455                           ;main.c: 135:     if (!ff.bits.ZUM_BUSY) {
   5456                           
-  5457                           
-  5458                           ;main.c: 135:     if (!ff.bits.ZUM_BUSY) {
-  5459                           
-  5460                           ;incstack = 0
-  5461                           ; Regs used in _beep_short: [wreg+status,2+status,0+pclath+cstack]
-  5462  036C  1A78               	btfsc	_ff+2,4
-  5463  036D  0008               	return
-  5464                           
-  5465                           ;main.c: 136:         if (beep_short_count > 0) beep_short_count--;
-  5466  036E  087A               	movf	_beep_short_count,w
-  5467  036F  1903               	btfsc	3,2
-  5468  0370  2B73               	goto	i1l1915
-  5469  0371  3001               	movlw	1
-  5470  0372  02FA               	subwf	_beep_short_count,f
-  5471  0373                     i1l1915:
-  5472                           
-  5473                           ;main.c: 137:         time_tone = SHORT_ZUMMER_DELAY;
-  5474  0373  301E               	movlw	30
-  5475  0374  0020               	movlb	0	; select bank0
-  5476  0375  00AB               	movwf	_time_tone
-  5477  0376  3000               	movlw	0
-  5478  0377  00AC               	movwf	_time_tone+1
+  5457                           ;incstack = 0
+  5458                           ; Regs used in _beep_short: [wreg+status,2+status,0+pclath+cstack]
+  5459  036C  1A78               	btfsc	_ff+2,4
+  5460  036D  0008               	return
+  5461                           
+  5462                           ;main.c: 136:         if (beep_short_count > 0) beep_short_count--;
+  5463  036E  087A               	movf	_beep_short_count,w
+  5464  036F  1903               	btfsc	3,2
+  5465  0370  2B73               	goto	i1l1915
+  5466  0371  3001               	movlw	1
+  5467  0372  02FA               	subwf	_beep_short_count,f
+  5468  0373                     i1l1915:
+  5469                           
+  5470                           ;main.c: 137:         time_tone = SHORT_ZUMMER_DELAY;
+  5471  0373  301E               	movlw	30
+  5472  0374  0020               	movlb	0	; select bank0
+  5473  0375  00AB               	movwf	_time_tone
+  5474  0376  3000               	movlw	0
+  5475  0377  00AC               	movwf	_time_tone+1
+  5476                           
+  5477                           ;main.c: 138:         ff.bits.LAST_BEEP_LONG = 0;
+  5478  0378  13F9               	bcf	_ff+3,7
   5479                           
-  5480                           ;main.c: 138:         ff.bits.LAST_BEEP_LONG = 0;
-  5481  0378  13F9               	bcf	_ff+3,7
-  5482                           
-  5483                           ;main.c: 139:         start_tone();
-  5484  0379  2444               	fcall	_start_tone
-  5485  037A  0008               	return
-  5486  037B                     __end_of_beep_short:
-  5487                           
-  5488                           	psect	text45
-  5489  037B                     __ptext45:	
-  5490 ;; *************** function _beep_long *****************
-  5491 ;; Defined at:
-  5492 ;;		line 143 in file "main.c"
-  5493 ;; Parameters:    Size  Location     Type
-  5494 ;;		None
-  5495 ;; Auto vars:     Size  Location     Type
-  5496 ;;		None
-  5497 ;; Return value:  Size  Location     Type
-  5498 ;;                  1    wreg      void 
-  5499 ;; Registers used:
-  5500 ;;		wreg, status,2, status,0, pclath, cstack
-  5501 ;; Tracked objects:
-  5502 ;;		On entry : 0/0
-  5503 ;;		On exit  : 0/0
-  5504 ;;		Unchanged: 0/0
-  5505 ;; Data sizes:     COMMON   BANK0   BANK1
-  5506 ;;      Params:         0       0       0
-  5507 ;;      Locals:         0       0       0
-  5508 ;;      Temps:          0       0       0
-  5509 ;;      Totals:         0       0       0
-  5510 ;;Total ram usage:        0 bytes
-  5511 ;; Hardware stack levels used: 1
-  5512 ;; Hardware stack levels required when called: 1
-  5513 ;; This function calls:
-  5514 ;;		_start_tone
-  5515 ;; This function is called by:
-  5516 ;;		_beep_double
-  5517 ;;		_ms_200_work
-  5518 ;; This function uses a non-reentrant model
-  5519 ;;
+  5480                           ;main.c: 139:         start_tone();
+  5481  0379  2444               	fcall	_start_tone
+  5482  037A  0008               	return
+  5483  037B                     __end_of_beep_short:
+  5484                           
+  5485                           	psect	text45
+  5486  037B                     __ptext45:	
+  5487 ;; *************** function _beep_long *****************
+  5488 ;; Defined at:
+  5489 ;;		line 143 in file "main.c"
+  5490 ;; Parameters:    Size  Location     Type
+  5491 ;;		None
+  5492 ;; Auto vars:     Size  Location     Type
+  5493 ;;		None
+  5494 ;; Return value:  Size  Location     Type
+  5495 ;;                  1    wreg      void 
+  5496 ;; Registers used:
+  5497 ;;		wreg, status,2, status,0, pclath, cstack
+  5498 ;; Tracked objects:
+  5499 ;;		On entry : 0/0
+  5500 ;;		On exit  : 0/0
+  5501 ;;		Unchanged: 0/0
+  5502 ;; Data sizes:     COMMON   BANK0   BANK1
+  5503 ;;      Params:         0       0       0
+  5504 ;;      Locals:         0       0       0
+  5505 ;;      Temps:          0       0       0
+  5506 ;;      Totals:         0       0       0
+  5507 ;;Total ram usage:        0 bytes
+  5508 ;; Hardware stack levels used: 1
+  5509 ;; Hardware stack levels required when called: 1
+  5510 ;; This function calls:
+  5511 ;;		_start_tone
+  5512 ;; This function is called by:
+  5513 ;;		_beep_double
+  5514 ;;		_ms_200_work
+  5515 ;; This function uses a non-reentrant model
+  5516 ;;
+  5517                           
+  5518  037B                     _beep_long:	
+  5519                           ;psect for function _beep_long
   5520                           
-  5521  037B                     _beep_long:	
-  5522                           ;psect for function _beep_long
+  5521                           
+  5522                           ;main.c: 144:     if (!ff.bits.ZUM_BUSY) {
   5523                           
-  5524                           
-  5525                           ;main.c: 144:     if (!ff.bits.ZUM_BUSY) {
-  5526                           
-  5527                           ;incstack = 0
-  5528                           ; Regs used in _beep_long: [wreg+status,2+status,0+pclath+cstack]
-  5529  037B  1A78               	btfsc	_ff+2,4
-  5530  037C  0008               	return
-  5531                           
-  5532                           ;main.c: 145:         if (beep_long_count > 0) beep_long_count--;
-  5533  037D  0020               	movlb	0	; select bank0
-  5534  037E  083A               	movf	_beep_long_count,w
-  5535  037F  1903               	btfsc	3,2
-  5536  0380  2B83               	goto	i1l1927
-  5537  0381  3001               	movlw	1
-  5538  0382  02BA               	subwf	_beep_long_count,f
-  5539  0383                     i1l1927:
-  5540                           
-  5541                           ;main.c: 146:         time_tone = LONG_ZUMMER_DELAY;
-  5542  0383  3082               	movlw	130
-  5543  0384  00AB               	movwf	_time_tone
-  5544  0385  3000               	movlw	0
-  5545  0386  00AC               	movwf	_time_tone+1
+  5524                           ;incstack = 0
+  5525                           ; Regs used in _beep_long: [wreg+status,2+status,0+pclath+cstack]
+  5526  037B  1A78               	btfsc	_ff+2,4
+  5527  037C  0008               	return
+  5528                           
+  5529                           ;main.c: 145:         if (beep_long_count > 0) beep_long_count--;
+  5530  037D  0020               	movlb	0	; select bank0
+  5531  037E  083A               	movf	_beep_long_count,w
+  5532  037F  1903               	btfsc	3,2
+  5533  0380  2B83               	goto	i1l1927
+  5534  0381  3001               	movlw	1
+  5535  0382  02BA               	subwf	_beep_long_count,f
+  5536  0383                     i1l1927:
+  5537                           
+  5538                           ;main.c: 146:         time_tone = LONG_ZUMMER_DELAY;
+  5539  0383  3082               	movlw	130
+  5540  0384  00AB               	movwf	_time_tone
+  5541  0385  3000               	movlw	0
+  5542  0386  00AC               	movwf	_time_tone+1
+  5543                           
+  5544                           ;main.c: 147:         ff.bits.LAST_BEEP_LONG = 1;
+  5545  0387  17F9               	bsf	_ff+3,7
   5546                           
-  5547                           ;main.c: 147:         ff.bits.LAST_BEEP_LONG = 1;
-  5548  0387  17F9               	bsf	_ff+3,7
-  5549                           
-  5550                           ;main.c: 148:         start_tone();
-  5551  0388  2444               	fcall	_start_tone
-  5552  0389  0008               	return
-  5553  038A                     __end_of_beep_long:
-  5554                           
-  5555                           	psect	text46
-  5556  0444                     __ptext46:	
-  5557 ;; *************** function _start_tone *****************
-  5558 ;; Defined at:
-  5559 ;;		line 122 in file "main.c"
-  5560 ;; Parameters:    Size  Location     Type
-  5561 ;;		None
-  5562 ;; Auto vars:     Size  Location     Type
-  5563 ;;		None
-  5564 ;; Return value:  Size  Location     Type
-  5565 ;;                  1    wreg      void 
-  5566 ;; Registers used:
-  5567 ;;		None
-  5568 ;; Tracked objects:
-  5569 ;;		On entry : 0/0
-  5570 ;;		On exit  : 0/0
-  5571 ;;		Unchanged: 0/0
-  5572 ;; Data sizes:     COMMON   BANK0   BANK1
-  5573 ;;      Params:         0       0       0
-  5574 ;;      Locals:         0       0       0
-  5575 ;;      Temps:          0       0       0
-  5576 ;;      Totals:         0       0       0
-  5577 ;;Total ram usage:        0 bytes
-  5578 ;; Hardware stack levels used: 1
-  5579 ;; This function calls:
-  5580 ;;		Nothing
-  5581 ;; This function is called by:
-  5582 ;;		_beep_short
-  5583 ;;		_beep_long
-  5584 ;; This function uses a non-reentrant model
-  5585 ;;
+  5547                           ;main.c: 148:         start_tone();
+  5548  0388  2444               	fcall	_start_tone
+  5549  0389  0008               	return
+  5550  038A                     __end_of_beep_long:
+  5551                           
+  5552                           	psect	text46
+  5553  0444                     __ptext46:	
+  5554 ;; *************** function _start_tone *****************
+  5555 ;; Defined at:
+  5556 ;;		line 122 in file "main.c"
+  5557 ;; Parameters:    Size  Location     Type
+  5558 ;;		None
+  5559 ;; Auto vars:     Size  Location     Type
+  5560 ;;		None
+  5561 ;; Return value:  Size  Location     Type
+  5562 ;;                  1    wreg      void 
+  5563 ;; Registers used:
+  5564 ;;		None
+  5565 ;; Tracked objects:
+  5566 ;;		On entry : 0/0
+  5567 ;;		On exit  : 0/0
+  5568 ;;		Unchanged: 0/0
+  5569 ;; Data sizes:     COMMON   BANK0   BANK1
+  5570 ;;      Params:         0       0       0
+  5571 ;;      Locals:         0       0       0
+  5572 ;;      Temps:          0       0       0
+  5573 ;;      Totals:         0       0       0
+  5574 ;;Total ram usage:        0 bytes
+  5575 ;; Hardware stack levels used: 1
+  5576 ;; This function calls:
+  5577 ;;		Nothing
+  5578 ;; This function is called by:
+  5579 ;;		_beep_short
+  5580 ;;		_beep_long
+  5581 ;; This function uses a non-reentrant model
+  5582 ;;
+  5583                           
+  5584  0444                     _start_tone:	
+  5585                           ;psect for function _start_tone
   5586                           
-  5587  0444                     _start_tone:	
-  5588                           ;psect for function _start_tone
+  5587                           
+  5588                           ;main.c: 123:     ff.bits.ZUM_BUSY = 1;
   5589                           
-  5590                           
-  5591                           ;main.c: 123:     ff.bits.ZUM_BUSY = 1;
-  5592                           
-  5593                           ;incstack = 0
-  5594                           ; Regs used in _start_tone: []
-  5595  0444  1678               	bsf	_ff+2,4
+  5590                           ;incstack = 0
+  5591                           ; Regs used in _start_tone: []
+  5592  0444  1678               	bsf	_ff+2,4
+  5593                           
+  5594                           ;main.c: 124:     ff.bits.TONE_ON = 1;
+  5595  0445  14F8               	bsf	_ff+2,1
   5596                           
-  5597                           ;main.c: 124:     ff.bits.TONE_ON = 1;
-  5598  0445  14F8               	bsf	_ff+2,1
-  5599                           
-  5600                           ;main.c: 125:     ff.bits.TONE_OFF = 0;
-  5601  0446  1178               	bcf	_ff+2,2
-  5602  0447  0008               	return
-  5603  0448                     __end_of_start_tone:
-  5604                           
-  5605                           	psect	text47
-  5606  0436                     __ptext47:	
-  5607 ;; *************** function _ms_100_work *****************
-  5608 ;; Defined at:
-  5609 ;;		line 515 in file "main.c"
-  5610 ;; Parameters:    Size  Location     Type
-  5611 ;;		None
-  5612 ;; Auto vars:     Size  Location     Type
-  5613 ;;		None
-  5614 ;; Return value:  Size  Location     Type
-  5615 ;;                  1    wreg      void 
-  5616 ;; Registers used:
-  5617 ;;		None
-  5618 ;; Tracked objects:
-  5619 ;;		On entry : 0/0
-  5620 ;;		On exit  : 0/0
-  5621 ;;		Unchanged: 0/0
-  5622 ;; Data sizes:     COMMON   BANK0   BANK1
-  5623 ;;      Params:         0       0       0
-  5624 ;;      Locals:         0       0       0
-  5625 ;;      Temps:          0       0       0
-  5626 ;;      Totals:         0       0       0
-  5627 ;;Total ram usage:        0 bytes
-  5628 ;; Hardware stack levels used: 1
-  5629 ;; This function calls:
-  5630 ;;		Nothing
-  5631 ;; This function is called by:
-  5632 ;;		_ms_tick
-  5633 ;; This function uses a non-reentrant model
-  5634 ;;
+  5597                           ;main.c: 125:     ff.bits.TONE_OFF = 0;
+  5598  0446  1178               	bcf	_ff+2,2
+  5599  0447  0008               	return
+  5600  0448                     __end_of_start_tone:
+  5601                           
+  5602                           	psect	text47
+  5603  0436                     __ptext47:	
+  5604 ;; *************** function _ms_100_work *****************
+  5605 ;; Defined at:
+  5606 ;;		line 514 in file "main.c"
+  5607 ;; Parameters:    Size  Location     Type
+  5608 ;;		None
+  5609 ;; Auto vars:     Size  Location     Type
+  5610 ;;		None
+  5611 ;; Return value:  Size  Location     Type
+  5612 ;;                  1    wreg      void 
+  5613 ;; Registers used:
+  5614 ;;		None
+  5615 ;; Tracked objects:
+  5616 ;;		On entry : 0/0
+  5617 ;;		On exit  : 0/0
+  5618 ;;		Unchanged: 0/0
+  5619 ;; Data sizes:     COMMON   BANK0   BANK1
+  5620 ;;      Params:         0       0       0
+  5621 ;;      Locals:         0       0       0
+  5622 ;;      Temps:          0       0       0
+  5623 ;;      Totals:         0       0       0
+  5624 ;;Total ram usage:        0 bytes
+  5625 ;; Hardware stack levels used: 1
+  5626 ;; This function calls:
+  5627 ;;		Nothing
+  5628 ;; This function is called by:
+  5629 ;;		_ms_tick
+  5630 ;; This function uses a non-reentrant model
+  5631 ;;
+  5632                           
+  5633  0436                     _ms_100_work:	
+  5634                           ;psect for function _ms_100_work
   5635                           
-  5636  0436                     _ms_100_work:	
-  5637                           ;psect for function _ms_100_work
+  5636                           
+  5637                           ;main.c: 515:     if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
   5638                           
-  5639                           
-  5640                           ;main.c: 516:     if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
-  5641                           
-  5642                           ;incstack = 0
-  5643                           ; Regs used in _ms_100_work: []
-  5644  0436  1879               	btfsc	_ff+3,0
-  5645  0437  2C3A               	goto	i1l446
-  5646  0438  1CF9               	btfss	_ff+3,1
-  5647  0439  0008               	return
-  5648  043A                     i1l446:
-  5649                           
-  5650                           ;main.c: 517:         ff.bits.ALLOW_MEASURE = 1;
-  5651  043A  1676               	bsf	_ff,4
-  5652  043B  0008               	return
-  5653  043C                     __end_of_ms_100_work:
-  5654                           
-  5655                           	psect	text48
-  5656  03A6                     __ptext48:	
-  5657 ;; *************** function _TMR0_ISR *****************
-  5658 ;; Defined at:
-  5659 ;;		line 108 in file "mcc_generated_files/tmr0.c"
-  5660 ;; Parameters:    Size  Location     Type
-  5661 ;;		None
-  5662 ;; Auto vars:     Size  Location     Type
-  5663 ;;		None
-  5664 ;; Return value:  Size  Location     Type
-  5665 ;;                  1    wreg      void 
-  5666 ;; Registers used:
-  5667 ;;		wreg, status,2, status,0, pclath, cstack
-  5668 ;; Tracked objects:
-  5669 ;;		On entry : 0/0
-  5670 ;;		On exit  : 0/0
-  5671 ;;		Unchanged: 0/0
-  5672 ;; Data sizes:     COMMON   BANK0   BANK1
-  5673 ;;      Params:         0       0       0
-  5674 ;;      Locals:         0       0       0
-  5675 ;;      Temps:          0       0       0
-  5676 ;;      Totals:         0       0       0
-  5677 ;;Total ram usage:        0 bytes
-  5678 ;; Hardware stack levels used: 1
-  5679 ;; Hardware stack levels required when called: 1
-  5680 ;; This function calls:
-  5681 ;;		Absolute function
-  5682 ;;		_TMR0_DefaultInterruptHandler
-  5683 ;;		_zummer_switch
-  5684 ;; This function is called by:
-  5685 ;;		_INTERRUPT_InterruptManager
-  5686 ;; This function uses a non-reentrant model
-  5687 ;;
+  5639                           ;incstack = 0
+  5640                           ; Regs used in _ms_100_work: []
+  5641  0436  1879               	btfsc	_ff+3,0
+  5642  0437  2C3A               	goto	i1l446
+  5643  0438  1CF9               	btfss	_ff+3,1
+  5644  0439  0008               	return
+  5645  043A                     i1l446:
+  5646                           
+  5647                           ;main.c: 516:         ff.bits.ALLOW_MEASURE = 1;
+  5648  043A  1676               	bsf	_ff,4
+  5649  043B  0008               	return
+  5650  043C                     __end_of_ms_100_work:
+  5651                           
+  5652                           	psect	text48
+  5653  03A6                     __ptext48:	
+  5654 ;; *************** function _TMR0_ISR *****************
+  5655 ;; Defined at:
+  5656 ;;		line 108 in file "mcc_generated_files/tmr0.c"
+  5657 ;; Parameters:    Size  Location     Type
+  5658 ;;		None
+  5659 ;; Auto vars:     Size  Location     Type
+  5660 ;;		None
+  5661 ;; Return value:  Size  Location     Type
+  5662 ;;                  1    wreg      void 
+  5663 ;; Registers used:
+  5664 ;;		wreg, status,2, status,0, pclath, cstack
+  5665 ;; Tracked objects:
+  5666 ;;		On entry : 0/0
+  5667 ;;		On exit  : 0/0
+  5668 ;;		Unchanged: 0/0
+  5669 ;; Data sizes:     COMMON   BANK0   BANK1
+  5670 ;;      Params:         0       0       0
+  5671 ;;      Locals:         0       0       0
+  5672 ;;      Temps:          0       0       0
+  5673 ;;      Totals:         0       0       0
+  5674 ;;Total ram usage:        0 bytes
+  5675 ;; Hardware stack levels used: 1
+  5676 ;; Hardware stack levels required when called: 1
+  5677 ;; This function calls:
+  5678 ;;		Absolute function
+  5679 ;;		_TMR0_DefaultInterruptHandler
+  5680 ;;		_zummer_switch
+  5681 ;; This function is called by:
+  5682 ;;		_INTERRUPT_InterruptManager
+  5683 ;; This function uses a non-reentrant model
+  5684 ;;
+  5685                           
+  5686  03A6                     _TMR0_ISR:	
+  5687                           ;psect for function _TMR0_ISR
   5688                           
-  5689  03A6                     _TMR0_ISR:	
-  5690                           ;psect for function _TMR0_ISR
+  5689                           
+  5690                           ;mcc_generated_files/tmr0.c: 112:     INTCONbits.TMR0IF = 0;
   5691                           
-  5692                           
-  5693                           ;mcc_generated_files/tmr0.c: 112:     INTCONbits.TMR0IF = 0;
-  5694                           
-  5695                           ;incstack = 0
-  5696                           ; Regs used in _TMR0_ISR: [wreg+status,2+status,0+pclath+cstack]
-  5697  03A6  110B               	bcf	11,2	;volatile
-  5698                           
-  5699                           ;mcc_generated_files/tmr0.c: 114:     TMR0 = timer0ReloadVal;
-  5700  03A7  0020               	movlb	0	; select bank0
-  5701  03A8  0843               	movf	_timer0ReloadVal,w	;volatile
-  5702  03A9  0095               	movwf	21	;volatile
-  5703                           
-  5704                           ;mcc_generated_files/tmr0.c: 116:     if(TMR0_InterruptHandler)
-  5705  03AA  083F               	movf	_TMR0_InterruptHandler,w
-  5706  03AB  0440               	iorwf	_TMR0_InterruptHandler+1,w
-  5707  03AC  1903               	btfsc	3,2
-  5708  03AD  0008               	return
-  5709                           
-  5710                           ;mcc_generated_files/tmr0.c: 117:     {;mcc_generated_files/tmr0.c: 118:         TMR0_In
+  5692                           ;incstack = 0
+  5693                           ; Regs used in _TMR0_ISR: [wreg+status,2+status,0+pclath+cstack]
+  5694  03A6  110B               	bcf	11,2	;volatile
+  5695                           
+  5696                           ;mcc_generated_files/tmr0.c: 114:     TMR0 = timer0ReloadVal;
+  5697  03A7  0020               	movlb	0	; select bank0
+  5698  03A8  0843               	movf	_timer0ReloadVal,w	;volatile
+  5699  03A9  0095               	movwf	21	;volatile
+  5700                           
+  5701                           ;mcc_generated_files/tmr0.c: 116:     if(TMR0_InterruptHandler)
+  5702  03AA  083F               	movf	_TMR0_InterruptHandler,w
+  5703  03AB  0440               	iorwf	_TMR0_InterruptHandler+1,w
+  5704  03AC  1903               	btfsc	3,2
+  5705  03AD  0008               	return
+  5706                           
+  5707                           ;mcc_generated_files/tmr0.c: 117:     {;mcc_generated_files/tmr0.c: 118:         TMR0_In
       +                          terruptHandler();
-  5711  03AE  0840               	movf	_TMR0_InterruptHandler+1,w
-  5712  03AF  008A               	movwf	10
-  5713  03B0  083F               	movf	_TMR0_InterruptHandler,w
-  5714  03B1  000A               	callw
-  5715  03B2  3183               	pagesel	$
-  5716  03B3  0008               	return
-  5717  03B4                     __end_of_TMR0_ISR:
-  5718                           
-  5719                           	psect	text49
-  5720  0467                     __ptext49:	
-  5721 ;; *************** function _TMR0_DefaultInterruptHandler *****************
-  5722 ;; Defined at:
-  5723 ;;		line 129 in file "mcc_generated_files/tmr0.c"
-  5724 ;; Parameters:    Size  Location     Type
-  5725 ;;		None
-  5726 ;; Auto vars:     Size  Location     Type
-  5727 ;;		None
-  5728 ;; Return value:  Size  Location     Type
-  5729 ;;                  1    wreg      void 
-  5730 ;; Registers used:
-  5731 ;;		None
-  5732 ;; Tracked objects:
-  5733 ;;		On entry : 0/0
-  5734 ;;		On exit  : 0/0
-  5735 ;;		Unchanged: 0/0
-  5736 ;; Data sizes:     COMMON   BANK0   BANK1
-  5737 ;;      Params:         0       0       0
-  5738 ;;      Locals:         0       0       0
-  5739 ;;      Temps:          0       0       0
-  5740 ;;      Totals:         0       0       0
-  5741 ;;Total ram usage:        0 bytes
-  5742 ;; Hardware stack levels used: 1
-  5743 ;; This function calls:
-  5744 ;;		Nothing
-  5745 ;; This function is called by:
-  5746 ;;		_TMR0_Initialize
-  5747 ;;		_TMR0_ISR
-  5748 ;; This function uses a non-reentrant model
-  5749 ;;
+  5708  03AE  0840               	movf	_TMR0_InterruptHandler+1,w
+  5709  03AF  008A               	movwf	10
+  5710  03B0  083F               	movf	_TMR0_InterruptHandler,w
+  5711  03B1  000A               	callw
+  5712  03B2  3183               	pagesel	$
+  5713  03B3  0008               	return
+  5714  03B4                     __end_of_TMR0_ISR:
+  5715                           
+  5716                           	psect	text49
+  5717  0467                     __ptext49:	
+  5718 ;; *************** function _TMR0_DefaultInterruptHandler *****************
+  5719 ;; Defined at:
+  5720 ;;		line 129 in file "mcc_generated_files/tmr0.c"
+  5721 ;; Parameters:    Size  Location     Type
+  5722 ;;		None
+  5723 ;; Auto vars:     Size  Location     Type
+  5724 ;;		None
+  5725 ;; Return value:  Size  Location     Type
+  5726 ;;                  1    wreg      void 
+  5727 ;; Registers used:
+  5728 ;;		None
+  5729 ;; Tracked objects:
+  5730 ;;		On entry : 0/0
+  5731 ;;		On exit  : 0/0
+  5732 ;;		Unchanged: 0/0
+  5733 ;; Data sizes:     COMMON   BANK0   BANK1
+  5734 ;;      Params:         0       0       0
+  5735 ;;      Locals:         0       0       0
+  5736 ;;      Temps:          0       0       0
+  5737 ;;      Totals:         0       0       0
+  5738 ;;Total ram usage:        0 bytes
+  5739 ;; Hardware stack levels used: 1
+  5740 ;; This function calls:
+  5741 ;;		Nothing
+  5742 ;; This function is called by:
+  5743 ;;		_TMR0_Initialize
+  5744 ;;		_TMR0_ISR
+  5745 ;; This function uses a non-reentrant model
+  5746 ;;
+  5747                           
+  5748  0467                     _TMR0_DefaultInterruptHandler:	
+  5749                           ;psect for function _TMR0_DefaultInterruptHandler
   5750                           
-  5751  0467                     _TMR0_DefaultInterruptHandler:	
-  5752                           ;psect for function _TMR0_DefaultInterruptHandler
-  5753                           
-  5754                           
-  5755                           ;incstack = 0
-  5756                           ; Regs used in _TMR0_DefaultInterruptHandler: []
-  5757  0467  0008               	return
-  5758  0468                     __end_of_TMR0_DefaultInterruptHandler:
-  5759                           
-  5760                           	psect	text50
-  5761  03D8                     __ptext50:	
-  5762 ;; *************** function _zummer_switch *****************
-  5763 ;; Defined at:
-  5764 ;;		line 582 in file "main.c"
-  5765 ;; Parameters:    Size  Location     Type
-  5766 ;;		None
-  5767 ;; Auto vars:     Size  Location     Type
-  5768 ;;		None
-  5769 ;; Return value:  Size  Location     Type
-  5770 ;;                  1    wreg      void 
-  5771 ;; Registers used:
-  5772 ;;		status,0
-  5773 ;; Tracked objects:
-  5774 ;;		On entry : 0/0
-  5775 ;;		On exit  : 0/0
-  5776 ;;		Unchanged: 0/0
-  5777 ;; Data sizes:     COMMON   BANK0   BANK1
-  5778 ;;      Params:         0       0       0
-  5779 ;;      Locals:         0       0       0
-  5780 ;;      Temps:          0       0       0
-  5781 ;;      Totals:         0       0       0
-  5782 ;;Total ram usage:        0 bytes
-  5783 ;; Hardware stack levels used: 1
-  5784 ;; This function calls:
-  5785 ;;		Nothing
-  5786 ;; This function is called by:
-  5787 ;;		_start_setup
-  5788 ;;		_TMR0_ISR
-  5789 ;; This function uses a non-reentrant model
-  5790 ;;
+  5751                           
+  5752                           ;incstack = 0
+  5753                           ; Regs used in _TMR0_DefaultInterruptHandler: []
+  5754  0467  0008               	return
+  5755  0468                     __end_of_TMR0_DefaultInterruptHandler:
+  5756                           
+  5757                           	psect	text50
+  5758  03D8                     __ptext50:	
+  5759 ;; *************** function _zummer_switch *****************
+  5760 ;; Defined at:
+  5761 ;;		line 581 in file "main.c"
+  5762 ;; Parameters:    Size  Location     Type
+  5763 ;;		None
+  5764 ;; Auto vars:     Size  Location     Type
+  5765 ;;		None
+  5766 ;; Return value:  Size  Location     Type
+  5767 ;;                  1    wreg      void 
+  5768 ;; Registers used:
+  5769 ;;		status,0
+  5770 ;; Tracked objects:
+  5771 ;;		On entry : 0/0
+  5772 ;;		On exit  : 0/0
+  5773 ;;		Unchanged: 0/0
+  5774 ;; Data sizes:     COMMON   BANK0   BANK1
+  5775 ;;      Params:         0       0       0
+  5776 ;;      Locals:         0       0       0
+  5777 ;;      Temps:          0       0       0
+  5778 ;;      Totals:         0       0       0
+  5779 ;;Total ram usage:        0 bytes
+  5780 ;; Hardware stack levels used: 1
+  5781 ;; This function calls:
+  5782 ;;		Nothing
+  5783 ;; This function is called by:
+  5784 ;;		_start_setup
+  5785 ;;		_TMR0_ISR
+  5786 ;; This function uses a non-reentrant model
+  5787 ;;
+  5788                           
+  5789  03D8                     _zummer_switch:	
+  5790                           ;psect for function _zummer_switch
   5791                           
-  5792  03D8                     _zummer_switch:	
-  5793                           ;psect for function _zummer_switch
-  5794                           
-  5795                           
-  5796                           ;incstack = 0
-  5797                           ; Regs used in _zummer_switch: [status,0]
-  5798                           ;main.c: 587:     do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
-  5799  03D8  1003               	clrc
-  5800  03D9  0022               	movlb	2	; select bank2
-  5801  03DA  1E8C               	btfss	12,5	;volatile
-  5802  03DB  1403               	setc
-  5803  03DC  1C03               	btfss	3,0
-  5804  03DD  2BE1               	goto	u206_20
-  5805  03DE  0022               	movlb	2	; select bank2
-  5806  03DF  168C               	bsf	12,5	;volatile
-  5807  03E0  0008               	return
-  5808  03E1                     u206_20:
-  5809  03E1  0022               	movlb	2	; select bank2
-  5810  03E2  128C               	bcf	12,5	;volatile
-  5811  03E3  0008               	return
-  5812  03E4                     __end_of_zummer_switch:
-  5813  007E                     btemp	set	126	;btemp
-  5814  007E                     int$flags	set	126
-  5815  007E                     wtemp0	set	126
-  5816                           
-  5817                           	psect	idloc
-  5818                           
-  5819                           ;Config register IDLOC0 @ 0x8000
-  5820                           ;	unspecified, using default values
-  5821  8000                     	org	32768
-  5822  8000  3FFF               	dw	16383
-  5823                           
-  5824                           ;Config register IDLOC1 @ 0x8001
-  5825                           ;	unspecified, using default values
-  5826  8001                     	org	32769
-  5827  8001  3FFF               	dw	16383
-  5828                           
-  5829                           ;Config register IDLOC2 @ 0x8002
-  5830                           ;	unspecified, using default values
-  5831  8002                     	org	32770
-  5832  8002  3FFF               	dw	16383
-  5833                           
-  5834                           ;Config register IDLOC3 @ 0x8003
-  5835                           ;	unspecified, using default values
-  5836  8003                     	org	32771
-  5837  8003  3FFF               	dw	16383
-  5838                           
-  5839                           	psect	config
-  5840                           
-  5841                           ;Config register CONFIG1 @ 0x8007
-  5842                           ;	Oscillator Selection
-  5843                           ;	FOSC = INTOSC, INTOSC oscillator: I/O function on CLKIN pin
-  5844                           ;	Watchdog Timer Enable
-  5845                           ;	WDTE = ON, WDT enabled
-  5846                           ;	Power-up Timer Enable
-  5847                           ;	PWRTE = ON, PWRT enabled
-  5848                           ;	MCLR Pin Function Select
-  5849                           ;	MCLRE = ON, MCLR/VPP pin function is MCLR
-  5850                           ;	Flash Program Memory Code Protection
-  5851                           ;	CP = OFF, Program memory code protection is disabled
-  5852                           ;	Data Memory Code Protection
-  5853                           ;	CPD = OFF, Data memory code protection is disabled
-  5854                           ;	Brown-out Reset Enable
-  5855                           ;	BOREN = ON, Brown-out Reset enabled
-  5856                           ;	Clock Out Enable
-  5857                           ;	CLKOUTEN = OFF, CLKOUT function is disabled. I/O or oscillator function on the CLKOUT 
+  5792                           
+  5793                           ;incstack = 0
+  5794                           ; Regs used in _zummer_switch: [status,0]
+  5795                           ;main.c: 586:     do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
+  5796  03D8  1003               	clrc
+  5797  03D9  0022               	movlb	2	; select bank2
+  5798  03DA  1E8C               	btfss	12,5	;volatile
+  5799  03DB  1403               	setc
+  5800  03DC  1C03               	btfss	3,0
+  5801  03DD  2BE1               	goto	u206_20
+  5802  03DE  0022               	movlb	2	; select bank2
+  5803  03DF  168C               	bsf	12,5	;volatile
+  5804  03E0  0008               	return
+  5805  03E1                     u206_20:
+  5806  03E1  0022               	movlb	2	; select bank2
+  5807  03E2  128C               	bcf	12,5	;volatile
+  5808  03E3  0008               	return
+  5809  03E4                     __end_of_zummer_switch:
+  5810  007E                     btemp	set	126	;btemp
+  5811  007E                     int$flags	set	126
+  5812  007E                     wtemp0	set	126
+  5813                           
+  5814                           	psect	idloc
+  5815                           
+  5816                           ;Config register IDLOC0 @ 0x8000
+  5817                           ;	unspecified, using default values
+  5818  8000                     	org	32768
+  5819  8000  3FFF               	dw	16383
+  5820                           
+  5821                           ;Config register IDLOC1 @ 0x8001
+  5822                           ;	unspecified, using default values
+  5823  8001                     	org	32769
+  5824  8001  3FFF               	dw	16383
+  5825                           
+  5826                           ;Config register IDLOC2 @ 0x8002
+  5827                           ;	unspecified, using default values
+  5828  8002                     	org	32770
+  5829  8002  3FFF               	dw	16383
+  5830                           
+  5831                           ;Config register IDLOC3 @ 0x8003
+  5832                           ;	unspecified, using default values
+  5833  8003                     	org	32771
+  5834  8003  3FFF               	dw	16383
+  5835                           
+  5836                           	psect	config
+  5837                           
+  5838                           ;Config register CONFIG1 @ 0x8007
+  5839                           ;	Oscillator Selection
+  5840                           ;	FOSC = INTOSC, INTOSC oscillator: I/O function on CLKIN pin
+  5841                           ;	Watchdog Timer Enable
+  5842                           ;	WDTE = ON, WDT enabled
+  5843                           ;	Power-up Timer Enable
+  5844                           ;	PWRTE = ON, PWRT enabled
+  5845                           ;	MCLR Pin Function Select
+  5846                           ;	MCLRE = ON, MCLR/VPP pin function is MCLR
+  5847                           ;	Flash Program Memory Code Protection
+  5848                           ;	CP = OFF, Program memory code protection is disabled
+  5849                           ;	Data Memory Code Protection
+  5850                           ;	CPD = OFF, Data memory code protection is disabled
+  5851                           ;	Brown-out Reset Enable
+  5852                           ;	BOREN = ON, Brown-out Reset enabled
+  5853                           ;	Clock Out Enable
+  5854                           ;	CLKOUTEN = OFF, CLKOUT function is disabled. I/O or oscillator function on the CLKOUT 
       +                          pin
-  5858                           ;	Internal/External Switchover
-  5859                           ;	IESO = ON, Internal/External Switchover mode is enabled
-  5860                           ;	Fail-Safe Clock Monitor Enable
-  5861                           ;	FCMEN = ON, Fail-Safe Clock Monitor is enabled
-  5862  8007                     	org	32775
-  5863  8007  3FDC               	dw	16348
-  5864                           
-  5865                           ;Config register CONFIG2 @ 0x8008
-  5866                           ;	Flash Memory Self-Write Protection
-  5867                           ;	WRT = OFF, Write protection off
-  5868                           ;	PLL Enable
-  5869                           ;	PLLEN = OFF, 4x PLL disabled
-  5870                           ;	Stack Overflow/Underflow Reset Enable
-  5871                           ;	STVREN = ON, Stack Overflow or Underflow will cause a Reset
-  5872                           ;	Brown-out Reset Voltage Selection
-  5873                           ;	BORV = LO, Brown-out Reset Voltage (Vbor), low trip point selected.
-  5874                           ;	Low-Voltage Programming Enable
-  5875                           ;	LVP = OFF, High-voltage on MCLR/VPP must be used for programming
-  5876  8008                     	org	32776
-  5877  8008  1EFF               	dw	7935
+  5855                           ;	Internal/External Switchover
+  5856                           ;	IESO = ON, Internal/External Switchover mode is enabled
+  5857                           ;	Fail-Safe Clock Monitor Enable
+  5858                           ;	FCMEN = ON, Fail-Safe Clock Monitor is enabled
+  5859  8007                     	org	32775
+  5860  8007  3FDC               	dw	16348
+  5861                           
+  5862                           ;Config register CONFIG2 @ 0x8008
+  5863                           ;	Flash Memory Self-Write Protection
+  5864                           ;	WRT = OFF, Write protection off
+  5865                           ;	PLL Enable
+  5866                           ;	PLLEN = OFF, 4x PLL disabled
+  5867                           ;	Stack Overflow/Underflow Reset Enable
+  5868                           ;	STVREN = ON, Stack Overflow or Underflow will cause a Reset
+  5869                           ;	Brown-out Reset Voltage Selection
+  5870                           ;	BORV = LO, Brown-out Reset Voltage (Vbor), low trip point selected.
+  5871                           ;	Low-Voltage Programming Enable
+  5872                           ;	LVP = OFF, High-voltage on MCLR/VPP must be used for programming
+  5873  8008                     	org	32776
+  5874  8008  1EFF               	dw	7935
 
 Data Sizes:
     Strings     0
@@ -6319,7 +6316,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                   Thu May 26 14:59:26 2022
+Symbol Table                                                                                   Thu May 26 14:49:23 2022
 
         __end_of_TMR2_SetInterruptHandler 042A                        get_fun@fun_counter 0036  
                                       l61 02ED                                        _RD 0CA8  
@@ -6364,202 +6361,201 @@ Symbol Table                                                                    
                                    _EEADR 0191                                     ?_open 0070  
                                    _T2CON 001C                          __end_of_RELE_GAP 045F  
                                    i1l114 0014                                     i1l108 000B  
-                                   i1l403 0363                                     i1l413 0034  
-                                   i1l414 0033                                     i1l431 0298  
-                                   i1l418 005D                                     i1l372 012B  
-                                   i1l365 0108                                     i1l446 043A  
-                                   i1l367 011A                                     _TRISA 008C  
-                                   _TRISC 008E                           ??_hardware_work 0072  
-               ?_TMR0_SetInterruptHandler 0072                          __end_of_TMR0_ISR 03B4  
-                         __end_of_get_fun 01AB                          __end_of_TMR2_ISR 03D8  
-                         __end_of_get_wsp 00C7                           __end_of_go_open 032C  
-                                   _close 03C0                            _WDT_Initialize 043C  
-                         __end_of_ms_tick 01D8                            __pbitbssCOMMON 03D8  
-                      _SHORT_ZUMMER_DELAY 0465                                     pclath 000A  
-                                   status 0003                                     wtemp0 007E  
-                         _TMR2_StartTimer 0448                           __initialization 0017  
-                          eeprom_set@vers 0045                              __end_of_main 0398  
-                            __end_of_open 03C0                   __end_of_TMR2_Initialize 035D  
-             ?_INTERRUPT_InterruptManager 0070                  _TMR2_SetInterruptHandler 0424  
-                                  ??_main 0076                                    ??_open 0073  
-                            ?_minute_tick 0070                    __end_of_WDT_Initialize 0440  
-                                  ?_close 0070                                    _ADCON0 009D  
-                                  _ADCON1 009E                                    _ADRESH 009C  
-                                  _ADRESL 009B                                    _EEDATA 0193  
-                                  _EECON2 0196                                    _APFCON 011D  
-                                  _ANSELA 018C                                    _ANSELC 018E  
-                                  _BORCON 0116                                    i1l2103 0076  
-                                  i1l2121 028D                                    i1l2113 0291  
-                                  i1l2115 0293                                    i1l2125 029D  
-                                  i1l2231 01CE                                    i1l2129 02A1  
-                                  i1l2217 01BD                                    i1l2091 004E  
-                                  i1l2083 0042                                    i1l2093 004F  
-                                  i1l2085 0043                                    i1l1915 0373  
-                                  i1l1941 0434                                    i1l1927 0383  
-                                  i1l1965 012D                                    i1l1967 0131  
-                                  i1l1987 03FC                                    u206_20 03E1  
-                        _GOOD_WSP_VOLTAGE 044E                                    _OSCCON 0099  
-                                  _WDTCON 0097                          __end_of_get_jump 022A  
-                        __end_of_go_close 0269               __end_of_MELODY_REPEAT_DELAY 045B  
-                        ?_TMR0_Initialize 0070                         ??_EEPROM_ReadByte 0072  
-                        __end_of_fun_work 02C3                  __end_of_EEPROM_WriteByte 024A  
-                        __end_of_sec_work 007F                                 ??_get_fun 0072  
-                        __end_of_rele_off 033D                                 ??_get_wsp 0074  
-                               ??_go_open 0072             __end_of_RELE_POWER_WORK_DELAY 0461  
-                               ??_ms_tick 0072                           ?_WDT_Initialize 0070  
-                  EEPROM_WriteByte@status 03D8                  ADC_GetConversion@channel 0073  
-                   _HIGH_WATER_RESISTANSE 0456                   __end_of_TMR2_StartTimer 044B  
-TMR0_SetInterruptHandler@InterruptHandler 0072  TMR2_SetInterruptHandler@InterruptHandler 0072  
-                    __end_of_go_close_alt 03EF                         _SYSTEM_Initialize 0409  
-                 __end_of__initialization 0023                        _AUTOROTATION_DELAY 0452  
-                      ?_SYSTEM_Initialize 0070                             _UP_RESISTANSE 0454  
-                          __pcstackCOMMON 0070                       ??_SYSTEM_Initialize 0075  
-                   __end_of_zummer_switch 03E4                                 ?_TMR0_ISR 0070  
-                               ?_TMR2_ISR 0070                             __end_of_close 03CC  
-                        ?_TMR2_Initialize 0070                              ?_start_alarm 0070  
-             get_wsp@bad_measures_counter 0037                            _OPTION_REGbits 0095  
-                            ?_start_setup 0070                                   ??_close 0073  
-                              _beep_short 036C                 __end_of_SYSTEM_Initialize 0410  
-                        ??_go_close_short 0072                                __pbssBANK0 0020  
-                              __pmaintext 038A          __end_of_TMR0_SetInterruptHandler 0430  
-                              ??_TMR0_ISR 0070                                ??_TMR2_ISR 0072  
-                         _time_rele_power 0031                                __pintentry 0004  
-                       _time_rele_control 002F                                _eeprom_set 0398  
-                                 _OSCTUNE 0098                         __end_of_beep_long 038A  
-                        ?_TMR2_StartTimer 0070                                 ?_get_jump 0070  
-                               ?_go_close 0070                                 ?_fun_work 0070  
-                               ?_sec_work 0070                                 ?_rele_off 0070  
-                    _ADC_InterruptHandler 0033                ??_TMR2_SetInterruptHandler 0074  
-                           ??_beep_double 0070     __end_of_RELE_POWER_AUTOROTATION_DELAY 0460  
-           _RELE_POWER_AUTOROTATION_DELAY 045F                  __end_of_GOOD_WSP_VOLTAGE 0450  
-                                 __ptext1 02C3                                   __ptext2 0141  
-                                 __ptext3 0398                                   __ptext4 022A  
-                                 __ptext5 033D                                   __ptext6 0448  
-                                 __ptext7 0409                                   __ptext8 043C  
-                                 __ptext9 034D                                   _get_fun 0176  
-                                 _get_wsp 007F                                   _go_open 031A  
-                   _OSCILLATOR_Initialize 0410                                 _T2CONbits 001C  
-                ??_PIN_MANAGER_Initialize 0072                                   _ms_tick 01AB  
-                   __end_of_hardware_work 0202                               ?_beep_short 0070  
-                                 clrloop0 041F                                ??_get_jump 0072  
-                              ??_go_close 0072                         __end_of_rele_tick 0141  
-                    end_of_initialization 0023                                ??_fun_work 0073  
-                         _EEPROM_ReadByte 033D                                ??_sec_work 0071  
-                              ??_rele_off 0072                             ??_clear_alarm 0072  
-                           ??_ms_100_work 0070                             ??_ms_200_work 0070  
-                          _FUN_MEAS_COUNT 0462                              _go_close_alt 03E4  
-                        ??_WDT_Initialize 0072              __end_of_LOW_WATER_RESISTANSE 045A  
-                _TMR0_SetInterruptHandler 042A                                 _PORTAbits 000C  
-                               _PORTCbits 000E                         ?_EEPROM_WriteByte 0072  
-                       __end_of_stop_tone 0444                       __end_of_beep_double 0436  
-                       __end_of_switch_wm 02DB                               ?_eeprom_set 0070  
-                      ??_EEPROM_WriteByte 0073                                 _TRISAbits 008C  
-                               _TRISCbits 008E                        EEPROM_WriteByte@dt 0072  
-                              _start_tone 0444                                get_wsp@res 0044  
-                  __end_of_FUN_MEAS_COUNT 0463      __end_of_TMR2_DefaultInterruptHandler 0467  
-            _TMR2_DefaultInterruptHandler 0466                       __end_of_clear_alarm 044E  
-                          _ADC_Initialize 0401                    ?_OSCILLATOR_Initialize 0070  
-                     __end_of_ms_100_work 043C                       __end_of_ms_200_work 02A7  
-                           ??_go_open_alt 0072                       start_initialization 0017  
-                   _RELE_POWER_WORK_DELAY 0460                             ??_sec_30_work 0070  
-                 __end_of_EEPROM_ReadByte 034D                          _beep_short_count 007A  
-                             _beep_double 0430                    __end_of_ADC_Initialize 0409  
-           ?_TMR2_DefaultInterruptHandler 0070                         _AUTOROTATION_DAYS 045C  
-                             __pbssCOMMON 0076                                 ___latbits 0000  
-                           __pcstackBANK0 0044                       __end_of_go_open_alt 03F8  
-                            sec_work@iled 0038                               ?_start_tone 0070  
-                               _beep_long 037B                       __end_of_sec_30_work 0401  
-                    _LOW_WATER_RESISTANSE 0458                     _TMR0_InterruptHandler 003F  
-                               __pnvBANK0 003F                               _clear_alarm 044B  
-                  _PIN_MANAGER_Initialize 02F1                               _ms_100_work 0436  
-                             _ms_200_work 0288                           ?_ADC_Initialize 0070  
-            ??_INTERRUPT_InterruptManager 0072                 __end_of_AUTOROTATION_DAYS 045D  
-                                ?_get_fun 0070                                  ?_get_wsp 0070  
-                                ?_go_open 0070                             ??_minute_tick 0070  
-                                ?_ms_tick 0070                              ??_beep_short 0070  
-                          _WSP_MEAS_COUNT 0463                          ?_EEPROM_ReadByte 0070  
-                               _sec_count 003E                         ??_TMR0_Initialize 0074  
-                              ?_beep_long 0070                                  _LATAbits 010C  
-                                _LATCbits 010E                                 _rele_tick 0104  
-                               clear_ram0 041E                                  _PIE1bits 0091  
-                                _RELE_GAP 045E                ??_TMR0_SetInterruptHandler 0074  
-                                _PIR1bits 0011                                 _time_meas 003B  
-                        _time_moving_wait 003C                                  _TMR0_ISR 03A6  
-                               _time_tone 002B                                  _TMR2_ISR 03CC  
-                           _zummer_switch 03D8                        __end_of_beep_short 037B  
-                         _beep_long_count 003A                                _ADCON0bits 009D  
-                            ??_eeprom_set 0044            ??_TMR2_DefaultInterruptHandler 0070  
-                             _go_open_alt 03EF                 ?_TMR2_SetInterruptHandler 0072  
-                  __end_of_WSP_MEAS_COUNT 0464                                 _stop_tone 0440  
-                               _switch_wm 02C3                               _sec_30_work 03F8  
-                         ms_tick@ms_count 0025                       __end_of_minute_tick 036C  
-                       _beep_double_count 0039                         ??_TMR2_Initialize 0074  
-                              ?_rele_tick 0070                     __end_of_UP_RESISTANSE 0456  
-                     _MELODY_REPEAT_DELAY 045A                         _ADC_GetConversion 02DB  
-                         _JUMP_MEAS_COUNT 0461                        __end_of_eeprom_set 03A6  
-                          ?_zummer_switch 0070                   ??_OSCILLATOR_Initialize 0072  
-                      ?_ADC_GetConversion 0070                             ??_start_alarm 0072  
-              __end_of_SHORT_ZUMMER_DELAY 0466                                _ANSELAbits 018C  
-                              _ANSELCbits 018E                       ??_ADC_GetConversion 0072  
-                           ??_start_setup 0076                                ?_stop_tone 0070  
-                           _time_rele_gap 002D                                ?_switch_wm 0070  
-                                __ptext10 0424                                  __ptext11 0306  
-                                __ptext20 02DB                                  __ptext12 042A  
-                                __ptext21 0202                                  __ptext13 02F1  
-                                __ptext30 00C7                                  __ptext22 0176  
-                                __ptext14 0410                                  __ptext31 031A  
-                                __ptext23 02A7                                  __ptext15 0401  
-                                __ptext40 0104                                  __ptext32 0269  
-                                __ptext24 03B4                                  __ptext16 01D8  
-                                __ptext41 035D                                  __ptext25 03EF  
-                                __ptext17 007F                                  __ptext50 03D8  
-                                __ptext42 0288                                  __ptext34 03CC  
-                                __ptext26 03C0                                  __ptext18 0417  
-                                __ptext43 0430                                  __ptext35 0466  
-                                __ptext27 032C                                  __ptext19 044B  
-                                __ptext44 036C                                  __ptext36 01AB  
-                                __ptext28 03E4                                  __ptext45 037B  
-                                __ptext37 0440                                  __ptext29 024A  
-                                __ptext46 0444                                  __ptext38 0026  
-                                __ptext47 0436                                  __ptext39 03F8  
-                                __ptext48 03A6                                  __ptext49 0467  
-                                _get_jump 0202                                  _go_close 024A  
-                         _BAD_WSP_VOLTAGE 0450                             _time_rotation 0020  
-                             ??_beep_long 0070                                  _fun_work 02A7  
-    __end_of_TMR0_DefaultInterruptHandler 0468              _TMR0_DefaultInterruptHandler 0467  
-                                _sec_work 0026                 __end_of_ADC_GetConversion 02F1  
-                                _rele_off 032C                         _MOVING_WAIT_DELAY 045B  
-                            ?_beep_double 0070                                  int$flags 007E  
-                       ??_TMR2_StartTimer 0072        __end_of_INTERRUPT_InterruptManager 0016  
-              _INTERRUPT_InterruptManager 0004                            ms_tick@s_count 0023  
-                    get_jump@jump_counter 0035                               _minute_tick 035D  
-                              _INTCONbits 000B             __end_of_HIGH_WATER_RESISTANSE 0458  
-                          __pstringtext10 0458                            __pstringtext11 045E  
-                          __pstringtext12 045F                            __pstringtext13 0460  
-                          __pstringtext14 0461                            __pstringtext15 0462  
-                          __pstringtext16 0463                            __pstringtext17 0464  
-                          __pstringtext18 0465                             _hardware_work 01D8  
-                     __end_of_start_alarm 041E                       __end_of_start_setup 0176  
-                                intlevel1 0000                              ??_start_tone 0070  
-                 __end_of_JUMP_MEAS_COUNT 0462                   ?_PIN_MANAGER_Initialize 0070  
-                             ??_rele_tick 0070                 __end_of_MOVING_WAIT_DELAY 045C  
-                       _LONG_ZUMMER_DELAY 0464                       EEPROM_ReadByte@addr 0074  
-                        ??_ADC_Initialize 0072                              ?_clear_alarm 0070  
-                          _go_close_short 0269             ?_TMR0_DefaultInterruptHandler 0070  
-                         ??_zummer_switch 0070                              ?_ms_100_work 0070  
-                            ?_ms_200_work 0070                             __pstringtext1 044E  
-                           __pstringtext2 0450                             __pstringtext3 0452  
-                           __pstringtext4 0454                             __pstringtext5 045A  
-                           __pstringtext6 045B                             __pstringtext7 045C  
-                           __pstringtext8 045D                             __pstringtext9 0456  
-                      __end_of_start_tone 0448                                _OPTION_REG 0095  
-                       _time_zummer_short 0029       __end_of_FRIMWARE_VERSION_EEPROM_ADR 045E  
-             _FRIMWARE_VERSION_EEPROM_ADR 045D                               _time_melody 003D  
-                       _autorotation_work 00C7                           _TMR0_Initialize 0306  
-              __end_of_AUTOROTATION_DELAY 0454                   __end_of_BAD_WSP_VOLTAGE 0452  
-                      ?_autorotation_work 0070                               ??_stop_tone 0070  
-                             ??_switch_wm 0073                            ?_hardware_work 0070  
-                        _time_zummer_long 0027            __end_of_PIN_MANAGER_Initialize 0306  
-                     ??_autorotation_work 0072                 __end_of_LONG_ZUMMER_DELAY 0465  
-                        _EEPROM_WriteByte 022A                    __end_of_go_close_short 0288  
-                   _TMR2_InterruptHandler 0041  
+                                   i1l413 0034                                     i1l414 0033  
+                                   i1l431 0298                                     i1l418 005D  
+                                   i1l372 012B                                     i1l365 0108  
+                                   i1l446 043A                                     i1l367 011A  
+                                   _TRISA 008C                                     _TRISC 008E  
+                         ??_hardware_work 0072                 ?_TMR0_SetInterruptHandler 0072  
+                        __end_of_TMR0_ISR 03B4                           __end_of_get_fun 01AB  
+                        __end_of_TMR2_ISR 03D8                           __end_of_get_wsp 00C7  
+                         __end_of_go_open 032C                                     _close 03C0  
+                          _WDT_Initialize 043C                           __end_of_ms_tick 01D8  
+                          __pbitbssCOMMON 03D8                        _SHORT_ZUMMER_DELAY 0465  
+                                   pclath 000A                                     status 0003  
+                                   wtemp0 007E                           _TMR2_StartTimer 0448  
+                         __initialization 0017                            eeprom_set@vers 0045  
+                            __end_of_main 0398                              __end_of_open 03C0  
+                 __end_of_TMR2_Initialize 035D               ?_INTERRUPT_InterruptManager 0070  
+                _TMR2_SetInterruptHandler 0424                                    ??_main 0076  
+                                  ??_open 0073                              ?_minute_tick 0070  
+                  __end_of_WDT_Initialize 0440                                    ?_close 0070  
+                                  _ADCON0 009D                                    _ADCON1 009E  
+                                  _ADRESH 009C                                    _ADRESL 009B  
+                                  _EEDATA 0193                                    _EECON2 0196  
+                                  _APFCON 011D                                    _ANSELA 018C  
+                                  _ANSELC 018E                                    _BORCON 0116  
+                                  i1l2103 0076                                    i1l2121 028D  
+                                  i1l2113 0291                                    i1l2115 0293  
+                                  i1l2125 029D                                    i1l2231 01CE  
+                                  i1l2129 02A1                                    i1l2217 01BD  
+                                  i1l2091 004E                                    i1l2083 0042  
+                                  i1l2093 004F                                    i1l2085 0043  
+                                  i1l1915 0373                                    i1l1941 0434  
+                                  i1l1927 0383                                    i1l1965 012D  
+                                  i1l1967 0131                                    i1l1987 03FC  
+                                  u206_20 03E1                          _GOOD_WSP_VOLTAGE 044E  
+                                  _OSCCON 0099                                    _WDTCON 0097  
+                        __end_of_get_jump 022A                          __end_of_go_close 0269  
+             __end_of_MELODY_REPEAT_DELAY 045B                          ?_TMR0_Initialize 0070  
+                       ??_EEPROM_ReadByte 0072                          __end_of_fun_work 02C3  
+                __end_of_EEPROM_WriteByte 024A                          __end_of_sec_work 007F  
+                               ??_get_fun 0072                          __end_of_rele_off 033D  
+                               ??_get_wsp 0074                                 ??_go_open 0072  
+           __end_of_RELE_POWER_WORK_DELAY 0461                                 ??_ms_tick 0072  
+                         ?_WDT_Initialize 0070                    EEPROM_WriteByte@status 03D8  
+                ADC_GetConversion@channel 0073                     _HIGH_WATER_RESISTANSE 0456  
+                 __end_of_TMR2_StartTimer 044B  TMR0_SetInterruptHandler@InterruptHandler 0072  
+TMR2_SetInterruptHandler@InterruptHandler 0072                      __end_of_go_close_alt 03EF  
+                       _SYSTEM_Initialize 0409                   __end_of__initialization 0023  
+                      _AUTOROTATION_DELAY 0452                        ?_SYSTEM_Initialize 0070  
+                           _UP_RESISTANSE 0454                            __pcstackCOMMON 0070  
+                     ??_SYSTEM_Initialize 0075                     __end_of_zummer_switch 03E4  
+                               ?_TMR0_ISR 0070                                 ?_TMR2_ISR 0070  
+                           __end_of_close 03CC                          ?_TMR2_Initialize 0070  
+                            ?_start_alarm 0070               get_wsp@bad_measures_counter 0037  
+                          _OPTION_REGbits 0095                              ?_start_setup 0070  
+                                 ??_close 0073                                _beep_short 036C  
+               __end_of_SYSTEM_Initialize 0410                          ??_go_close_short 0072  
+                              __pbssBANK0 0020                                __pmaintext 038A  
+        __end_of_TMR0_SetInterruptHandler 0430                                ??_TMR0_ISR 0070  
+                              ??_TMR2_ISR 0072                           _time_rele_power 0031  
+                              __pintentry 0004                         _time_rele_control 002F  
+                              _eeprom_set 0398                                   _OSCTUNE 0098  
+                       __end_of_beep_long 038A                          ?_TMR2_StartTimer 0070  
+                               ?_get_jump 0070                                 ?_go_close 0070  
+                               ?_fun_work 0070                                 ?_sec_work 0070  
+                               ?_rele_off 0070                      _ADC_InterruptHandler 0033  
+              ??_TMR2_SetInterruptHandler 0074                             ??_beep_double 0070  
+   __end_of_RELE_POWER_AUTOROTATION_DELAY 0460             _RELE_POWER_AUTOROTATION_DELAY 045F  
+                __end_of_GOOD_WSP_VOLTAGE 0450                                   __ptext1 02C3  
+                                 __ptext2 0141                                   __ptext3 0398  
+                                 __ptext4 022A                                   __ptext5 033D  
+                                 __ptext6 0448                                   __ptext7 0409  
+                                 __ptext8 043C                                   __ptext9 034D  
+                                 _get_fun 0176                                   _get_wsp 007F  
+                                 _go_open 031A                     _OSCILLATOR_Initialize 0410  
+                               _T2CONbits 001C                  ??_PIN_MANAGER_Initialize 0072  
+                                 _ms_tick 01AB                     __end_of_hardware_work 0202  
+                             ?_beep_short 0070                                   clrloop0 041F  
+                              ??_get_jump 0072                                ??_go_close 0072  
+                       __end_of_rele_tick 0141                      end_of_initialization 0023  
+                              ??_fun_work 0073                           _EEPROM_ReadByte 033D  
+                              ??_sec_work 0071                                ??_rele_off 0072  
+                           ??_clear_alarm 0072                             ??_ms_100_work 0070  
+                           ??_ms_200_work 0070                            _FUN_MEAS_COUNT 0462  
+                            _go_close_alt 03E4                          ??_WDT_Initialize 0072  
+            __end_of_LOW_WATER_RESISTANSE 045A                  _TMR0_SetInterruptHandler 042A  
+                               _PORTAbits 000C                                 _PORTCbits 000E  
+                       ?_EEPROM_WriteByte 0072                         __end_of_stop_tone 0444  
+                     __end_of_beep_double 0436                         __end_of_switch_wm 02DB  
+                             ?_eeprom_set 0070                        ??_EEPROM_WriteByte 0073  
+                               _TRISAbits 008C                                 _TRISCbits 008E  
+                      EEPROM_WriteByte@dt 0072                                _start_tone 0444  
+                              get_wsp@res 0044                    __end_of_FUN_MEAS_COUNT 0463  
+    __end_of_TMR2_DefaultInterruptHandler 0467              _TMR2_DefaultInterruptHandler 0466  
+                     __end_of_clear_alarm 044E                            _ADC_Initialize 0401  
+                  ?_OSCILLATOR_Initialize 0070                       __end_of_ms_100_work 043C  
+                     __end_of_ms_200_work 02A7                             ??_go_open_alt 0072  
+                     start_initialization 0017                     _RELE_POWER_WORK_DELAY 0460  
+                           ??_sec_30_work 0070                   __end_of_EEPROM_ReadByte 034D  
+                        _beep_short_count 007A                               _beep_double 0430  
+                  __end_of_ADC_Initialize 0409             ?_TMR2_DefaultInterruptHandler 0070  
+                       _AUTOROTATION_DAYS 045C                               __pbssCOMMON 0076  
+                               ___latbits 0000                             __pcstackBANK0 0044  
+                     __end_of_go_open_alt 03F8                              sec_work@iled 0038  
+                             ?_start_tone 0070                                 _beep_long 037B  
+                     __end_of_sec_30_work 0401                      _LOW_WATER_RESISTANSE 0458  
+                   _TMR0_InterruptHandler 003F                                 __pnvBANK0 003F  
+                             _clear_alarm 044B                    _PIN_MANAGER_Initialize 02F1  
+                             _ms_100_work 0436                               _ms_200_work 0288  
+                         ?_ADC_Initialize 0070              ??_INTERRUPT_InterruptManager 0072  
+               __end_of_AUTOROTATION_DAYS 045D                                  ?_get_fun 0070  
+                                ?_get_wsp 0070                                  ?_go_open 0070  
+                           ??_minute_tick 0070                                  ?_ms_tick 0070  
+                            ??_beep_short 0070                            _WSP_MEAS_COUNT 0463  
+                        ?_EEPROM_ReadByte 0070                                 _sec_count 003E  
+                       ??_TMR0_Initialize 0074                                ?_beep_long 0070  
+                                _LATAbits 010C                                  _LATCbits 010E  
+                               _rele_tick 0104                                 clear_ram0 041E  
+                                _PIE1bits 0091                                  _RELE_GAP 045E  
+              ??_TMR0_SetInterruptHandler 0074                                  _PIR1bits 0011  
+                               _time_meas 003B                          _time_moving_wait 003C  
+                                _TMR0_ISR 03A6                                 _time_tone 002B  
+                                _TMR2_ISR 03CC                             _zummer_switch 03D8  
+                      __end_of_beep_short 037B                           _beep_long_count 003A  
+                              _ADCON0bits 009D                              ??_eeprom_set 0044  
+          ??_TMR2_DefaultInterruptHandler 0070                               _go_open_alt 03EF  
+               ?_TMR2_SetInterruptHandler 0072                    __end_of_WSP_MEAS_COUNT 0464  
+                               _stop_tone 0440                                 _switch_wm 02C3  
+                             _sec_30_work 03F8                           ms_tick@ms_count 0025  
+                     __end_of_minute_tick 036C                         _beep_double_count 0039  
+                       ??_TMR2_Initialize 0074                                ?_rele_tick 0070  
+                   __end_of_UP_RESISTANSE 0456                       _MELODY_REPEAT_DELAY 045A  
+                       _ADC_GetConversion 02DB                           _JUMP_MEAS_COUNT 0461  
+                      __end_of_eeprom_set 03A6                            ?_zummer_switch 0070  
+                 ??_OSCILLATOR_Initialize 0072                        ?_ADC_GetConversion 0070  
+                           ??_start_alarm 0072                __end_of_SHORT_ZUMMER_DELAY 0466  
+                              _ANSELAbits 018C                                _ANSELCbits 018E  
+                     ??_ADC_GetConversion 0072                             ??_start_setup 0076  
+                              ?_stop_tone 0070                             _time_rele_gap 002D  
+                              ?_switch_wm 0070                                  __ptext10 0424  
+                                __ptext11 0306                                  __ptext20 02DB  
+                                __ptext12 042A                                  __ptext21 0202  
+                                __ptext13 02F1                                  __ptext30 00C7  
+                                __ptext22 0176                                  __ptext14 0410  
+                                __ptext31 031A                                  __ptext23 02A7  
+                                __ptext15 0401                                  __ptext40 0104  
+                                __ptext32 0269                                  __ptext24 03B4  
+                                __ptext16 01D8                                  __ptext41 035D  
+                                __ptext25 03EF                                  __ptext17 007F  
+                                __ptext50 03D8                                  __ptext42 0288  
+                                __ptext34 03CC                                  __ptext26 03C0  
+                                __ptext18 0417                                  __ptext43 0430  
+                                __ptext35 0466                                  __ptext27 032C  
+                                __ptext19 044B                                  __ptext44 036C  
+                                __ptext36 01AB                                  __ptext28 03E4  
+                                __ptext45 037B                                  __ptext37 0440  
+                                __ptext29 024A                                  __ptext46 0444  
+                                __ptext38 0026                                  __ptext47 0436  
+                                __ptext39 03F8                                  __ptext48 03A6  
+                                __ptext49 0467                                  _get_jump 0202  
+                                _go_close 024A                           _BAD_WSP_VOLTAGE 0450  
+                           _time_rotation 0020                               ??_beep_long 0070  
+                                _fun_work 02A7      __end_of_TMR0_DefaultInterruptHandler 0468  
+            _TMR0_DefaultInterruptHandler 0467                                  _sec_work 0026  
+               __end_of_ADC_GetConversion 02F1                                  _rele_off 032C  
+                       _MOVING_WAIT_DELAY 045B                              ?_beep_double 0070  
+                                int$flags 007E                         ??_TMR2_StartTimer 0072  
+      __end_of_INTERRUPT_InterruptManager 0016                _INTERRUPT_InterruptManager 0004  
+                          ms_tick@s_count 0023                      get_jump@jump_counter 0035  
+                             _minute_tick 035D                                _INTCONbits 000B  
+           __end_of_HIGH_WATER_RESISTANSE 0458                            __pstringtext10 0458  
+                          __pstringtext11 045E                            __pstringtext12 045F  
+                          __pstringtext13 0460                            __pstringtext14 0461  
+                          __pstringtext15 0462                            __pstringtext16 0463  
+                          __pstringtext17 0464                            __pstringtext18 0465  
+                           _hardware_work 01D8                       __end_of_start_alarm 041E  
+                     __end_of_start_setup 0176                                  intlevel1 0000  
+                            ??_start_tone 0070                   __end_of_JUMP_MEAS_COUNT 0462  
+                 ?_PIN_MANAGER_Initialize 0070                               ??_rele_tick 0070  
+               __end_of_MOVING_WAIT_DELAY 045C                         _LONG_ZUMMER_DELAY 0464  
+                     EEPROM_ReadByte@addr 0074                          ??_ADC_Initialize 0072  
+                            ?_clear_alarm 0070                            _go_close_short 0269  
+           ?_TMR0_DefaultInterruptHandler 0070                           ??_zummer_switch 0070  
+                            ?_ms_100_work 0070                              ?_ms_200_work 0070  
+                           __pstringtext1 044E                             __pstringtext2 0450  
+                           __pstringtext3 0452                             __pstringtext4 0454  
+                           __pstringtext5 045A                             __pstringtext6 045B  
+                           __pstringtext7 045C                             __pstringtext8 045D  
+                           __pstringtext9 0456                        __end_of_start_tone 0448  
+                              _OPTION_REG 0095                         _time_zummer_short 0029  
+     __end_of_FRIMWARE_VERSION_EEPROM_ADR 045E               _FRIMWARE_VERSION_EEPROM_ADR 045D  
+                             _time_melody 003D                         _autorotation_work 00C7  
+                         _TMR0_Initialize 0306                __end_of_AUTOROTATION_DELAY 0454  
+                 __end_of_BAD_WSP_VOLTAGE 0452                        ?_autorotation_work 0070  
+                             ??_stop_tone 0070                               ??_switch_wm 0073  
+                          ?_hardware_work 0070                          _time_zummer_long 0027  
+          __end_of_PIN_MANAGER_Initialize 0306                       ??_autorotation_work 0072  
+               __end_of_LONG_ZUMMER_DELAY 0465                          _EEPROM_WriteByte 022A  
+                  __end_of_go_close_short 0288                     _TMR2_InterruptHandler 0041  

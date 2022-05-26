@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "mcc_generated_files/tmr2.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,9 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 1 "./mcc_generated_files/mcc.h" 1
-# 49 "./mcc_generated_files/mcc.h"
+# 1 "mcc_generated_files/tmr2.c" 2
+# 51 "mcc_generated_files/tmr2.c"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -3803,1008 +3802,118 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 29 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\\pic\\include\\xc.h" 2 3
-# 49 "./mcc_generated_files/mcc.h" 2
+# 51 "mcc_generated_files/tmr2.c" 2
 
-# 1 "./mcc_generated_files/device_config.h" 1
-# 50 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/pin_manager.h" 1
-# 222 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize (void);
-# 234 "./mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_IOC(void);
-# 51 "./mcc_generated_files/mcc.h" 2
-
-
+# 1 "mcc_generated_files/tmr2.h" 1
+# 55 "mcc_generated_files/tmr2.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdbool.h" 1 3
-# 53 "./mcc_generated_files/mcc.h" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\conio.h" 1 3
-
-
-
-
-
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 1 3
-
-
-
-
-
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 137 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 246 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 399 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 7 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\conio.h" 2 3
-# 54 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/interrupt_manager.h" 1
-# 55 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/tmr2.h" 1
-# 103 "./mcc_generated_files/tmr2.h"
+# 55 "mcc_generated_files/tmr2.h" 2
+# 103 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
-# 132 "./mcc_generated_files/tmr2.h"
+# 132 "mcc_generated_files/tmr2.h"
 void TMR2_StartTimer(void);
-# 164 "./mcc_generated_files/tmr2.h"
+# 164 "mcc_generated_files/tmr2.h"
 void TMR2_StopTimer(void);
-# 199 "./mcc_generated_files/tmr2.h"
+# 199 "mcc_generated_files/tmr2.h"
 uint8_t TMR2_ReadTimer(void);
-# 238 "./mcc_generated_files/tmr2.h"
+# 238 "mcc_generated_files/tmr2.h"
 void TMR2_WriteTimer(uint8_t timerVal);
-# 290 "./mcc_generated_files/tmr2.h"
+# 290 "mcc_generated_files/tmr2.h"
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
-# 308 "./mcc_generated_files/tmr2.h"
+# 308 "mcc_generated_files/tmr2.h"
 void TMR2_ISR(void);
-# 326 "./mcc_generated_files/tmr2.h"
+# 326 "mcc_generated_files/tmr2.h"
  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-# 344 "./mcc_generated_files/tmr2.h"
+# 344 "mcc_generated_files/tmr2.h"
 extern void (*TMR2_InterruptHandler)(void);
-# 362 "./mcc_generated_files/tmr2.h"
+# 362 "mcc_generated_files/tmr2.h"
 void TMR2_DefaultInterruptHandler(void);
-# 56 "./mcc_generated_files/mcc.h" 2
-
-# 1 "./mcc_generated_files/adc.h" 1
-# 72 "./mcc_generated_files/adc.h"
-typedef uint16_t adc_result_t;
+# 52 "mcc_generated_files/tmr2.c" 2
 
 
 
 
-typedef struct
+
+
+void (*TMR2_InterruptHandler)(void);
+
+
+
+
+
+void TMR2_Initialize(void)
 {
-    adc_result_t adcResult1;
-    adc_result_t adcResult2;
-} adc_sync_double_result_t;
-# 95 "./mcc_generated_files/adc.h"
-typedef enum
+
+
+
+    PR2 = 0x63;
+
+
+    TMR2 = 0x00;
+
+
+    PIR1bits.TMR2IF = 0;
+
+
+    PIE1bits.TMR2IE = 1;
+
+
+    TMR2_SetInterruptHandler(TMR2_DefaultInterruptHandler);
+
+
+    T2CON = 0x4D;
+}
+
+void TMR2_StartTimer(void)
 {
-    PIN_WSP_STATE = 0x7,
-    channel_Temp = 0x1D,
-    channel_DAC = 0x1E,
-    channel_FVR = 0x1F
-} adc_channel_t;
-# 136 "./mcc_generated_files/adc.h"
-void ADC_Initialize(void);
-# 166 "./mcc_generated_files/adc.h"
-void ADC_SelectChannel(adc_channel_t channel);
-# 193 "./mcc_generated_files/adc.h"
-void ADC_StartConversion(void);
-# 225 "./mcc_generated_files/adc.h"
-_Bool ADC_IsConversionDone(void);
-# 258 "./mcc_generated_files/adc.h"
-adc_result_t ADC_GetConversionResult(void);
-# 288 "./mcc_generated_files/adc.h"
-char ADC_GetConversion(adc_channel_t channel);
-# 316 "./mcc_generated_files/adc.h"
-void ADC_TemperatureAcquisitionDelay(void);
-# 57 "./mcc_generated_files/mcc.h" 2
 
-# 1 "./mcc_generated_files/tmr0.h" 1
-# 98 "./mcc_generated_files/tmr0.h"
-void TMR0_Initialize(void);
-# 129 "./mcc_generated_files/tmr0.h"
-uint8_t TMR0_ReadTimer(void);
-# 168 "./mcc_generated_files/tmr0.h"
-void TMR0_WriteTimer(uint8_t timerVal);
-# 204 "./mcc_generated_files/tmr0.h"
-void TMR0_Reload(void);
-# 219 "./mcc_generated_files/tmr0.h"
-void TMR0_ISR(void);
-# 238 "./mcc_generated_files/tmr0.h"
- void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-# 256 "./mcc_generated_files/tmr0.h"
-extern void (*TMR0_InterruptHandler)(void);
-# 274 "./mcc_generated_files/tmr0.h"
-void TMR0_DefaultInterruptHandler(void);
-# 58 "./mcc_generated_files/mcc.h" 2
-# 73 "./mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
-# 86 "./mcc_generated_files/mcc.h"
-void OSCILLATOR_Initialize(void);
-# 98 "./mcc_generated_files/mcc.h"
-void WDT_Initialize(void);
-# 1 "main.c" 2
-
-# 1 "./eeprom.h" 1
-
-
-
-
-void EEPROM_WriteByte(unsigned char addr, unsigned char dt);
-
-unsigned char EEPROM_ReadByte(unsigned char addr);
-
-void EEPROM_WriteWord(unsigned char addr, unsigned int ucData);
-
-unsigned int EEPROM_ReadWord(unsigned char addr);
-
-void EEPROM_Writeint24(unsigned char addr, __uint24 ucData);
-
-__uint24 EEPROM_Readint24(unsigned char addr);
-
-void EEPROM_WriteDword(unsigned char addr, unsigned long ucData);
-
-unsigned long EEPROM_ReadDword(unsigned char addr);
-
-void EEPROM_WriteString(unsigned char addr, char* str1);
-
-void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
-# 2 "main.c" 2
-# 12 "main.c"
-const char SHORT_ZUMMER_DELAY = 30;
-const char LONG_ZUMMER_DELAY = 130;
-const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
-const char AUTOROTATION_DAYS = 14;
-const char MOVING_WAIT_DELAY = 2;
-const unsigned LOW_WATER_RESISTANSE = 20000;
-const unsigned HIGH_WATER_RESISTANSE = 25000;
-const unsigned UP_RESISTANSE = 20000;
-
-const char WSP_MEAS_COUNT = 4;
-const char FUN_MEAS_COUNT = 10;
-const char JUMP_MEAS_COUNT = 10;
-
-const char RELE_POWER_WORK_DELAY = 15;
-const char RELE_POWER_AUTOROTATION_DELAY = 5;
-const char RELE_GAP = 2;
-const char MELODY_REPEAT_DELAY = 3;
-const unsigned AUTOROTATION_DELAY = 120;
-
-const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
-const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
-
-
-
-
-static union {
-    unsigned long value;
-
-    struct {
-        unsigned ALARM_ON : 1;
-        unsigned ALARM_OFF : 1;
-        unsigned FUN_HIGH : 1;
-        unsigned FUN_LOW : 1;
-        unsigned ALLOW_MEASURE : 1;
-        unsigned ALLOW_FUN : 1;
-        unsigned ALLOW_JUMP : 1;
-        unsigned JUMP_LOW : 1;
-        unsigned JUMP_HIGH : 1;
-        unsigned OPENING : 1;
-        unsigned OPENED : 1;
-        unsigned CLOSING : 1;
-        unsigned CLOSED : 1;
-        unsigned RELE_POWER_ON : 1;
-        unsigned RELE_CONTROL_ON : 1;
-        unsigned WATER_TRUE : 1;
-        unsigned WATER_FALSE : 1;
-        unsigned TONE_ON : 1;
-        unsigned TONE_OFF : 1;
-        unsigned SIREN : 1;
-        unsigned ZUM_BUSY : 1;
-        unsigned BEEP_SHORT : 1;
-        unsigned GO_CLOSE : 1;
-        unsigned MOVING_ALLOWED : 1;
-        unsigned NORMAL_WORK_MODE_ON : 1;
-        unsigned UNIVERSAL_VORK_MODE_ON : 1;
-        unsigned LED_ON : 1;
-        unsigned ZUM_ON : 1;
-        unsigned MEAS_ON : 1;
-        unsigned AUTOROTATION_WORK : 1;
-        unsigned MELODY_ON : 1;
-        unsigned LAST_BEEP_LONG : 1;
-    } bits;
-} ff;
-# 84 "main.c"
-__uint24 time_rotation;
-unsigned time_rele_power;
-unsigned time_rele_control;
-unsigned time_rele_gap;
-unsigned time_tone;
-char sec_count = 0;
-
-
-char time_melody;
-char time_moving_wait;
-unsigned time_zummer_short;
-unsigned time_zummer_long;
-
-
-char time_meas;
-
-
-
-
-
-
-char beep_short_count;
-char beep_long_count;
-char beep_double_count;
-# 122 "main.c"
-void start_tone() {
-    ff.bits.ZUM_BUSY = 1;
-    ff.bits.TONE_ON = 1;
-    ff.bits.TONE_OFF = 0;
+    T2CONbits.TMR2ON = 1;
 }
 
-void stop_tone() {
-    ff.bits.ZUM_BUSY = 0;
-    ff.bits.TONE_ON = 0;
-    ff.bits.TONE_OFF = 1;
+void TMR2_StopTimer(void)
+{
+
+    T2CONbits.TMR2ON = 0;
 }
 
-void beep_short() {
-    if (!ff.bits.ZUM_BUSY) {
-        if (beep_short_count > 0) beep_short_count--;
-        time_tone = SHORT_ZUMMER_DELAY;
-        ff.bits.LAST_BEEP_LONG = 0;
-        start_tone();
-    }
+uint8_t TMR2_ReadTimer(void)
+{
+    uint8_t readVal;
+
+    readVal = TMR2;
+
+    return readVal;
 }
 
-void beep_long() {
-    if (!ff.bits.ZUM_BUSY) {
-        if (beep_long_count > 0) beep_long_count--;
-        time_tone = LONG_ZUMMER_DELAY;
-        ff.bits.LAST_BEEP_LONG = 1;
-        start_tone();
-    }
+void TMR2_WriteTimer(uint8_t timerVal)
+{
+
+    TMR2 = timerVal;
 }
 
-void beep_double() {
-    if (ff.bits.LAST_BEEP_LONG) {
-        beep_short();
-    } else {
-        beep_long();
-    }
+void TMR2_LoadPeriodRegister(uint8_t periodVal)
+{
+   PR2 = periodVal;
 }
 
-void go_close() {
-
-    if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
-        ff.bits.CLOSING = 1;
-        ff.bits.OPENED = 0;
-        ff.bits.OPENING = 0;
-
-        ff.bits.RELE_POWER_ON = 0;
-        ff.bits.RELE_CONTROL_ON = 1;
-
-        time_rele_control = RELE_GAP + RELE_POWER_WORK_DELAY + RELE_GAP;
-        time_rele_power = RELE_POWER_WORK_DELAY;
-        time_rele_gap = RELE_GAP;
-
-        time_rotation = 0;
-
-    }
-}
-
-void go_close_short() {
-
-    if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
-        ff.bits.CLOSING = 1;
-        ff.bits.OPENED = 0;
-        ff.bits.OPENING = 0;
-
-        ff.bits.RELE_POWER_ON = 0;
-        ff.bits.RELE_CONTROL_ON = 1;
-
-        time_rele_control = RELE_GAP + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP;
-        time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
-        time_rele_gap = RELE_GAP;
-
-        time_rotation = 0;
-
-    }
-}
-
-void go_open() {
-
-    if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
-        ff.bits.OPENING = 1;
-        ff.bits.CLOSED = 0;
-        ff.bits.CLOSING = 0;
+void TMR2_ISR(void)
+{
 
 
-        ff.bits.RELE_CONTROL_ON = 0;
-        ff.bits.RELE_POWER_ON = 1;
+    PIR1bits.TMR2IF = 0;
 
-        time_rele_power = RELE_POWER_WORK_DELAY;
-
-        ff.bits.AUTOROTATION_WORK = 0;
-        return;
-    }
-}
-
-void go_close_alt() {
-
-    if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
-        ff.bits.OPENED = 0;
-        ff.bits.CLOSED = 1;
-
-        ff.bits.RELE_CONTROL_ON = 0;
-        ff.bits.RELE_POWER_ON = 1;
-    }
-}
-
-void go_open_alt() {
-    if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
-        ff.bits.CLOSED = 0;
-        ff.bits.OPENED = 1;
-
-        ff.bits.RELE_CONTROL_ON = 0;
-        ff.bits.RELE_POWER_ON = 0;
-    }
-}
-
-void rele_off() {
-    ff.bits.RELE_CONTROL_ON = 0;
-    ff.bits.RELE_POWER_ON = 0;
-    ff.bits.CLOSING = 0;
-    ff.bits.OPENING = 0;
-    ff.bits.CLOSED = 0;
-    if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-        ff.bits.OPENED = 1;
-    } else {
-        ff.bits.OPENED = 0;
-    }
-    ff.bits.MOVING_ALLOWED = 0;
-    time_moving_wait = MOVING_WAIT_DELAY;
-}
-
-void close() {
-    if (ff.bits.OPENING) {
-        rele_off();
-    } else {
-        if (ff.bits.NORMAL_WORK_MODE_ON) {
-            go_close();
-        } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-            go_close_alt();
-        }
-    }
-}
-
-void open() {
-    if (ff.bits.CLOSING) {
-        rele_off();
-    } else {
-        if (ff.bits.NORMAL_WORK_MODE_ON) {
-            go_open();
-        } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-            go_open_alt();
-        }
-    }
-}
-
-void rele_tick() {
-
-    if (ff.bits.OPENING && ff.bits.CLOSING) {
-        return;
-    }
-
-
-    if (ff.bits.OPENING) {
-        if (time_rele_power > 0) {
-            time_rele_power--;
-            if (time_rele_power == 0) {
-                ff.bits.RELE_POWER_ON = 0;
-                ff.bits.OPENED = 1;
-                ff.bits.OPENING = 0;
-            }
-        }
-    }
-
-
-    if (ff.bits.CLOSING) {
-
-        if (time_rele_gap == 0) {
-            if (time_rele_power > 0) {
-                ff.bits.RELE_POWER_ON = 1;
-                time_rele_power--;
-            } else {
-                ff.bits.RELE_POWER_ON = 0;
-            }
-        } else {
-            time_rele_gap--;
-        }
-
-        if (time_rele_control > 0) {
-            time_rele_control--;
-            if (time_rele_control == 0) {
-                ff.bits.RELE_CONTROL_ON = 0;
-                ff.bits.CLOSED = 1;
-                ff.bits.CLOSING = 0;
-            }
-        }
-    }
-
-}
-
-void start_alarm() {
-    ff.bits.ALARM_ON = 1;
-    ff.bits.ALARM_OFF = 0;
-    ff.bits.MELODY_ON = 1;
-    ff.bits.SIREN = 1;
-    sec_count = 0;
-}
-
-void clear_alarm() {
-    ff.bits.ALARM_ON = 0;
-    ff.bits.ALARM_OFF = 1;
-}
-
-void fun_work() {
+    if(TMR2_InterruptHandler)
     {
-        if (
-                ff.bits.FUN_LOW &&
-                !ff.bits.FUN_HIGH &&
-                ff.bits.ALARM_OFF &&
-                ff.bits.MOVING_ALLOWED &&
-                !ff.bits.OPENED &&
-                !ff.bits.OPENING) {
-            beep_short_count = 1;
-            open();
-        };
-        if (
-                ff.bits.FUN_HIGH &&
-                ff.bits.MOVING_ALLOWED &&
-                !ff.bits.FUN_LOW &&
-                !ff.bits.CLOSED &&
-                !ff.bits.CLOSING) {
-            beep_short_count = 2;
-            close();
-        }
+        TMR2_InterruptHandler();
     }
 }
 
-void switch_wm() {
-    if (ff.bits.JUMP_LOW) {
-        if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
-            ff.bits.NORMAL_WORK_MODE_ON = 0;
-            ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
-            rele_off();
 
-            beep_long_count = 2;
-        }
-    } else if (ff.bits.JUMP_HIGH) {
-        if (!ff.bits.NORMAL_WORK_MODE_ON) {
-            ff.bits.NORMAL_WORK_MODE_ON = 1;
-            ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
-            rele_off();
-
-            beep_long_count = 1;
-        }
-    }
+void TMR2_SetInterruptHandler(void (* InterruptHandler)(void)){
+    TMR2_InterruptHandler = InterruptHandler;
 }
 
-void autorotation_work() {
-    if ((time_rotation > AUTOROTATION_DELAY) &&
-            !ff.bits.CLOSED &&
-            !ff.bits.CLOSING &&
-            ff.bits.ALARM_OFF &&
-            ff.bits.MOVING_ALLOWED &&
-            ff.bits.NORMAL_WORK_MODE_ON
-            ) {
-        go_close_short();
-        beep_short_count = 3;
-        beep_long_count = 3;
-    }
+void TMR2_DefaultInterruptHandler(void){
 
-    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
-            ff.bits.CLOSED &&
-            ff.bits.CLOSING &&
-            ff.bits.ALARM_OFF &&
-            ff.bits.MOVING_ALLOWED &&
-            ff.bits.NORMAL_WORK_MODE_ON
-            ) {
-        go_open();
-        time_rotation = 0;
-    }
 
-}
-
-
-
-
-
-
-
-void minute_tick() {
-
-
-
-    if (time_melody > 0) {
-        time_melody--;
-    };
-
-    if (time_melody == 0) {
-        ff.bits.SIREN = 1;
-        time_melody = MELODY_REPEAT_DELAY;
-
-    };
-
-
-
-
-
-
-
-}
-
-void sec_30_work() {
-    if (ff.bits.SIREN) {
-        ff.bits.SIREN = 0;
-    } else {
-        beep_short_count = 3;
-    }
-}
-
-void sec_work() {
-
-
-
-
-
-
-
-    sec_count++;
-    if (!ff.bits.MOVING_ALLOWED) {
-        if (time_moving_wait > 0) {
-            time_moving_wait--;
-        } else {
-            ff.bits.MOVING_ALLOWED = 1;
-        }
-    }
-    if (ff.bits.NORMAL_WORK_MODE_ON) {
-        if (ff.bits.OPENED) {
-            time_rotation++;
-        }
-        rele_tick();
-    }
-
-    if (ff.bits.ALARM_ON) {
-
-        if (sec_count == 30 || sec_count == 60) {
-            sec_30_work();
-        }
-
-        ff.bits.LED_ON = !ff.bits.LED_ON;
-
-    } else if (ff.bits.ALARM_OFF) {
-
-        static char iled;
-        iled++;
-        if (iled > 2) {
-            ff.bits.LED_ON = !ff.bits.LED_ON;
-            iled = 0;
-        }
-
-    }
-
-
-    if (sec_count == 60) {
-        minute_tick();
-        sec_count = 0;
-    }
-
-}
-
-void ms_200_work() {
-    if (ff.bits.ALARM_ON) {
-        if (ff.bits.SIREN) {
-            beep_double();
-        } else {
-            if (beep_short_count > 0) {
-                beep_short();
-            }
-        }
-    } else if (ff.bits.ALARM_OFF) {
-
-
-        if ((beep_short_count > 0) && (beep_long_count > 0)) {
-            beep_double();
-        } else {
-            if (beep_short_count > 0) {
-                beep_short();
-            }
-            if (beep_long_count > 0) {
-                beep_long();
-            }
-        }
-
-    }
-}
-
-void ms_100_work() {
-    if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
-        ff.bits.ALLOW_MEASURE = 1;
-    }
-}
-
-void ms_tick() {
-    static unsigned ms_count = 0;
-    static unsigned s_count = 0;
-    ms_count++;
-    if (time_tone > 0) {
-        time_tone--;
-        if (time_tone == 0) {
-            stop_tone();
-        }
-    }
-
-    ff.bits.ALLOW_FUN = 1;
-    ff.bits.ALLOW_JUMP = 1;
-
-    if (ms_count == 100) {
-        ms_100_work();
-        ms_200_work();
-        s_count++;
-        ms_count = 0;
-
-    }
-
-    if (ms_count == 200) {
-
-    }
-
-    if (s_count == 10) {
-        sec_work();
-        s_count = 0;
-    }
-
-}
-
-
-
-
-
-void eeprom_set() {
-    char vers = EEPROM_ReadByte(FRIMWARE_VERSION_EEPROM_ADR);
-    if (vers == 0xFF) {
-        EEPROM_WriteByte(FRIMWARE_VERSION_EEPROM_ADR, 1);
-    }
-
-}
-
-void hardware_work() {
-    LATCbits.LATC0 = ff.bits.ALARM_ON;
-    LATCbits.LATC1 = ff.bits.MEAS_ON;
-    LATCbits.LATC4 = ff.bits.RELE_CONTROL_ON;
-    LATCbits.LATC5 = ff.bits.RELE_POWER_ON;
-    LATAbits.LATA4 = ff.bits.LED_ON;
-
-    if (ff.bits.TONE_ON) {
-        INTCONbits.TMR0IE = 1;
-    };
-    if (ff.bits.TONE_OFF) {
-        INTCONbits.TMR0IE = 0;
-        do { LATAbits.LATA5 = 0; } while(0);
-    };
-}
-
-void zummer_switch() {
-
-
-
-
-    do { LATAbits.LATA5 = ~LATAbits.LATA5; } while(0);
-
-}
-
-void get_wsp() {
-
-    if (ff.bits.ALLOW_MEASURE) {
-
-        static signed char bad_measures_counter = 0;
-        do { LATCbits.LATC1 = 1; } while(0);
-        do { ANSELCbits.ANSC3 = 1; } while(0);
-        _delay((unsigned long)((1)*(16000000/4000.0)));
-        unsigned res = ADC_GetConversion(PIN_WSP_STATE);
-        do { ANSELCbits.ANSC3 = 0; } while(0);
-        do { LATCbits.LATC1 = 0; } while(0);
-        if (res < BAD_WSP_VOLTAGE) {
-            bad_measures_counter++;
-        } else {
-            if (res > GOOD_WSP_VOLTAGE) {
-                bad_measures_counter--;
-            }
-        }
-        if (bad_measures_counter > WSP_MEAS_COUNT) {
-            start_alarm();
-            bad_measures_counter = WSP_MEAS_COUNT;
-        }
-        if (bad_measures_counter < -WSP_MEAS_COUNT) {
-            clear_alarm();
-            bad_measures_counter = -WSP_MEAS_COUNT;
-        }
-        ff.bits.ALLOW_MEASURE = 0;
-    }
-}
-
-void get_fun() {
-
-    if (ff.bits.ALLOW_FUN) {
-
-        static signed char fun_counter;
-        do { LATCbits.LATC1 = 1; } while(0);
-        _delay((unsigned long)((1)*(16000000/4000.0)));
-        do { ANSELCbits.ANSC2 = 0; } while(0);
-        do { TRISCbits.TRISC2 = 1; } while(0);
-        if (PORTCbits.RC2) fun_counter--;
-        else fun_counter++;
-        do { LATCbits.LATC1 = 0; } while(0);
-
-
-
-
-
-        if (fun_counter > FUN_MEAS_COUNT) {
-            fun_counter = FUN_MEAS_COUNT;
-            ff.bits.FUN_LOW = 0;
-            ff.bits.FUN_HIGH = 1;
-        } else if (fun_counter<-FUN_MEAS_COUNT) {
-            fun_counter = -FUN_MEAS_COUNT;
-            ff.bits.FUN_LOW = 1;
-            ff.bits.FUN_HIGH = 0;
-        }
-        ff.bits.ALLOW_FUN = 0;
-    }
-}
-# 686 "main.c"
-void get_jump() {
-
-    static signed char jump_counter;
-
-    if (ff.bits.ALLOW_JUMP) {
-
-        do { ANSELAbits.ANSA1 = 0; } while(0);
-        do { TRISAbits.TRISA1 = 1; } while(0);
-        if (PORTAbits.RA1) jump_counter++;
-        else jump_counter--;
-
-
-
-
-
-
-
-        if (jump_counter > JUMP_MEAS_COUNT) {
-            jump_counter = JUMP_MEAS_COUNT;
-            ff.bits.JUMP_LOW = 0;
-            ff.bits.JUMP_HIGH = 1;
-        } else if (jump_counter<-JUMP_MEAS_COUNT) {
-            jump_counter = -JUMP_MEAS_COUNT;
-            ff.bits.JUMP_LOW = 1;
-            ff.bits.JUMP_HIGH = 0;
-        }
-        ff.bits.ALLOW_JUMP = 0;
-    }
-
-}
-# 750 "main.c"
-void start_setup() {
-
-    SYSTEM_Initialize();
-    (INTCONbits.GIE = 1);
-    (INTCONbits.PEIE = 1);
-
-
-    eeprom_set();
-
-    TMR0_SetInterruptHandler(zummer_switch);
-    TMR2_SetInterruptHandler(ms_tick);
-    TMR2_StartTimer();
-# 778 "main.c"
-    INTCONbits.TMR0IE = 0;
-    ff.value = 0;
-
-    do { LATCbits.LATC5 = 0; } while(0);
-    do { LATCbits.LATC4 = 0; } while(0);
-    do { LATCbits.LATC0 = 0; } while(0);
-    do { LATCbits.LATC1 = 0; } while(0);
-    do { LATAbits.LATA5 = 0; } while(0);
-    do { LATAbits.LATA4 = 0; } while(0);
-
-    time_rotation = 0;
-    time_rele_power = 0;
-    time_rele_control = 0;
-    time_rele_gap = 0;
-    time_tone = 0;
-
-
-
-
-    time_melody = 0;
-    time_zummer_short = 0;
-    time_zummer_long = 0;
-
-
-    time_meas = 0;
-}
-# 830 "main.c"
-void main(void) {
-
-    start_setup();
-
-
-    while (1) {
-        __asm("clrwdt");
-
-
-        hardware_work();
-
-
-
-        if (!ff.bits.ALARM_ON) {
-
-            get_jump();
-            switch_wm();
-
-            get_fun();
-            fun_work();
-
-            get_wsp();
-
-            autorotation_work();
-
-        } else {
-            close();
-        };
-
-
-    }
 }
