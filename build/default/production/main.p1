@@ -1,8 +1,8 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "40 main.c
 [; ;main.c: 40:     struct {
-[s S301 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S301 . ALARM_ON ALARM_OFF FUN_HIGH FUN_LOW ALLOW_MEASURE ALLOW_FUN ALLOW_JUMP JUMP_LOW JUMP_HIGH OPENING OPENED CLOSING CLOSED RELE_POWER_ON RELE_CONTROL_ON WATER_TRUE WATER_FALSE TONE_ON TONE_OFF SIREN ZUM_BUSY BEEP_SHORT GO_CLOSE MOVING_ALLOWED NORMAL_WORK_MODE_ON UNIVERSAL_VORK_MODE_ON LED_ON ZUM_ON MEAS_ON AUTOROTATION_WORK MELODY_ON LAST_BEEP_LONG ]
+[s S301 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S301 . ALARM_ON ALARM_OFF FUN_HIGH FUN_LOW ALLOW_MEASURE ALLOW_FUN ALLOW_JUMP JUMP_LOW JUMP_HIGH OPENING OPENED CLOSING CLOSED RELE_POWER_ON RELE_CONTROL_ON TONE_ON TONE_OFF SIREN ZUM_BUSY MOVING_ALLOWED NORMAL_WORK_MODE_ON UNIVERSAL_VORK_MODE_ON LED_ON MEAS_ON AUTOROTATION_WORK MELODY_ON LAST_BEEP_LONG ]
 "37
 [; ;main.c: 37: static union {
 [u S300 `ul 1 `S301 1 ]
@@ -202,12 +202,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "238 ./mcc_generated_files/tmr0.h
 [; ;./mcc_generated_files/tmr0.h: 238:  void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F2536 ]
-[v F2681 `(v ~T0 @X0 0 tf ]
+[v F2676 `(v ~T0 @X0 0 tf ]
 [v F2503 `(v ~T0 @X0 0 tf ]
 "326 ./mcc_generated_files/tmr2.h
 [; ;./mcc_generated_files/tmr2.h: 326:  void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 [v _TMR2_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F2503 ]
-[v F2683 `(v ~T0 @X0 0 tf ]
+[v F2678 `(v ~T0 @X0 0 tf ]
 "132
 [; ;./mcc_generated_files/tmr2.h: 132: void TMR2_StartTimer(void);
 [v _TMR2_StartTimer `(v ~T0 @X0 0 ef ]
@@ -648,16 +648,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 10 `i `uc
 ]
 "25
-[; ;main.c: 25: const char RELE_POWER_WORK_DELAY = 15;
+[; ;main.c: 25: const char RELE_POWER_WORK_DELAY = 120;
 [v _RELE_POWER_WORK_DELAY `Cuc ~T0 @X0 1 e ]
 [i _RELE_POWER_WORK_DELAY
--> -> 15 `i `uc
+-> -> 120 `i `uc
 ]
 "26
-[; ;main.c: 26: const char RELE_POWER_AUTOROTATION_DELAY = 5;
+[; ;main.c: 26: const char RELE_POWER_AUTOROTATION_DELAY = 15;
 [v _RELE_POWER_AUTOROTATION_DELAY `Cuc ~T0 @X0 1 e ]
 [i _RELE_POWER_AUTOROTATION_DELAY
--> -> 5 `i `uc
+-> -> 15 `i `uc
 ]
 "27
 [; ;main.c: 27: const char RELE_GAP = 2;
@@ -666,16 +666,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 2 `i `uc
 ]
 "28
-[; ;main.c: 28: const char MELODY_REPEAT_DELAY = 3;
+[; ;main.c: 28: const char MELODY_REPEAT_DELAY = 30;
 [v _MELODY_REPEAT_DELAY `Cuc ~T0 @X0 1 e ]
 [i _MELODY_REPEAT_DELAY
--> -> 3 `i `uc
+-> -> 30 `i `uc
 ]
 "29
-[; ;main.c: 29: const unsigned AUTOROTATION_DELAY = 120;
+[; ;main.c: 29: const unsigned AUTOROTATION_DELAY = 10800;
 [v _AUTOROTATION_DELAY `Cui ~T0 @X0 1 e ]
 [i _AUTOROTATION_DELAY
--> -> 120 `i `ui
+-> -> 10800 `i `ui
 ]
 "31
 [; ;main.c: 31: const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
@@ -745,13 +745,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "123
 [; ;main.c: 123:     ff.bits.ZUM_BUSY = 1;
-[e = . . _ff 1 20 -> -> 1 `i `uc ]
+[e = . . _ff 1 18 -> -> 1 `i `uc ]
 "124
 [; ;main.c: 124:     ff.bits.TONE_ON = 1;
-[e = . . _ff 1 17 -> -> 1 `i `uc ]
+[e = . . _ff 1 15 -> -> 1 `i `uc ]
 "125
 [; ;main.c: 125:     ff.bits.TONE_OFF = 0;
-[e = . . _ff 1 18 -> -> 0 `i `uc ]
+[e = . . _ff 1 16 -> -> 0 `i `uc ]
 "126
 [; ;main.c: 126: }
 [e :UE 302 ]
@@ -764,13 +764,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "129
 [; ;main.c: 129:     ff.bits.ZUM_BUSY = 0;
-[e = . . _ff 1 20 -> -> 0 `i `uc ]
+[e = . . _ff 1 18 -> -> 0 `i `uc ]
 "130
 [; ;main.c: 130:     ff.bits.TONE_ON = 0;
-[e = . . _ff 1 17 -> -> 0 `i `uc ]
+[e = . . _ff 1 15 -> -> 0 `i `uc ]
 "131
 [; ;main.c: 131:     ff.bits.TONE_OFF = 1;
-[e = . . _ff 1 18 -> -> 1 `i `uc ]
+[e = . . _ff 1 16 -> -> 1 `i `uc ]
 "132
 [; ;main.c: 132: }
 [e :UE 303 ]
@@ -783,7 +783,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "135
 [; ;main.c: 135:     if (!ff.bits.ZUM_BUSY) {
-[e $ ! ! != -> . . _ff 1 20 `i -> 0 `i 305  ]
+[e $ ! ! != -> . . _ff 1 18 `i -> 0 `i 305  ]
 {
 "136
 [; ;main.c: 136:         if (beep_short_count > 0) beep_short_count--;
@@ -795,7 +795,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _time_tone -> _SHORT_ZUMMER_DELAY `ui ]
 "138
 [; ;main.c: 138:         ff.bits.LAST_BEEP_LONG = 0;
-[e = . . _ff 1 31 -> -> 0 `i `uc ]
+[e = . . _ff 1 26 -> -> 0 `i `uc ]
 "139
 [; ;main.c: 139:         start_tone();
 [e ( _start_tone ..  ]
@@ -815,7 +815,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "144
 [; ;main.c: 144:     if (!ff.bits.ZUM_BUSY) {
-[e $ ! ! != -> . . _ff 1 20 `i -> 0 `i 308  ]
+[e $ ! ! != -> . . _ff 1 18 `i -> 0 `i 308  ]
 {
 "145
 [; ;main.c: 145:         if (beep_long_count > 0) beep_long_count--;
@@ -827,7 +827,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _time_tone -> _LONG_ZUMMER_DELAY `ui ]
 "147
 [; ;main.c: 147:         ff.bits.LAST_BEEP_LONG = 1;
-[e = . . _ff 1 31 -> -> 1 `i `uc ]
+[e = . . _ff 1 26 -> -> 1 `i `uc ]
 "148
 [; ;main.c: 148:         start_tone();
 [e ( _start_tone ..  ]
@@ -847,7 +847,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "153
 [; ;main.c: 153:     if (ff.bits.LAST_BEEP_LONG) {
-[e $ ! != -> . . _ff 1 31 `i -> 0 `i 311  ]
+[e $ ! != -> . . _ff 1 26 `i -> 0 `i 311  ]
 {
 "154
 [; ;main.c: 154:         beep_short();
@@ -877,7 +877,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "162
 [; ;main.c: 162:     if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
-[e $ ! && && ! != -> . . _ff 1 11 `i -> 0 `i ! != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i 314  ]
+[e $ ! && && ! != -> . . _ff 1 11 `i -> 0 `i ! != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i 314  ]
 {
 "163
 [; ;main.c: 163:         ff.bits.CLOSING = 1;
@@ -922,7 +922,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "181
 [; ;main.c: 181:     if (!ff.bits.CLOSING && !ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) {
-[e $ ! && && ! != -> . . _ff 1 11 `i -> 0 `i ! != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i 316  ]
+[e $ ! && && ! != -> . . _ff 1 11 `i -> 0 `i ! != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i 316  ]
 {
 "182
 [; ;main.c: 182:         ff.bits.CLOSING = 1;
@@ -959,616 +959,614 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 196: }
 [e :UE 315 ]
 }
-"198
-[; ;main.c: 198: void go_open() {
+"199
+[; ;main.c: 199: void go_open() {
 [v _go_open `(v ~T0 @X0 1 ef ]
 {
 [e :U _go_open ]
 [f ]
-"200
-[; ;main.c: 200:     if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
-[e $ ! && && ! != -> . . _ff 1 10 `i -> 0 `i ! != -> . . _ff 1 9 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i 318  ]
-{
 "201
-[; ;main.c: 201:         ff.bits.OPENING = 1;
-[e = . . _ff 1 9 -> -> 1 `i `uc ]
+[; ;main.c: 201:     if (!ff.bits.OPENED && !ff.bits.OPENING && ff.bits.MOVING_ALLOWED) {
+[e $ ! && && ! != -> . . _ff 1 10 `i -> 0 `i ! != -> . . _ff 1 9 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i 318  ]
+{
 "202
-[; ;main.c: 202:         ff.bits.CLOSED = 0;
-[e = . . _ff 1 12 -> -> 0 `i `uc ]
+[; ;main.c: 202:         ff.bits.OPENING = 1;
+[e = . . _ff 1 9 -> -> 1 `i `uc ]
 "203
-[; ;main.c: 203:         ff.bits.CLOSING = 0;
+[; ;main.c: 203:         ff.bits.CLOSED = 0;
+[e = . . _ff 1 12 -> -> 0 `i `uc ]
+"204
+[; ;main.c: 204:         ff.bits.CLOSING = 0;
 [e = . . _ff 1 11 -> -> 0 `i `uc ]
-"206
-[; ;main.c: 206:         ff.bits.RELE_CONTROL_ON = 0;
-[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "207
-[; ;main.c: 207:         ff.bits.RELE_POWER_ON = 1;
+[; ;main.c: 207:         ff.bits.RELE_CONTROL_ON = 0;
+[e = . . _ff 1 14 -> -> 0 `i `uc ]
+"208
+[; ;main.c: 208:         ff.bits.RELE_POWER_ON = 1;
 [e = . . _ff 1 13 -> -> 1 `i `uc ]
-"209
-[; ;main.c: 209:         time_rele_power = RELE_POWER_WORK_DELAY;
+"210
+[; ;main.c: 210:         time_rele_power = RELE_POWER_WORK_DELAY;
 [e = _time_rele_power -> _RELE_POWER_WORK_DELAY `ui ]
-"211
-[; ;main.c: 211:         ff.bits.AUTOROTATION_WORK = 0;
-[e = . . _ff 1 29 -> -> 0 `i `uc ]
 "212
-[; ;main.c: 212:         return;
-[e $UE 317  ]
+[; ;main.c: 212:         ff.bits.AUTOROTATION_WORK = 0;
+[e = . . _ff 1 24 -> -> 0 `i `uc ]
 "213
-[; ;main.c: 213:     }
+[; ;main.c: 213:         return;
+[e $UE 317  ]
+"214
+[; ;main.c: 214:     }
 }
 [e :U 318 ]
-"214
-[; ;main.c: 214: }
+"215
+[; ;main.c: 215: }
 [e :UE 317 ]
 }
-"216
-[; ;main.c: 216: void go_close_alt() {
+"217
+[; ;main.c: 217: void go_close_alt() {
 [v _go_close_alt `(v ~T0 @X0 1 ef ]
 {
 [e :U _go_close_alt ]
 [f ]
-"218
-[; ;main.c: 218:     if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
-[e $ ! || && ! != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i != -> . . _ff 1 0 `i -> 0 `i 320  ]
-{
 "219
-[; ;main.c: 219:         ff.bits.OPENED = 0;
-[e = . . _ff 1 10 -> -> 0 `i `uc ]
+[; ;main.c: 219:     if ((!ff.bits.CLOSED && ff.bits.MOVING_ALLOWED) || ff.bits.ALARM_ON) {
+[e $ ! || && ! != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i != -> . . _ff 1 0 `i -> 0 `i 320  ]
+{
 "220
-[; ;main.c: 220:         ff.bits.CLOSED = 1;
+[; ;main.c: 220:         ff.bits.OPENED = 0;
+[e = . . _ff 1 10 -> -> 0 `i `uc ]
+"221
+[; ;main.c: 221:         ff.bits.CLOSED = 1;
 [e = . . _ff 1 12 -> -> 1 `i `uc ]
-"222
-[; ;main.c: 222:         ff.bits.RELE_CONTROL_ON = 0;
-[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "223
-[; ;main.c: 223:         ff.bits.RELE_POWER_ON = 1;
-[e = . . _ff 1 13 -> -> 1 `i `uc ]
+[; ;main.c: 223:         ff.bits.RELE_CONTROL_ON = 0;
+[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "224
-[; ;main.c: 224:     }
+[; ;main.c: 224:         ff.bits.RELE_POWER_ON = 1;
+[e = . . _ff 1 13 -> -> 1 `i `uc ]
+"225
+[; ;main.c: 225:     }
 }
 [e :U 320 ]
-"225
-[; ;main.c: 225: }
+"226
+[; ;main.c: 226: }
 [e :UE 319 ]
 }
-"227
-[; ;main.c: 227: void go_open_alt() {
+"228
+[; ;main.c: 228: void go_open_alt() {
 [v _go_open_alt `(v ~T0 @X0 1 ef ]
 {
 [e :U _go_open_alt ]
 [f ]
-"228
-[; ;main.c: 228:     if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
-[e $ ! && ! != -> . . _ff 1 10 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i 322  ]
-{
 "229
-[; ;main.c: 229:         ff.bits.CLOSED = 0;
-[e = . . _ff 1 12 -> -> 0 `i `uc ]
+[; ;main.c: 229:     if (!ff.bits.OPENED && ff.bits.MOVING_ALLOWED) {
+[e $ ! && ! != -> . . _ff 1 10 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i 322  ]
+{
 "230
-[; ;main.c: 230:         ff.bits.OPENED = 1;
+[; ;main.c: 230:         ff.bits.CLOSED = 0;
+[e = . . _ff 1 12 -> -> 0 `i `uc ]
+"231
+[; ;main.c: 231:         ff.bits.OPENED = 1;
 [e = . . _ff 1 10 -> -> 1 `i `uc ]
-"232
-[; ;main.c: 232:         ff.bits.RELE_CONTROL_ON = 0;
-[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "233
-[; ;main.c: 233:         ff.bits.RELE_POWER_ON = 0;
-[e = . . _ff 1 13 -> -> 0 `i `uc ]
+[; ;main.c: 233:         ff.bits.RELE_CONTROL_ON = 0;
+[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "234
-[; ;main.c: 234:     }
+[; ;main.c: 234:         ff.bits.RELE_POWER_ON = 0;
+[e = . . _ff 1 13 -> -> 0 `i `uc ]
+"235
+[; ;main.c: 235:     }
 }
 [e :U 322 ]
-"235
-[; ;main.c: 235: }
+"236
+[; ;main.c: 236: }
 [e :UE 321 ]
 }
-"237
-[; ;main.c: 237: void rele_off() {
+"238
+[; ;main.c: 238: void rele_off() {
 [v _rele_off `(v ~T0 @X0 1 ef ]
 {
 [e :U _rele_off ]
 [f ]
-"238
-[; ;main.c: 238:     ff.bits.RELE_CONTROL_ON = 0;
-[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "239
-[; ;main.c: 239:     ff.bits.RELE_POWER_ON = 0;
-[e = . . _ff 1 13 -> -> 0 `i `uc ]
+[; ;main.c: 239:     ff.bits.RELE_CONTROL_ON = 0;
+[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "240
-[; ;main.c: 240:     ff.bits.CLOSING = 0;
-[e = . . _ff 1 11 -> -> 0 `i `uc ]
+[; ;main.c: 240:     ff.bits.RELE_POWER_ON = 0;
+[e = . . _ff 1 13 -> -> 0 `i `uc ]
 "241
-[; ;main.c: 241:     ff.bits.OPENING = 0;
-[e = . . _ff 1 9 -> -> 0 `i `uc ]
+[; ;main.c: 241:     ff.bits.CLOSING = 0;
+[e = . . _ff 1 11 -> -> 0 `i `uc ]
 "242
-[; ;main.c: 242:     ff.bits.CLOSED = 0;
-[e = . . _ff 1 12 -> -> 0 `i `uc ]
+[; ;main.c: 242:     ff.bits.OPENING = 0;
+[e = . . _ff 1 9 -> -> 0 `i `uc ]
 "243
-[; ;main.c: 243:     if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
-[e $ ! != -> . . _ff 1 25 `i -> 0 `i 324  ]
-{
+[; ;main.c: 243:     ff.bits.CLOSED = 0;
+[e = . . _ff 1 12 -> -> 0 `i `uc ]
 "244
-[; ;main.c: 244:         ff.bits.OPENED = 1;
-[e = . . _ff 1 10 -> -> 1 `i `uc ]
+[; ;main.c: 244:     if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+[e $ ! != -> . . _ff 1 21 `i -> 0 `i 324  ]
+{
 "245
-[; ;main.c: 245:     } else {
+[; ;main.c: 245:         ff.bits.OPENED = 1;
+[e = . . _ff 1 10 -> -> 1 `i `uc ]
+"246
+[; ;main.c: 246:     } else {
 }
 [e $U 325  ]
 [e :U 324 ]
 {
-"246
-[; ;main.c: 246:         ff.bits.OPENED = 0;
-[e = . . _ff 1 10 -> -> 0 `i `uc ]
 "247
-[; ;main.c: 247:     }
+[; ;main.c: 247:         ff.bits.OPENED = 0;
+[e = . . _ff 1 10 -> -> 0 `i `uc ]
+"248
+[; ;main.c: 248:     }
 }
 [e :U 325 ]
-"248
-[; ;main.c: 248:     ff.bits.MOVING_ALLOWED = 0;
-[e = . . _ff 1 23 -> -> 0 `i `uc ]
 "249
-[; ;main.c: 249:     time_moving_wait = MOVING_WAIT_DELAY;
-[e = _time_moving_wait _MOVING_WAIT_DELAY ]
+[; ;main.c: 249:     ff.bits.MOVING_ALLOWED = 0;
+[e = . . _ff 1 19 -> -> 0 `i `uc ]
 "250
-[; ;main.c: 250: }
+[; ;main.c: 250:     time_moving_wait = MOVING_WAIT_DELAY;
+[e = _time_moving_wait _MOVING_WAIT_DELAY ]
+"251
+[; ;main.c: 251: }
 [e :UE 323 ]
 }
-"252
-[; ;main.c: 252: void close() {
+"253
+[; ;main.c: 253: void close() {
 [v _close `(v ~T0 @X0 1 ef ]
 {
 [e :U _close ]
 [f ]
-"253
-[; ;main.c: 253:     if (ff.bits.OPENING) {
+"254
+[; ;main.c: 254:     if (ff.bits.OPENING) {
 [e $ ! != -> . . _ff 1 9 `i -> 0 `i 327  ]
 {
-"254
-[; ;main.c: 254:         rele_off();
-[e ( _rele_off ..  ]
 "255
-[; ;main.c: 255:     } else {
+[; ;main.c: 255:         rele_off();
+[e ( _rele_off ..  ]
+"256
+[; ;main.c: 256:     } else {
 }
 [e $U 328  ]
 [e :U 327 ]
 {
-"256
-[; ;main.c: 256:         if (ff.bits.NORMAL_WORK_MODE_ON) {
-[e $ ! != -> . . _ff 1 24 `i -> 0 `i 329  ]
-{
 "257
-[; ;main.c: 257:             go_close();
-[e ( _go_close ..  ]
+[; ;main.c: 257:         if (ff.bits.NORMAL_WORK_MODE_ON) {
+[e $ ! != -> . . _ff 1 20 `i -> 0 `i 329  ]
+{
 "258
-[; ;main.c: 258:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+[; ;main.c: 258:             go_close();
+[e ( _go_close ..  ]
+"259
+[; ;main.c: 259:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
 }
 [e $U 330  ]
 [e :U 329 ]
-[e $ ! != -> . . _ff 1 25 `i -> 0 `i 331  ]
+[e $ ! != -> . . _ff 1 21 `i -> 0 `i 331  ]
 {
-"259
-[; ;main.c: 259:             go_close_alt();
-[e ( _go_close_alt ..  ]
 "260
-[; ;main.c: 260:         }
+[; ;main.c: 260:             go_close_alt();
+[e ( _go_close_alt ..  ]
+"261
+[; ;main.c: 261:         }
 }
 [e :U 331 ]
 [e :U 330 ]
-"261
-[; ;main.c: 261:     }
+"262
+[; ;main.c: 262:     }
 }
 [e :U 328 ]
-"262
-[; ;main.c: 262: }
+"263
+[; ;main.c: 263: }
 [e :UE 326 ]
 }
-"264
-[; ;main.c: 264: void open() {
+"265
+[; ;main.c: 265: void open() {
 [v _open `(v ~T0 @X0 1 ef ]
 {
 [e :U _open ]
 [f ]
-"265
-[; ;main.c: 265:     if (ff.bits.CLOSING) {
+"266
+[; ;main.c: 266:     if (ff.bits.CLOSING) {
 [e $ ! != -> . . _ff 1 11 `i -> 0 `i 333  ]
 {
-"266
-[; ;main.c: 266:         rele_off();
-[e ( _rele_off ..  ]
 "267
-[; ;main.c: 267:     } else {
+[; ;main.c: 267:         rele_off();
+[e ( _rele_off ..  ]
+"268
+[; ;main.c: 268:     } else {
 }
 [e $U 334  ]
 [e :U 333 ]
 {
-"268
-[; ;main.c: 268:         if (ff.bits.NORMAL_WORK_MODE_ON) {
-[e $ ! != -> . . _ff 1 24 `i -> 0 `i 335  ]
-{
 "269
-[; ;main.c: 269:             go_open();
-[e ( _go_open ..  ]
+[; ;main.c: 269:         if (ff.bits.NORMAL_WORK_MODE_ON) {
+[e $ ! != -> . . _ff 1 20 `i -> 0 `i 335  ]
+{
 "270
-[; ;main.c: 270:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
+[; ;main.c: 270:             go_open();
+[e ( _go_open ..  ]
+"271
+[; ;main.c: 271:         } else if (ff.bits.UNIVERSAL_VORK_MODE_ON) {
 }
 [e $U 336  ]
 [e :U 335 ]
-[e $ ! != -> . . _ff 1 25 `i -> 0 `i 337  ]
+[e $ ! != -> . . _ff 1 21 `i -> 0 `i 337  ]
 {
-"271
-[; ;main.c: 271:             go_open_alt();
-[e ( _go_open_alt ..  ]
 "272
-[; ;main.c: 272:         }
+[; ;main.c: 272:             go_open_alt();
+[e ( _go_open_alt ..  ]
+"273
+[; ;main.c: 273:         }
 }
 [e :U 337 ]
 [e :U 336 ]
-"273
-[; ;main.c: 273:     }
+"274
+[; ;main.c: 274:     }
 }
 [e :U 334 ]
-"274
-[; ;main.c: 274: }
+"275
+[; ;main.c: 275: }
 [e :UE 332 ]
 }
-"276
-[; ;main.c: 276: void rele_tick() {
+"277
+[; ;main.c: 277: void rele_tick() {
 [v _rele_tick `(v ~T0 @X0 1 ef ]
 {
 [e :U _rele_tick ]
 [f ]
-"278
-[; ;main.c: 278:     if (ff.bits.OPENING && ff.bits.CLOSING) {
+"279
+[; ;main.c: 279:     if (ff.bits.OPENING && ff.bits.CLOSING) {
 [e $ ! && != -> . . _ff 1 9 `i -> 0 `i != -> . . _ff 1 11 `i -> 0 `i 339  ]
 {
-"279
-[; ;main.c: 279:         return;
-[e $UE 338  ]
 "280
-[; ;main.c: 280:     }
+[; ;main.c: 280:         return;
+[e $UE 338  ]
+"281
+[; ;main.c: 281:     }
 }
 [e :U 339 ]
-"283
-[; ;main.c: 283:     if (ff.bits.OPENING) {
+"284
+[; ;main.c: 284:     if (ff.bits.OPENING) {
 [e $ ! != -> . . _ff 1 9 `i -> 0 `i 340  ]
 {
-"284
-[; ;main.c: 284:         if (time_rele_power > 0) {
+"285
+[; ;main.c: 285:         if (time_rele_power > 0) {
 [e $ ! > _time_rele_power -> -> 0 `i `ui 341  ]
 {
-"285
-[; ;main.c: 285:             time_rele_power--;
-[e -- _time_rele_power -> -> 1 `i `ui ]
 "286
-[; ;main.c: 286:             if (time_rele_power == 0) {
+[; ;main.c: 286:             time_rele_power--;
+[e -- _time_rele_power -> -> 1 `i `ui ]
+"287
+[; ;main.c: 287:             if (time_rele_power == 0) {
 [e $ ! == _time_rele_power -> -> 0 `i `ui 342  ]
 {
-"287
-[; ;main.c: 287:                 ff.bits.RELE_POWER_ON = 0;
-[e = . . _ff 1 13 -> -> 0 `i `uc ]
 "288
-[; ;main.c: 288:                 ff.bits.OPENED = 1;
-[e = . . _ff 1 10 -> -> 1 `i `uc ]
+[; ;main.c: 288:                 ff.bits.RELE_POWER_ON = 0;
+[e = . . _ff 1 13 -> -> 0 `i `uc ]
 "289
-[; ;main.c: 289:                 ff.bits.OPENING = 0;
-[e = . . _ff 1 9 -> -> 0 `i `uc ]
+[; ;main.c: 289:                 ff.bits.OPENED = 1;
+[e = . . _ff 1 10 -> -> 1 `i `uc ]
 "290
-[; ;main.c: 290:             }
+[; ;main.c: 290:                 ff.bits.OPENING = 0;
+[e = . . _ff 1 9 -> -> 0 `i `uc ]
+"291
+[; ;main.c: 291:             }
 }
 [e :U 342 ]
-"291
-[; ;main.c: 291:         }
+"292
+[; ;main.c: 292:         }
 }
 [e :U 341 ]
-"292
-[; ;main.c: 292:     }
+"293
+[; ;main.c: 293:     }
 }
 [e :U 340 ]
-"295
-[; ;main.c: 295:     if (ff.bits.CLOSING) {
+"296
+[; ;main.c: 296:     if (ff.bits.CLOSING) {
 [e $ ! != -> . . _ff 1 11 `i -> 0 `i 343  ]
 {
-"297
-[; ;main.c: 297:         if (time_rele_gap == 0) {
+"298
+[; ;main.c: 298:         if (time_rele_gap == 0) {
 [e $ ! == _time_rele_gap -> -> 0 `i `ui 344  ]
 {
-"298
-[; ;main.c: 298:             if (time_rele_power > 0) {
+"299
+[; ;main.c: 299:             if (time_rele_power > 0) {
 [e $ ! > _time_rele_power -> -> 0 `i `ui 345  ]
 {
-"299
-[; ;main.c: 299:                 ff.bits.RELE_POWER_ON = 1;
-[e = . . _ff 1 13 -> -> 1 `i `uc ]
 "300
-[; ;main.c: 300:                 time_rele_power--;
-[e -- _time_rele_power -> -> 1 `i `ui ]
+[; ;main.c: 300:                 ff.bits.RELE_POWER_ON = 1;
+[e = . . _ff 1 13 -> -> 1 `i `uc ]
 "301
-[; ;main.c: 301:             } else {
+[; ;main.c: 301:                 time_rele_power--;
+[e -- _time_rele_power -> -> 1 `i `ui ]
+"302
+[; ;main.c: 302:             } else {
 }
 [e $U 346  ]
 [e :U 345 ]
 {
-"302
-[; ;main.c: 302:                 ff.bits.RELE_POWER_ON = 0;
-[e = . . _ff 1 13 -> -> 0 `i `uc ]
 "303
-[; ;main.c: 303:             }
+[; ;main.c: 303:                 ff.bits.RELE_POWER_ON = 0;
+[e = . . _ff 1 13 -> -> 0 `i `uc ]
+"304
+[; ;main.c: 304:             }
 }
 [e :U 346 ]
-"304
-[; ;main.c: 304:         } else {
+"305
+[; ;main.c: 305:         } else {
 }
 [e $U 347  ]
 [e :U 344 ]
 {
-"305
-[; ;main.c: 305:             time_rele_gap--;
-[e -- _time_rele_gap -> -> 1 `i `ui ]
 "306
-[; ;main.c: 306:         }
+[; ;main.c: 306:             time_rele_gap--;
+[e -- _time_rele_gap -> -> 1 `i `ui ]
+"307
+[; ;main.c: 307:         }
 }
 [e :U 347 ]
-"308
-[; ;main.c: 308:         if (time_rele_control > 0) {
+"309
+[; ;main.c: 309:         if (time_rele_control > 0) {
 [e $ ! > _time_rele_control -> -> 0 `i `ui 348  ]
 {
-"309
-[; ;main.c: 309:             time_rele_control--;
-[e -- _time_rele_control -> -> 1 `i `ui ]
 "310
-[; ;main.c: 310:             if (time_rele_control == 0) {
+[; ;main.c: 310:             time_rele_control--;
+[e -- _time_rele_control -> -> 1 `i `ui ]
+"311
+[; ;main.c: 311:             if (time_rele_control == 0) {
 [e $ ! == _time_rele_control -> -> 0 `i `ui 349  ]
 {
-"311
-[; ;main.c: 311:                 ff.bits.RELE_CONTROL_ON = 0;
-[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "312
-[; ;main.c: 312:                 ff.bits.CLOSED = 1;
-[e = . . _ff 1 12 -> -> 1 `i `uc ]
+[; ;main.c: 312:                 ff.bits.RELE_CONTROL_ON = 0;
+[e = . . _ff 1 14 -> -> 0 `i `uc ]
 "313
-[; ;main.c: 313:                 ff.bits.CLOSING = 0;
-[e = . . _ff 1 11 -> -> 0 `i `uc ]
+[; ;main.c: 313:                 ff.bits.CLOSED = 1;
+[e = . . _ff 1 12 -> -> 1 `i `uc ]
 "314
-[; ;main.c: 314:             }
+[; ;main.c: 314:                 ff.bits.CLOSING = 0;
+[e = . . _ff 1 11 -> -> 0 `i `uc ]
+"315
+[; ;main.c: 315:             }
 }
 [e :U 349 ]
-"315
-[; ;main.c: 315:         }
+"316
+[; ;main.c: 316:         }
 }
 [e :U 348 ]
-"316
-[; ;main.c: 316:     }
+"317
+[; ;main.c: 317:     }
 }
 [e :U 343 ]
-"318
-[; ;main.c: 318: }
+"319
+[; ;main.c: 319: }
 [e :UE 338 ]
 }
-"320
-[; ;main.c: 320: void start_alarm() {
+"321
+[; ;main.c: 321: void start_alarm() {
 [v _start_alarm `(v ~T0 @X0 1 ef ]
 {
 [e :U _start_alarm ]
 [f ]
-"321
-[; ;main.c: 321:     ff.bits.ALARM_ON = 1;
-[e = . . _ff 1 0 -> -> 1 `i `uc ]
 "322
-[; ;main.c: 322:     ff.bits.ALARM_OFF = 0;
-[e = . . _ff 1 1 -> -> 0 `i `uc ]
+[; ;main.c: 322:     ff.bits.ALARM_ON = 1;
+[e = . . _ff 1 0 -> -> 1 `i `uc ]
 "323
-[; ;main.c: 323:     ff.bits.MELODY_ON = 1;
-[e = . . _ff 1 30 -> -> 1 `i `uc ]
+[; ;main.c: 323:     ff.bits.ALARM_OFF = 0;
+[e = . . _ff 1 1 -> -> 0 `i `uc ]
 "324
-[; ;main.c: 324:     ff.bits.SIREN = 1;
-[e = . . _ff 1 19 -> -> 1 `i `uc ]
+[; ;main.c: 324:     ff.bits.MELODY_ON = 1;
+[e = . . _ff 1 25 -> -> 1 `i `uc ]
 "325
-[; ;main.c: 325:     sec_count = 0;
-[e = _sec_count -> -> 0 `i `uc ]
+[; ;main.c: 325:     ff.bits.SIREN = 1;
+[e = . . _ff 1 17 -> -> 1 `i `uc ]
 "326
-[; ;main.c: 326: }
+[; ;main.c: 326:     sec_count=0;
+[e = _sec_count -> -> 0 `i `uc ]
+"327
+[; ;main.c: 327: }
 [e :UE 350 ]
 }
-"328
-[; ;main.c: 328: void clear_alarm() {
+"329
+[; ;main.c: 329: void clear_alarm() {
 [v _clear_alarm `(v ~T0 @X0 1 ef ]
 {
 [e :U _clear_alarm ]
 [f ]
-"329
-[; ;main.c: 329:     ff.bits.ALARM_ON = 0;
-[e = . . _ff 1 0 -> -> 0 `i `uc ]
 "330
-[; ;main.c: 330:     ff.bits.ALARM_OFF = 1;
-[e = . . _ff 1 1 -> -> 1 `i `uc ]
+[; ;main.c: 330:     ff.bits.ALARM_ON = 0;
+[e = . . _ff 1 0 -> -> 0 `i `uc ]
 "331
-[; ;main.c: 331: }
+[; ;main.c: 331:     ff.bits.ALARM_OFF = 1;
+[e = . . _ff 1 1 -> -> 1 `i `uc ]
+"332
+[; ;main.c: 332: }
 [e :UE 351 ]
 }
-"333
-[; ;main.c: 333: void fun_work() {
+"334
+[; ;main.c: 334: void fun_work() {
 [v _fun_work `(v ~T0 @X0 1 ef ]
 {
 [e :U _fun_work ]
 [f ]
-"334
-[; ;main.c: 334:     {
-{
 "335
-[; ;main.c: 335:         if (
-[e $ ! && && && && && != -> . . _ff 1 3 `i -> 0 `i ! != -> . . _ff 1 2 `i -> 0 `i != -> . . _ff 1 1 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i ! != -> . . _ff 1 10 `i -> 0 `i ! != -> . . _ff 1 9 `i -> 0 `i 353  ]
-"341
-[; ;main.c: 341:                 !ff.bits.OPENING) {
+[; ;main.c: 335:     {
 {
+"336
+[; ;main.c: 336:         if (
+[e $ ! && && && && && != -> . . _ff 1 3 `i -> 0 `i ! != -> . . _ff 1 2 `i -> 0 `i != -> . . _ff 1 1 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i ! != -> . . _ff 1 10 `i -> 0 `i ! != -> . . _ff 1 9 `i -> 0 `i 353  ]
 "342
-[; ;main.c: 342:             beep_short_count = 1;
-[e = _beep_short_count -> -> 1 `i `uc ]
+[; ;main.c: 342:                 !ff.bits.OPENING) {
+{
 "343
-[; ;main.c: 343:             open();
-[e ( _open ..  ]
+[; ;main.c: 343:             beep_short_count = 1;
+[e = _beep_short_count -> -> 1 `i `uc ]
 "344
-[; ;main.c: 344:         };
+[; ;main.c: 344:             open();
+[e ( _open ..  ]
+"345
+[; ;main.c: 345:         };
 }
 [e :U 353 ]
-"345
-[; ;main.c: 345:         if (
-[e $ ! && && && && != -> . . _ff 1 2 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i ! != -> . . _ff 1 3 `i -> 0 `i ! != -> . . _ff 1 12 `i -> 0 `i ! != -> . . _ff 1 11 `i -> 0 `i 354  ]
-"350
-[; ;main.c: 350:                 !ff.bits.CLOSING) {
-{
+"346
+[; ;main.c: 346:         if (
+[e $ ! && && && && != -> . . _ff 1 2 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i ! != -> . . _ff 1 3 `i -> 0 `i ! != -> . . _ff 1 12 `i -> 0 `i ! != -> . . _ff 1 11 `i -> 0 `i 354  ]
 "351
-[; ;main.c: 351:             beep_short_count = 2;
-[e = _beep_short_count -> -> 2 `i `uc ]
+[; ;main.c: 351:                 !ff.bits.CLOSING) {
+{
 "352
-[; ;main.c: 352:             close();
-[e ( _close ..  ]
+[; ;main.c: 352:             beep_short_count = 2;
+[e = _beep_short_count -> -> 2 `i `uc ]
 "353
-[; ;main.c: 353:         }
+[; ;main.c: 353:             close();
+[e ( _close ..  ]
+"354
+[; ;main.c: 354:         }
 }
 [e :U 354 ]
-"354
-[; ;main.c: 354:     }
-}
 "355
-[; ;main.c: 355: }
+[; ;main.c: 355:     }
+}
+"356
+[; ;main.c: 356: }
 [e :UE 352 ]
 }
-"357
-[; ;main.c: 357: void switch_wm() {
+"358
+[; ;main.c: 358: void switch_wm() {
 [v _switch_wm `(v ~T0 @X0 1 ef ]
 {
 [e :U _switch_wm ]
 [f ]
-"358
-[; ;main.c: 358:     if (ff.bits.JUMP_LOW) {
+"359
+[; ;main.c: 359:     if (ff.bits.JUMP_LOW) {
 [e $ ! != -> . . _ff 1 7 `i -> 0 `i 356  ]
 {
-"359
-[; ;main.c: 359:         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
-[e $ ! ! != -> . . _ff 1 25 `i -> 0 `i 357  ]
-{
 "360
-[; ;main.c: 360:             ff.bits.NORMAL_WORK_MODE_ON = 0;
-[e = . . _ff 1 24 -> -> 0 `i `uc ]
+[; ;main.c: 360:         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
+[e $ ! ! != -> . . _ff 1 21 `i -> 0 `i 357  ]
+{
 "361
-[; ;main.c: 361:             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
-[e = . . _ff 1 25 -> -> 1 `i `uc ]
+[; ;main.c: 361:             ff.bits.NORMAL_WORK_MODE_ON = 0;
+[e = . . _ff 1 20 -> -> 0 `i `uc ]
 "362
-[; ;main.c: 362:             rele_off();
+[; ;main.c: 362:             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
+[e = . . _ff 1 21 -> -> 1 `i `uc ]
+"363
+[; ;main.c: 363:             rele_off();
 [e ( _rele_off ..  ]
-"364
-[; ;main.c: 364:             beep_long_count = 2;
-[e = _beep_long_count -> -> 2 `i `uc ]
 "365
-[; ;main.c: 365:         }
+[; ;main.c: 365:             beep_long_count = 2;
+[e = _beep_long_count -> -> 2 `i `uc ]
+"366
+[; ;main.c: 366:         }
 }
 [e :U 357 ]
-"366
-[; ;main.c: 366:     } else if (ff.bits.JUMP_HIGH) {
+"367
+[; ;main.c: 367:     } else if (ff.bits.JUMP_HIGH) {
 }
 [e $U 358  ]
 [e :U 356 ]
 [e $ ! != -> . . _ff 1 8 `i -> 0 `i 359  ]
 {
-"367
-[; ;main.c: 367:         if (!ff.bits.NORMAL_WORK_MODE_ON) {
-[e $ ! ! != -> . . _ff 1 24 `i -> 0 `i 360  ]
-{
 "368
-[; ;main.c: 368:             ff.bits.NORMAL_WORK_MODE_ON = 1;
-[e = . . _ff 1 24 -> -> 1 `i `uc ]
+[; ;main.c: 368:         if (!ff.bits.NORMAL_WORK_MODE_ON) {
+[e $ ! ! != -> . . _ff 1 20 `i -> 0 `i 360  ]
+{
 "369
-[; ;main.c: 369:             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
-[e = . . _ff 1 25 -> -> 0 `i `uc ]
+[; ;main.c: 369:             ff.bits.NORMAL_WORK_MODE_ON = 1;
+[e = . . _ff 1 20 -> -> 1 `i `uc ]
 "370
-[; ;main.c: 370:             rele_off();
+[; ;main.c: 370:             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
+[e = . . _ff 1 21 -> -> 0 `i `uc ]
+"371
+[; ;main.c: 371:             rele_off();
 [e ( _rele_off ..  ]
-"372
-[; ;main.c: 372:             beep_long_count = 1;
-[e = _beep_long_count -> -> 1 `i `uc ]
 "373
-[; ;main.c: 373:         }
+[; ;main.c: 373:             beep_long_count = 1;
+[e = _beep_long_count -> -> 1 `i `uc ]
+"374
+[; ;main.c: 374:         }
 }
 [e :U 360 ]
-"374
-[; ;main.c: 374:     }
+"375
+[; ;main.c: 375:     }
 }
 [e :U 359 ]
 [e :U 358 ]
-"375
-[; ;main.c: 375: }
+"376
+[; ;main.c: 376: }
 [e :UE 355 ]
 }
-"377
-[; ;main.c: 377: void autorotation_work() {
+"378
+[; ;main.c: 378: void autorotation_work() {
 [v _autorotation_work `(v ~T0 @X0 1 ef ]
 {
 [e :U _autorotation_work ]
 [f ]
-"378
-[; ;main.c: 378:     if ((time_rotation > AUTOROTATION_DELAY) &&
-[e $ ! && && && && && > _time_rotation -> _AUTOROTATION_DELAY `um ! != -> . . _ff 1 12 `i -> 0 `i ! != -> . . _ff 1 11 `i -> 0 `i != -> . . _ff 1 1 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i != -> . . _ff 1 24 `i -> 0 `i 362  ]
-"384
-[; ;main.c: 384:             ) {
-{
+"379
+[; ;main.c: 379:     if ((time_rotation > AUTOROTATION_DELAY) &&
+[e $ ! && && && && && > _time_rotation -> _AUTOROTATION_DELAY `um ! != -> . . _ff 1 12 `i -> 0 `i ! != -> . . _ff 1 11 `i -> 0 `i != -> . . _ff 1 1 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i != -> . . _ff 1 20 `i -> 0 `i 362  ]
 "385
-[; ;main.c: 385:         go_close_short();
-[e ( _go_close_short ..  ]
+[; ;main.c: 385:             ) {
+{
 "386
-[; ;main.c: 386:         beep_short_count = 3;
-[e = _beep_short_count -> -> 3 `i `uc ]
+[; ;main.c: 386:               go_close_short();
+[e ( _go_close_short ..  ]
 "387
-[; ;main.c: 387:         beep_long_count = 3;
-[e = _beep_long_count -> -> 3 `i `uc ]
+[; ;main.c: 387:               beep_short_count=3;
+[e = _beep_short_count -> -> 3 `i `uc ]
 "388
-[; ;main.c: 388:     }
+[; ;main.c: 388:               beep_long_count=3;
+[e = _beep_long_count -> -> 3 `i `uc ]
+"389
+[; ;main.c: 389:     }
 }
 [e :U 362 ]
-"390
-[; ;main.c: 390:     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
-[e $ ! && && && && && > _time_rotation -> + + _AUTOROTATION_DELAY -> _RELE_POWER_AUTOROTATION_DELAY `ui -> * -> _RELE_GAP `i -> 2 `i `ui `um != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 11 `i -> 0 `i != -> . . _ff 1 1 `i -> 0 `i != -> . . _ff 1 23 `i -> 0 `i != -> . . _ff 1 24 `i -> 0 `i 363  ]
-"396
-[; ;main.c: 396:             ) {
-{
+"391
+[; ;main.c: 391:     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
+[e $ ! && && && && && > _time_rotation -> + + _AUTOROTATION_DELAY -> _RELE_POWER_AUTOROTATION_DELAY `ui -> * -> _RELE_GAP `i -> 2 `i `ui `um != -> . . _ff 1 12 `i -> 0 `i != -> . . _ff 1 11 `i -> 0 `i != -> . . _ff 1 1 `i -> 0 `i != -> . . _ff 1 19 `i -> 0 `i != -> . . _ff 1 20 `i -> 0 `i 363  ]
 "397
-[; ;main.c: 397:         go_open();
-[e ( _go_open ..  ]
+[; ;main.c: 397:             ) {
+{
 "398
-[; ;main.c: 398:         time_rotation = 0;
-[e = _time_rotation -> -> -> 0 `i `m `um ]
+[; ;main.c: 398:         go_open();
+[e ( _go_open ..  ]
 "399
-[; ;main.c: 399:     }
+[; ;main.c: 399:         time_rotation = 0;
+[e = _time_rotation -> -> -> 0 `i `m `um ]
+"400
+[; ;main.c: 400:     }
 }
 [e :U 363 ]
-"401
-[; ;main.c: 401: }
+"402
+[; ;main.c: 402: }
 [e :UE 361 ]
 }
-"409
-[; ;main.c: 409: void minute_tick() {
+"410
+[; ;main.c: 410: void minute_tick() {
 [v _minute_tick `(v ~T0 @X0 1 ef ]
 {
 [e :U _minute_tick ]
 [f ]
-"413
-[; ;main.c: 413:     if (time_melody > 0) {
+"414
+[; ;main.c: 414:     if (time_melody > 0) {
 [e $ ! > -> _time_melody `i -> 0 `i 365  ]
 {
-"414
-[; ;main.c: 414:         time_melody--;
-[e -- _time_melody -> -> 1 `i `uc ]
 "415
-[; ;main.c: 415:     };
+[; ;main.c: 415:         time_melody--;};
+[e -- _time_melody -> -> 1 `i `uc ]
 }
 [e :U 365 ]
 "417
-[; ;main.c: 417:     if (time_melody == 0) {
+[; ;main.c: 417:         if (time_melody == 0) {
 [e $ ! == -> _time_melody `i -> 0 `i 366  ]
 {
 "418
-[; ;main.c: 418:         ff.bits.SIREN = 1;
-[e = . . _ff 1 19 -> -> 1 `i `uc ]
+[; ;main.c: 418:             ff.bits.SIREN = 1;
+[e = . . _ff 1 17 -> -> 1 `i `uc ]
 "419
-[; ;main.c: 419:         time_melody = MELODY_REPEAT_DELAY;
+[; ;main.c: 419:             time_melody = MELODY_REPEAT_DELAY;
 [e = _time_melody _MELODY_REPEAT_DELAY ]
 "421
 [; ;main.c: 421:     };
@@ -1586,11 +1584,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "432
 [; ;main.c: 432:     if (ff.bits.SIREN) {
-[e $ ! != -> . . _ff 1 19 `i -> 0 `i 368  ]
+[e $ ! != -> . . _ff 1 17 `i -> 0 `i 368  ]
 {
 "433
 [; ;main.c: 433:         ff.bits.SIREN = 0;
-[e = . . _ff 1 19 -> -> 0 `i `uc ]
+[e = . . _ff 1 17 -> -> 0 `i `uc ]
 "434
 [; ;main.c: 434:     } else {
 }
@@ -1619,7 +1617,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ++ _sec_count -> -> 1 `i `uc ]
 "448
 [; ;main.c: 448:     if (!ff.bits.MOVING_ALLOWED) {
-[e $ ! ! != -> . . _ff 1 23 `i -> 0 `i 371  ]
+[e $ ! ! != -> . . _ff 1 19 `i -> 0 `i 371  ]
 {
 "449
 [; ;main.c: 449:         if (time_moving_wait > 0) {
@@ -1636,7 +1634,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "452
 [; ;main.c: 452:             ff.bits.MOVING_ALLOWED = 1;
-[e = . . _ff 1 23 -> -> 1 `i `uc ]
+[e = . . _ff 1 19 -> -> 1 `i `uc ]
 "453
 [; ;main.c: 453:         }
 }
@@ -1647,10 +1645,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 371 ]
 "455
 [; ;main.c: 455:     if (ff.bits.NORMAL_WORK_MODE_ON) {
-[e $ ! != -> . . _ff 1 24 `i -> 0 `i 374  ]
+[e $ ! != -> . . _ff 1 20 `i -> 0 `i 374  ]
 {
 "456
-[; ;main.c: 456:         if (ff.bits.OPENED) {
+[; ;main.c: 456:         if (ff.bits.OPENED){
 [e $ ! != -> . . _ff 1 10 `i -> 0 `i 375  ]
 {
 "457
@@ -1672,7 +1670,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> . . _ff 1 0 `i -> 0 `i 376  ]
 {
 "464
-[; ;main.c: 464:         if (sec_count == 30 || sec_count == 60) {
+[; ;main.c: 464:         if (sec_count == 30|| sec_count==60) {
 [e $ ! || == -> _sec_count `i -> 30 `i == -> _sec_count `i -> 60 `i 377  ]
 {
 "465
@@ -1684,7 +1682,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 377 ]
 "468
 [; ;main.c: 468:         ff.bits.LED_ON = !ff.bits.LED_ON;
-[e = . . _ff 1 26 -> -> ! != -> . . _ff 1 26 `i -> 0 `i `i `uc ]
+[e = . . _ff 1 22 -> -> ! != -> . . _ff 1 22 `i -> 0 `i `i `uc ]
 "470
 [; ;main.c: 470:     } else if (ff.bits.ALARM_OFF) {
 }
@@ -1694,20 +1692,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "472
 [; ;main.c: 472:         static char iled;
-[v F2663 `uc ~T0 @X0 1 s iled ]
+[v F2658 `uc ~T0 @X0 1 s iled ]
 "473
 [; ;main.c: 473:         iled++;
-[e ++ F2663 -> -> 1 `i `uc ]
+[e ++ F2658 -> -> 1 `i `uc ]
 "474
 [; ;main.c: 474:         if (iled > 2) {
-[e $ ! > -> F2663 `i -> 2 `i 380  ]
+[e $ ! > -> F2658 `i -> 2 `i 380  ]
 {
 "475
 [; ;main.c: 475:             ff.bits.LED_ON = !ff.bits.LED_ON;
-[e = . . _ff 1 26 -> -> ! != -> . . _ff 1 26 `i -> 0 `i `i `uc ]
+[e = . . _ff 1 22 -> -> ! != -> . . _ff 1 22 `i -> 0 `i `i `uc ]
 "476
 [; ;main.c: 476:             iled = 0;
-[e = F2663 -> -> 0 `i `uc ]
+[e = F2658 -> -> 0 `i `uc ]
 "477
 [; ;main.c: 477:         }
 }
@@ -1747,7 +1745,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "491
 [; ;main.c: 491:         if (ff.bits.SIREN) {
-[e $ ! != -> . . _ff 1 19 `i -> 0 `i 384  ]
+[e $ ! != -> . . _ff 1 17 `i -> 0 `i 384  ]
 {
 "492
 [; ;main.c: 492:             beep_double();
@@ -1836,7 +1834,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "516
 [; ;main.c: 516:     if (ff.bits.NORMAL_WORK_MODE_ON || ff.bits.UNIVERSAL_VORK_MODE_ON) {
-[e $ ! || != -> . . _ff 1 24 `i -> 0 `i != -> . . _ff 1 25 `i -> 0 `i 394  ]
+[e $ ! || != -> . . _ff 1 20 `i -> 0 `i != -> . . _ff 1 21 `i -> 0 `i 394  ]
 {
 "517
 [; ;main.c: 517:         ff.bits.ALLOW_MEASURE = 1;
@@ -1857,19 +1855,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "522
 [; ;main.c: 522:     static unsigned ms_count = 0;
-[v F2667 `ui ~T0 @X0 1 s ms_count ]
-[i F2667
+[v F2662 `ui ~T0 @X0 1 s ms_count ]
+[i F2662
 -> -> 0 `i `ui
 ]
 "523
 [; ;main.c: 523:     static unsigned s_count = 0;
-[v F2668 `ui ~T0 @X0 1 s s_count ]
-[i F2668
+[v F2663 `ui ~T0 @X0 1 s s_count ]
+[i F2663
 -> -> 0 `i `ui
 ]
 "524
 [; ;main.c: 524:     ms_count++;
-[e ++ F2667 -> -> 1 `i `ui ]
+[e ++ F2662 -> -> 1 `i `ui ]
 "525
 [; ;main.c: 525:     if (time_tone > 0) {
 [e $ ! > _time_tone -> -> 0 `i `ui 396  ]
@@ -1900,7 +1898,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _ff 1 6 -> -> 1 `i `uc ]
 "535
 [; ;main.c: 535:     if (ms_count == 100) {
-[e $ ! == F2667 -> -> 100 `i `ui 398  ]
+[e $ ! == F2662 -> -> 100 `i `ui 398  ]
 {
 "536
 [; ;main.c: 536:         ms_100_work();
@@ -1910,17 +1908,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _ms_200_work ..  ]
 "538
 [; ;main.c: 538:         s_count++;
-[e ++ F2668 -> -> 1 `i `ui ]
+[e ++ F2663 -> -> 1 `i `ui ]
 "539
 [; ;main.c: 539:         ms_count = 0;
-[e = F2667 -> -> 0 `i `ui ]
+[e = F2662 -> -> 0 `i `ui ]
 "541
 [; ;main.c: 541:     }
 }
 [e :U 398 ]
 "543
 [; ;main.c: 543:     if (ms_count == 200) {
-[e $ ! == F2667 -> -> 200 `i `ui 399  ]
+[e $ ! == F2662 -> -> 200 `i `ui 399  ]
 {
 "545
 [; ;main.c: 545:     }
@@ -1928,14 +1926,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 399 ]
 "547
 [; ;main.c: 547:     if (s_count == 10) {
-[e $ ! == F2668 -> -> 10 `i `ui 400  ]
+[e $ ! == F2663 -> -> 10 `i `ui 400  ]
 {
 "548
 [; ;main.c: 548:         sec_work();
 [e ( _sec_work ..  ]
 "549
 [; ;main.c: 549:         s_count = 0;
-[e = F2668 -> -> 0 `i `ui ]
+[e = F2663 -> -> 0 `i `ui ]
 "550
 [; ;main.c: 550:     }
 }
@@ -1980,7 +1978,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATCbits 0 0 . . _ff 1 0 ]
 "568
 [; ;main.c: 568:     LATCbits.LATC1 = ff.bits.MEAS_ON;
-[e = . . _LATCbits 0 1 . . _ff 1 28 ]
+[e = . . _LATCbits 0 1 . . _ff 1 23 ]
 "569
 [; ;main.c: 569:     LATCbits.LATC4 = ff.bits.RELE_CONTROL_ON;
 [e = . . _LATCbits 0 4 . . _ff 1 14 ]
@@ -1989,10 +1987,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _LATCbits 0 5 . . _ff 1 13 ]
 "571
 [; ;main.c: 571:     LATAbits.LATA4 = ff.bits.LED_ON;
-[e = . . _LATAbits 0 4 . . _ff 1 26 ]
+[e = . . _LATAbits 0 4 . . _ff 1 22 ]
 "573
 [; ;main.c: 573:     if (ff.bits.TONE_ON) {
-[e $ ! != -> . . _ff 1 17 `i -> 0 `i 404  ]
+[e $ ! != -> . . _ff 1 15 `i -> 0 `i 404  ]
 {
 "574
 [; ;main.c: 574:         INTCONbits.TMR0IE = 1;
@@ -2003,7 +2001,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 404 ]
 "576
 [; ;main.c: 576:     if (ff.bits.TONE_OFF) {
-[e $ ! != -> . . _ff 1 18 `i -> 0 `i 405  ]
+[e $ ! != -> . . _ff 1 16 `i -> 0 `i 405  ]
 {
 "577
 [; ;main.c: 577:         INTCONbits.TMR0IE = 0;
@@ -2052,8 +2050,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "595
 [; ;main.c: 595:         static signed char bad_measures_counter = 0;
-[v F2674 `c ~T0 @X0 1 s bad_measures_counter ]
-[i F2674
+[v F2669 `c ~T0 @X0 1 s bad_measures_counter ]
+[i F2669
 -> -> 0 `i `c
 ]
 "596
@@ -2097,7 +2095,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "603
 [; ;main.c: 603:             bad_measures_counter++;
-[e ++ F2674 -> -> 1 `i `c ]
+[e ++ F2669 -> -> 1 `i `c ]
 "604
 [; ;main.c: 604:         } else {
 }
@@ -2110,7 +2108,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "606
 [; ;main.c: 606:                 bad_measures_counter--;
-[e -- F2674 -> -> 1 `i `c ]
+[e -- F2669 -> -> 1 `i `c ]
 "607
 [; ;main.c: 607:             }
 }
@@ -2121,28 +2119,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 428 ]
 "609
 [; ;main.c: 609:         if (bad_measures_counter > WSP_MEAS_COUNT) {
-[e $ ! > -> F2674 `i -> _WSP_MEAS_COUNT `i 430  ]
+[e $ ! > -> F2669 `i -> _WSP_MEAS_COUNT `i 430  ]
 {
 "610
 [; ;main.c: 610:             start_alarm();
 [e ( _start_alarm ..  ]
 "611
 [; ;main.c: 611:             bad_measures_counter = WSP_MEAS_COUNT;
-[e = F2674 -> _WSP_MEAS_COUNT `c ]
+[e = F2669 -> _WSP_MEAS_COUNT `c ]
 "612
 [; ;main.c: 612:         }
 }
 [e :U 430 ]
 "613
 [; ;main.c: 613:         if (bad_measures_counter < -WSP_MEAS_COUNT) {
-[e $ ! < -> F2674 `i -U -> _WSP_MEAS_COUNT `i 431  ]
+[e $ ! < -> F2669 `i -U -> _WSP_MEAS_COUNT `i 431  ]
 {
 "614
 [; ;main.c: 614:             clear_alarm();
 [e ( _clear_alarm ..  ]
 "615
 [; ;main.c: 615:             bad_measures_counter = -WSP_MEAS_COUNT;
-[e = F2674 -> -U -> _WSP_MEAS_COUNT `i `c ]
+[e = F2669 -> -U -> _WSP_MEAS_COUNT `i `c ]
 "616
 [; ;main.c: 616:         }
 }
@@ -2170,7 +2168,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "625
 [; ;main.c: 625:         static signed char fun_counter;
-[v F2677 `c ~T0 @X0 1 s fun_counter ]
+[v F2672 `c ~T0 @X0 1 s fun_counter ]
 "626
 [; ;main.c: 626:         do { LATCbits.LATC1 = 1; } while(0);
 [e :U 436 ]
@@ -2198,12 +2196,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "630
 [; ;main.c: 630:         if (PORTCbits.RC2) fun_counter--;
 [e $ ! != -> . . _PORTCbits 0 2 `i -> 0 `i 443  ]
-[e -- F2677 -> -> 1 `i `c ]
+[e -- F2672 -> -> 1 `i `c ]
 [e $U 444  ]
 "631
 [; ;main.c: 631:         else fun_counter++;
 [e :U 443 ]
-[e ++ F2677 -> -> 1 `i `c ]
+[e ++ F2672 -> -> 1 `i `c ]
 [e :U 444 ]
 "632
 [; ;main.c: 632:         do { LATCbits.LATC1 = 0; } while(0);
@@ -2214,11 +2212,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 446 ]
 "638
 [; ;main.c: 638:         if (fun_counter > FUN_MEAS_COUNT) {
-[e $ ! > -> F2677 `i -> _FUN_MEAS_COUNT `i 448  ]
+[e $ ! > -> F2672 `i -> _FUN_MEAS_COUNT `i 448  ]
 {
 "639
 [; ;main.c: 639:             fun_counter = FUN_MEAS_COUNT;
-[e = F2677 -> _FUN_MEAS_COUNT `c ]
+[e = F2672 -> _FUN_MEAS_COUNT `c ]
 "640
 [; ;main.c: 640:             ff.bits.FUN_LOW = 0;
 [e = . . _ff 1 3 -> -> 0 `i `uc ]
@@ -2230,11 +2228,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 449  ]
 [e :U 448 ]
-[e $ ! < -> F2677 `i -U -> _FUN_MEAS_COUNT `i 450  ]
+[e $ ! < -> F2672 `i -U -> _FUN_MEAS_COUNT `i 450  ]
 {
 "643
 [; ;main.c: 643:             fun_counter = -FUN_MEAS_COUNT;
-[e = F2677 -> -U -> _FUN_MEAS_COUNT `i `c ]
+[e = F2672 -> -U -> _FUN_MEAS_COUNT `i `c ]
 "644
 [; ;main.c: 644:             ff.bits.FUN_LOW = 1;
 [e = . . _ff 1 3 -> -> 1 `i `uc ]
@@ -2265,7 +2263,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "688
 [; ;main.c: 688:     static signed char jump_counter;
-[v F2679 `c ~T0 @X0 1 s jump_counter ]
+[v F2674 `c ~T0 @X0 1 s jump_counter ]
 "690
 [; ;main.c: 690:     if (ff.bits.ALLOW_JUMP) {
 [e $ ! != -> . . _ff 1 6 `i -> 0 `i 452  ]
@@ -2287,20 +2285,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "694
 [; ;main.c: 694:         if (PORTAbits.RA1) jump_counter++;
 [e $ ! != -> . . _PORTAbits 0 1 `i -> 0 `i 459  ]
-[e ++ F2679 -> -> 1 `i `c ]
+[e ++ F2674 -> -> 1 `i `c ]
 [e $U 460  ]
 "695
 [; ;main.c: 695:         else jump_counter--;
 [e :U 459 ]
-[e -- F2679 -> -> 1 `i `c ]
+[e -- F2674 -> -> 1 `i `c ]
 [e :U 460 ]
 "703
 [; ;main.c: 703:         if (jump_counter > JUMP_MEAS_COUNT) {
-[e $ ! > -> F2679 `i -> _JUMP_MEAS_COUNT `i 461  ]
+[e $ ! > -> F2674 `i -> _JUMP_MEAS_COUNT `i 461  ]
 {
 "704
 [; ;main.c: 704:             jump_counter = JUMP_MEAS_COUNT;
-[e = F2679 -> _JUMP_MEAS_COUNT `c ]
+[e = F2674 -> _JUMP_MEAS_COUNT `c ]
 "705
 [; ;main.c: 705:             ff.bits.JUMP_LOW = 0;
 [e = . . _ff 1 7 -> -> 0 `i `uc ]
@@ -2312,11 +2310,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 462  ]
 [e :U 461 ]
-[e $ ! < -> F2679 `i -U -> _JUMP_MEAS_COUNT `i 463  ]
+[e $ ! < -> F2674 `i -U -> _JUMP_MEAS_COUNT `i 463  ]
 {
 "708
 [; ;main.c: 708:             jump_counter = -JUMP_MEAS_COUNT;
-[e = F2679 -> -U -> _JUMP_MEAS_COUNT `i `c ]
+[e = F2674 -> -U -> _JUMP_MEAS_COUNT `i `c ]
 "709
 [; ;main.c: 709:             ff.bits.JUMP_LOW = 1;
 [e = . . _ff 1 7 -> -> 1 `i `uc ]
@@ -2359,10 +2357,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _eeprom_set ..  ]
 "759
 [; ;main.c: 759:     TMR0_SetInterruptHandler(zummer_switch);
-[e ( _TMR0_SetInterruptHandler (1 -> &U _zummer_switch `*F2681 ]
+[e ( _TMR0_SetInterruptHandler (1 -> &U _zummer_switch `*F2676 ]
 "760
 [; ;main.c: 760:     TMR2_SetInterruptHandler(ms_tick);
-[e ( _TMR2_SetInterruptHandler (1 -> &U _ms_tick `*F2683 ]
+[e ( _TMR2_SetInterruptHandler (1 -> &U _ms_tick `*F2678 ]
 "761
 [; ;main.c: 761:     TMR2_StartTimer();
 [e ( _TMR2_StartTimer ..  ]
@@ -2485,7 +2483,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 851:             get_wsp();
 [e ( _get_wsp ..  ]
 "853
-[; ;main.c: 853:             autorotation_work();
+[; ;main.c: 853:                autorotation_work();
 [e ( _autorotation_work ..  ]
 "855
 [; ;main.c: 855:         } else {

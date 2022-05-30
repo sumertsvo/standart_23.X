@@ -4100,11 +4100,11 @@ const char WSP_MEAS_COUNT = 4;
 const char FUN_MEAS_COUNT = 10;
 const char JUMP_MEAS_COUNT = 10;
 
-const char RELE_POWER_WORK_DELAY = 15;
-const char RELE_POWER_AUTOROTATION_DELAY = 5;
+const char RELE_POWER_WORK_DELAY = 120;
+const char RELE_POWER_AUTOROTATION_DELAY = 15;
 const char RELE_GAP = 2;
-const char MELODY_REPEAT_DELAY = 3;
-const unsigned AUTOROTATION_DELAY = 120;
+const char MELODY_REPEAT_DELAY = 30;
+const unsigned AUTOROTATION_DELAY = 10800;
 
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
@@ -4131,19 +4131,19 @@ static union {
         unsigned CLOSED : 1;
         unsigned RELE_POWER_ON : 1;
         unsigned RELE_CONTROL_ON : 1;
-        unsigned WATER_TRUE : 1;
-        unsigned WATER_FALSE : 1;
+
+
         unsigned TONE_ON : 1;
         unsigned TONE_OFF : 1;
         unsigned SIREN : 1;
         unsigned ZUM_BUSY : 1;
-        unsigned BEEP_SHORT : 1;
-        unsigned GO_CLOSE : 1;
+
+
         unsigned MOVING_ALLOWED : 1;
         unsigned NORMAL_WORK_MODE_ON : 1;
         unsigned UNIVERSAL_VORK_MODE_ON : 1;
         unsigned LED_ON : 1;
-        unsigned ZUM_ON : 1;
+
         unsigned MEAS_ON : 1;
         unsigned AUTOROTATION_WORK : 1;
         unsigned MELODY_ON : 1;
@@ -4251,6 +4251,7 @@ void go_close_short() {
 
     }
 }
+
 
 void go_open() {
 
@@ -4379,7 +4380,7 @@ void start_alarm() {
     ff.bits.ALARM_OFF = 0;
     ff.bits.MELODY_ON = 1;
     ff.bits.SIREN = 1;
-    sec_count = 0;
+    sec_count=0;
 }
 
 void clear_alarm() {
@@ -4401,7 +4402,7 @@ void fun_work() {
         };
         if (
                 ff.bits.FUN_HIGH &&
-                ff.bits.MOVING_ALLOWED &&
+                 ff.bits.MOVING_ALLOWED &&
                 !ff.bits.FUN_LOW &&
                 !ff.bits.CLOSED &&
                 !ff.bits.CLOSING) {
@@ -4439,9 +4440,9 @@ void autorotation_work() {
             ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
-        go_close_short();
-        beep_short_count = 3;
-        beep_long_count = 3;
+              go_close_short();
+              beep_short_count=3;
+              beep_long_count=3;
     }
 
     if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
@@ -4468,12 +4469,11 @@ void minute_tick() {
 
 
     if (time_melody > 0) {
-        time_melody--;
-    };
+        time_melody--;};
 
-    if (time_melody == 0) {
-        ff.bits.SIREN = 1;
-        time_melody = MELODY_REPEAT_DELAY;
+        if (time_melody == 0) {
+            ff.bits.SIREN = 1;
+            time_melody = MELODY_REPEAT_DELAY;
 
     };
 
@@ -4510,7 +4510,7 @@ void sec_work() {
         }
     }
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        if (ff.bits.OPENED) {
+        if (ff.bits.OPENED){
             time_rotation++;
         }
         rele_tick();
@@ -4518,7 +4518,7 @@ void sec_work() {
 
     if (ff.bits.ALARM_ON) {
 
-        if (sec_count == 30 || sec_count == 60) {
+        if (sec_count == 30|| sec_count==60) {
             sec_30_work();
         }
 
@@ -4799,7 +4799,7 @@ void main(void) {
 
             get_wsp();
 
-            autorotation_work();
+               autorotation_work();
 
         } else {
             close();
