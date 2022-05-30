@@ -1,17 +1,17 @@
 [p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PIC14E ]
 [d version 1.1 ]
 [d edition pro ]
-[d chip 16F1823 ]
+[d chip 16F1824 ]
 [d frameptr 6 ]
 "85 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
-[e E2178 . `uc
+[e E2427 . `uc
 PIN_WSP_STATE 7
 channel_Temp 29
 channel_DAC 30
 channel_FVR 31
 ]
 "599 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
-[e E2514 . `uc
+[e E2763 . `uc
 PIN_WSP_STATE 7
 channel_Temp 29
 channel_DAC 30
@@ -131,7 +131,7 @@ channel_FVR 31
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
 "136
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
-[s S182 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S176 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -140,122 +140,35 @@ channel_FVR 31
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-"375 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1823.h
-[s S191 . 1 `uc 1 . 1 0 :2:0 
+"375 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC12-16F1xxx_DFP/1.3.90/xc8\pic\include\proc\pic16f1824.h
+[s S185 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S196 . 1 `S182 1 . 1 0 `S191 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES196  1 e 1 @11 ]
-[s S722 . 1 `uc 1 RA0 1 0 :1:0 
+[u S190 . 1 `S176 1 . 1 0 `S185 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES190  1 e 1 @11 ]
+[s S620 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
 `uc 1 RA4 1 0 :1:4 
 `uc 1 RA5 1 0 :1:5 
 ]
-"495
-[s S729 . 1 `uc 1 AN0 1 0 :1:0 
-`uc 1 AN1 1 0 :1:1 
-`uc 1 AN2 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 AN3 1 0 :1:4 
-]
-[s S735 . 1 `uc 1 CPS0 1 0 :1:0 
-`uc 1 CPS1 1 0 :1:1 
-`uc 1 CPS2 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 CPS3 1 0 :1:4 
-]
-[s S741 . 1 `uc 1 C1INP 1 0 :1:0 
-`uc 1 C12IN0N 1 0 :1:1 
-`uc 1 C1OUT 1 0 :1:2 
-`uc 1 nSS 1 0 :1:3 
-`uc 1 SDO 1 0 :1:4 
-]
-[s S747 . 1 `uc 1 TX 1 0 :1:0 
-`uc 1 RX 1 0 :1:1 
-`uc 1 T0CKI 1 0 :1:2 
-`uc 1 nMCLR 1 0 :1:3 
-`uc 1 CLKR 1 0 :1:4 
-`uc 1 T1OSI 1 0 :1:5 
-]
-[s S754 . 1 `uc 1 CK 1 0 :1:0 
-`uc 1 DT 1 0 :1:1 
-`uc 1 FLT0 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 T1OSO 1 0 :1:4 
-`uc 1 T1CKI 1 0 :1:5 
-]
-[s S761 . 1 `uc 1 DACOUT 1 0 :1:0 
-`uc 1 SRI 1 0 :1:1 
-`uc 1 SRQ 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 OSC2 1 0 :1:4 
-`uc 1 OSC1 1 0 :1:5 
-]
-[s S768 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 CLKOUT 1 0 :1:4 
-`uc 1 CLKIN 1 0 :1:5 
-]
-[u S772 . 1 `S722 1 . 1 0 `S729 1 . 1 0 `S735 1 . 1 0 `S741 1 . 1 0 `S747 1 . 1 0 `S754 1 . 1 0 `S761 1 . 1 0 `S768 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES772  1 e 1 @12 ]
-[s S572 . 1 `uc 1 RC0 1 0 :1:0 
+"445
+[u S627 . 1 `S620 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES627  1 e 1 @12 ]
+[s S566 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
 `uc 1 RC4 1 0 :1:4 
 `uc 1 RC5 1 0 :1:5 
 ]
-"752
-[s S579 . 1 `uc 1 AN4 1 0 :1:0 
-`uc 1 AN5 1 0 :1:1 
-`uc 1 AN6 1 0 :1:2 
-`uc 1 AN7 1 0 :1:3 
-]
-[s S584 . 1 `uc 1 CPS4 1 0 :1:0 
-`uc 1 CPS5 1 0 :1:1 
-`uc 1 CPS6 1 0 :1:2 
-`uc 1 CPS7 1 0 :1:3 
-]
-[s S589 . 1 `uc 1 C2INP 1 0 :1:0 
-`uc 1 C12IN1N 1 0 :1:1 
-`uc 1 C12IN2N 1 0 :1:2 
-`uc 1 C12IN3N 1 0 :1:3 
-`uc 1 C2OUT 1 0 :1:4 
-]
-[s S595 . 1 `uc 1 SCL 1 0 :1:0 
-`uc 1 SDA 1 0 :1:1 
-`uc 1 P1D 1 0 :1:2 
-`uc 1 P1C 1 0 :1:3 
-`uc 1 P1B 1 0 :1:4 
-`uc 1 P1A 1 0 :1:5 
-]
-[s S602 . 1 `uc 1 SCK 1 0 :1:0 
-`uc 1 SDI 1 0 :1:1 
-`uc 1 SDO 1 0 :1:2 
-`uc 1 nSS 1 0 :1:3 
-`uc 1 SRNQ 1 0 :1:4 
-`uc 1 CCP1 1 0 :1:5 
-]
-[s S609 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 MDCIN1 1 0 :1:2 
-`uc 1 MDMIN 1 0 :1:3 
-`uc 1 MDOUT 1 0 :1:4 
-`uc 1 MDCIN2 1 0 :1:5 
-]
-[s S615 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 TX 1 0 :1:4 
-`uc 1 RX 1 0 :1:5 
-]
-[s S619 . 1 `uc 1 . 1 0 :4:0 
-`uc 1 CK 1 0 :1:4 
-`uc 1 DT 1 0 :1:5 
-]
-[u S623 . 1 `S572 1 . 1 0 `S579 1 . 1 0 `S584 1 . 1 0 `S589 1 . 1 0 `S595 1 . 1 0 `S602 1 . 1 0 `S609 1 . 1 0 `S615 1 . 1 0 `S619 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES623  1 e 1 @14 ]
-[s S239 . 1 `uc 1 TMR1IF 1 0 :1:0 
+"495
+[u S573 . 1 `S566 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES573  1 e 1 @14 ]
+[s S233 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSP1IF 1 0 :1:3 
@@ -264,18 +177,18 @@ channel_FVR 31
 `uc 1 ADIF 1 0 :1:6 
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
-"969
-[u S248 . 1 `S239 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES248  1 e 1 @17 ]
-"1059
+"547
+[u S242 . 1 `S233 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES242  1 e 1 @17 ]
+"683
 [v _TMR0 TMR0 `VEuc  1 e 1 @21 ]
-"1275
+"899
 [v _TMR2 TMR2 `VEuc  1 e 1 @26 ]
-"1295
+"919
 [v _PR2 PR2 `VEuc  1 e 1 @27 ]
-"1315
+"939
 [v _T2CON T2CON `VEuc  1 e 1 @28 ]
-[s S331 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S325 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 T2OUTPS0 1 0 :1:3 
@@ -283,38 +196,38 @@ channel_FVR 31
 `uc 1 T2OUTPS2 1 0 :1:5 
 `uc 1 T2OUTPS3 1 0 :1:6 
 ]
-"1336
-[s S339 . 1 `uc 1 T2CKPS 1 0 :2:0 
+"960
+[s S333 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 T2OUTPS 1 0 :4:3 
 ]
-[u S343 . 1 `S331 1 . 1 0 `S339 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES343  1 e 1 @28 ]
-"1492
+[u S337 . 1 `S325 1 . 1 0 `S333 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES337  1 e 1 @28 ]
+"1116
 [v _TRISA TRISA `VEuc  1 e 1 @140 ]
-[s S705 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S603 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
 `uc 1 TRISA4 1 0 :1:4 
 `uc 1 TRISA5 1 0 :1:5 
 ]
-"1507
-[u S712 . 1 `S705 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES712  1 e 1 @140 ]
-"1542
+"1131
+[u S610 . 1 `S603 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES610  1 e 1 @140 ]
+"1166
 [v _TRISC TRISC `VEuc  1 e 1 @142 ]
-[s S555 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S549 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
 `uc 1 TRISC4 1 0 :1:4 
 `uc 1 TRISC5 1 0 :1:5 
 ]
-"1557
-[u S562 . 1 `S555 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES562  1 e 1 @142 ]
-[s S218 . 1 `uc 1 TMR1IE 1 0 :1:0 
+"1181
+[u S556 . 1 `S549 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES556  1 e 1 @142 ]
+[s S212 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSP1IE 1 0 :1:3 
@@ -323,12 +236,12 @@ channel_FVR 31
 `uc 1 ADIE 1 0 :1:6 
 `uc 1 TMR1GIE 1 0 :1:7 
 ]
-"1609
-[u S227 . 1 `S218 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES227  1 e 1 @145 ]
-"1699
+"1233
+[u S221 . 1 `S212 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES221  1 e 1 @145 ]
+"1369
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @149 ]
-[s S139 . 1 `uc 1 PS0 1 0 :1:0 
+[s S132 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 `uc 1 PSA 1 0 :1:3 
@@ -337,25 +250,25 @@ channel_FVR 31
 `uc 1 INTEDG 1 0 :1:6 
 `uc 1 nWPUEN 1 0 :1:7 
 ]
-"1722
-[s S148 . 1 `uc 1 PS 1 0 :3:0 
+"1392
+[s S141 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 . 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
 ]
-[u S153 . 1 `S139 1 . 1 0 `S148 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES153  1 e 1 @149 ]
-"1833
+[u S146 . 1 `S132 1 . 1 0 `S141 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES146  1 e 1 @149 ]
+"1503
 [v _WDTCON WDTCON `VEuc  1 e 1 @151 ]
-"1892
+"1562
 [v _OSCTUNE OSCTUNE `VEuc  1 e 1 @152 ]
-"1950
+"1620
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
-"2091
+"1761
 [v _ADRESL ADRESL `VEuc  1 e 1 @155 ]
-"2111
+"1781
 [v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
-"2131
+"1801
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
 [s S63 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
@@ -365,7 +278,7 @@ channel_FVR 31
 `uc 1 CHS3 1 0 :1:5 
 `uc 1 CHS4 1 0 :1:6 
 ]
-"2160
+"1826
 [s S71 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADGO 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
@@ -373,85 +286,97 @@ channel_FVR 31
 [s S75 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[s S78 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 nDONE 1 0 :1:1 
-]
-[u S81 . 1 `S63 1 . 1 0 `S71 1 . 1 0 `S75 1 . 1 0 `S78 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES81  1 e 1 @157 ]
-"2220
+[u S78 . 1 `S63 1 . 1 0 `S71 1 . 1 0 `S75 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES78  1 e 1 @157 ]
+"1881
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
-"2286
+"1953
 [v _LATA LATA `VEuc  1 e 1 @268 ]
-[s S494 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S488 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 LATA4 1 0 :1:4 
 `uc 1 LATA5 1 0 :1:5 
 ]
-"2301
-[u S501 . 1 `S494 1 . 1 0 ]
-[v _LATAbits LATAbits `VES501  1 e 1 @268 ]
-"2331
+"1968
+[u S495 . 1 `S488 1 . 1 0 ]
+[v _LATAbits LATAbits `VES495  1 e 1 @268 ]
+"1998
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S477 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S471 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
 `uc 1 LATC4 1 0 :1:4 
 `uc 1 LATC5 1 0 :1:5 
 ]
-"2346
-[u S484 . 1 `S477 1 . 1 0 ]
-[v _LATCbits LATCbits `VES484  1 e 1 @270 ]
-"2653
+"2013
+[u S478 . 1 `S471 1 . 1 0 ]
+[v _LATCbits LATCbits `VES478  1 e 1 @270 ]
+"2320
 [v _BORCON BORCON `VEuc  1 e 1 @278 ]
-"2996
-[v _APFCON APFCON `VEuc  1 e 1 @285 ]
-"3116
+"2669
+[v _APFCON0 APFCON0 `VEuc  1 e 1 @285 ]
+"2730
+[v _APFCON1 APFCON1 `VEuc  1 e 1 @286 ]
+"2768
 [v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
-[s S685 . 1 `uc 1 ANSA0 1 0 :1:0 
+[s S583 . 1 `uc 1 ANSA0 1 0 :1:0 
 `uc 1 ANSA1 1 0 :1:1 
 `uc 1 ANSA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 ANSA4 1 0 :1:4 
 ]
-"3133
-[s S691 . 1 `uc 1 ANSELA 1 0 :5:0 
+"2785
+[s S589 . 1 `uc 1 ANSELA 1 0 :5:0 
 ]
-[u S693 . 1 `S685 1 . 1 0 `S691 1 . 1 0 ]
-[v _ANSELAbits ANSELAbits `VES693  1 e 1 @396 ]
-"3163
+[u S591 . 1 `S583 1 . 1 0 `S589 1 . 1 0 ]
+[v _ANSELAbits ANSELAbits `VES591  1 e 1 @396 ]
+"2815
 [v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
-[s S529 . 1 `uc 1 ANSC0 1 0 :1:0 
+[s S523 . 1 `uc 1 ANSC0 1 0 :1:0 
 `uc 1 ANSC1 1 0 :1:1 
 `uc 1 ANSC2 1 0 :1:2 
 `uc 1 ANSC3 1 0 :1:3 
 ]
-"3179
-[s S534 . 1 `uc 1 ANSC 1 0 :4:0 
+"2831
+[s S528 . 1 `uc 1 ANSELC 1 0 :4:0 
 ]
-[u S536 . 1 `S529 1 . 1 0 `S534 1 . 1 0 ]
-[v _ANSELCbits ANSELCbits `VES536  1 e 1 @398 ]
-"3209
+[u S530 . 1 `S523 1 . 1 0 `S528 1 . 1 0 ]
+[v _ANSELCbits ANSELCbits `VES530  1 e 1 @398 ]
+"2861
 [v _EEADR EEADR `VEus  1 e 2 @401 ]
-"3268
+"2920
 [v _EEDATA EEDATA `VEuc  1 e 1 @403 ]
-"3383
+"3035
 [v _EECON2 EECON2 `VEuc  1 e 1 @406 ]
-"3718
+"3370
 [v _WPUA WPUA `VEuc  1 e 1 @524 ]
-"3776
+"3428
 [v _WPUC WPUC `VEuc  1 e 1 @526 ]
-"6132
+"6940
 [v _GIE GIE `VEb  1 e 0 @95 ]
-"6504
+"7375
 [v _RD RD `VEb  1 e 0 @3240 ]
-"6960
+"7867
 [v _WR WR `VEb  1 e 0 @3241 ]
-"6963
+"7870
 [v _WREN WREN `VEb  1 e 0 @3242 ]
-[s S435 . 4 `uc 1 ALARM_ON 1 0 :1:0 
+"19 C:\Users\U3B6\MPLABXProjects\standart_23.X\eeprom.c
+[v __ccovbit9_180 _ccovbit9_180 `VEb  1 e 0 0 ]
+"22
+[v __ccovbit3_181 _ccovbit3_181 `VEb  1 e 0 0 ]
+"26
+[v __ccovbit8_182 _ccovbit8_182 `VEb  1 e 0 0 ]
+"21 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+[v __ccovbit22_159 _ccovbit22_159 `VEb  1 e 0 0 ]
+"27
+[v __ccovbit4_38 _ccovbit4_38 `VEb  1 e 0 0 ]
+[v __ccovbit4_42 _ccovbit4_42 `VEb  1 e 0 0 ]
+"28
+[v __ccovbit5_115 _ccovbit5_115 `VEb  1 e 0 0 ]
+[s S429 . 4 `uc 1 ALARM_ON 1 0 :1:0 
 `uc 1 ALARM_OFF 1 0 :1:1 
 `uc 1 FUN_HIGH 1 0 :1:2 
 `uc 1 FUN_LOW 1 0 :1:3 
@@ -479,9 +404,9 @@ channel_FVR 31
 `uc 1 MELODY_ON 1 3 :1:1 
 `uc 1 LAST_BEEP_LONG 1 3 :1:2 
 ]
-"74 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
-[u S463 . 4 `ul 1 value 4 0 `S435 1 bits 4 0 ]
-[v _ff ff `S463  1 s 4 ff ]
+"74
+[u S457 . 4 `ul 1 value 4 0 `S429 1 bits 4 0 ]
+[v _ff ff `S457  1 s 4 ff ]
 "84
 [v _time_rotation time_rotation `um  1 e 3 0 ]
 "85
@@ -508,12 +433,341 @@ channel_FVR 31
 [v _beep_short_count beep_short_count `uc  1 e 1 0 ]
 "106
 [v _beep_long_count beep_long_count `uc  1 e 1 0 ]
+"126
+[v __ccovbit1_25 _ccovbit1_25 `VEb  1 e 0 0 ]
+"132
+[v __ccovbit1_26 _ccovbit1_26 `VEb  1 e 0 0 ]
+"136
+[v __ccovbit2_27 _ccovbit2_27 `VEb  1 e 0 0 ]
+"139
+[v __ccovbit6_28 _ccovbit6_28 `VEb  1 e 0 0 ]
+"141
+[v __ccovbit8_29 _ccovbit8_29 `VEb  1 e 0 0 ]
+"145
+[v __ccovbit2_30 _ccovbit2_30 `VEb  1 e 0 0 ]
+"148
+[v __ccovbit6_31 _ccovbit6_31 `VEb  1 e 0 0 ]
+"150
+[v __ccovbit8_32 _ccovbit8_32 `VEb  1 e 0 0 ]
+"154
+[v __ccovbit1_33 _ccovbit1_33 `VEb  1 e 0 0 ]
+"156
+[v __ccovbit3_34 _ccovbit3_34 `VEb  1 e 0 0 ]
+"158
+[v __ccovbit5_35 _ccovbit5_35 `VEb  1 e 0 0 ]
+"162
+[v __ccovbit1_36 _ccovbit1_36 `VEb  1 e 0 0 ]
+[v __ccovbit2_37 _ccovbit2_37 `VEb  1 e 0 0 ]
+"177
+[v __ccovbit6_39 _ccovbit6_39 `VEb  1 e 0 0 ]
+"181
+[v __ccovbit1_40 _ccovbit1_40 `VEb  1 e 0 0 ]
+[v __ccovbit2_41 _ccovbit2_41 `VEb  1 e 0 0 ]
+"196
+[v __ccovbit6_43 _ccovbit6_43 `VEb  1 e 0 0 ]
+"201
+[v __ccovbit1_44 _ccovbit1_44 `VEb  1 e 0 0 ]
+[v __ccovbit2_45 _ccovbit2_45 `VEb  1 e 0 0 ]
+"212
+[v __ccovbit5_46 _ccovbit5_46 `VEb  1 e 0 0 ]
+"215
+[v __ccovbit8_47 _ccovbit8_47 `VEb  1 e 0 0 ]
+"219
+[v __ccovbit1_48 _ccovbit1_48 `VEb  1 e 0 0 ]
+[v __ccovbit2_49 _ccovbit2_49 `VEb  1 e 0 0 ]
+[v __ccovbit3_50 _ccovbit3_50 `VEb  1 e 0 0 ]
+"226
+[v __ccovbit5_51 _ccovbit5_51 `VEb  1 e 0 0 ]
+"229
+[v __ccovbit1_52 _ccovbit1_52 `VEb  1 e 0 0 ]
+"230
+[v __ccovbit2_53 _ccovbit2_53 `VEb  1 e 0 0 ]
+"236
+[v __ccovbit4_54 _ccovbit4_54 `VEb  1 e 0 0 ]
+"245
+[v __ccovbit1_55 _ccovbit1_55 `VEb  1 e 0 0 ]
+"246
+[v __ccovbit2_56 _ccovbit2_56 `VEb  1 e 0 0 ]
+"251
+[v __ccovbit5_57 _ccovbit5_57 `VEb  1 e 0 0 ]
+"255
+[v __ccovbit1_58 _ccovbit1_58 `VEb  1 e 0 0 ]
+"258
+[v __ccovbit3_59 _ccovbit3_59 `VEb  1 e 0 0 ]
+"259
+[v __ccovbit4_60 _ccovbit4_60 `VEb  1 e 0 0 ]
+"260
+[v __ccovbit5_61 _ccovbit5_61 `VEb  1 e 0 0 ]
+"263
+[v __ccovbit9_62 _ccovbit9_62 `VEb  1 e 0 0 ]
+"267
+[v __ccovbit1_63 _ccovbit1_63 `VEb  1 e 0 0 ]
+"270
+[v __ccovbit3_64 _ccovbit3_64 `VEb  1 e 0 0 ]
+"271
+[v __ccovbit4_65 _ccovbit4_65 `VEb  1 e 0 0 ]
+"272
+[v __ccovbit5_66 _ccovbit5_66 `VEb  1 e 0 0 ]
+"275
+[v __ccovbit9_67 _ccovbit9_67 `VEb  1 e 0 0 ]
+"279
+[v __ccovbit1_68 _ccovbit1_68 `VEb  1 e 0 0 ]
+"285
+[v __ccovbit4_69 _ccovbit4_69 `VEb  1 e 0 0 ]
+"287
+[v __ccovbit6_70 _ccovbit6_70 `VEb  1 e 0 0 ]
+"288
+[v __ccovbit7_71 _ccovbit7_71 `VEb  1 e 0 0 ]
+"293
+[v __ccovbit10_72 _ccovbit10_72 `VEb  1 e 0 0 ]
+"301
+[v __ccovbit14_73 _ccovbit14_73 `VEb  1 e 0 0 ]
+"302
+[v __ccovbit15_74 _ccovbit15_74 `VEb  1 e 0 0 ]
+"306
+[v __ccovbit18_75 _ccovbit18_75 `VEb  1 e 0 0 ]
+"309
+[v __ccovbit20_76 _ccovbit20_76 `VEb  1 e 0 0 ]
+"311
+[v __ccovbit22_77 _ccovbit22_77 `VEb  1 e 0 0 ]
+"312
+[v __ccovbit23_78 _ccovbit23_78 `VEb  1 e 0 0 ]
+"319
+[v __ccovbit27_79 _ccovbit27_79 `VEb  1 e 0 0 ]
+"327
+[v __ccovbit2_80 _ccovbit2_80 `VEb  1 e 0 0 ]
+"332
+[v __ccovbit1_81 _ccovbit1_81 `VEb  1 e 0 0 ]
+"336
+[v __ccovbit1_82 _ccovbit1_82 `VEb  1 e 0 0 ]
+[v __ccovbit2_83 _ccovbit2_83 `VEb  1 e 0 0 ]
+[v __ccovbit3_84 _ccovbit3_84 `VEb  1 e 0 0 ]
+[v __ccovbit4_85 _ccovbit4_85 `VEb  1 e 0 0 ]
+[v __ccovbit5_86 _ccovbit5_86 `VEb  1 e 0 0 ]
+"344
+[v __ccovbit7_87 _ccovbit7_87 `VEb  1 e 0 0 ]
+"346
+[v __ccovbit10_88 _ccovbit10_88 `VEb  1 e 0 0 ]
+[v __ccovbit11_89 _ccovbit11_89 `VEb  1 e 0 0 ]
+[v __ccovbit12_90 _ccovbit12_90 `VEb  1 e 0 0 ]
+[v __ccovbit13_91 _ccovbit13_91 `VEb  1 e 0 0 ]
+"353
+[v __ccovbit15_92 _ccovbit15_92 `VEb  1 e 0 0 ]
+"356
+[v __ccovbit17_93 _ccovbit17_93 `VEb  1 e 0 0 ]
+"360
+[v __ccovbit1_94 _ccovbit1_94 `VEb  1 e 0 0 ]
+"365
+[v __ccovbit4_95 _ccovbit4_95 `VEb  1 e 0 0 ]
+"367
+[v __ccovbit6_96 _ccovbit6_96 `VEb  1 e 0 0 ]
+"368
+[v __ccovbit7_97 _ccovbit7_97 `VEb  1 e 0 0 ]
+"373
+[v __ccovbit10_98 _ccovbit10_98 `VEb  1 e 0 0 ]
+"376
+[v __ccovbit14_99 _ccovbit14_99 `VEb  1 e 0 0 ]
+"379
+[v __ccovbit1_100 _ccovbit1_100 `VEb  1 e 0 0 ]
+[v __ccovbit2_101 _ccovbit2_101 `VEb  1 e 0 0 ]
+[v __ccovbit3_102 _ccovbit3_102 `VEb  1 e 0 0 ]
+[v __ccovbit4_103 _ccovbit4_103 `VEb  1 e 0 0 ]
+[v __ccovbit5_104 _ccovbit5_104 `VEb  1 e 0 0 ]
+"388
+[v __ccovbit8_105 _ccovbit8_105 `VEb  1 e 0 0 ]
+"391
+[v __ccovbit11_106 _ccovbit11_106 `VEb  1 e 0 0 ]
+[v __ccovbit12_107 _ccovbit12_107 `VEb  1 e 0 0 ]
+[v __ccovbit13_108 _ccovbit13_108 `VEb  1 e 0 0 ]
+[v __ccovbit14_109 _ccovbit14_109 `VEb  1 e 0 0 ]
+[v __ccovbit15_110 _ccovbit15_110 `VEb  1 e 0 0 ]
+"399
+[v __ccovbit17_111 _ccovbit17_111 `VEb  1 e 0 0 ]
+"402
+[v __ccovbit19_112 _ccovbit19_112 `VEb  1 e 0 0 ]
+"415
+[v __ccovbit1_113 _ccovbit1_113 `VEb  1 e 0 0 ]
+"417
+[v __ccovbit3_114 _ccovbit3_114 `VEb  1 e 0 0 ]
+"429
+[v __ccovbit8_116 _ccovbit8_116 `VEb  1 e 0 0 ]
+"433
+[v __ccovbit1_117 _ccovbit1_117 `VEb  1 e 0 0 ]
+"435
+[v __ccovbit3_118 _ccovbit3_118 `VEb  1 e 0 0 ]
+"437
+[v __ccovbit5_119 _ccovbit5_119 `VEb  1 e 0 0 ]
+"450
+[v __ccovbit3_120 _ccovbit3_120 `VEb  1 e 0 0 ]
+"451
+[v __ccovbit4_121 _ccovbit4_121 `VEb  1 e 0 0 ]
+"457
+[v __ccovbit8_122 _ccovbit8_122 `VEb  1 e 0 0 ]
+"459
+[v __ccovbit10_123 _ccovbit10_123 `VEb  1 e 0 0 ]
+"464
+[v __ccovbit14_124 _ccovbit14_124 `VEb  1 e 0 0 ]
+"465
+[v __ccovbit16_125 _ccovbit16_125 `VEb  1 e 0 0 ]
+"468
+[v __ccovbit18_126 _ccovbit18_126 `VEb  1 e 0 0 ]
+"470
+[v __ccovbit19_127 _ccovbit19_127 `VEb  1 e 0 0 ]
+"474
+[v __ccovbit21_128 _ccovbit21_128 `VEb  1 e 0 0 ]
+"476
+[v __ccovbit23_129 _ccovbit23_129 `VEb  1 e 0 0 ]
+"484
+[v __ccovbit29_130 _ccovbit29_130 `VEb  1 e 0 0 ]
+"487
+[v __ccovbit31_131 _ccovbit31_131 `VEb  1 e 0 0 ]
+"491
+[v __ccovbit1_132 _ccovbit1_132 `VEb  1 e 0 0 ]
+"492
+[v __ccovbit2_133 _ccovbit2_133 `VEb  1 e 0 0 ]
+"494
+[v __ccovbit4_134 _ccovbit4_134 `VEb  1 e 0 0 ]
+"495
+[v __ccovbit5_135 _ccovbit5_135 `VEb  1 e 0 0 ]
+"498
+[v __ccovbit8_136 _ccovbit8_136 `VEb  1 e 0 0 ]
+"501
+[v __ccovbit10_137 _ccovbit10_137 `VEb  1 e 0 0 ]
+"505
+[v __ccovbit14_138 _ccovbit14_138 `VEb  1 e 0 0 ]
+"507
+[v __ccovbit16_139 _ccovbit16_139 `VEb  1 e 0 0 ]
+"508
+[v __ccovbit17_140 _ccovbit17_140 `VEb  1 e 0 0 ]
+"513
+[v __ccovbit22_141 _ccovbit22_141 `VEb  1 e 0 0 ]
+"516
+[v __ccovbit1_142 _ccovbit1_142 `VEb  1 e 0 0 ]
+[v __ccovbit2_143 _ccovbit2_143 `VEb  1 e 0 0 ]
+"519
+[v __ccovbit4_144 _ccovbit4_144 `VEb  1 e 0 0 ]
+"527
+[v __ccovbit3_145 _ccovbit3_145 `VEb  1 e 0 0 ]
+"528
+[v __ccovbit4_146 _ccovbit4_146 `VEb  1 e 0 0 ]
+"539
+[v __ccovbit12_147 _ccovbit12_147 `VEb  1 e 0 0 ]
+"549
+[v __ccovbit18_148 _ccovbit18_148 `VEb  1 e 0 0 ]
+"552
+[v __ccovbit20_149 _ccovbit20_149 `VEb  1 e 0 0 ]
+"561
+[v __ccovbit2_150 _ccovbit2_150 `VEb  1 e 0 0 ]
+"564
+[v __ccovbit4_151 _ccovbit4_151 `VEb  1 e 0 0 ]
+"574
+[v __ccovbit1_152 _ccovbit1_152 `VEb  1 e 0 0 ]
+"578
+[v __ccovbit4_153 _ccovbit4_153 `VEb  1 e 0 0 ]
+"580
+[v __ccovbit7_154 _ccovbit7_154 `VEb  1 e 0 0 ]
+"589
+[v __ccovbit3_155 _ccovbit3_155 `VEb  1 e 0 0 ]
+"603
+[v __ccovbit14_156 _ccovbit14_156 `VEb  1 e 0 0 ]
+"605
+[v __ccovbit16_157 _ccovbit16_157 `VEb  1 e 0 0 ]
+"606
+[v __ccovbit17_158 _ccovbit17_158 `VEb  1 e 0 0 ]
+"615
+[v __ccovbit26_160 _ccovbit26_160 `VEb  1 e 0 0 ]
+"617
+[v __ccovbit28_161 _ccovbit28_161 `VEb  1 e 0 0 ]
+"619
+[v __ccovbit30_162 _ccovbit30_162 `VEb  1 e 0 0 ]
+"630
+[v __ccovbit11_163 _ccovbit11_163 `VEb  1 e 0 0 ]
+"631
+[v __ccovbit13_164 _ccovbit13_164 `VEb  1 e 0 0 ]
+"641
+[v __ccovbit21_165 _ccovbit21_165 `VEb  1 e 0 0 ]
+"642
+[v __ccovbit23_166 _ccovbit23_166 `VEb  1 e 0 0 ]
+"645
+[v __ccovbit26_167 _ccovbit26_167 `VEb  1 e 0 0 ]
+"647
+[v __ccovbit29_168 _ccovbit29_168 `VEb  1 e 0 0 ]
+"649
+[v __ccovbit31_169 _ccovbit31_169 `VEb  1 e 0 0 ]
+"694
+[v __ccovbit5_170 _ccovbit5_170 `VEb  1 e 0 0 ]
+"695
+[v __ccovbit7_171 _ccovbit7_171 `VEb  1 e 0 0 ]
+"706
+[v __ccovbit12_172 _ccovbit12_172 `VEb  1 e 0 0 ]
+"707
+[v __ccovbit14_173 _ccovbit14_173 `VEb  1 e 0 0 ]
+"710
+[v __ccovbit17_174 _ccovbit17_174 `VEb  1 e 0 0 ]
+"712
+[v __ccovbit20_175 _ccovbit20_175 `VEb  1 e 0 0 ]
+"715
+[v __ccovbit22_176 _ccovbit22_176 `VEb  1 e 0 0 ]
+"803
+[v __ccovbit31_177 _ccovbit31_177 `VEb  1 e 0 0 ]
+"845
+[v __ccovbit4_178 _ccovbit4_178 `VEb  1 e 0 0 ]
+"856
+[v __ccovbit6_179 _ccovbit6_179 `VEb  1 e 0 0 ]
+"83 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+[v __ccovbit3_4 _ccovbit3_4 `VEb  1 e 0 0 ]
+"133
+[v __ccovbit9_5 _ccovbit9_5 `VEb  1 e 0 0 ]
+"55 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
+[v __ccovbit1_7 _ccovbit1_7 `VEb  1 e 0 0 ]
+"57
+[v __ccovbit2_8 _ccovbit2_8 `VEb  1 e 0 0 ]
+"59
+[v __ccovbit3_9 _ccovbit3_9 `VEb  1 e 0 0 ]
+"61
+[v __ccovbit5_10 _ccovbit5_10 `VEb  1 e 0 0 ]
+"63
+[v __ccovbit6_11 _ccovbit6_11 `VEb  1 e 0 0 ]
+"73
+[v __ccovbit10_12 _ccovbit10_12 `VEb  1 e 0 0 ]
+"74
+[v __ccovbit12_13 _ccovbit12_13 `VEb  1 e 0 0 ]
+"59 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+[v __ccovbit1_1 _ccovbit1_1 `VEb  1 e 0 0 ]
+"69
+[v __ccovbit3_2 _ccovbit3_2 `VEb  1 e 0 0 ]
+"75
+[v __ccovbit1_3 _ccovbit1_3 `VEb  1 e 0 0 ]
+"94 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+[v __ccovbit6_6 _ccovbit6_6 `VEb  1 e 0 0 ]
 "58 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _timer0ReloadVal timer0ReloadVal `VEuc  1 e 1 0 ]
 "59
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
+"85
+[v __ccovbit6_20 _ccovbit6_20 `VEb  1 e 0 0 ]
+"118
+[v __ccovbit3_21 _ccovbit3_21 `VEb  1 e 0 0 ]
+"122
+[v __ccovbit5_22 _ccovbit5_22 `VEb  1 e 0 0 ]
+"127
+[v __ccovbit1_23 _ccovbit1_23 `VEb  1 e 0 0 ]
+"132
+[v __ccovbit0_24 _ccovbit0_24 `VEb  1 e 0 0 ]
 "58 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
+"85
+[v __ccovbit6_14 _ccovbit6_14 `VEb  1 e 0 0 ]
+"91
+[v __ccovbit1_15 _ccovbit1_15 `VEb  1 e 0 0 ]
+"127
+[v __ccovbit2_16 _ccovbit2_16 `VEb  1 e 0 0 ]
+"129
+[v __ccovbit4_17 _ccovbit4_17 `VEb  1 e 0 0 ]
+"134
+[v __ccovbit1_18 _ccovbit1_18 `VEb  1 e 0 0 ]
+"139
+[v __ccovbit0_19 _ccovbit0_19 `VEb  1 e 0 0 ]
 "830 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
@@ -596,7 +850,7 @@ channel_FVR 31
 "55 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
-"93
+"94
 } 0
 "61 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
@@ -635,10 +889,10 @@ channel_FVR 31
 "112 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
 {
-[v ADC_GetConversion@channel channel `E2178  1 a 1 wreg ]
-[v ADC_GetConversion@channel channel `E2178  1 a 1 wreg ]
+[v ADC_GetConversion@channel channel `E2427  1 a 1 wreg ]
+[v ADC_GetConversion@channel channel `E2427  1 a 1 wreg ]
 "115
-[v ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
+[v ADC_GetConversion@channel channel `E2427  1 a 1 3 ]
 "133
 } 0
 "686 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
