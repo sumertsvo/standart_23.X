@@ -1198,7 +1198,7 @@
         <property key="warningmessagebreakoptions.warningmessages" value="holdstate"/>
       </Tool>
       <XC8-CO>
-        <property key="coverage-enable" value=""/>
+        <property key="coverage-enable" value="-mcodecov=ram"/>
         <property key="stack-guidance" value="false"/>
       </XC8-CO>
       <XC8-config-global>

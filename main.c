@@ -412,12 +412,12 @@ void minute_tick() {
     //  static unsigned minute_count = 0;
 
     if (time_melody > 0) {
-        time_melody--;};
-        
+       time_melody--;
+    } else {
         if (time_melody == 0) {
             ff.bits.SIREN = 1;
             time_melody = MELODY_REPEAT_DELAY;
-        
+        } 
     };
 
     /*
