@@ -12,7 +12,7 @@
 const char SHORT_ZUMMER_DELAY = 30;
 const char LONG_ZUMMER_DELAY = 130;
 const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
-const char AUTOROTATION_DAYS = 14; //дней до поворота крана
+const unsigned AUTOROTATION_DAYS = 14; //дней до поворота крана
 const char MOVING_WAIT_DELAY = 2;
 const unsigned LOW_WATER_RESISTANSE = 20000; //сопротивление датчика
 const unsigned HIGH_WATER_RESISTANSE = 25000; //
@@ -26,7 +26,7 @@ const char RELE_POWER_WORK_DELAY = 120; // sec
 const char RELE_POWER_AUTOROTATION_DELAY = 15; // sec
 const char RELE_GAP = 2; //sec
 const char MELODY_REPEAT_DELAY = 30; //min
-const unsigned AUTOROTATION_DELAY =  (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const __uint24 AUTOROTATION_DELAY =  (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 /*voltages*/
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
