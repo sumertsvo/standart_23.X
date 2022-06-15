@@ -10,7 +10,7 @@ channel_Temp 29
 channel_DAC 30
 channel_FVR 31
 ]
-"599 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"601 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [e E2514 . `uc
 PIN_WSP_STATE 7
 channel_Temp 29
@@ -33,71 +33,71 @@ channel_FVR 31
 [v _EEPROM_WriteWord EEPROM_WriteWord `(v  1 e 1 0 ]
 "34
 [v _EEPROM_ReadWord EEPROM_ReadWord `(ui  1 e 2 0 ]
-"122 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"121 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _start_tone start_tone `(v  1 e 1 0 ]
-"128
+"127
 [v _stop_tone stop_tone `(v  1 e 1 0 ]
-"134
+"133
 [v _beep_short beep_short `(v  1 e 1 0 ]
-"143
+"142
 [v _beep_long beep_long `(v  1 e 1 0 ]
-"152
+"151
 [v _beep_double beep_double `(v  1 e 1 0 ]
-"160
+"159
 [v _go_close go_close `(v  1 e 1 0 ]
-"179
+"178
 [v _go_close_short go_close_short `(v  1 e 1 0 ]
-"199
+"197
 [v _go_open go_open `(v  1 e 1 0 ]
-"217
+"213
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
-"228
+"224
 [v _go_open_alt go_open_alt `(v  1 e 1 0 ]
-"238
+"234
 [v _rele_off rele_off `(v  1 e 1 0 ]
-"253
+"249
 [v _close close `(v  1 e 1 0 ]
-"265
+"261
 [v _open open `(v  1 e 1 0 ]
-"277
+"273
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
-"321
+"318
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
-"329
+"326
 [v _clear_alarm clear_alarm `(v  1 e 1 0 ]
-"334
+"331
 [v _fun_work fun_work `(v  1 e 1 0 ]
-"358
+"357
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
-"378
+"377
 [v _autorotation_work autorotation_work `(v  1 e 1 0 ]
-"410
+"412
 [v _minute_tick minute_tick `(v  1 e 1 0 ]
-"431
+"433
 [v _sec_30_work sec_30_work `(v  1 e 1 0 ]
-"439
+"441
 [v _sec_work sec_work `(v  1 e 1 0 ]
-"489
+"491
 [v _ms_200_work ms_200_work `(v  1 e 1 0 ]
-"515
+"517
 [v _ms_100_work ms_100_work `(v  1 e 1 0 ]
-"521
+"523
 [v _ms_tick ms_tick `(v  1 e 1 0 ]
-"558
+"560
 [v _eeprom_set eeprom_set `(v  1 e 1 0 ]
-"566
+"568
 [v _hardware_work hardware_work `(v  1 e 1 0 ]
-"582
+"584
 [v _zummer_switch zummer_switch `(v  1 e 1 0 ]
-"591
+"593
 [v _get_wsp get_wsp `(v  1 e 1 0 ]
-"621
+"623
 [v _get_fun get_fun `(v  1 e 1 0 ]
-"686
+"688
 [v _get_jump get_jump `(v  1 e 1 0 ]
-"750
+"752
 [v _start_setup start_setup `(v  1 e 1 0 ]
-"830
+"832
 [v _main main `(v  1 e 1 0 ]
 "67 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
@@ -451,6 +451,21 @@ channel_FVR 31
 [v _WR WR `VEb  1 e 0 @3241 ]
 "6963
 [v _WREN WREN `VEb  1 e 0 @3242 ]
+"19 C:\Users\U3B6\MPLABXProjects\standart_23.X\eeprom.c
+[v __ccovbit9_180 _ccovbit9_180 `VEb  1 e 0 0 ]
+"22
+[v __ccovbit3_181 _ccovbit3_181 `VEb  1 e 0 0 ]
+"26
+[v __ccovbit8_182 _ccovbit8_182 `VEb  1 e 0 0 ]
+"21 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+[v __ccovbit22_159 _ccovbit22_159 `VEb  1 e 0 0 ]
+"25
+[v __ccovbit4_46 _ccovbit4_46 `VEb  1 e 0 0 ]
+"27
+[v __ccovbit4_38 _ccovbit4_38 `VEb  1 e 0 0 ]
+[v __ccovbit4_42 _ccovbit4_42 `VEb  1 e 0 0 ]
+"28
+[v __ccovbit5_115 _ccovbit5_115 `VEb  1 e 0 0 ]
 [s S435 . 4 `uc 1 ALARM_ON 1 0 :1:0 
 `uc 1 ALARM_OFF 1 0 :1:1 
 `uc 1 FUN_HIGH 1 0 :1:2 
@@ -479,62 +494,389 @@ channel_FVR 31
 `uc 1 MELODY_ON 1 3 :1:1 
 `uc 1 LAST_BEEP_LONG 1 3 :1:2 
 ]
-"74 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"73
 [u S463 . 4 `ul 1 value 4 0 `S435 1 bits 4 0 ]
 [v _ff ff `S463  1 s 4 ff ]
-"84
+"83
 [v _time_rotation time_rotation `um  1 e 3 0 ]
-"85
+"84
 [v _time_rele_power time_rele_power `ui  1 e 2 0 ]
-"86
+"85
 [v _time_rele_control time_rele_control `ui  1 e 2 0 ]
-"87
+"86
 [v _time_rele_gap time_rele_gap `ui  1 e 2 0 ]
-"88
+"87
 [v _time_tone time_tone `ui  1 e 2 0 ]
-"89
+"88
 [v _sec_count sec_count `uc  1 e 1 0 ]
-"92
+"91
 [v _time_melody time_melody `uc  1 e 1 0 ]
-"93
+"92
 [v _time_moving_wait time_moving_wait `uc  1 e 1 0 ]
-"94
+"93
 [v _time_zummer_short time_zummer_short `ui  1 e 2 0 ]
-"95
+"94
 [v _time_zummer_long time_zummer_long `ui  1 e 2 0 ]
-"98
+"97
 [v _time_meas time_meas `uc  1 e 1 0 ]
-"105
+"104
 [v _beep_short_count beep_short_count `uc  1 e 1 0 ]
-"106
+"105
 [v _beep_long_count beep_long_count `uc  1 e 1 0 ]
+"125
+[v __ccovbit1_25 _ccovbit1_25 `VEb  1 e 0 0 ]
+"131
+[v __ccovbit1_26 _ccovbit1_26 `VEb  1 e 0 0 ]
+"135
+[v __ccovbit2_27 _ccovbit2_27 `VEb  1 e 0 0 ]
+"138
+[v __ccovbit6_28 _ccovbit6_28 `VEb  1 e 0 0 ]
+"140
+[v __ccovbit8_29 _ccovbit8_29 `VEb  1 e 0 0 ]
+"144
+[v __ccovbit2_30 _ccovbit2_30 `VEb  1 e 0 0 ]
+"147
+[v __ccovbit6_31 _ccovbit6_31 `VEb  1 e 0 0 ]
+"149
+[v __ccovbit8_32 _ccovbit8_32 `VEb  1 e 0 0 ]
+"153
+[v __ccovbit1_33 _ccovbit1_33 `VEb  1 e 0 0 ]
+"155
+[v __ccovbit3_34 _ccovbit3_34 `VEb  1 e 0 0 ]
+"157
+[v __ccovbit5_35 _ccovbit5_35 `VEb  1 e 0 0 ]
+"161
+[v __ccovbit1_36 _ccovbit1_36 `VEb  1 e 0 0 ]
+[v __ccovbit2_37 _ccovbit2_37 `VEb  1 e 0 0 ]
+"176
+[v __ccovbit6_39 _ccovbit6_39 `VEb  1 e 0 0 ]
+"180
+[v __ccovbit1_40 _ccovbit1_40 `VEb  1 e 0 0 ]
+[v __ccovbit2_41 _ccovbit2_41 `VEb  1 e 0 0 ]
+"194
+[v __ccovbit6_43 _ccovbit6_43 `VEb  1 e 0 0 ]
+"199
+[v __ccovbit1_44 _ccovbit1_44 `VEb  1 e 0 0 ]
+[v __ccovbit2_45 _ccovbit2_45 `VEb  1 e 0 0 ]
+"211
+[v __ccovbit7_47 _ccovbit7_47 `VEb  1 e 0 0 ]
+"215
+[v __ccovbit1_48 _ccovbit1_48 `VEb  1 e 0 0 ]
+[v __ccovbit2_49 _ccovbit2_49 `VEb  1 e 0 0 ]
+[v __ccovbit3_50 _ccovbit3_50 `VEb  1 e 0 0 ]
+"222
+[v __ccovbit5_51 _ccovbit5_51 `VEb  1 e 0 0 ]
+"225
+[v __ccovbit1_52 _ccovbit1_52 `VEb  1 e 0 0 ]
+"226
+[v __ccovbit2_53 _ccovbit2_53 `VEb  1 e 0 0 ]
+"232
+[v __ccovbit4_54 _ccovbit4_54 `VEb  1 e 0 0 ]
+"241
+[v __ccovbit1_55 _ccovbit1_55 `VEb  1 e 0 0 ]
+"242
+[v __ccovbit2_56 _ccovbit2_56 `VEb  1 e 0 0 ]
+"247
+[v __ccovbit4_57 _ccovbit4_57 `VEb  1 e 0 0 ]
+"251
+[v __ccovbit1_58 _ccovbit1_58 `VEb  1 e 0 0 ]
+"254
+[v __ccovbit3_59 _ccovbit3_59 `VEb  1 e 0 0 ]
+"255
+[v __ccovbit4_60 _ccovbit4_60 `VEb  1 e 0 0 ]
+"256
+[v __ccovbit5_61 _ccovbit5_61 `VEb  1 e 0 0 ]
+"259
+[v __ccovbit9_62 _ccovbit9_62 `VEb  1 e 0 0 ]
+"263
+[v __ccovbit1_63 _ccovbit1_63 `VEb  1 e 0 0 ]
+"266
+[v __ccovbit3_64 _ccovbit3_64 `VEb  1 e 0 0 ]
+"267
+[v __ccovbit4_65 _ccovbit4_65 `VEb  1 e 0 0 ]
+"268
+[v __ccovbit5_66 _ccovbit5_66 `VEb  1 e 0 0 ]
+"271
+[v __ccovbit9_67 _ccovbit9_67 `VEb  1 e 0 0 ]
+"275
+[v __ccovbit1_68 _ccovbit1_68 `VEb  1 e 0 0 ]
+"281
+[v __ccovbit4_69 _ccovbit4_69 `VEb  1 e 0 0 ]
+"283
+[v __ccovbit6_70 _ccovbit6_70 `VEb  1 e 0 0 ]
+"284
+[v __ccovbit7_71 _ccovbit7_71 `VEb  1 e 0 0 ]
+"290
+[v __ccovbit10_72 _ccovbit10_72 `VEb  1 e 0 0 ]
+"298
+[v __ccovbit14_73 _ccovbit14_73 `VEb  1 e 0 0 ]
+"299
+[v __ccovbit15_74 _ccovbit15_74 `VEb  1 e 0 0 ]
+"303
+[v __ccovbit18_75 _ccovbit18_75 `VEb  1 e 0 0 ]
+"306
+[v __ccovbit20_76 _ccovbit20_76 `VEb  1 e 0 0 ]
+"308
+[v __ccovbit22_77 _ccovbit22_77 `VEb  1 e 0 0 ]
+"309
+[v __ccovbit23_78 _ccovbit23_78 `VEb  1 e 0 0 ]
+"316
+[v __ccovbit27_79 _ccovbit27_79 `VEb  1 e 0 0 ]
+"324
+[v __ccovbit2_80 _ccovbit2_80 `VEb  1 e 0 0 ]
+"329
+[v __ccovbit1_81 _ccovbit1_81 `VEb  1 e 0 0 ]
+"333
+[v __ccovbit1_82 _ccovbit1_82 `VEb  1 e 0 0 ]
+[v __ccovbit2_83 _ccovbit2_83 `VEb  1 e 0 0 ]
+[v __ccovbit3_84 _ccovbit3_84 `VEb  1 e 0 0 ]
+[v __ccovbit4_85 _ccovbit4_85 `VEb  1 e 0 0 ]
+[v __ccovbit5_86 _ccovbit5_86 `VEb  1 e 0 0 ]
+[v __ccovbit6_87 _ccovbit6_87 `VEb  1 e 0 0 ]
+"342
+[v __ccovbit8_88 _ccovbit8_88 `VEb  1 e 0 0 ]
+"344
+[v __ccovbit11_89 _ccovbit11_89 `VEb  1 e 0 0 ]
+[v __ccovbit12_90 _ccovbit12_90 `VEb  1 e 0 0 ]
+[v __ccovbit13_91 _ccovbit13_91 `VEb  1 e 0 0 ]
+[v __ccovbit14_92 _ccovbit14_92 `VEb  1 e 0 0 ]
+[v __ccovbit15_93 _ccovbit15_93 `VEb  1 e 0 0 ]
+"352
+[v __ccovbit17_94 _ccovbit17_94 `VEb  1 e 0 0 ]
+"355
+[v __ccovbit19_95 _ccovbit19_95 `VEb  1 e 0 0 ]
+"359
+[v __ccovbit1_96 _ccovbit1_96 `VEb  1 e 0 0 ]
+"364
+[v __ccovbit4_97 _ccovbit4_97 `VEb  1 e 0 0 ]
+"366
+[v __ccovbit6_98 _ccovbit6_98 `VEb  1 e 0 0 ]
+"367
+[v __ccovbit7_99 _ccovbit7_99 `VEb  1 e 0 0 ]
+"372
+[v __ccovbit10_100 _ccovbit10_100 `VEb  1 e 0 0 ]
+"375
+[v __ccovbit14_101 _ccovbit14_101 `VEb  1 e 0 0 ]
+"379
+[v __ccovbit1_102 _ccovbit1_102 `VEb  1 e 0 0 ]
+[v __ccovbit2_103 _ccovbit2_103 `VEb  1 e 0 0 ]
+[v __ccovbit3_104 _ccovbit3_104 `VEb  1 e 0 0 ]
+[v __ccovbit4_105 _ccovbit4_105 `VEb  1 e 0 0 ]
+"388
+[v __ccovbit8_106 _ccovbit8_106 `VEb  1 e 0 0 ]
+"391
+[v __ccovbit11_107 _ccovbit11_107 `VEb  1 e 0 0 ]
+[v __ccovbit12_108 _ccovbit12_108 `VEb  1 e 0 0 ]
+[v __ccovbit13_109 _ccovbit13_109 `VEb  1 e 0 0 ]
+[v __ccovbit14_110 _ccovbit14_110 `VEb  1 e 0 0 ]
+"401
+[v __ccovbit18_111 _ccovbit18_111 `VEb  1 e 0 0 ]
+"404
+[v __ccovbit20_112 _ccovbit20_112 `VEb  1 e 0 0 ]
+"417
+[v __ccovbit1_113 _ccovbit1_113 `VEb  1 e 0 0 ]
+"419
+[v __ccovbit3_114 _ccovbit3_114 `VEb  1 e 0 0 ]
+"431
+[v __ccovbit8_116 _ccovbit8_116 `VEb  1 e 0 0 ]
+"435
+[v __ccovbit1_117 _ccovbit1_117 `VEb  1 e 0 0 ]
+"437
+[v __ccovbit3_118 _ccovbit3_118 `VEb  1 e 0 0 ]
+"439
+[v __ccovbit5_119 _ccovbit5_119 `VEb  1 e 0 0 ]
+"452
+[v __ccovbit3_120 _ccovbit3_120 `VEb  1 e 0 0 ]
+"453
+[v __ccovbit4_121 _ccovbit4_121 `VEb  1 e 0 0 ]
+"459
+[v __ccovbit8_122 _ccovbit8_122 `VEb  1 e 0 0 ]
+"461
+[v __ccovbit10_123 _ccovbit10_123 `VEb  1 e 0 0 ]
+"466
+[v __ccovbit14_124 _ccovbit14_124 `VEb  1 e 0 0 ]
+"467
+[v __ccovbit16_125 _ccovbit16_125 `VEb  1 e 0 0 ]
+"470
+[v __ccovbit18_126 _ccovbit18_126 `VEb  1 e 0 0 ]
+"472
+[v __ccovbit19_127 _ccovbit19_127 `VEb  1 e 0 0 ]
+"476
+[v __ccovbit21_128 _ccovbit21_128 `VEb  1 e 0 0 ]
+"478
+[v __ccovbit23_129 _ccovbit23_129 `VEb  1 e 0 0 ]
+"486
+[v __ccovbit29_130 _ccovbit29_130 `VEb  1 e 0 0 ]
+"489
+[v __ccovbit31_131 _ccovbit31_131 `VEb  1 e 0 0 ]
+"493
+[v __ccovbit1_132 _ccovbit1_132 `VEb  1 e 0 0 ]
+"494
+[v __ccovbit2_133 _ccovbit2_133 `VEb  1 e 0 0 ]
+"496
+[v __ccovbit4_134 _ccovbit4_134 `VEb  1 e 0 0 ]
+"497
+[v __ccovbit5_135 _ccovbit5_135 `VEb  1 e 0 0 ]
+"500
+[v __ccovbit8_136 _ccovbit8_136 `VEb  1 e 0 0 ]
+"503
+[v __ccovbit10_137 _ccovbit10_137 `VEb  1 e 0 0 ]
+"507
+[v __ccovbit14_138 _ccovbit14_138 `VEb  1 e 0 0 ]
+"509
+[v __ccovbit16_139 _ccovbit16_139 `VEb  1 e 0 0 ]
+"510
+[v __ccovbit17_140 _ccovbit17_140 `VEb  1 e 0 0 ]
+"515
+[v __ccovbit22_141 _ccovbit22_141 `VEb  1 e 0 0 ]
+"518
+[v __ccovbit1_142 _ccovbit1_142 `VEb  1 e 0 0 ]
+[v __ccovbit2_143 _ccovbit2_143 `VEb  1 e 0 0 ]
+"521
+[v __ccovbit4_144 _ccovbit4_144 `VEb  1 e 0 0 ]
+"529
+[v __ccovbit3_145 _ccovbit3_145 `VEb  1 e 0 0 ]
+"530
+[v __ccovbit4_146 _ccovbit4_146 `VEb  1 e 0 0 ]
+"541
+[v __ccovbit12_147 _ccovbit12_147 `VEb  1 e 0 0 ]
+"551
+[v __ccovbit18_148 _ccovbit18_148 `VEb  1 e 0 0 ]
+"554
+[v __ccovbit20_149 _ccovbit20_149 `VEb  1 e 0 0 ]
+"563
+[v __ccovbit2_150 _ccovbit2_150 `VEb  1 e 0 0 ]
+"566
+[v __ccovbit4_151 _ccovbit4_151 `VEb  1 e 0 0 ]
+"576
+[v __ccovbit1_152 _ccovbit1_152 `VEb  1 e 0 0 ]
+"580
+[v __ccovbit4_153 _ccovbit4_153 `VEb  1 e 0 0 ]
+"582
+[v __ccovbit7_154 _ccovbit7_154 `VEb  1 e 0 0 ]
+"591
+[v __ccovbit3_155 _ccovbit3_155 `VEb  1 e 0 0 ]
+"605
+[v __ccovbit14_156 _ccovbit14_156 `VEb  1 e 0 0 ]
+"607
+[v __ccovbit16_157 _ccovbit16_157 `VEb  1 e 0 0 ]
+"608
+[v __ccovbit17_158 _ccovbit17_158 `VEb  1 e 0 0 ]
+"617
+[v __ccovbit26_160 _ccovbit26_160 `VEb  1 e 0 0 ]
+"619
+[v __ccovbit28_161 _ccovbit28_161 `VEb  1 e 0 0 ]
+"621
+[v __ccovbit30_162 _ccovbit30_162 `VEb  1 e 0 0 ]
+"632
+[v __ccovbit11_163 _ccovbit11_163 `VEb  1 e 0 0 ]
+"633
+[v __ccovbit13_164 _ccovbit13_164 `VEb  1 e 0 0 ]
+"643
+[v __ccovbit21_165 _ccovbit21_165 `VEb  1 e 0 0 ]
+"644
+[v __ccovbit23_166 _ccovbit23_166 `VEb  1 e 0 0 ]
+"647
+[v __ccovbit26_167 _ccovbit26_167 `VEb  1 e 0 0 ]
+"649
+[v __ccovbit29_168 _ccovbit29_168 `VEb  1 e 0 0 ]
+"651
+[v __ccovbit31_169 _ccovbit31_169 `VEb  1 e 0 0 ]
+"696
+[v __ccovbit5_170 _ccovbit5_170 `VEb  1 e 0 0 ]
+"697
+[v __ccovbit7_171 _ccovbit7_171 `VEb  1 e 0 0 ]
+"708
+[v __ccovbit12_172 _ccovbit12_172 `VEb  1 e 0 0 ]
+"709
+[v __ccovbit14_173 _ccovbit14_173 `VEb  1 e 0 0 ]
+"712
+[v __ccovbit17_174 _ccovbit17_174 `VEb  1 e 0 0 ]
+"714
+[v __ccovbit20_175 _ccovbit20_175 `VEb  1 e 0 0 ]
+"717
+[v __ccovbit22_176 _ccovbit22_176 `VEb  1 e 0 0 ]
+"805
+[v __ccovbit31_177 _ccovbit31_177 `VEb  1 e 0 0 ]
+"847
+[v __ccovbit4_178 _ccovbit4_178 `VEb  1 e 0 0 ]
+"858
+[v __ccovbit6_179 _ccovbit6_179 `VEb  1 e 0 0 ]
+"83 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
+[v __ccovbit3_4 _ccovbit3_4 `VEb  1 e 0 0 ]
+"133
+[v __ccovbit9_5 _ccovbit9_5 `VEb  1 e 0 0 ]
+"55 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
+[v __ccovbit1_7 _ccovbit1_7 `VEb  1 e 0 0 ]
+"57
+[v __ccovbit2_8 _ccovbit2_8 `VEb  1 e 0 0 ]
+"59
+[v __ccovbit3_9 _ccovbit3_9 `VEb  1 e 0 0 ]
+"61
+[v __ccovbit5_10 _ccovbit5_10 `VEb  1 e 0 0 ]
+"63
+[v __ccovbit6_11 _ccovbit6_11 `VEb  1 e 0 0 ]
+"73
+[v __ccovbit10_12 _ccovbit10_12 `VEb  1 e 0 0 ]
+"74
+[v __ccovbit12_13 _ccovbit12_13 `VEb  1 e 0 0 ]
+"59 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/mcc.c
+[v __ccovbit1_1 _ccovbit1_1 `VEb  1 e 0 0 ]
+"69
+[v __ccovbit3_2 _ccovbit3_2 `VEb  1 e 0 0 ]
+"75
+[v __ccovbit1_3 _ccovbit1_3 `VEb  1 e 0 0 ]
+"93 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/pin_manager.c
+[v __ccovbit6_6 _ccovbit6_6 `VEb  1 e 0 0 ]
 "58 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _timer0ReloadVal timer0ReloadVal `VEuc  1 e 1 0 ]
 "59
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
+"85
+[v __ccovbit6_20 _ccovbit6_20 `VEb  1 e 0 0 ]
+"118
+[v __ccovbit3_21 _ccovbit3_21 `VEb  1 e 0 0 ]
+"122
+[v __ccovbit5_22 _ccovbit5_22 `VEb  1 e 0 0 ]
+"127
+[v __ccovbit1_23 _ccovbit1_23 `VEb  1 e 0 0 ]
+"132
+[v __ccovbit0_24 _ccovbit0_24 `VEb  1 e 0 0 ]
 "58 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"830 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"85
+[v __ccovbit6_14 _ccovbit6_14 `VEb  1 e 0 0 ]
+"91
+[v __ccovbit1_15 _ccovbit1_15 `VEb  1 e 0 0 ]
+"127
+[v __ccovbit2_16 _ccovbit2_16 `VEb  1 e 0 0 ]
+"129
+[v __ccovbit4_17 _ccovbit4_17 `VEb  1 e 0 0 ]
+"134
+[v __ccovbit1_18 _ccovbit1_18 `VEb  1 e 0 0 ]
+"139
+[v __ccovbit0_19 _ccovbit0_19 `VEb  1 e 0 0 ]
+"832 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"861
+"863
 } 0
-"358
+"357
 [v _switch_wm switch_wm `(v  1 e 1 0 ]
 {
-"376
+"375
 } 0
-"750
+"752
 [v _start_setup start_setup `(v  1 e 1 0 ]
 {
-"803
+"805
 } 0
-"558
+"560
 [v _eeprom_set eeprom_set `(v  1 e 1 0 ]
 {
-"559
+"561
 [v eeprom_set@vers vers `uc  1 a 1 1 ]
-"564
+"566
 } 0
 "6 C:\Users\U3B6\MPLABXProjects\standart_23.X\eeprom.c
 [v _EEPROM_WriteByte EEPROM_WriteByte `(v  1 e 1 0 ]
@@ -608,29 +950,29 @@ channel_FVR 31
 {
 "83
 } 0
-"566 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"568 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _hardware_work hardware_work `(v  1 e 1 0 ]
 {
-"580
+"582
 } 0
-"591
+"593
 [v _get_wsp get_wsp `(v  1 e 1 0 ]
 {
-"599
+"601
 [v get_wsp@res res `ui  1 a 2 0 ]
-"595
+"597
 [v get_wsp@bad_measures_counter bad_measures_counter `c  1 s 1 bad_measures_counter ]
-"619
+"621
 } 0
-"321
+"318
 [v _start_alarm start_alarm `(v  1 e 1 0 ]
 {
-"327
+"324
 } 0
-"329
+"326
 [v _clear_alarm clear_alarm `(v  1 e 1 0 ]
 {
-"332
+"329
 } 0
 "112 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/adc.c
 [v _ADC_GetConversion ADC_GetConversion `(uc  1 e 1 0 ]
@@ -641,69 +983,69 @@ channel_FVR 31
 [v ADC_GetConversion@channel channel `E2178  1 a 1 3 ]
 "133
 } 0
-"686 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"688 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _get_jump get_jump `(v  1 e 1 0 ]
 {
-"688
+"690
 [v get_jump@jump_counter jump_counter `c  1 s 1 jump_counter ]
-"715
+"717
 } 0
-"621
+"623
 [v _get_fun get_fun `(v  1 e 1 0 ]
 {
-"625
+"627
 [v get_fun@fun_counter fun_counter `c  1 s 1 fun_counter ]
-"649
+"651
 } 0
-"334
+"331
 [v _fun_work fun_work `(v  1 e 1 0 ]
 {
-"356
+"355
 } 0
-"265
-[v _open open `(v  1 e 1 0 ]
-{
-"275
-} 0
-"228
-[v _go_open_alt go_open_alt `(v  1 e 1 0 ]
-{
-"236
-} 0
-"253
+"249
 [v _close close `(v  1 e 1 0 ]
 {
-"263
+"259
 } 0
-"238
-[v _rele_off rele_off `(v  1 e 1 0 ]
-{
-"251
-} 0
-"217
+"213
 [v _go_close_alt go_close_alt `(v  1 e 1 0 ]
 {
-"226
+"222
 } 0
-"160
+"159
 [v _go_close go_close `(v  1 e 1 0 ]
 {
-"177
+"176
 } 0
-"378
+"377
 [v _autorotation_work autorotation_work `(v  1 e 1 0 ]
 {
-"402
+"404
 } 0
-"199
+"261
+[v _open open `(v  1 e 1 0 ]
+{
+"271
+} 0
+"234
+[v _rele_off rele_off `(v  1 e 1 0 ]
+{
+"247
+} 0
+"224
+[v _go_open_alt go_open_alt `(v  1 e 1 0 ]
+{
+"232
+} 0
+"197
 [v _go_open go_open `(v  1 e 1 0 ]
 {
-"215
+"211
 } 0
-"179
+"178
 [v _go_close_short go_close_short `(v  1 e 1 0 ]
 {
-"196
+"194
 } 0
 "52 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
@@ -720,71 +1062,71 @@ channel_FVR 31
 {
 "139
 } 0
-"521 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"523 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _ms_tick ms_tick `(v  1 e 1 0 ]
 {
-"522
+"524
 [v ms_tick@ms_count ms_count `ui  1 s 2 ms_count ]
-"523
+"525
 [v ms_tick@s_count s_count `ui  1 s 2 s_count ]
-"552
+"554
 } 0
-"128
+"127
 [v _stop_tone stop_tone `(v  1 e 1 0 ]
 {
-"132
+"131
 } 0
-"439
+"441
 [v _sec_work sec_work `(v  1 e 1 0 ]
 {
-"472
+"474
 [v sec_work@iled iled `uc  1 s 1 iled ]
-"487
+"489
 } 0
-"431
+"433
 [v _sec_30_work sec_30_work `(v  1 e 1 0 ]
 {
-"437
+"439
 } 0
-"277
+"273
 [v _rele_tick rele_tick `(v  1 e 1 0 ]
 {
-"319
+"316
 } 0
-"410
+"412
 [v _minute_tick minute_tick `(v  1 e 1 0 ]
 {
-"429
+"431
 } 0
-"489
+"491
 [v _ms_200_work ms_200_work `(v  1 e 1 0 ]
 {
-"513
+"515
 } 0
-"152
+"151
 [v _beep_double beep_double `(v  1 e 1 0 ]
 {
-"158
+"157
 } 0
-"134
+"133
 [v _beep_short beep_short `(v  1 e 1 0 ]
 {
-"141
+"140
 } 0
-"143
+"142
 [v _beep_long beep_long `(v  1 e 1 0 ]
 {
-"150
+"149
 } 0
-"122
+"121
 [v _start_tone start_tone `(v  1 e 1 0 ]
 {
-"126
+"125
 } 0
-"515
+"517
 [v _ms_100_work ms_100_work `(v  1 e 1 0 ]
 {
-"519
+"521
 } 0
 "108 C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/tmr0.c
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
@@ -796,8 +1138,8 @@ channel_FVR 31
 {
 "132
 } 0
-"582 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
+"584 C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 [v _zummer_switch zummer_switch `(v  1 e 1 0 ]
 {
-"589
+"591
 } 0

@@ -4090,8 +4090,8 @@ void EEPROM_ReadString(unsigned char addr, char* str1, unsigned char sz);
 const char SHORT_ZUMMER_DELAY = 30;
 const char LONG_ZUMMER_DELAY = 130;
 const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
-const char AUTOROTATION_DAYS = 14;
-const char MOVING_WAIT_DELAY = 2;
+const unsigned AUTOROTATION_DAYS = 14;
+const char MOVING_WAIT_DELAY = 1;
 const unsigned LOW_WATER_RESISTANSE = 20000;
 const unsigned HIGH_WATER_RESISTANSE = 25000;
 const unsigned UP_RESISTANSE = 20000;
@@ -4100,11 +4100,11 @@ const char WSP_MEAS_COUNT = 4;
 const char FUN_MEAS_COUNT = 10;
 const char JUMP_MEAS_COUNT = 10;
 
-const char RELE_POWER_WORK_DELAY = 15;
-const char RELE_POWER_AUTOROTATION_DELAY = 5;
-const char RELE_GAP = 2;
-const char MELODY_REPEAT_DELAY = 3;
-const unsigned AUTOROTATION_DELAY = 120;
+const char RELE_POWER_WORK_DELAY = 25;
+const char RELE_POWER_AUTOROTATION_DELAY = 10;
+const char RELE_GAP = 1;
+const char MELODY_REPEAT_DELAY = 5;
+const __uint24 AUTOROTATION_DELAY = 40;
 
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
@@ -4114,7 +4114,6 @@ const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIG
 
 static union {
     unsigned long value;
-
     struct {
         unsigned ALARM_ON : 1;
         unsigned ALARM_OFF : 1;
@@ -4131,26 +4130,26 @@ static union {
         unsigned CLOSED : 1;
         unsigned RELE_POWER_ON : 1;
         unsigned RELE_CONTROL_ON : 1;
-        unsigned WATER_TRUE : 1;
-        unsigned WATER_FALSE : 1;
+
+
         unsigned TONE_ON : 1;
         unsigned TONE_OFF : 1;
         unsigned SIREN : 1;
         unsigned ZUM_BUSY : 1;
-        unsigned BEEP_SHORT : 1;
-        unsigned GO_CLOSE : 1;
+
+
         unsigned MOVING_ALLOWED : 1;
         unsigned NORMAL_WORK_MODE_ON : 1;
         unsigned UNIVERSAL_VORK_MODE_ON : 1;
         unsigned LED_ON : 1;
-        unsigned ZUM_ON : 1;
+
         unsigned MEAS_ON : 1;
         unsigned AUTOROTATION_WORK : 1;
         unsigned MELODY_ON : 1;
         unsigned LAST_BEEP_LONG : 1;
     } bits;
 } ff;
-# 84 "main.c"
+# 83 "main.c"
 __uint24 time_rotation;
 unsigned time_rele_power;
 unsigned time_rele_control;
@@ -4175,7 +4174,7 @@ char time_meas;
 char beep_short_count;
 char beep_long_count;
 char beep_double_count;
-# 122 "main.c"
+# 121 "main.c"
 void start_tone() {
     ff.bits.ZUM_BUSY = 1;
     ff.bits.TONE_ON = 1;
@@ -4247,7 +4246,7 @@ void go_close_short() {
         time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
         time_rele_gap = RELE_GAP;
 
-        time_rotation = 0;
+       time_rotation = 0;
 
     }
 }
@@ -4396,7 +4395,8 @@ void fun_work() {
                 ff.bits.ALARM_OFF &&
                 ff.bits.MOVING_ALLOWED &&
                 !ff.bits.OPENED &&
-                !ff.bits.OPENING) {
+                !ff.bits.OPENING &&
+                !ff.bits.AUTOROTATION_WORK) {
             beep_short_count = 1;
             open();
         };
@@ -4405,7 +4405,8 @@ void fun_work() {
                  ff.bits.MOVING_ALLOWED &&
                 !ff.bits.FUN_LOW &&
                 !ff.bits.CLOSED &&
-                !ff.bits.CLOSING) {
+                !ff.bits.CLOSING &&
+                !ff.bits.AUTOROTATION_WORK) {
             beep_short_count = 2;
             close();
         }
@@ -4413,7 +4414,7 @@ void fun_work() {
 }
 
 void switch_wm() {
-    if (ff.bits.JUMP_LOW) {
+    if (ff.bits.JUMP_HIGH) {
         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 0;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
@@ -4421,7 +4422,7 @@ void switch_wm() {
 
             beep_long_count = 2;
         }
-    } else if (ff.bits.JUMP_HIGH) {
+    } else if (ff.bits.JUMP_LOW) {
         if (!ff.bits.NORMAL_WORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 1;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
@@ -4433,19 +4434,8 @@ void switch_wm() {
 }
 
 void autorotation_work() {
-    if ((time_rotation > AUTOROTATION_DELAY) &&
-            !ff.bits.CLOSED &&
-            !ff.bits.CLOSING &&
-            ff.bits.ALARM_OFF &&
-            ff.bits.MOVING_ALLOWED &&
-            ff.bits.NORMAL_WORK_MODE_ON
-            ) {
-              go_close_short();
-              beep_short_count=3;
-              beep_long_count=3;
-    }
 
-    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
+   if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) &&
             ff.bits.CLOSED &&
             ff.bits.CLOSING &&
             ff.bits.ALARM_OFF &&
@@ -4453,8 +4443,24 @@ void autorotation_work() {
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
         go_open();
+        beep_short_count=1;
+              beep_long_count=1;
         time_rotation = 0;
+    }else
+
+   if ((time_rotation > AUTOROTATION_DELAY) &&
+            !ff.bits.CLOSED &&
+            !ff.bits.CLOSING &&
+            ff.bits.ALARM_OFF &&
+            ff.bits.MOVING_ALLOWED &&
+            ff.bits.NORMAL_WORK_MODE_ON
+            ) {
+       ff.bits.AUTOROTATION_WORK = 1;
+              go_close_short();
+              beep_short_count=3;
+              beep_long_count=3;
     }
+
 
 }
 
@@ -4469,7 +4475,8 @@ void minute_tick() {
 
 
     if (time_melody > 0) {
-        time_melody--;
+       time_melody--;
+    } else {
         if (time_melody == 0) {
             ff.bits.SIREN = 1;
             time_melody = MELODY_REPEAT_DELAY;
@@ -4703,7 +4710,7 @@ void get_fun() {
         ff.bits.ALLOW_FUN = 0;
     }
 }
-# 685 "main.c"
+# 692 "main.c"
 void get_jump() {
 
     static signed char jump_counter;
@@ -4734,7 +4741,7 @@ void get_jump() {
     }
 
 }
-# 749 "main.c"
+# 756 "main.c"
 void start_setup() {
 
     SYSTEM_Initialize();
@@ -4747,7 +4754,7 @@ void start_setup() {
     TMR0_SetInterruptHandler(zummer_switch);
     TMR2_SetInterruptHandler(ms_tick);
     TMR2_StartTimer();
-# 777 "main.c"
+# 784 "main.c"
     INTCONbits.TMR0IE = 0;
     ff.value = 0;
 
@@ -4774,7 +4781,7 @@ void start_setup() {
 
     time_meas = 0;
 }
-# 829 "main.c"
+# 836 "main.c"
 void main(void) {
 
     start_setup();
@@ -4798,7 +4805,7 @@ void main(void) {
 
             get_wsp();
 
-               autorotation_work();
+             autorotation_work();
 
         } else {
             close();
