@@ -355,7 +355,7 @@ void fun_work() {//работа переключателя
 }
 
 void switch_wm() {//выбор режима работы
-    if (ff.bits.JUMP_LOW) {//go_alt_mode
+    if (ff.bits.JUMP_HIGH) {//go_alt_mode
         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 0;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
@@ -363,7 +363,7 @@ void switch_wm() {//выбор режима работы
             //три высоких писка
             beep_long_count = 2; //_freq pause work_time count
         }
-    } else if (ff.bits.JUMP_HIGH) {//go_norm_mode
+    } else if (ff.bits.JUMP_LOW) {//go_norm_mode
         if (!ff.bits.NORMAL_WORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 1;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
