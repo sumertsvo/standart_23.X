@@ -13,7 +13,7 @@ const char SHORT_ZUMMER_DELAY = 30;
 const char LONG_ZUMMER_DELAY = 130;
 const char FRIMWARE_VERSION_EEPROM_ADR = 0x01;
 const unsigned AUTOROTATION_DAYS = 14; //дней до поворота крана
-const char MOVING_WAIT_DELAY = 2;
+const char MOVING_WAIT_DELAY = 1;
 const unsigned LOW_WATER_RESISTANSE = 20000; //сопротивление датчика
 const unsigned HIGH_WATER_RESISTANSE = 25000; //
 const unsigned UP_RESISTANSE = 20000; //сопротивление делителя
@@ -23,10 +23,10 @@ const char FUN_MEAS_COUNT = 10; //количество измерений пер
 const char JUMP_MEAS_COUNT = 10; //количество измерений джампера
 /*задержки*/
 const char RELE_POWER_WORK_DELAY = 120; // sec
-const char RELE_POWER_AUTOROTATION_DELAY = 15; // sec
-const char RELE_GAP = 2; //sec
+const char RELE_POWER_AUTOROTATION_DELAY = 25; // sec
+const char RELE_GAP = 1; //sec
 const char MELODY_REPEAT_DELAY = 30; //min
-const __uint24 AUTOROTATION_DELAY =  (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const __uint24 AUTOROTATION_DELAY = 300;// (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 /*voltages*/
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
@@ -36,7 +36,6 @@ const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIG
 /**FLAGS*/
 static union {
     unsigned long value;
-
     struct {
         unsigned ALARM_ON : 1;
         unsigned ALARM_OFF : 1;
@@ -190,8 +189,7 @@ void go_close_short() {//начало закрытия кранов
         time_rele_power = RELE_POWER_AUTOROTATION_DELAY;
         time_rele_gap = RELE_GAP;
 
-        time_rotation = 0;
-
+      
     }
 }
 
@@ -208,8 +206,6 @@ void go_open() {//начало открытия кранов
         ff.bits.RELE_POWER_ON = 1;
 
         time_rele_power = RELE_POWER_WORK_DELAY;
-
-        ff.bits.AUTOROTATION_WORK = 0;
         return;
     }
 }
@@ -288,6 +284,7 @@ void rele_tick() {//закрытие кранов (задержка на раб�
                 ff.bits.RELE_POWER_ON = 0;
                 ff.bits.OPENED = 1;
                 ff.bits.OPENING = 0;
+                 ff.bits.AUTOROTATION_WORK = 0;
             }
         }
     }
@@ -339,7 +336,8 @@ void fun_work() {//работа переключателя
                 ff.bits.ALARM_OFF &&
                 ff.bits.MOVING_ALLOWED &&
                 !ff.bits.OPENED &&
-                !ff.bits.OPENING) {
+                !ff.bits.OPENING &&
+                !ff.bits.AUTOROTATION_WORK) {
             beep_short_count = 1;
             open();
         };
@@ -348,7 +346,8 @@ void fun_work() {//работа переключателя
                  ff.bits.MOVING_ALLOWED &&
                 !ff.bits.FUN_LOW &&
                 !ff.bits.CLOSED &&
-                !ff.bits.CLOSING) {
+                !ff.bits.CLOSING &&
+                !ff.bits.AUTOROTATION_WORK) {
             beep_short_count = 2;
             close();
         }
@@ -356,7 +355,7 @@ void fun_work() {//работа переключателя
 }
 
 void switch_wm() {//выбор режима работы
-    if (ff.bits.JUMP_LOW) {//go_alt_mode
+    if (ff.bits.JUMP_HIGH) {//go_alt_mode
         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 0;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
@@ -364,7 +363,7 @@ void switch_wm() {//выбор режима работы
             //три высоких писка
             beep_long_count = 2; //_freq pause work_time count
         }
-    } else if (ff.bits.JUMP_HIGH) {//go_norm_mode
+    } else if (ff.bits.JUMP_LOW) {//go_norm_mode
         if (!ff.bits.NORMAL_WORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 1;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
@@ -376,27 +375,30 @@ void switch_wm() {//выбор режима работы
 }
 
 void autorotation_work() {//автоповорот
-    if ((time_rotation > AUTOROTATION_DELAY) &&
+    
+   if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
+            !ff.bits.OPENED &&
+            !ff.bits.OPENING &&
+            ff.bits.ALARM_OFF &&
+            ff.bits.NORMAL_WORK_MODE_ON
+            ) {
+        open();
+        beep_short_count=1;
+        beep_long_count=1;
+        time_rotation = 0; //обнуляем счетчик
+    }
+   
+   if ((time_rotation > AUTOROTATION_DELAY) &&
             !ff.bits.CLOSED &&
             !ff.bits.CLOSING &&
             ff.bits.ALARM_OFF &&
-            ff.bits.MOVING_ALLOWED &&
             ff.bits.NORMAL_WORK_MODE_ON
             ) {
-              go_close_short();
-              beep_short_count=3;
-              beep_long_count=3;
-    }
-
-    if ((time_rotation > (AUTOROTATION_DELAY + RELE_POWER_AUTOROTATION_DELAY + RELE_GAP * 2)) && //закрытие идёт указанное время
-            ff.bits.CLOSED &&
-            ff.bits.CLOSING &&
-            ff.bits.ALARM_OFF &&
-            ff.bits.MOVING_ALLOWED &&
-            ff.bits.NORMAL_WORK_MODE_ON
-            ) {
-        go_open();
-        time_rotation = 0; //обнуляем счетчик
+      
+              go_close_short(); 
+              ff.bits.AUTOROTATION_WORK = 1;
+              beep_short_count=1;
+              beep_long_count=1;
     }
 
 }
@@ -453,7 +455,7 @@ void sec_work() {//работа секундного таймера
         }
     }
     if (ff.bits.NORMAL_WORK_MODE_ON) {
-        if (ff.bits.OPENED){
+        if (!ff.bits.CLOSED){
             time_rotation++;
         }
         rele_tick();
@@ -850,7 +852,7 @@ void main(void) {
 
             get_wsp();
 
-            autorotation_work();
+             autorotation_work();
 
         } else {
             close();
