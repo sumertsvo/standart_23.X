@@ -1513,9 +1513,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "386
 [; ;main.c: 386:         beep_short_count=1;
 [e = _beep_short_count -> -> 1 `i `uc ]
-"387
-[; ;main.c: 387:         beep_long_count=1;
-[e = _beep_long_count -> -> 1 `i `uc ]
 "388
 [; ;main.c: 388:         time_rotation = 0;
 [e = _time_rotation -> -> -> 0 `i `m `um ]
@@ -1535,12 +1532,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "399
 [; ;main.c: 399:               ff.bits.AUTOROTATION_WORK = 1;
 [e = . . _ff 1 24 -> -> 1 `i `uc ]
-"400
-[; ;main.c: 400:               beep_short_count=1;
-[e = _beep_short_count -> -> 1 `i `uc ]
-"401
-[; ;main.c: 401:               beep_long_count=1;
-[e = _beep_long_count -> -> 1 `i `uc ]
 "402
 [; ;main.c: 402:     }
 }

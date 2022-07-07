@@ -26,7 +26,7 @@ const char RELE_POWER_WORK_DELAY = 120; // sec
 const char RELE_POWER_AUTOROTATION_DELAY = 25; // sec
 const char RELE_GAP = 1; //sec
 const char MELODY_REPEAT_DELAY = 30; //min
-const __uint24 AUTOROTATION_DELAY = 300;// (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
+const __uint24 AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60); //D*H*M*S
 /*voltages*/
 const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));
 const unsigned GOOD_WSP_VOLTAGE = (HIGH_WATER_RESISTANSE / ((UP_RESISTANSE + HIGH_WATER_RESISTANSE) / 256));
@@ -355,7 +355,7 @@ void fun_work() {//работа переключателя
 }
 
 void switch_wm() {//выбор режима работы
-    if (ff.bits.JUMP_HIGH) {//go_alt_mode
+    if (ff.bits.JUMP_LOW) {//go_alt_mode
         if (!ff.bits.UNIVERSAL_VORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 0;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 1;
@@ -363,7 +363,7 @@ void switch_wm() {//выбор режима работы
             //три высоких писка
             beep_long_count = 2; //_freq pause work_time count
         }
-    } else if (ff.bits.JUMP_LOW) {//go_norm_mode
+    } else if (ff.bits.JUMP_HIGH) {//go_norm_mode
         if (!ff.bits.NORMAL_WORK_MODE_ON) {
             ff.bits.NORMAL_WORK_MODE_ON = 1;
             ff.bits.UNIVERSAL_VORK_MODE_ON = 0;
@@ -384,7 +384,7 @@ void autorotation_work() {//автоповорот
             ) {
         open();
         beep_short_count=1;
-        beep_long_count=1;
+     //   beep_long_count=1;
         time_rotation = 0; //обнуляем счетчик
     }
    
@@ -397,8 +397,8 @@ void autorotation_work() {//автоповорот
       
               go_close_short(); 
               ff.bits.AUTOROTATION_WORK = 1;
-              beep_short_count=1;
-              beep_long_count=1;
+            //  beep_short_count=1;
+             // beep_long_count=1;
     }
 
 }

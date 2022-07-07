@@ -4441,7 +4441,7 @@ void autorotation_work() {
             ) {
         open();
         beep_short_count=1;
-        beep_long_count=1;
+
         time_rotation = 0;
     }
 
@@ -4454,8 +4454,8 @@ void autorotation_work() {
 
               go_close_short();
               ff.bits.AUTOROTATION_WORK = 1;
-              beep_short_count=1;
-              beep_long_count=1;
+
+
     }
 
 }
