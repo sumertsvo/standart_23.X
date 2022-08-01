@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.36\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\standart_23.X.production.sym \
   --cmf=dist/default/production\standart_23.X.production.cmf -z -Q16F1823 \
-  -oC:\Users\U3B6\AppData\Local\Temp\xcAs3t0.4 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\U3B6\AppData\Local\Temp\xcAsask.4 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/standart_23.X.production.map \
-  --md=C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.dat -E1 -ver=XC8 Compiler \
+  --md=C:\Users\U3B6\AppData\Local\Temp\xcAsask.dat -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ACODE=00h-07FFh -ASTRCODE=00h-07FFh -ASTRING=00h-0FFhx8 \
   -ACONST=00h-0FFhx8 -AENTRY=00h-0FFhx8 -ACOMMON=070h-07Fh \
   -ABANK0=020h-06Fh -ABANK1=0A0h-0BFh -ABIGRAM=02000h-0206Fh \
@@ -26,7 +26,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o \
+  -pfunctab=ENTRY -k C:\Users\U3B6\AppData\Local\Temp\xcAsask.o \
   dist/default/production\standart_23.X.production.o 
 
 Object code version is 3.11
@@ -36,7 +36,7 @@ Machine type is 16F1823
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
                 end_init                             2D       2D        1        8       0
                 reset_vec                             0        0        1        0       0
                 config                             8007     8007        2        0       4
@@ -116,10 +116,10 @@ dist/default/production\standart_23.X.production.o
                 stringtext11                        6C7      6C7        1      D88       0
                 stringtext10                        6C0      6C0        2      D6C       0
                 stringtext9                         6BE      6BE        2      D6C       0
-                stringtext8                         6C6      6C6        1      D88       0
-                stringtext7                         6C5      6C5        1      D88       0
-                stringtext6                         6C4      6C4        1      D88       0
-                stringtext5                         6BC      6BC        2      D6C       0
+                stringtext8                         6BC      6BC        2      D6C       0
+                stringtext7                         6C6      6C6        1      D88       0
+                stringtext6                         6C5      6C5        1      D88       0
+                stringtext5                         6C4      6C4        1      D88       0
                 stringtext4                         6BA      6BA        2      D6C       0
                 stringtext3                         6B8      6B8        2      D6C       0
                 stringtext2                         6B6      6B6        2      D6C       0
@@ -194,10 +194,10 @@ TOTAL           Name                               Link     Load   Length     Sp
                 stringtext11                        6C7      6C7        1         0
                 stringtext10                        6C0      6C0        2         0
                 stringtext9                         6BE      6BE        2         0
-                stringtext8                         6C6      6C6        1         0
-                stringtext7                         6C5      6C5        1         0
-                stringtext6                         6C4      6C4        1         0
-                stringtext5                         6BC      6BC        2         0
+                stringtext8                         6BC      6BC        2         0
+                stringtext7                         6C6      6C6        1         0
+                stringtext6                         6C5      6C5        1         0
+                stringtext5                         6C4      6C4        1         0
                 stringtext4                         6BA      6BA        2         0
                 stringtext3                         6B8      6B8        2         0
                 stringtext2                         6B6      6B6        2         0
@@ -380,7 +380,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 text49                         0006B3  000003  0006B6       D66       0  CODE        2
                 stringtext2                    0006B6  00000C  0006C2       D6C       0  STRCODE     2
                 text35                         0006C2  000002  0006C4       D84       0  CODE        2
-                stringtext6                    0006C4  00000B  0006CF       D88       0  STRCODE     2
+                stringtext5                    0006C4  00000B  0006CF       D88       0  STRCODE     2
 
 
 UNUSED ADDRESS RANGES
@@ -1683,21 +1683,21 @@ __ccovbit9_62                             bitbssBANK0      00178
 __ccovbit9_67                             bitbssBANK0      00173
 __end_of_ADC_GetConversion                text20           0052D
 __end_of_ADC_Initialize                   text15           00672
-__end_of_AUTOROTATION_DAYS                stringtext5      006BE
+__end_of_AUTOROTATION_DAYS                stringtext10     006C2
 __end_of_AUTOROTATION_DELAY               stringtext1      006B3
 __end_of_BAD_WSP_VOLTAGE                  stringtext3      006BA
 __end_of_EEPROM_ReadByte                  text5            00514
 __end_of_EEPROM_WriteByte                 text4            0045F
-__end_of_FRIMWARE_VERSION_EEPROM_ADR      stringtext8      006C7
+__end_of_FRIMWARE_VERSION_EEPROM_ADR      stringtext7      006C7
 __end_of_FUN_MEAS_COUNT                   stringtext15     006CC
 __end_of_GOOD_WSP_VOLTAGE                 stringtext2      006B8
-__end_of_HIGH_WATER_RESISTANSE            stringtext9      006C0
+__end_of_HIGH_WATER_RESISTANSE            stringtext8      006BE
 __end_of_INTERRUPT_InterruptManager       intentry         0002D
 __end_of_JUMP_MEAS_COUNT                  stringtext14     006CB
 __end_of_LONG_ZUMMER_DELAY                stringtext17     006CE
-__end_of_LOW_WATER_RESISTANSE             stringtext10     006C2
-__end_of_MELODY_REPEAT_DELAY              stringtext6      006C5
-__end_of_MOVING_WAIT_DELAY                stringtext7      006C6
+__end_of_LOW_WATER_RESISTANSE             stringtext9      006C0
+__end_of_MELODY_REPEAT_DELAY              stringtext5      006C5
+__end_of_MOVING_WAIT_DELAY                stringtext6      006C6
 __end_of_OSCILLATOR_Initialize            text14           0067A
 __end_of_PIN_MANAGER_Initialize           text13           005B9
 __end_of_RELE_GAP                         stringtext11     006C8
@@ -1776,10 +1776,10 @@ __pstringtext18                           stringtext18     006CE
 __pstringtext2                            stringtext2      006B6
 __pstringtext3                            stringtext3      006B8
 __pstringtext4                            stringtext4      006BA
-__pstringtext5                            stringtext5      006BC
-__pstringtext6                            stringtext6      006C4
-__pstringtext7                            stringtext7      006C5
-__pstringtext8                            stringtext8      006C6
+__pstringtext5                            stringtext5      006C4
+__pstringtext6                            stringtext6      006C5
+__pstringtext7                            stringtext7      006C6
+__pstringtext8                            stringtext8      006BC
 __pstringtext9                            stringtext9      006BE
 __ptext1                                  text1            003BC
 __ptext10                                 text10           00682

@@ -72,10 +72,10 @@ stringtext1 STRCODE 0 6B0 6B0 3 2 1
 stringtext2 STRCODE 0 6B6 6B6 2 2 1
 stringtext3 STRCODE 0 6B8 6B8 2 2 1
 stringtext4 STRCODE 0 6BA 6BA 2 2 1
-stringtext5 STRCODE 0 6BC 6BC 2 2 1
-stringtext6 STRCODE 0 6C4 6C4 1 2 1
-stringtext7 STRCODE 0 6C5 6C5 1 2 1
-stringtext8 STRCODE 0 6C6 6C6 1 2 1
+stringtext5 STRCODE 0 6C4 6C4 1 2 1
+stringtext6 STRCODE 0 6C5 6C5 1 2 1
+stringtext7 STRCODE 0 6C6 6C6 1 2 1
+stringtext8 STRCODE 0 6BC 6BC 2 2 1
 stringtext9 STRCODE 0 6BE 6BE 2 2 1
 bitbssBANK0 BANK0 1 100 20 14 1 1
 codecov_info_hdr - 6 0 0 10 1 1
@@ -94,7 +94,7 @@ stringtext16 STRCODE 0 6CC 6CC 1 2 1
 stringtext17 STRCODE 0 6CD 6CD 1 2 1
 stringtext18 STRCODE 0 6CE 6CE 1 2 1
 config CONFIG 4 8007 8007 2 2 1
-$C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+$C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 idloc IDLOC 5 8000 8000 4 2 1
 reset_vec CODE 0 0 0 1 2 1
 end_init CODE 0 2D 2D 1 2 1
@@ -167,32 +167,32 @@ STRING 6CF-7FF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\standart_23.X.production.o
-2E cinit CODE >1770:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-2E cinit CODE >1773:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-2E cinit CODE >2418:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-2F cinit CODE >2419:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-30 cinit CODE >2420:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-31 cinit CODE >2424:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-32 cinit CODE >2425:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-33 cinit CODE >2426:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-34 cinit CODE >2427:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-35 cinit CODE >2428:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-36 cinit CODE >2432:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-37 cinit CODE >2433:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-38 cinit CODE >2434:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-39 cinit CODE >2435:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-3A cinit CODE >2436:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-3B cinit CODE >2437:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-3E cinit CODE >2441:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-3F cinit CODE >2442:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-40 cinit CODE >2443:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-41 cinit CODE >2444:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-42 cinit CODE >2445:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-43 cinit CODE >2446:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-46 cinit CODE >2452:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-46 cinit CODE >2454:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-47 cinit CODE >2455:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-48 cinit CODE >2456:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
+2E cinit CODE >1770:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+2E cinit CODE >1773:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+2E cinit CODE >2418:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+2F cinit CODE >2419:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+30 cinit CODE >2420:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+31 cinit CODE >2424:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+32 cinit CODE >2425:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+33 cinit CODE >2426:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+34 cinit CODE >2427:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+35 cinit CODE >2428:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+36 cinit CODE >2432:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+37 cinit CODE >2433:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+38 cinit CODE >2434:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+39 cinit CODE >2435:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+3A cinit CODE >2436:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+3B cinit CODE >2437:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+3E cinit CODE >2441:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+3F cinit CODE >2442:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+40 cinit CODE >2443:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+41 cinit CODE >2444:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+42 cinit CODE >2445:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+43 cinit CODE >2446:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+46 cinit CODE >2452:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+46 cinit CODE >2454:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+47 cinit CODE >2455:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+48 cinit CODE >2456:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
 4 intentry CODE >52:C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 6 intentry CODE >55:C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
 F intentry CODE >57:C:\Users\U3B6\MPLABXProjects\standart_23.X\mcc_generated_files/interrupt_manager.c
@@ -696,14 +696,14 @@ FF text17 CODE >607:C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 42E maintext CODE >855:C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 431 maintext CODE >857:C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
 432 maintext CODE >858:C:\Users\U3B6\MPLABXProjects\standart_23.X\main.c
-690 clrtext CODE >2407:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-690 clrtext CODE >2408:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-691 clrtext CODE >2409:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-691 clrtext CODE >2410:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-692 clrtext CODE >2411:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-693 clrtext CODE >2412:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-694 clrtext CODE >2413:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
-695 clrtext CODE >2414:C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
+690 clrtext CODE >2407:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+690 clrtext CODE >2408:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+691 clrtext CODE >2409:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+691 clrtext CODE >2410:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+692 clrtext CODE >2411:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+693 clrtext CODE >2412:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+694 clrtext CODE >2413:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
+695 clrtext CODE >2414:C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -863,7 +863,7 @@ __ccov142_end_blk0 B84 0 CODE 0 text29 dist/default/production\standart_23.X.pro
 _WPUA 20C 0 ABS 0 - dist/default/production\standart_23.X.production.o
 _WPUC 20E 0 ABS 0 - dist/default/production\standart_23.X.production.o
 _WREN CAA 0 ABS 0 - dist/default/production\standart_23.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+___sp 0 0 STACK 2 stack C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov348_start_blk3 70E 0 CODE 0 text21 dist/default/production\standart_23.X.production.o
 _main 824 0 CODE 0 maintext dist/default/production\standart_23.X.production.o
 _open 948 0 CODE 0 text28 dist/default/production\standart_23.X.production.o
@@ -875,7 +875,7 @@ __ccov393_end_blk5 8A6 0 CODE 0 text4 dist/default/production\standart_23.X.prod
 __ccov343_end_blk26 4F8 0 CODE 0 text22 dist/default/production\standart_23.X.production.o
 __ccov244_start_blk4 B6 0 CODE 0 text38 dist/default/production\standart_23.X.production.o
 __ccov125_end_blk4 900 0 CODE 0 text32 dist/default/production\standart_23.X.production.o
-start 5A 0 CODE 0 init C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+start 5A 0 CODE 0 init C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov266_start_blk4 520 0 CODE 0 text42 dist/default/production\standart_23.X.production.o
 __ccov140_start_blk2 BFE 0 CODE 0 text30 dist/default/production\standart_23.X.production.o
 _TMR0_InterruptHandler 53 0 BANK0 1 nvBANK0 dist/default/production\standart_23.X.production.o
@@ -955,18 +955,18 @@ __ccov129_end_blk2 9A8 0 CODE 0 text31 dist/default/production\standart_23.X.pro
 __end_of_JUMP_MEAS_COUNT D96 0 STRCODE 0 stringtext14 dist/default/production\standart_23.X.production.o
 __ccov164_end_blk4 288 0 CODE 0 text40 dist/default/production\standart_23.X.production.o
 __ccov214_start_blk0 31A 0 CODE 0 text27 dist/default/production\standart_23.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov236_start_blk0 C76 0 CODE 0 text39 dist/default/production\standart_23.X.production.o
 __ccov110_start_blk8 A86 0 CODE 0 text45 dist/default/production\standart_23.X.production.o
 __ccov229_start_blk17 3CA 0 CODE 0 text27 dist/default/production\standart_23.X.production.o
 __ccov147_end_blk0 90E 0 CODE 0 text24 dist/default/production\standart_23.X.production.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
-__end_of_AUTOROTATION_DAYS D7C 0 STRCODE 0 stringtext5 dist/default/production\standart_23.X.production.o
+__end_of_AUTOROTATION_DAYS D84 0 STRCODE 0 stringtext10 dist/default/production\standart_23.X.production.o
 __ccov132_start_blk7 9BC 0 CODE 0 text31 dist/default/production\standart_23.X.production.o
 __ccov154_start_blk0 948 0 CODE 0 text28 dist/default/production\standart_23.X.production.o
 __ccov370_start_blk15 658 0 CODE 0 text2 dist/default/production\standart_23.X.production.o
@@ -1000,7 +1000,7 @@ __Hclrtext 0 0 ABS 0 clrtext -
 __ccov313_start_blk8 1CA 0 CODE 0 text17 dist/default/production\standart_23.X.production.o
 __end_of_EEPROM_ReadByte A28 0 CODE 0 text5 dist/default/production\standart_23.X.production.o
 __ccov184_end_blk1 D58 0 CODE 0 text19 dist/default/production\standart_23.X.production.o
-__end_of_MELODY_REPEAT_DELAY D8A 0 STRCODE 0 stringtext6 dist/default/production\standart_23.X.production.o
+__end_of_MELODY_REPEAT_DELAY D8A 0 STRCODE 0 stringtext5 dist/default/production\standart_23.X.production.o
 __ccov171_start_blk13 2CC 0 CODE 0 text40 dist/default/production\standart_23.X.production.o
 __ccov220_end_blk6 36A 0 CODE 0 text27 dist/default/production\standart_23.X.production.o
 __ccov213_end_blk14 7D0 0 CODE 0 text1 dist/default/production\standart_23.X.production.o
@@ -1074,7 +1074,7 @@ __ccov207_end_blk4 7A4 0 CODE 0 text1 dist/default/production\standart_23.X.prod
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
 __Hcodecov_info_hdr 10 0 ABS 6 codecov_info_hdr -
 __ccov327_start_blk0 472 0 CODE 0 text22 dist/default/production\standart_23.X.production.o
-__end_of_LOW_WATER_RESISTANSE D84 0 STRCODE 0 stringtext10 dist/default/production\standart_23.X.production.o
+__end_of_LOW_WATER_RESISTANSE D80 0 STRCODE 0 stringtext9 dist/default/production\standart_23.X.production.o
 __ccov242_end_blk2 AE 0 CODE 0 text38 dist/default/production\standart_23.X.production.o
 __ccov349_start_blk4 712 0 CODE 0 text21 dist/default/production\standart_23.X.production.o
 __ccov189_end_blk4 400 0 CODE 0 text23 dist/default/production\standart_23.X.production.o
@@ -1097,8 +1097,8 @@ __ccov4_start_blk1 CEA 0 CODE 0 text14 dist/default/production\standart_23.X.pro
 __ccov260_start_blk28 184 0 CODE 0 text38 dist/default/production\standart_23.X.production.o
 _OPTION_REG 95 0 ABS 0 - dist/default/production\standart_23.X.production.o
 _time_rele_gap 41 0 BANK0 1 bssBANK0 dist/default/production\standart_23.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-___stacklo 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+___stackhi 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+___stacklo 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov223_start_blk10 396 0 CODE 0 text27 dist/default/production\standart_23.X.production.o
 __ccov291_start_blk16 5EC 0 CODE 0 text36 dist/default/production\standart_23.X.production.o
 __ccov209_end_blk7 7BA 0 CODE 0 text1 dist/default/production\standart_23.X.production.o
@@ -1270,7 +1270,7 @@ __ccov207_start_blk4 796 0 CODE 0 text1 dist/default/production\standart_23.X.pr
 __ccov286_end_blk8 5C0 0 CODE 0 text36 dist/default/production\standart_23.X.production.o
 __ccov103_start_blk8 9F0 0 CODE 0 text44 dist/default/production\standart_23.X.production.o
 __ccov36_end_blk5 B6E 0 CODE 0 text13 dist/default/production\standart_23.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+___int_sp 0 0 STACK 2 stack C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov125_start_blk4 8E6 0 CODE 0 text32 dist/default/production\standart_23.X.production.o
 __ccov269_end_blk9 54C 0 CODE 0 text42 dist/default/production\standart_23.X.production.o
 __ccov361_end_blk22 778 0 CODE 0 text21 dist/default/production\standart_23.X.production.o
@@ -1479,10 +1479,10 @@ __pstringtext1 D60 0 STRCODE 0 stringtext1 dist/default/production\standart_23.X
 __pstringtext2 D6C 0 STRCODE 0 stringtext2 dist/default/production\standart_23.X.production.o
 __pstringtext3 D70 0 STRCODE 0 stringtext3 dist/default/production\standart_23.X.production.o
 __pstringtext4 D74 0 STRCODE 0 stringtext4 dist/default/production\standart_23.X.production.o
-__pstringtext5 D78 0 STRCODE 0 stringtext5 dist/default/production\standart_23.X.production.o
-__pstringtext6 D88 0 STRCODE 0 stringtext6 dist/default/production\standart_23.X.production.o
-__pstringtext7 D8A 0 STRCODE 0 stringtext7 dist/default/production\standart_23.X.production.o
-__pstringtext8 D8C 0 STRCODE 0 stringtext8 dist/default/production\standart_23.X.production.o
+__pstringtext5 D88 0 STRCODE 0 stringtext5 dist/default/production\standart_23.X.production.o
+__pstringtext6 D8A 0 STRCODE 0 stringtext6 dist/default/production\standart_23.X.production.o
+__pstringtext7 D8C 0 STRCODE 0 stringtext7 dist/default/production\standart_23.X.production.o
+__pstringtext8 D78 0 STRCODE 0 stringtext8 dist/default/production\standart_23.X.production.o
 __pstringtext9 D7C 0 STRCODE 0 stringtext9 dist/default/production\standart_23.X.production.o
 __pnvBANK0 53 0 BANK0 1 nvBANK0 dist/default/production\standart_23.X.production.o
 __ccov6_end_blk3 CF4 0 CODE 0 text14 dist/default/production\standart_23.X.production.o
@@ -1666,7 +1666,7 @@ __ccov211_start_blk9 7BE 0 CODE 0 text1 dist/default/production\standart_23.X.pr
 __ccov116_end_blk1 7E4 0 CODE 0 text26 dist/default/production\standart_23.X.production.o
 __ccov233_start_blk4 AAC 0 CODE 0 text41 dist/default/production\standart_23.X.production.o
 __ccov367_end_blk6 654 0 CODE 0 text2 dist/default/production\standart_23.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov151_end_blk4 93A 0 CODE 0 text24 dist/default/production\standart_23.X.production.o
 __ccov403_end_blk8 A28 0 CODE 0 text5 dist/default/production\standart_23.X.production.o
 __ccov277_start_blk1 C9E 0 CODE 0 text47 dist/default/production\standart_23.X.production.o
@@ -1998,8 +1998,8 @@ __ccov100_start_blk4 9DC 0 CODE 0 text44 dist/default/production\standart_23.X.p
 __ccov228_start_blk15 3C4 0 CODE 0 text27 dist/default/production\standart_23.X.production.o
 __end_of_zummer_switch CD2 0 CODE 0 text50 dist/default/production\standart_23.X.production.o
 __ccov122_start_blk1 8C6 0 CODE 0 text32 dist/default/production\standart_23.X.production.o
-___heap_hi 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
-___heap_lo 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.o
+___heap_hi 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
+___heap_lo 0 0 ABS 0 - C:\Users\U3B6\AppData\Local\Temp\xcAsask.o
 __ccov259_start_blk27 178 0 CODE 0 text38 dist/default/production\standart_23.X.production.o
 __ccov144_start_blk2 B8C 0 CODE 0 text29 dist/default/production\standart_23.X.production.o
 __ccov23_end_blk1 A40 0 CODE 0 text20 dist/default/production\standart_23.X.production.o
@@ -2100,7 +2100,7 @@ __ccov354_start_blk11 748 0 CODE 0 text21 dist/default/production\standart_23.X.
 __ccov194_end_blk10 428 0 CODE 0 text23 dist/default/production\standart_23.X.production.o
 __ccov282_start_blk2 59E 0 CODE 0 text36 dist/default/production\standart_23.X.production.o
 _T2CON 1C 0 ABS 0 - dist/default/production\standart_23.X.production.o
-__end_of_FRIMWARE_VERSION_EEPROM_ADR D8E 0 STRCODE 0 stringtext8 dist/default/production\standart_23.X.production.o
+__end_of_FRIMWARE_VERSION_EEPROM_ADR D8E 0 STRCODE 0 stringtext7 dist/default/production\standart_23.X.production.o
 _TRISA 8C 0 ABS 0 - dist/default/production\standart_23.X.production.o
 _TRISC 8E 0 ABS 0 - dist/default/production\standart_23.X.production.o
 __ccov317_start_blk16 1F2 0 CODE 0 text17 dist/default/production\standart_23.X.production.o
@@ -2116,7 +2116,7 @@ __ccov226_end_blk13 3BE 0 CODE 0 text27 dist/default/production\standart_23.X.pr
 __ccov297_end_blk2 AE4 0 CODE 0 text3 dist/default/production\standart_23.X.production.o
 _WDT_Initialize D44 0 CODE 0 text8 dist/default/production\standart_23.X.production.o
 __end_of_sec_30_work C96 0 CODE 0 text39 dist/default/production\standart_23.X.production.o
-__end_of_MOVING_WAIT_DELAY D8C 0 STRCODE 0 stringtext7 dist/default/production\standart_23.X.production.o
+__end_of_MOVING_WAIT_DELAY D8C 0 STRCODE 0 stringtext6 dist/default/production\standart_23.X.production.o
 __pintentry 8 0 CODE 0 intentry dist/default/production\standart_23.X.production.o
 __ccov100_end_blk4 9E6 0 CODE 0 text44 dist/default/production\standart_23.X.production.o
 __ccov253_end_blk18 136 0 CODE 0 text38 dist/default/production\standart_23.X.production.o
@@ -2139,7 +2139,7 @@ __ccov53_start_blk5 BE0 0 CODE 0 text9 dist/default/production\standart_23.X.pro
 __ccov101_end_blk5 9E8 0 CODE 0 text44 dist/default/production\standart_23.X.production.o
 __ccov75_start_blk3 B02 0 CODE 0 text11 dist/default/production\standart_23.X.production.o
 __pbssBANK0 34 0 BANK0 1 bssBANK0 dist/default/production\standart_23.X.production.o
-__end_of_HIGH_WATER_RESISTANSE D80 0 STRCODE 0 stringtext9 dist/default/production\standart_23.X.production.o
+__end_of_HIGH_WATER_RESISTANSE D7C 0 STRCODE 0 stringtext8 dist/default/production\standart_23.X.production.o
 __ccov196_end_blk12 43E 0 CODE 0 text23 dist/default/production\standart_23.X.production.o
 __ccov97_start_blk0 9C2 0 CODE 0 text44 dist/default/production\standart_23.X.production.o
 __ccov352_end_blk9 740 0 CODE 0 text21 dist/default/production\standart_23.X.production.o
@@ -2208,7 +2208,7 @@ text35 0 6C2 D84 2 2
 text49 0 6B3 D66 3 2
 stringtext1 0 6B0 D60 3 2
 stringtext2 0 6B6 D6C C 2
-stringtext6 0 6C4 D88 B 2
+stringtext5 0 6C4 D88 B 2
 bitbssBANK0 1 100 20 3A 1
 intentry 0 4 8 6AC 2
 bitbssCOMMON 1 380 70 E 1

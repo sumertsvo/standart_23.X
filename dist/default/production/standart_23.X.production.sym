@@ -96,8 +96,8 @@ __Hstringtext7 0 0 ABS 0
 __Lstringtext7 0 0 ABS 0
 __end_of_TMR2_Initialize 5F5 0 CODE 0
 __end_of_RELE_POWER_WORK_DELAY 6CA 0 STRCODE 0
-__end_of_HIGH_WATER_RESISTANSE 6C0 0 STRCODE 0
-__pstringtext7 6C5 0 STRCODE 0
+__end_of_HIGH_WATER_RESISTANSE 6BE 0 STRCODE 0
+__pstringtext7 6C6 0 STRCODE 0
 int$flags 7E 0 ABS 0
 __ccovbit10_72 16E -E0 BANK0 1
 _go_close_short 45F 0 CODE 0
@@ -250,7 +250,7 @@ __ccov301_start_blk2 375 0 CODE 0
 __ccovbit23_129 135 -E0 BANK0 1
 __ccov130_start_blk3 4D4 0 CODE 0
 __ccov230_start_blk0 546 0 CODE 0
-__pstringtext8 6C6 0 STRCODE 0
+__pstringtext8 6BC 0 STRCODE 0
 __ccov401_start_blk5 508 0 CODE 0
 __ccov121_start_blk0 45F 0 CODE 0
 __ccov211_start_blk9 3DF 0 CODE 0
@@ -447,7 +447,7 @@ __ccov108_start_blk5 53E 0 CODE 0
 __ccov165_start_blk5 144 0 CODE 0
 __ccov393_start_blk5 44E 0 CODE 0
 __ccov252_start_blk16 86 0 CODE 0
-__end_of_LOW_WATER_RESISTANSE 6C2 0 STRCODE 0
+__end_of_LOW_WATER_RESISTANSE 6C0 0 STRCODE 0
 __ccov265_start_blk2 28B 0 CODE 0
 __Hsfr19 0 0 ABS 0
 __ccov224_start_blk11 1D0 0 CODE 0
@@ -1370,9 +1370,9 @@ __ccovbit1_48 186 -E0 BANK0 1
 __Hstringtext5 0 0 ABS 0
 __Lstringtext5 0 0 ABS 0
 __ccovbit10_100 152 -E0 BANK0 1
-__pstringtext5 6BC 0 STRCODE 0
+__pstringtext5 6C4 0 STRCODE 0
 __end_of_stop_tone 69C 0 CODE 0
-__end_of_AUTOROTATION_DAYS 6BE 0 STRCODE 0
+__end_of_AUTOROTATION_DAYS 6C2 0 STRCODE 0
 __ccovbit22_159 117 -E0 BANK0 1
 __ccovbit14_156 11A -E0 BANK0 1
 __ccovbit17_112 146 -E0 BANK0 1
@@ -1459,7 +1459,7 @@ __ccovbit31_169 10D -E0 BANK0 1
 __ccovbit23_166 110 -E0 BANK0 1
 __ccovbit26_160 116 -E0 BANK0 1
 __end_of_sec_work CA 0 CODE 0
-__pstringtext6 6C4 0 STRCODE 0
+__pstringtext6 6C5 0 STRCODE 0
 EEPROM_WriteByte@addr 78 0 COMMON 1
 %segments
 reset_vec 0 1 CODE 0 0
@@ -1470,10 +1470,10 @@ stringtext1 D60 D65 STRCODE D60 0
 text49 D66 D6B CODE D66 0
 stringtext2 D6C D83 STRCODE D6C 0
 text35 D84 D87 CODE D84 0
-stringtext6 D88 D9D STRCODE D88 0
+stringtext5 D88 D9D STRCODE D88 0
 %locals
 dist/default/production\standart_23.X.production.o
-C:\Users\U3B6\AppData\Local\Temp\xcAs3t0.s
+C:\Users\U3B6\AppData\Local\Temp\xcAsask.s
 1770 2E 0 CODE 0
 1773 2E 0 CODE 0
 2418 2E 0 CODE 0

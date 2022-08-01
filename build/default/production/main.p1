@@ -672,10 +672,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 30 `i `uc
 ]
 "29
-[; ;main.c: 29: const __uint24 AUTOROTATION_DELAY = 300;
+[; ;main.c: 29: const __uint24 AUTOROTATION_DELAY = (AUTOROTATION_DAYS * 24 * 60 * 60);
 [v _AUTOROTATION_DELAY `Cum ~T0 @X0 1 e ]
 [i _AUTOROTATION_DELAY
--> -> -> 300 `i `m `um
+-> * * * _AUTOROTATION_DAYS -> -> 24 `i `ui -> -> 60 `i `ui -> -> 60 `i `ui `um
 ]
 "31
 [; ;main.c: 31: const unsigned BAD_WSP_VOLTAGE = (LOW_WATER_RESISTANSE / ((UP_RESISTANSE + LOW_WATER_RESISTANSE) / 256));

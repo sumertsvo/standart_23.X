@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                               Tue Jun 21 13:49:43 2022
+                                                                                               Mon Jul 11 14:39:33 2022
 
 Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
      1                           	processor	16F1823
@@ -1245,8 +1245,8 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1231                           	psect	stringtext1
   1232  06B0                     __pstringtext1:
   1233  06B0                     _AUTOROTATION_DELAY:
-  1234  06B0  342C               	retlw	44
-  1235  06B1  3401               	retlw	1
+  1234  06B0  3400               	retlw	0
+  1235  06B1  3475               	retlw	117
   1236  06B2  3400               	retlw	0
   1237  06B3                     __end_of_AUTOROTATION_DELAY:
   1238                           
@@ -1272,43 +1272,43 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1258  06BC                     __end_of_UP_RESISTANSE:
   1259                           
   1260                           	psect	stringtext5
-  1261  06BC                     __pstringtext5:
-  1262  06BC                     _AUTOROTATION_DAYS:
-  1263  06BC  340E               	retlw	14
-  1264  06BD  3400               	retlw	0
-  1265  06BE                     __end_of_AUTOROTATION_DAYS:
-  1266                           
-  1267                           	psect	stringtext6
-  1268  06C4                     __pstringtext6:
-  1269  06C4                     _MELODY_REPEAT_DELAY:
-  1270  06C4  341E               	retlw	30
-  1271  06C5                     __end_of_MELODY_REPEAT_DELAY:
-  1272                           
-  1273                           	psect	stringtext7
-  1274  06C5                     __pstringtext7:
-  1275  06C5                     _MOVING_WAIT_DELAY:
-  1276  06C5  3401               	retlw	1
-  1277  06C6                     __end_of_MOVING_WAIT_DELAY:
-  1278                           
-  1279                           	psect	stringtext8
-  1280  06C6                     __pstringtext8:
-  1281  06C6                     _FRIMWARE_VERSION_EEPROM_ADR:
-  1282  06C6  3401               	retlw	1
-  1283  06C7                     __end_of_FRIMWARE_VERSION_EEPROM_ADR:
+  1261  06C4                     __pstringtext5:
+  1262  06C4                     _MELODY_REPEAT_DELAY:
+  1263  06C4  341E               	retlw	30
+  1264  06C5                     __end_of_MELODY_REPEAT_DELAY:
+  1265                           
+  1266                           	psect	stringtext6
+  1267  06C5                     __pstringtext6:
+  1268  06C5                     _MOVING_WAIT_DELAY:
+  1269  06C5  3401               	retlw	1
+  1270  06C6                     __end_of_MOVING_WAIT_DELAY:
+  1271                           
+  1272                           	psect	stringtext7
+  1273  06C6                     __pstringtext7:
+  1274  06C6                     _FRIMWARE_VERSION_EEPROM_ADR:
+  1275  06C6  3401               	retlw	1
+  1276  06C7                     __end_of_FRIMWARE_VERSION_EEPROM_ADR:
+  1277                           
+  1278                           	psect	stringtext8
+  1279  06BC                     __pstringtext8:
+  1280  06BC                     _HIGH_WATER_RESISTANSE:
+  1281  06BC  34A8               	retlw	168
+  1282  06BD  3461               	retlw	97
+  1283  06BE                     __end_of_HIGH_WATER_RESISTANSE:
   1284                           
   1285                           	psect	stringtext9
   1286  06BE                     __pstringtext9:
-  1287  06BE                     _HIGH_WATER_RESISTANSE:
-  1288  06BE  34A8               	retlw	168
-  1289  06BF  3461               	retlw	97
-  1290  06C0                     __end_of_HIGH_WATER_RESISTANSE:
+  1287  06BE                     _LOW_WATER_RESISTANSE:
+  1288  06BE  3420               	retlw	32
+  1289  06BF  344E               	retlw	78
+  1290  06C0                     __end_of_LOW_WATER_RESISTANSE:
   1291                           
   1292                           	psect	stringtext10
   1293  06C0                     __pstringtext10:
-  1294  06C0                     _LOW_WATER_RESISTANSE:
-  1295  06C0  3420               	retlw	32
-  1296  06C1  344E               	retlw	78
-  1297  06C2                     __end_of_LOW_WATER_RESISTANSE:
+  1294  06C0                     _AUTOROTATION_DAYS:
+  1295  06C0  340E               	retlw	14
+  1296  06C1  3400               	retlw	0
+  1297  06C2                     __end_of_AUTOROTATION_DAYS:
   1298                           
   1299                           	psect	stringtext11
   1300  06C7                     __pstringtext11:
@@ -5262,11 +5262,11 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5238  018F  0236               	subwf	_time_rotation+2,w
   5239  0190  1D03               	skipz
   5240  0191  2998               	goto	u2295
-  5241  0192  3001               	movlw	1
+  5241  0192  3075               	movlw	117
   5242  0193  0235               	subwf	_time_rotation+1,w
   5243  0194  1D03               	skipz
   5244  0195  2998               	goto	u2295
-  5245  0196  3048               	movlw	72
+  5245  0196  301C               	movlw	28
   5246  0197  0234               	subwf	_time_rotation,w
   5247  0198                     u2295:
   5248  0198  1C03               	skipc
@@ -5350,11 +5350,11 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   5326  01BE  0236               	subwf	_time_rotation+2,w
   5327  01BF  1D03               	skipz
   5328  01C0  29C7               	goto	u2345
-  5329  01C1  3001               	movlw	1
+  5329  01C1  3075               	movlw	117
   5330  01C2  0235               	subwf	_time_rotation+1,w
   5331  01C3  1D03               	skipz
   5332  01C4  29C7               	goto	u2345
-  5333  01C5  302D               	movlw	45
+  5333  01C5  3001               	movlw	1
   5334  01C6  0234               	subwf	_time_rotation,w
   5335  01C7                     u2345:
   5336  01C7  1C03               	skipc
@@ -11638,7 +11638,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                   Tue Jun 21 13:49:43 2022
+Symbol Table                                                                                   Mon Jul 11 14:39:33 2022
 
                        __ccov116_end_blk1 03F2                         __ccov300_end_blk1 0375  
                        __ccov204_end_blk1 03C6                         __ccov140_end_blk2 0604  
@@ -12243,7 +12243,7 @@ Symbol Table                                                                    
                       __ccov52_start_blk4 05E9                        __ccov44_start_blk5 001E  
                       __ccov36_start_blk5 05B3                        __ccov28_start_blk9 052B  
                   EEPROM_WriteByte@status 0397                  ADC_GetConversion@channel 0076  
-                   _HIGH_WATER_RESISTANSE 06BE                   __end_of_TMR2_StartTimer 06B0  
+                   _HIGH_WATER_RESISTANSE 06BC                   __end_of_TMR2_StartTimer 06B0  
 TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@InterruptHandler 0075  
                       __ccov194_end_blk10 0214                        __ccov354_end_blk11 03A5  
                       __ccov290_end_blk12 02F6                        __ccov338_end_blk20 026A  
@@ -12419,7 +12419,7 @@ TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@Interru
                      __ccov309_start_blk1 00CE                       __ccov149_start_blk2 048D  
                      __ccov157_start_blk3 04B2                       __ccov165_start_blk5 0144  
                      __ccov245_start_blk6 005D                              _go_close_alt 058C  
-                        ??_WDT_Initialize 0075              __end_of_LOW_WATER_RESISTANSE 06C2  
+                        ??_WDT_Initialize 0075              __end_of_LOW_WATER_RESISTANSE 06C0  
                 _TMR0_SetInterruptHandler 0689                                 _PORTAbits 000C  
                                _PORTCbits 000E                         ?_EEPROM_WriteByte 0075  
                        __end_of_stop_tone 069C                       __end_of_beep_double 0619  
@@ -12470,7 +12470,7 @@ TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@Interru
                      __ccov265_start_blk2 028B                       __ccov329_start_blk3 023F  
                      __ccov193_start_blk8 020C             ?_TMR2_DefaultInterruptHandler 0073  
                     __ccov224_start_blk11 01D0                      __ccov320_start_blk21 010F  
-                       __ccov8_start_blk1 06A5                         _AUTOROTATION_DAYS 06BC  
+                       __ccov8_start_blk1 06A5                         _AUTOROTATION_DAYS 06C0  
                              __pbssCOMMON 0079                                 ___latbits 0000  
                            __pcstackBANK0 0058                      __ccov199_start_blk15 0229  
                     __ccov375_start_blk24 0338                      __ccov359_start_blk17 03B5  
@@ -12480,7 +12480,7 @@ TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@Interru
                      __ccov362_start_blk0 0306                       __ccov186_start_blk1 01EB  
                      __ccov282_start_blk2 02CF                       __ccov266_start_blk4 0290  
                                _beep_long 052D                       __end_of_sec_30_work 064B  
-                    _LOW_WATER_RESISTANSE 06C0                     _TMR0_InterruptHandler 0053  
+                    _LOW_WATER_RESISTANSE 06BE                     _TMR0_InterruptHandler 0053  
                                __pnvBANK0 0053                         __ccov9_start_blk0 0669  
                              _clear_alarm 06A7                    _PIN_MANAGER_Initialize 05A3  
                      __ccov47_start_blk12 002A                               _ms_100_work 064B  
@@ -12490,7 +12490,7 @@ TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@Interru
                      __ccov187_start_blk2 01F1                       __ccov283_start_blk3 02D3  
                      __ccov267_start_blk5 0296              ??_INTERRUPT_InterruptManager 0075  
                     __ccov225_start_blk12 01D5                      __ccov321_start_blk22 0112  
-               __end_of_AUTOROTATION_DAYS 06BE                                  ?_get_fun 0073  
+               __end_of_AUTOROTATION_DAYS 06C2                                  ?_get_fun 0073  
                                 ?_get_wsp 0073                                  ?_go_open 0073  
                            ??_minute_tick 0073                                  ?_ms_tick 0073  
                     __ccov288_start_blk10 02E8                      __ccov376_start_blk25 033A  
@@ -12578,7 +12578,7 @@ TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@Interru
                     __ccov324_start_blk26 0122                      __ccov260_start_blk28 00C2  
                     get_jump@jump_counter 0049                               _minute_tick 0546  
                               _INTCONbits 000B                        __ccov10_start_blk1 066C  
-           __end_of_HIGH_WATER_RESISTANSE 06C0                            __pstringtext10 06C0  
+           __end_of_HIGH_WATER_RESISTANSE 06BE                            __pstringtext10 06C0  
                           __pstringtext11 06C7                            __pstringtext12 06C8  
                           __pstringtext13 06C9                            __pstringtext14 06CA  
                           __pstringtext15 06CB                            __pstringtext16 06CC  
@@ -12600,8 +12600,8 @@ TMR0_SetInterruptHandler@InterruptHandler 0075  TMR2_SetInterruptHandler@Interru
                        __ccov102_end_blk6 04F8                         __ccov110_end_blk8 0546  
                            __pstringtext1 06B0                             __pstringtext2 06B6  
                            __pstringtext3 06B8                             __pstringtext4 06BA  
-                           __pstringtext5 06BC                             __pstringtext6 06C4  
-                           __pstringtext7 06C5                             __pstringtext8 06C6  
+                           __pstringtext5 06C4                             __pstringtext6 06C5  
+                           __pstringtext7 06C6                             __pstringtext8 06BC  
                            __pstringtext9 06BE                        __ccov201_end_blk17 0236  
                      __ccov299_start_blk0 0346                       __ccov387_start_blk4 041D  
                      __ccov395_start_blk7 0454                        __end_of_start_tone 06A2  
